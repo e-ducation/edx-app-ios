@@ -18,7 +18,7 @@ class RegistrationAPIError : NSError {
 
     init(fields: [String:Field]) {
         self.fieldInfo = fields
-        super.init(domain: "org.edx.mobile.registration", code: -1, userInfo: nil)
+        super.init(domain: "cn.elitemba.iOS.registration", code: -1, userInfo: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {

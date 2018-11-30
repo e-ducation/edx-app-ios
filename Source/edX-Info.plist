@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>edX</string>
+	<string>英荔教育</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
@@ -34,7 +34,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.16</string>
+	<string>1.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSpokenName</key>
@@ -45,15 +45,15 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>org.edx.mobile</string>
+			<string>cn.elitemba.iOS</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>org.edx.mobile</string>
+				<string>cn.elitemba.iOS</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2.16.0</string>
+	<string>1.0.0</string>
 	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
 	<false/>
 	<key>FacebookDisplayName</key>
