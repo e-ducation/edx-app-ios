@@ -249,7 +249,7 @@
 /* Title of dropdown from which the user can select topics on New Post Screen */
 "CHOOSE_A_TOPIC" = "选择一个主题";
 /* Prompt text shown after user chooses to begin registering with an external service like Facebook or Google. {service} will be replaced with a service name like Google or Facebook. */
-"COMPLETE_REGISTRATION_INFO" = "您已经成功登录进{服务名称}。在开始您的学习之前，我们还需要了解一点您的其他信息{平台名称}。";
+"COMPLETE_REGISTRATION_INFO" = "您已经成功登录进{service}。在开始您的学习之前，我们还需要了解一点您的其他信息{platform_name}。";
 /* Prompt text shown after user chooses to begin registering with an external service like Facebook or Google */
 "COMPLETE_REGISTRATION_PROMPT" = "完成你的注册";
 /* Title of alert when confirming deletion of a video */
@@ -530,7 +530,7 @@
 /* Button label to bring up course finder */
 "OR_SIGN_IN_WITH"="或者通过以下方式登录";
 /* Login screen password field title text */
-"PASSWORD_TITLE_TEXT" = "Password";
+"PASSWORD_TITLE_TEXT" = "密码";
 /* Alert dialog button shown when finishing a video to ask if user should continue by watching the next video */
 "PLAYBACK_COMPLETE_CONTINUE"="继续";
 /* Alert dialog button shown when finishing a video to ask if user should continue by watching the next video (negative option) */
@@ -730,7 +730,7 @@
 /* Placeholder title for course content with no title */
 "UNTITLED"="未命名";
 /* Title text for login field */
-"USERNAME_TITLE_TEXT" = "Username or e-mail address";
+"USERNAME_TITLE_TEXT" = "用户名或邮箱地址";
 /*Error message when operation failed with unknow error*/
 "UNKNOWN_ERROR" = "您的操作无法完成。";
 /* Screen title showing a user's account */

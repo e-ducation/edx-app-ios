@@ -33,6 +33,9 @@
 #import "OEXUserLicenseAgreementViewController.h"
 #import "Reachability.h"
 #import "OEXStyles.h"
+#import "TDSinaWBAuthProvider.h"
+#import "TDWeixinAuthProvider.h"
+#import "TDQQAuthProvider.h"
 
 #define USER_EMAIL @"USERNAME"
 
@@ -130,12 +133,15 @@
     [self setTitle:[Strings signInText]];
 
     NSMutableArray* providers = [[NSMutableArray alloc] init];
-    if([self isGoogleEnabled]) {
-        [providers addObject:[[OEXGoogleAuthProvider alloc] init]];
-    }
-    if([self isFacebookEnabled]) {
-        [providers addObject:[[OEXFacebookAuthProvider alloc] init]];
-    }
+//    if([self isGoogleEnabled]) {
+//        [providers addObject:[[OEXGoogleAuthProvider alloc] init]];
+//    }
+//    if([self isFacebookEnabled]) {
+//        [providers addObject:[[OEXFacebookAuthProvider alloc] init]];
+//    }
+    [providers addObject:[[TDWeixinAuthProvider alloc] init]];
+    [providers addObject:[[TDQQAuthProvider alloc] init]];
+    [providers addObject:[[TDSinaWBAuthProvider alloc] init]];
 
     __weak __typeof(self) owner = self;
     OEXExternalAuthOptionsView* externalAuthOptions = [[OEXExternalAuthOptionsView alloc] initWithFrame:self.externalAuthContainer.bounds providers:providers tapAction:^(id<OEXExternalAuthProvider> provider) {
