@@ -1,0 +1,59 @@
+{
+    "fields":[
+    {
+              "name" : "account_privacy",
+              "label" : "其它学生可以看到我的：",
+              "type" : "switch",
+              "data_type" : "boolean",
+              "options" : {
+                "values" : [
+                            { "name" : "完整档案", "value" : "all_users" },
+                            { "name" : "有限档案",  "value" : "private" }
+                 ]
+              },
+              "instructions" : "有限档案仅分享你的用户名和档案照片。",
+              "accessibility_hint" : "变更可与其他人分享的信息。"
+    },
+    {
+              "name" : "year_of_birth",
+              "label" : "出生年份",
+              "type" : "select",
+              "options" : {
+                "range_min" : 1896,
+                "range_max" : 2015,
+                "allows_none" : true,
+                "none_label" : "没有出生年份"
+              },
+              "instructions" : "在分享你的完整档案之前，你必须填写你的出生年份。",
+              "sub_instructions" : "此信息不会被公开显示"
+    },
+    {
+              "name" : "country",
+              "label" : "位置",
+              "type" : "select",
+              "data_type" : "country",
+              "options" : {
+                "reference" : "countries",
+                "allows_none" : true,
+                "none_label" : "没有位置信息"
+              }
+    },
+    {
+              "name" : "language_proficiencies",
+              "label" : "主要语言",
+              "type" : "select",
+              "data_type" : "language",
+              "options" : {
+                "reference" : "languages",
+                "allows_none" : true,
+                "none_label" : "没有主要语言"
+              }
+    },
+    {
+              "name" : "bio",
+              "label" : "关于我",
+              "type" : "textarea",
+              "placeholder" : "我想要学习..."
+    }
+    ]
+}

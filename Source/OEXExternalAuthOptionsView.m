@@ -16,8 +16,11 @@
 #import "OEXExternalRegistrationOptionsView.h"
 #import "OEXFacebookAuthProvider.h"
 #import "OEXGoogleAuthProvider.h"
+#import "TDSinaWBAuthProvider.h"
+#import "TDWeixinAuthProvider.h"
+#import "TDQQAuthProvider.h"
 
-static CGFloat OEXExternalAuthButtonAspectRatio = 3.4;
+static CGFloat OEXExternalAuthButtonAspectRatio = 1.0;//3.4;
 
 @interface OEXExternalAuthOptionsView ()
 
@@ -41,6 +44,15 @@ static CGFloat OEXExternalAuthButtonAspectRatio = 3.4;
             else if ([provider isKindOfClass:[OEXGoogleAuthProvider class]]) {
                 button.accessibilityIdentifier = @"ExternalAuthOptionsView:google-button";
             }
+            else if ([provider isKindOfClass:[TDWeixinAuthProvider class]]) {
+                button.accessibilityIdentifier = @"ExternalAuthOptionsView:sina-button";
+            }
+            else if ([provider isKindOfClass:[TDQQAuthProvider class]]) {
+                button.accessibilityIdentifier = @"ExternalAuthOptionsView:sina-button";
+            }
+            else if ([provider isKindOfClass:[TDSinaWBAuthProvider class]]) {
+                button.accessibilityIdentifier = @"ExternalAuthOptionsView:sina-button";
+            }
             button.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",[Strings registrationRegisterPrompt],button.titleLabel.text];
             [button oex_addAction:^(id  _Nonnull control) {
                 tapAction(provider);
@@ -62,7 +74,7 @@ static CGFloat OEXExternalAuthButtonAspectRatio = 3.4;
         return CGSizeMake(UIViewNoIntrinsicMetric, 0);
     }
     else {
-        CGFloat height = 30;
+        CGFloat height = 48;//30
         NSUInteger rows = (self.optionButtons.count + self.optionButtons.count - 1) / self.itemsPerRow;
 
 

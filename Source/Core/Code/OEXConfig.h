@@ -56,6 +56,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)feedbackEmailAddress;
 - (nullable NSString*)oauthClientID;
 
+- (nullable NSString*)weixinAPPID;
+- (nullable NSString*)weixinSecret;
+
+- (nullable NSString *)tencentAPPID;
+- (nullable NSString *)tencentSecret;
+
+- (nullable NSString *)sinaAPPKey;
+- (nullable NSString *)sinaSecret;
+- (nullable NSString *)sinaTRedirectUrl;
+
 /** Feature flag for the debug menu */
 - (BOOL)shouldShowDebug;
 

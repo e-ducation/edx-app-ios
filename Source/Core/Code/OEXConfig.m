@@ -23,6 +23,14 @@ static NSString* const OEXOAuthClientID = @"OAUTH_CLIENT_ID";
 // Debug
 static NSString* const OEXDebugEnabledKey = @"SHOW_DEBUG";
 
+static NSString* const TDWeiXinAPPID = @"WX_APPID";
+static NSString* const TDWeiXinSecret = @"WX_Secret";
+static NSString* const TDQQAPPID = @"QQ_APPID";
+static NSString* const TDQQSecret = @"QQ_Secret";
+static NSString* const TDWBAPPKey = @"SINA_APPKEY";
+static NSString* const TDWBSecret = @"SINA_Secret";
+static NSString* const TDWBRedirectUrl = @"SINA_RedirectURL";
+
 static OEXConfig* sSharedConfig;
 
 @implementation OEXConfig
@@ -121,6 +129,34 @@ static OEXConfig* sSharedConfig;
 
 - (NSString*)oauthClientID {
     return [self stringForKey:OEXOAuthClientID];
+}
+
+- (NSString *)weixinAPPID {
+    return [self stringForKey:TDWeiXinAPPID];
+}
+
+- (NSString *)weixinSecret {
+    return [self stringForKey:TDWeiXinSecret];
+}
+
+- (NSString *)tencentAPPID {
+    return [self stringForKey:TDQQAPPID];
+}
+
+- (NSString *)tencentSecret {
+    return [self stringForKey:TDQQSecret];
+}
+
+- (NSString *)sinaAPPKey {
+    return [self stringForKey:TDWBAPPKey];
+}
+
+- (NSString *)sinaSecret {
+    return [self stringForKey:TDWBSecret];
+}
+
+- (NSString *)sinaTRedirectUrl {
+    return [self stringForKey:TDWBRedirectUrl];
 }
 
 #pragma mark - Debug
