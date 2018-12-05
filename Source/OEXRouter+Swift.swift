@@ -271,7 +271,7 @@ extension OEXRouter {
         fromController.navigationController?.pushViewController(controller, animated: animated)
     }
     
-    func showCourseCatalog(fromController: UIViewController? = nil, bottomBar: UIView? = nil, searchQuery: String? = nil) {
+    @objc(showCourseCatalogFromController: bottomBar: searchQuery:) func showCourseCatalog(fromController: UIViewController? = nil, bottomBar: UIView? = nil, searchQuery: String? = nil) {
         let controller = discoveryViewController(bottomBar: bottomBar, searchQuery: searchQuery)
         if let fromController = fromController {
             fromController.tabBarController?.selectedIndex = EnrolledTabBarViewController.courseCatalogIndex
