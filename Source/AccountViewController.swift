@@ -10,12 +10,13 @@ import UIKit
 import MessageUI
 
 fileprivate enum AccountviewOptions : Int {
-    case Profile,
+    case VipPackage,
+         Profile,
          UserSettings,
          SubmitFeedback,
          Logout
     
-        static let accountOptions = [Profile, UserSettings, SubmitFeedback, Logout]
+        static let accountOptions = [VipPackage, Profile, UserSettings, SubmitFeedback, Logout]
 }
 
 class AccountViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -139,6 +140,10 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
                 dismiss(animated: true, completion: { [weak self] in
                     self?.environment.router?.logout()
                 })
+            case .VipPackage:
+                let vipPackageVc = TDVipPackageViewController()
+                self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+                self.navigationController?.pushViewController(vipPackageVc, animated: true)
             }
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -174,6 +179,8 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
             return Strings.SubmitFeedback.optionTitle
         case .Logout:
             return Strings.logout
+        case .VipPackage:
+            return "VIP"
         }
         
         return nil

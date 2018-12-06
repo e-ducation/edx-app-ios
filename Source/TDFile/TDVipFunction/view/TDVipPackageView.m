@@ -95,7 +95,8 @@
     self.packageHeaderView = [[TDVipPackageHeaderView alloc] initWithFrame:CGRectMake(0, 0, TDWidth, 133)];
     self.tableView.tableHeaderView = self.packageHeaderView;
     
-    [self.packageHeaderView packageStart:@"2018年1月2日" end:@"2019年1月1日" validStr:@"365" pastStr:@"1" type:1];
+    [self.packageHeaderView packageStart:nil end:nil validStr:nil pastStr:nil type:0];
+//    [self.packageHeaderView packageStart:@"2018年1月2日" end:@"2019年1月1日" validStr:@"365" pastStr:@"1" type:1];
 }
 
 @end
