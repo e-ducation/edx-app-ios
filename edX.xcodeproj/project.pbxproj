@@ -598,6 +598,9 @@
 		A423E0B721B11C580093FBD3 /* TDVipPackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0B621B11C580093FBD3 /* TDVipPackageCell.m */; };
 		A423E0BC21B11F6E0093FBD3 /* UIColor+TDHexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0BB21B11F6E0093FBD3 /* UIColor+TDHexColor.m */; };
 		A423E0C021B135660093FBD3 /* TDVipPackageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0BF21B135660093FBD3 /* TDVipPackageHeaderView.m */; };
+		A467A9AA21B7C05700C990C6 /* weChatParamsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A467A9A721B7C05600C990C6 /* weChatParamsItem.m */; };
+		A467A9AB21B7C05700C990C6 /* WeChatPay.m in Sources */ = {isa = PBXBuildFile; fileRef = A467A9A821B7C05700C990C6 /* WeChatPay.m */; };
+		A467A9AF21B7C0A300C990C6 /* Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = A467A9AE21B7C0A200C990C6 /* Encryption.m */; };
 		A4FA40D321B0E2B50089CEBA /* TDWeixinAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FA40C521B0E2B40089CEBA /* TDWeixinAuthProvider.m */; };
 		A4FA40D421B0E2B50089CEBA /* TDSinaWBAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FA40C621B0E2B40089CEBA /* TDSinaWBAuthProvider.m */; };
 		A4FA40D521B0E2B50089CEBA /* TDQQAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FA40CA21B0E2B40089CEBA /* TDQQAuthProvider.m */; };
@@ -1597,6 +1600,12 @@
 		A423E0BD21B12B800093FBD3 /* TDPchHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDPchHeader.h; sourceTree = "<group>"; };
 		A423E0BE21B135650093FBD3 /* TDVipPackageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipPackageHeaderView.h; sourceTree = "<group>"; };
 		A423E0BF21B135660093FBD3 /* TDVipPackageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipPackageHeaderView.m; sourceTree = "<group>"; };
+		A467A9A621B7C05600C990C6 /* WeChatPay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatPay.h; sourceTree = "<group>"; };
+		A467A9A721B7C05600C990C6 /* weChatParamsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = weChatParamsItem.m; sourceTree = "<group>"; };
+		A467A9A821B7C05700C990C6 /* WeChatPay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatPay.m; sourceTree = "<group>"; };
+		A467A9A921B7C05700C990C6 /* weChatParamsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weChatParamsItem.h; sourceTree = "<group>"; };
+		A467A9AD21B7C0A200C990C6 /* Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encryption.h; sourceTree = "<group>"; };
+		A467A9AE21B7C0A200C990C6 /* Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Encryption.m; sourceTree = "<group>"; };
 		A4FA40BA21B0CFA20089CEBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = "zh-Hans"; path = "zh-Hans.lproj/subjects.json"; sourceTree = "<group>"; };
 		A4FA40BB21B0CFA20089CEBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/MobileAppEula.htm"; sourceTree = "<group>"; };
 		A4FA40BC21B0CFA30089CEBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/PrivacyPolicy.htm"; sourceTree = "<group>"; };
@@ -3210,6 +3219,7 @@
 			isa = PBXGroup;
 			children = (
 				A423E0BD21B12B800093FBD3 /* TDPchHeader.h */,
+				A467A9AC21B7C0A200C990C6 /* TDMd5Tool */,
 				A423E0B921B11F1D0093FBD3 /* TDHexColor */,
 			);
 			path = TDToolLibrary;
@@ -3224,12 +3234,50 @@
 			path = TDHexColor;
 			sourceTree = "<group>";
 		};
+		A467A9A321B7BFA900C990C6 /* TDPayManager */ = {
+			isa = PBXGroup;
+			children = (
+				A467A9A421B7BFA900C990C6 /* AlipayMabager */,
+				A467A9A521B7BFA900C990C6 /* WechatManager */,
+			);
+			name = TDPayManager;
+			path = Source/TDFile/TDPayManager;
+			sourceTree = SOURCE_ROOT;
+		};
+		A467A9A421B7BFA900C990C6 /* AlipayMabager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AlipayMabager;
+			sourceTree = "<group>";
+		};
+		A467A9A521B7BFA900C990C6 /* WechatManager */ = {
+			isa = PBXGroup;
+			children = (
+				A467A9A921B7C05700C990C6 /* weChatParamsItem.h */,
+				A467A9A721B7C05600C990C6 /* weChatParamsItem.m */,
+				A467A9A621B7C05600C990C6 /* WeChatPay.h */,
+				A467A9A821B7C05700C990C6 /* WeChatPay.m */,
+			);
+			path = WechatManager;
+			sourceTree = "<group>";
+		};
+		A467A9AC21B7C0A200C990C6 /* TDMd5Tool */ = {
+			isa = PBXGroup;
+			children = (
+				A467A9AD21B7C0A200C990C6 /* Encryption.h */,
+				A467A9AE21B7C0A200C990C6 /* Encryption.m */,
+			);
+			path = TDMd5Tool;
+			sourceTree = "<group>";
+		};
 		A4FA40C321B0E2B40089CEBA /* TDFile */ = {
 			isa = PBXGroup;
 			children = (
 				A4FA40C421B0E2B40089CEBA /* TDAuthenProvider */,
 				A4FA40CB21B0E2B40089CEBA /* TDThirdManager */,
 				A423E0AB21B112980093FBD3 /* TDVipFunction */,
+				A467A9A321B7BFA900C990C6 /* TDPayManager */,
 				A423E0B821B11F1D0093FBD3 /* TDToolLibrary */,
 			);
 			path = TDFile;
@@ -3252,12 +3300,12 @@
 			isa = PBXGroup;
 			children = (
 				A4FA40CC21B0E2B40089CEBA /* TDWechatManager.h */,
-				A4FA40CD21B0E2B40089CEBA /* TDQQManager.h */,
-				A4FA40CE21B0E2B40089CEBA /* TDWeiboManeger.h */,
 				A4FA40CF21B0E2B40089CEBA /* TDWechatManager.m */,
-				A4FA40D021B0E2B40089CEBA /* TencentOpenAPI.framework */,
-				A4FA40D121B0E2B40089CEBA /* TDWeiboManeger.m */,
+				A4FA40CD21B0E2B40089CEBA /* TDQQManager.h */,
 				A4FA40D221B0E2B40089CEBA /* TDQQManager.m */,
+				A4FA40D121B0E2B40089CEBA /* TDWeiboManeger.m */,
+				A4FA40CE21B0E2B40089CEBA /* TDWeiboManeger.h */,
+				A4FA40D021B0E2B40089CEBA /* TencentOpenAPI.framework */,
 			);
 			path = TDThirdManager;
 			sourceTree = "<group>";
@@ -4702,6 +4750,7 @@
 				B7CCC735209B16B100A66923 /* ConstraintView+Extensions.swift in Sources */,
 				E0C6EF971BFF4B9900B315E3 /* UIButton+TintColor.swift in Sources */,
 				B4B6D62A1A949F1B000F44E8 /* OEXRegistrationFieldSelectController.m in Sources */,
+				A467A9AA21B7C05700C990C6 /* weChatParamsItem.m in Sources */,
 				B4B6D5E51A9490E9000F44E8 /* OEXLoginSplashViewController.m in Sources */,
 				778F177C1C0D12780099BF93 /* CourseCatalogAPI.swift in Sources */,
 				B7CCC73B209B16B100A66923 /* LayoutConstraint.swift in Sources */,
@@ -4961,6 +5010,8 @@
 				E0D159911EB87658005E2A76 /* WhatsNewViewController.swift in Sources */,
 				770A279D1A6F150B00DFC6FF /* OEXVideoPathEntry.m in Sources */,
 				9C9B7F6D1A8CC68400A857B2 /* OEXCourseInfoViewController.m in Sources */,
+				A467A9AF21B7C0A300C990C6 /* Encryption.m in Sources */,
+				A467A9AB21B7C05700C990C6 /* WeChatPay.m in Sources */,
 				199B9B6F1935C72900081A09 /* DACircularProgressView.m in Sources */,
 				1AA79ABA1BAC7F710011D381 /* ProfileAPI.swift in Sources */,
 				46CECC401B041FCA0073C63A /* DiscussionTopicsViewController.swift in Sources */,

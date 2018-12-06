@@ -39,6 +39,7 @@
 #import "TDWeiboManeger.h"
 #import "TDWechatManager.h"
 #import "TDQQManager.h"
+#import <WXApi.h>
 
 @interface OEXAppDelegate () <UIApplicationDelegate>
 
@@ -145,9 +146,9 @@
 }
 
 // Respond to Universal Links
-//- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler {
-    
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+//- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler {
+
     if (self.environment.config.fabricConfig.kits.branchConfig.enabled) {
         return [[Branch getInstance] continueUserActivity:userActivity];
     }

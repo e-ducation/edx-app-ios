@@ -69,7 +69,7 @@
 }
 
 - (void)payButtonAction:(UIButton *)sender { //支付
-    
+    [self.delegate gotoPayByType:self.selectRow price:@"0.00"];
 }
 
 - (void)wechatButtonAction:(UIButton *)sender { //微信

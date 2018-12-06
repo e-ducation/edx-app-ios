@@ -134,7 +134,7 @@
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, TDWidth, TDHeight)];
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self;
-    self.webView.backgroundColor = [UIColor redColor];
+    self.webView.backgroundColor = [UIColor whiteColor];
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://crews.ngrok.elitemc.cn:8000/vip?device=ios"]]];
     [self.view addSubview:self.webView];
     

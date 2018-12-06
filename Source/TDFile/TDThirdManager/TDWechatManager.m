@@ -61,8 +61,45 @@
  如果第三方程序向微信发送了sendReq的请求，那么onResp会被回调。sendReq请求调用后，会切到微信终端程序界面。
  */
 - (void)onResp:(BaseResp *)resp {
-    SendAuthResp *authResp = (SendAuthResp *)resp;
-    [self WXApiUtilsDidRecvAuthResponse:authResp];
+    
+    if ([resp isKindOfClass:[PayResp class]]) { //微信支付
+        if (resp.errCode == WXSuccess) {
+            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"aliPaySuccess" object:nil]];
+        }
+        else {
+            NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+            switch (resp.errCode) {
+                case WXSuccess:
+                    strMsg = @"支付成功";
+                    break;
+                case WXErrCodeUserCancel:
+                    strMsg = @"取消支付";
+                    break;
+                case WXErrCodeSentFail:
+                    strMsg = @"支付失败";
+                    break;
+                case WXErrCodeAuthDeny:
+                    strMsg = @"授权失败";
+                    break;
+                default:
+                    strMsg = @"不支持微信支付";
+                    break;
+            }
+            
+            NSString *strTitle = @"支付结果";
+            UIAlertController *alerVC = [UIAlertController alertControllerWithTitle:strTitle message:strMsg preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [alerVC addAction:sureAction];
+            
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alerVC animated:YES completion:nil];
+        }
+    }
+    else if ([SendAuthResp class]) { //第三方授权
+        SendAuthResp *authResp = (SendAuthResp *)resp;
+        [self WXApiUtilsDidRecvAuthResponse:authResp];
+    }
 }
 
 - (void)WXApiUtilsDidRecvAuthResponse:(SendAuthResp *)response {//第三方登录
