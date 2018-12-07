@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,weak,nullable) id <TDVipPayDelegate> delegate;
 
+- (void)vipPaySheetViewDisapear;//收回支付页面
+
 @end
 
 NS_ASSUME_NONNULL_END

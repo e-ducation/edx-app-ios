@@ -17,6 +17,7 @@
 @property (nonatomic,strong) TDPaySheetView *sheetView;
 
 @property (nonatomic,assign) NSInteger selectRow;
+@property (nonatomic,assign) NSInteger payType;
 
 @end
 
@@ -26,6 +27,7 @@
     self = [super init];
     if (self) {
         self.selectRow = 0;
+        self.payType = 0;
         [self setViewConstraint];
     }
     return self;
@@ -42,15 +44,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TDVipPackageCell *cell = [[TDVipPackageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TDVipPackageCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.isSelect = indexPath.section == self.selectRow;
-    
     cell.bgButton.tag = indexPath.section;
+    
+    cell.isSelect = indexPath.section == self.selectRow;
     [cell.bgButton addTarget:self action:@selector(bgButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
 
 - (void)bgButtonAction:(UIButton *)sender { //选择套餐
+    
     self.selectRow = sender.tag;
     [self.tableView reloadData];
     
@@ -69,15 +72,21 @@
 }
 
 - (void)payButtonAction:(UIButton *)sender { //支付
-    [self.delegate gotoPayByType:self.selectRow price:@"0.00"];
+    [self.delegate gotoPayByType:self.payType price:@"0.00"];
 }
 
 - (void)wechatButtonAction:(UIButton *)sender { //微信
+    self.payType = 0;
     [self.sheetView selectPayStyle:0];
 }
 
 - (void)alipayButtonAction:(UIButton *)sender { //支付宝
+    self.payType = 1;
     [self.sheetView selectPayStyle:1];
+}
+
+- (void)vipPaySheetViewDisapear { //收回支付页面
+    [self.sheetView sheetDisapear];
 }
 
 #pragma mark - UI

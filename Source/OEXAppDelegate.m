@@ -40,6 +40,7 @@
 #import "TDWechatManager.h"
 #import "TDQQManager.h"
 #import <WXApi.h>
+#import "TDAlipayManager.h"
 
 @interface OEXAppDelegate () <UIApplicationDelegate>
 
@@ -122,6 +123,10 @@
                                           annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
     }
     
+    if ([url.host isEqualToString:@"safepay"]) { //支付宝
+        [[TDAlipayManager shareManager] processOrderWithPaymentResult:url];
+    }
+    
     handled = [self handleUrl:url handle:handled];
     
     return handled;
@@ -133,21 +138,21 @@
     NSString *tecentSchema = [NSString stringWithFormat:@"tencent%@",[[OEXConfig sharedConfig] tencentAPPID]];
     NSString *wbSchema = [NSString stringWithFormat:@"wb%@",[[OEXConfig sharedConfig] sinaAPPKey]];
     
-    if ([wxSchema isEqualToString:[url scheme]]) {
+    if ([wxSchema isEqualToString:[url scheme]]) {//微信
         handled = [[TDWechatManager shareManager] handleOpenURL:url];
     }
-    else if ([tecentSchema isEqualToString:[url scheme]]) {
+    else if ([tecentSchema isEqualToString:[url scheme]]) {//qq
         handled = [[TDQQManager shareManager] handleOpenURL:url];
     }
-    else if ([wbSchema isEqualToString:[url scheme]]) {
+    else if ([wbSchema isEqualToString:[url scheme]]) { //新浪微博
         handled = [[TDWeiboManeger shareManager] handleOpenURL:url];
     }
     return handled;
 }
 
 // Respond to Universal Links
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
-//- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler {
+//- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler {
 
     if (self.environment.config.fabricConfig.kits.branchConfig.enabled) {
         return [[Branch getInstance] continueUserActivity:userActivity];

@@ -9,8 +9,8 @@
 import UIKit
 
 private enum TabBarOptions: Int {
-    case Course, Program, CourseCatalog, Debug, Vip
-    static let options = [Course, Program, CourseCatalog, Debug, Vip]
+    case Course, Program, Vip, CourseCatalog, Debug
+    static let options = [Course, Program, Vip, CourseCatalog, Debug,]
     
     func title(config: OEXConfig? = nil) -> String {
         switch self {
@@ -105,7 +105,7 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
                     additionalTabBarItems.append(item)
                 }
             case .Vip:
-                item = TabBarItem(title: option.title(), viewController: TDVipIntroduceViewController(), icon: Icon.Courseware, detailText: Strings.Dashboard.courseCourseDetail)
+                item = TabBarItem(title: option.title(), viewController: TDVipIntroduceViewController(), icon: Icon.BankHouse, detailText: Strings.Dashboard.courseCourseDetail)
                 tabBarItems.append(item)
             }
         }
@@ -197,6 +197,7 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
         }
         navigationItem.title = titleOfViewController(index: selectedIndex)
     }
+    
 }
 
 extension EnrolledTabBarViewController {

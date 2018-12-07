@@ -153,6 +153,7 @@
     }];
 }
 
+#pragma mark - Action
 - (void)payButtonAction:(UIButton *)sender {
     [self gotoVipPackgeVC];
 }

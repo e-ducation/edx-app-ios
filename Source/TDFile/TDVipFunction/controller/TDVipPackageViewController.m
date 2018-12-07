@@ -8,10 +8,11 @@
 
 #import "TDVipPackageViewController.h"
 #import "TDVipPackageView.h"
-#import "WeChatPay.h"
+#import "TDWechatManager.h"
+#import "TDAlipayManager.h"
 #import "OEXConfig.h"
 
-@interface TDVipPackageViewController () <UITableViewDelegate, TDVipPayDelegate>
+@interface TDVipPackageViewController () <UITableViewDelegate, TDVipPayDelegate, TDAlipayDelegate, TDWXDelegate>
 
 @property (nonatomic,strong) TDVipPackageView *packageView;
 
@@ -44,16 +45,56 @@
 #pragma mark - TDVipPayDelegate
 - (void)gotoPayByType:(NSInteger)type price:(NSString *)price {//支付
     
+    if (type == 0) {
+        [self wechatPayAction];
+    }
+    else {
+        [self alipayAction];
+    }
+
+}
+
+- (void)wechatPayAction { //微信支付
     weChatParamsItem *item = [[weChatParamsItem alloc] init];
     item.appid = [[OEXConfig sharedConfig] weixinAPPID];
     item.mch_id = @"";
     item.nonce_str = @"";
-    item.order_id = @"";
     item.prepay_id = @"";
     item.sign = @"";
     
-    WeChatPay *wechat = [[WeChatPay alloc] init];
-    [wechat submitPostWechatPay:item];
+    TDWechatManager *manager = [TDWechatManager shareManager];
+    manager.delegate = self;
+    [manager submitPostWechatPay:item];
+}
+
+- (void)alipayAction {//支付宝支付
+    TDAlipayManager *alipayManager = [TDAlipayManager shareManager];
+    alipayManager.delegate = self;
+    
+    TDAliPayModel *aliPayModel = [[TDAliPayModel alloc] init];
+    [alipayManager sumbmitAliPay:aliPayModel];
+}
+
+#pragma mark - TDWXDelegate
+- (void)weixinPaySuccessHandle {//支付成功
+    NSLog(@"支付宝 -- 支付成功");
+    [self.packageView vipPaySheetViewDisapear];
+}
+
+- (void)weixinPayFailed:(NSInteger)status {//支付失败
+    NSLog(@"支付宝 -- 支付失败");
+    [self.packageView vipPaySheetViewDisapear];
+}
+
+#pragma mark - TDAlipayDelegate
+- (void)alipaySuccessHandle { //支付成功
+    NSLog(@"支付宝 -- 支付成功");
+    [self.packageView vipPaySheetViewDisapear];
+}
+
+- (void)alipayFaile:(NSInteger)status { //支付失败
+    NSLog(@"支付宝 -- 支付失败");
+    [self.packageView vipPaySheetViewDisapear];
 }
 
 #pragma mark - UI

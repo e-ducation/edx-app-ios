@@ -15,4 +15,11 @@
 #define TDWidth [UIScreen mainScreen].bounds.size.width
 #define TDHeight [UIScreen mainScreen].bounds.size.height
 
+#if __has_feature(objc_arc)
+#define WS(weakSelf) __weak typeof(&*self)weakSelf = self
+#else
+#define WS(weakSelf) __block typeof(&*self)weakSelf = self
+#endif
+
+
 #endif /* TDPchHeader_h */
