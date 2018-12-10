@@ -9,7 +9,6 @@
 #import "TDAlipayManager.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "APOrderInfo.h"
-#import "APRSASigner.h"
 #import "OEXConfig.h"
 
 @implementation TDAlipayManager

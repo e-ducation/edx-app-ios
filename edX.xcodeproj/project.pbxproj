@@ -593,6 +593,8 @@
 		9EEB85A71BD6564E000F3E9E /* PressableCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEB85A61BD6564E000F3E9E /* PressableCustomButton.swift */; };
 		9EEFFD651B300E87002A88B0 /* OEXInterface+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEFFD641B300E87002A88B0 /* OEXInterface+Swift.swift */; };
 		9EF21A9E1B4697CA000048F8 /* CourseLastAccessedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF21A9D1B4697CA000048F8 /* CourseLastAccessedController.swift */; };
+		A410851D21BE0D680053F18A /* TDVipPackageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A410851C21BE0D680053F18A /* TDVipPackageModel.m */; };
+		A410852021BE11E20053F18A /* TDVipMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A410851F21BE11E20053F18A /* TDVipMessageModel.m */; };
 		A423E0B121B113300093FBD3 /* TDVipPackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0B021B113300093FBD3 /* TDVipPackageViewController.m */; };
 		A423E0B421B1134F0093FBD3 /* TDVipPackageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0B321B1134F0093FBD3 /* TDVipPackageView.m */; };
 		A423E0B721B11C580093FBD3 /* TDVipPackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0B621B11C580093FBD3 /* TDVipPackageCell.m */; };
@@ -1595,6 +1597,10 @@
 		9EEB85A61BD6564E000F3E9E /* PressableCustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PressableCustomButton.swift; sourceTree = "<group>"; };
 		9EEFFD641B300E87002A88B0 /* OEXInterface+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OEXInterface+Swift.swift"; sourceTree = "<group>"; };
 		9EF21A9D1B4697CA000048F8 /* CourseLastAccessedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseLastAccessedController.swift; sourceTree = "<group>"; };
+		A410851B21BE0D680053F18A /* TDVipPackageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipPackageModel.h; sourceTree = "<group>"; };
+		A410851C21BE0D680053F18A /* TDVipPackageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipPackageModel.m; sourceTree = "<group>"; };
+		A410851E21BE11E20053F18A /* TDVipMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipMessageModel.h; sourceTree = "<group>"; };
+		A410851F21BE11E20053F18A /* TDVipMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipMessageModel.m; sourceTree = "<group>"; };
 		A423E0AF21B113300093FBD3 /* TDVipPackageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipPackageViewController.h; sourceTree = "<group>"; };
 		A423E0B021B113300093FBD3 /* TDVipPackageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipPackageViewController.m; sourceTree = "<group>"; };
 		A423E0B221B1134F0093FBD3 /* TDVipPackageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipPackageView.h; sourceTree = "<group>"; };
@@ -3276,6 +3282,10 @@
 		A423E0AC21B113110093FBD3 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				A410851B21BE0D680053F18A /* TDVipPackageModel.h */,
+				A410851C21BE0D680053F18A /* TDVipPackageModel.m */,
+				A410851E21BE11E20053F18A /* TDVipMessageModel.h */,
+				A410851F21BE11E20053F18A /* TDVipMessageModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3383,9 +3393,9 @@
 		A49EE9EE21BA225400EDCCC3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A49EE9F121BA225400EDCCC3 /* openssl_wrapper.h */,
 				A49EE9EF21BA225400EDCCC3 /* openssl_wrapper.m */,
 				A49EE9F021BA225400EDCCC3 /* APRSASigner.h */,
-				A49EE9F121BA225400EDCCC3 /* openssl_wrapper.h */,
 				A49EE9F221BA225400EDCCC3 /* APRSASigner.m */,
 			);
 			path = Utils;
@@ -4938,6 +4948,7 @@
 				A49EEA4221BA225400EDCCC3 /* APRSASigner.m in Sources */,
 				B4B6D6001A949EFC000F44E8 /* OEXRegistrationDescription.m in Sources */,
 				5DEA47D71B62F64300831EC9 /* DiscussionObjectModel.swift in Sources */,
+				A410851D21BE0D680053F18A /* TDVipPackageModel.m in Sources */,
 				BE0D4551192DE65200D720D6 /* OEXInterface.m in Sources */,
 				77F9C1741B0D496B004D39E7 /* CourseStructureAPI.swift in Sources */,
 				779376571BF15C1B00900A8C /* FindCoursesWebViewHelper.swift in Sources */,
@@ -5240,6 +5251,7 @@
 				7773D1A91B1E557D0037214B /* OEXVideoEncoding.m in Sources */,
 				77092C731B421BD0004AA1A1 /* ContainerNavigationController.swift in Sources */,
 				B7CCC73C209B16B100A66923 /* ConstraintLayoutGuide+Extensions.swift in Sources */,
+				A410852021BE11E20053F18A /* TDVipMessageModel.m in Sources */,
 				B4132C10195AAFBE00F50B46 /* OEXAuthentication.m in Sources */,
 				E0B4F3621EBB133000D42C11 /* WhatsNewContentController.swift in Sources */,
 				775EB3AE1B1FF1AD009526A8 /* ButtonStyle.swift in Sources */,

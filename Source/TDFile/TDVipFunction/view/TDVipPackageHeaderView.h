@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TDVipMessageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,13 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  VIP信息数据
- @param start 开始时间
- @param end 到期时间
- @param validStr 剩余多少天/已过期多少天
- @param pastStr  已过多少天
  @param type 0 未购买，1 已购买，2 已过期
  */
-- (void)packageStart:(nullable NSString *)start end:(nullable NSString *)end validStr:(nullable NSString *)validStr pastStr:(nullable NSString *)pastStr type:(NSInteger)type;
+- (void)packageViewMessage:(TDVipMessageModel *)messageModel;
 
 @end
 

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TDVipPackageViewController : UIViewController
 
+@property (nonatomic,strong) NSString *vipID;
+
 @end
 
 NS_ASSUME_NONNULL_END

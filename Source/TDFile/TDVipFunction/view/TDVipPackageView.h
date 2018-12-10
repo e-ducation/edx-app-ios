@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TDVipMessageModel.h"
+#import "TDVipPackageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,6 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,weak,nullable) id <TDVipPayDelegate> delegate;
+
+@property (nonatomic,strong,nullable) NSString *vipID;
+@property (nonatomic,strong) TDVipMessageModel *messageModel;
+@property (nonatomic,strong) NSArray <TDVipPackageModel *> *vipArray;
 
 - (void)vipPaySheetViewDisapear;//收回支付页面
 

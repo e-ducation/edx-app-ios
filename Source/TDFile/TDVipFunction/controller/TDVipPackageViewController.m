@@ -11,20 +11,64 @@
 #import "TDWechatManager.h"
 #import "TDAlipayManager.h"
 #import "OEXConfig.h"
+#import <AFNetworking/AFNetworking.h>
+#import "OEXAuthentication.h"
+
+#import "TDVipMessageModel.h"
+#import "TDVipPackageModel.h"
 
 @interface TDVipPackageViewController () <UITableViewDelegate, TDVipPayDelegate, TDAlipayDelegate, TDWXDelegate>
 
 @property (nonatomic,strong) TDVipPackageView *packageView;
+@property (nonatomic,strong) TDVipMessageModel *messageModel;
+
+@property (nonatomic,strong) NSMutableArray *vipArray;
 
 @end
 
 @implementation TDVipPackageViewController
+
+- (NSMutableArray *)vipArray {
+    if (!_vipArray) {
+        _vipArray = [[NSMutableArray alloc] init];
+    }
+    return _vipArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"VIP";
     [self setViewConstraint];
+    [self getVipData];
+}
+
+#pragma mark - data
+- (void)getVipData {
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSString *authent = [OEXAuthentication authHeaderForApiAccess];
+    [manager.requestSerializer setValue:authent forHTTPHeaderField:@"Authorization"];
+
+    NSString *url = [NSString stringWithFormat:@"%@%@",ELITEU_URL,VIP_INFO_URL];
+    [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"VIP数据：%@",responseObject);
+        NSDictionary *responseDic = (NSDictionary *)responseObject;
+        NSDictionary *extra = responseDic[@"extra"];
+        self.messageModel = [[TDVipMessageModel alloc] initWithInfo:extra];
+        self.packageView.messageModel = self.messageModel;
+        
+        NSArray *results = responseDic[@"results"];
+        for (NSDictionary *dic in results) {
+            TDVipPackageModel *vipModel = [[TDVipPackageModel alloc] initWithInfo:dic];
+            [self.vipArray addObject:vipModel];
+        }
+        self.packageView.vipArray = self.vipArray;
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"VIP请求失败：%@",error);
+    }];
 }
 
 #pragma mark - UITableViewDelegate
@@ -44,14 +88,7 @@
 
 #pragma mark - TDVipPayDelegate
 - (void)gotoPayByType:(NSInteger)type price:(NSString *)price {//支付
-    
-    if (type == 0) {
-        [self wechatPayAction];
-    }
-    else {
-        [self alipayAction];
-    }
-
+    type == 0 ? [self wechatPayAction] : [self alipayAction];
 }
 
 - (void)wechatPayAction { //微信支付
@@ -103,6 +140,7 @@
     self.packageView = [[TDVipPackageView alloc] init];
     self.packageView.tableView.delegate = self;
     self.packageView.delegate = self;
+    self.packageView.vipID = self.vipID;
     [self.view addSubview:self.packageView];
     
     [self.packageView mas_makeConstraints:^(MASConstraintMaker *make) {

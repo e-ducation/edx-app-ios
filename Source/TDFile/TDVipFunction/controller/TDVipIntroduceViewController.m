@@ -11,11 +11,12 @@
 #import <WebKit/WebKit.h>
 #import "OEXRouter.h"
 #import "edX-Swift.h"
+#import "OEXConfig.h"
 
-@interface TDVipIntroduceViewController () <WKUIDelegate,WKNavigationDelegate>
+@interface TDVipIntroduceViewController () <WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate>
 
 @property (nonatomic,strong) WKWebView *webView;
-@property (nonatomic,strong) UIButton *payButton;
+@property (nonatomic,strong) UIButton *shareButton;
 @property (nonatomic,strong) UIActivityIndicatorView *activityView;
 
 @end
@@ -103,7 +104,7 @@
     }
     else if ([url hasPrefix:@"eliteu://gotoVipPackage"]) { //VIP
         
-        [self gotoVipPackgeVC];
+        [self gotoVipPackgeVC:[self getVipID:url]];
         
         if (decisionHandler) {
             decisionHandler(WKNavigationActionPolicyCancel);
@@ -117,30 +118,44 @@
     }
 }
 
+- (NSString *)getVipID:(NSString *)url {
+    NSRange range = [url rangeOfString:@"="];
+    return [url substringFromIndex:range.location+1];
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.shareButton.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        self.shareButton.hidden = YES;
+    }];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.shareButton.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        self.shareButton.hidden = NO;
+    }];
+}
+
 #pragma mark - UI
 - (void)setViewConstraint {
     
-    self.payButton = [[UIButton alloc] init];
-    self.payButton.backgroundColor = [UIColor colorWithHexString:@"#fc9753"];
-    [self.payButton setTitle:@"购买VIP" forState:UIControlStateNormal];
-    [self.payButton addTarget:self action:@selector(payButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.payButton];
-    
-    [self.payButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(self.view);
-        make.height.mas_equalTo(48);
-    }];
-    
+    NSURL *url  = [NSURL URLWithString:[NSString stringWithFormat:@"%@/vip?device=ios",ELITEU_URL]];
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, TDWidth, TDHeight)];
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self;
+    self.webView.scrollView.delegate = self;
+    self.webView.scrollView.showsHorizontalScrollIndicator = NO;
     self.webView.backgroundColor = [UIColor whiteColor];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://crews.ngrok.elitemc.cn:8000/vip?device=ios"]]];
+    [self.webView.scrollView setBounces:NO];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     [self.view addSubview:self.webView];
     
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(self.view);
-        make.bottom.mas_equalTo(self.payButton.mas_top);
+        make.left.right.top.bottom.mas_equalTo(self.view);
     }];
     
     self.activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 33, 33)];
@@ -151,19 +166,47 @@
         make.centerY.mas_equalTo(self.webView.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(33, 33));
     }];
+    
+    self.shareButton = [[UIButton alloc] init];
+    self.shareButton.layer.masksToBounds = YES;
+    self.shareButton.layer.cornerRadius = 24.0;
+    [self.shareButton setBackgroundImage:[UIImage imageNamed:@"share_image"] forState:UIControlStateNormal];
+    [self.shareButton addTarget:self action:@selector(shareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.shareButton];
+    
+    [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.bottom.mas_equalTo(self.view).offset(-18);
+        make.size.mas_equalTo(CGSizeMake(48, 48));
+    }];
+    
 }
 
 #pragma mark - Action
-- (void)payButtonAction:(UIButton *)sender {
-    [self gotoVipPackgeVC];
+- (void)shareButtonAction:(UIButton *)sender { //分享
+    
+    NSURL *url = [NSURL URLWithString:@"http://www.eliteu.xyz/api-docs/"];
+    NSArray *itemArray = @[@"文件分享",url];
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:itemArray applicationActivities:nil];
+    activityController.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll];
+    activityController.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
+
+        if (completed) {//成功
+            NSLog(@"---->> 分享成功");
+        }
+        else {
+            NSLog(@"---->> 分享失败");
+        }
+    };
+    [self presentViewController:activityController animated:YES completion:nil];
 }
 
-- (void)gotoVipPackgeVC {
+- (void)gotoVipPackgeVC:(NSString *)vipID {//vip列表
     TDVipPackageViewController *packageVC = [[TDVipPackageViewController alloc] init];
+    packageVC.vipID = vipID;
     [self.navigationController pushViewController:packageVC animated:YES];
 }
 
-- (void)gotoFindCourse { 
+- (void)gotoFindCourse { //发现课程
     [[OEXRouter sharedRouter] showCourseCatalogFromController:self bottomBar:nil searchQuery:nil];
 }
 

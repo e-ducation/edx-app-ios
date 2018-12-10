@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TDVipPackageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,assign) BOOL isSelect;
 @property (nonatomic,strong) UIButton *bgButton;
+
+@property (nonatomic,strong) TDVipPackageModel *model;
 
 @end
 

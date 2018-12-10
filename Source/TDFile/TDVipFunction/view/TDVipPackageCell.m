@@ -36,6 +36,20 @@
     self.bgButton.selected = isSelect;
 }
 
+- (void)setModel:(TDVipPackageModel *)model {
+    _model = model;
+    
+    self.nameLabel.text = model.name;
+    self.originLabel.attributedText = [[NSMutableAttributedString alloc] initWithString:model.suggested_price attributes:@{NSStrikethroughStyleAttributeName : @(NSUnderlinePatternSolid | NSUnderlineStyleSingle)}];
+    
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:model.price];
+    [attStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:14] range:NSMakeRange(attStr.length - 2, 2)];
+    self.priceLabel.attributedText = attStr;
+    
+    self.cornerImage.hidden = ![model.is_recommended boolValue];
+}
+
+#pragma mark - UI
 - (void)configView {
     self.bgView = [[UIView alloc] init];
     self.bgView.backgroundColor = [UIColor colorWithHexString:@"#ffffff"];
@@ -69,9 +83,13 @@
     self.nameLabel.text = @"一个月会员";
     
     self.originLabel.attributedText = [[NSMutableAttributedString alloc] initWithString:@"0.00" attributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle)}];
+    
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:@"￥0.00"];
     [attStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:14] range:NSMakeRange(attStr.length - 2, 2)];
     self.priceLabel.attributedText = attStr;
+    
+    self.cornerImage.hidden = YES;
+    
 }
 
 - (void)setViewConstraint {

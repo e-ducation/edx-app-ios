@@ -35,25 +35,37 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 8;
+    return self.vipArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    TDVipPackageModel *model = self.vipArray[indexPath.section];
+    
     TDVipPackageCell *cell = [[TDVipPackageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TDVipPackageCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.bgButton.tag = indexPath.section;
     
-    cell.isSelect = indexPath.section == self.selectRow;
+    if (self.vipID.length > 0) {
+        cell.isSelect = [[model.id stringValue] isEqualToString:self.vipID];
+    }
+    else {
+      cell.isSelect = indexPath.section == self.selectRow;
+    }
+    
     [cell.bgButton addTarget:self action:@selector(bgButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.model = model;
     
     return cell;
 }
 
 - (void)bgButtonAction:(UIButton *)sender { //选择套餐
     
+    self.vipID = nil;
     self.selectRow = sender.tag;
     [self.tableView reloadData];
     
@@ -104,8 +116,21 @@
     self.packageHeaderView = [[TDVipPackageHeaderView alloc] initWithFrame:CGRectMake(0, 0, TDWidth, 133)];
     self.tableView.tableHeaderView = self.packageHeaderView;
     
-    [self.packageHeaderView packageStart:nil end:nil validStr:nil pastStr:nil type:0];
-//    [self.packageHeaderView packageStart:@"2018年1月2日" end:@"2019年1月1日" validStr:@"365" pastStr:@"1" type:1];
+    TDVipMessageModel *model = [[TDVipMessageModel alloc] init];
+    model.is_vip = @"0";
+    [self.packageHeaderView packageViewMessage:model];
+}
+
+- (void)setMessageModel:(TDVipMessageModel *)messageModel {
+    _messageModel = messageModel;
+    
+    [self.packageHeaderView packageViewMessage:messageModel];
+}
+
+- (void)setVipArray:(NSArray *)vipArray {
+    _vipArray = vipArray;
+    
+    [self.tableView reloadData];
 }
 
 @end

@@ -11,6 +11,10 @@
 
 #import <Masonry/Masonry.h>
 #import "UIColor+TDHexColor.h"
+#import "OEXConfig.h"
+#import "OEXNetworkConstants.h"
+
+#define ELITEU_URL [OEXConfig sharedConfig].apiHostURL
 
 #define TDWidth [UIScreen mainScreen].bounds.size.width
 #define TDHeight [UIScreen mainScreen].bounds.size.height
