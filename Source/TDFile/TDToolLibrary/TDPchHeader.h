@@ -11,6 +11,7 @@
 
 #import <Masonry/Masonry.h>
 #import "UIColor+TDHexColor.h"
+#import "UIView+Toast.h"
 #import "OEXConfig.h"
 #import "OEXNetworkConstants.h"
 

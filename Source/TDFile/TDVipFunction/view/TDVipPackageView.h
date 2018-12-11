@@ -18,9 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
  支付
 
  @param type 支付方式：0 微信，1 支付宝
- @param price 支付价格
+ @param vipID vip对应id
  */
-- (void)gotoPayByType:(NSInteger)type price:(NSString *)price;
+- (void)gotoPayByType:(NSInteger)type vipID:(NSString *)vipID;
 
 @end
 

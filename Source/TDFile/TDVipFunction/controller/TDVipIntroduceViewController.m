@@ -13,11 +13,12 @@
 #import "edX-Swift.h"
 #import "OEXConfig.h"
 
-@interface TDVipIntroduceViewController () <WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate>
+@interface TDVipIntroduceViewController () <WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,LoadStateViewReloadSupport>
 
 @property (nonatomic,strong) WKWebView *webView;
 @property (nonatomic,strong) UIButton *shareButton;
-@property (nonatomic,strong) UIActivityIndicatorView *activityView;
+
+@property (nonatomic,strong) LoadStateViewController *loadController;
 
 @end
 
@@ -28,51 +29,54 @@
     
     self.navigationItem.title = @"商学院";
     [self setViewConstraint];
+    
+    self.loadController = [[LoadStateViewController alloc] init];
+    [self.loadController setupInControllerWithController:self contentView:self.webView];
 }
 
+- (void)loadStateViewReload {
+    [self loadRequestWebView];
+}
 #pragma mark - WKUIDelegate
-//- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
-//
+////在JS端调用alert函数时，会触发此代理方法。JS端调用alert时所传的数据可以通过message拿到。在原生得到结果后，需要回调JS，是通过completionHandler回调。
+//- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
+//    NSLog(@"在js中调用alert函数时，会调用该方法。 %@",message);
+//    completionHandler();
 //}
-
-//在JS端调用alert函数时，会触发此代理方法。JS端调用alert时所传的数据可以通过message拿到。在原生得到结果后，需要回调JS，是通过completionHandler回调。
-- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
-    NSLog(@"在js中调用alert函数时，会调用该方法。 %@",message);
-    completionHandler();
-}
-//JS端调用confirm函数时，会触发此方法，通过message可以拿到JS端所传的数据，在iOS端显示原生alert得到YES/NO后，通过completionHandler回调给JS端
-- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler {
-    NSLog(@"在js中调用confirm函数时，会调用该方法 %@",message);
-    completionHandler(YES);
-}
-//JS端调用prompt函数时，会触发此方法,要求输入一段文本,在原生输入得到文本内容后，通过completionHandler回调给JS
-- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler {
-    NSLog(@"在js中调用prompt函数时，会调用该方法 %@ -- %@",prompt,defaultText);
-    completionHandler(defaultText);
-}
+////JS端调用confirm函数时，会触发此方法，通过message可以拿到JS端所传的数据，在iOS端显示原生alert得到YES/NO后，通过completionHandler回调给JS端
+//- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler {
+//    NSLog(@"在js中调用confirm函数时，会调用该方法 %@",message);
+//    completionHandler(YES);
+//}
+////JS端调用prompt函数时，会触发此方法,要求输入一段文本,在原生输入得到文本内容后，通过completionHandler回调给JS
+//- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler {
+//    NSLog(@"在js中调用prompt函数时，会调用该方法 %@ -- %@",prompt,defaultText);
+//    completionHandler(defaultText);
+//}
 
 #pragma mark - WKNavigationDelegate
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     NSLog(@"页面开始加载");
-    [self.activityView startAnimating];
+    [self.loadController loadViewStateWithStatus:0 error:nil];
+    self.shareButton.hidden = YES;
 }
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
     NSLog(@"内容开始返回");
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     NSLog(@"内容加载完毕");
-    [self.activityView stopAnimating];
+    [self.loadController loadViewStateWithStatus:1 error:nil];
+    self.shareButton.hidden = NO;
 }
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     NSLog(@"内容加载失败");
-    [self.activityView stopAnimating];
+    [self.loadController loadViewStateWithStatus:2 error:error];
+    self.shareButton.hidden = YES;
 }
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     NSLog(@"内容加载错误");
-}
-
-- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation {
-    NSLog(@"收到服务器重定向请求后调用");
+    [self.loadController loadViewStateWithStatus:2 error:error];
+    self.shareButton.hidden = YES;
 }
 
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView {
@@ -100,7 +104,6 @@
         if (decisionHandler) {
             decisionHandler(WKNavigationActionPolicyCancel);
         }
-        [self.activityView stopAnimating];
     }
     else if ([url hasPrefix:@"eliteu://gotoVipPackage"]) { //VIP
         
@@ -109,7 +112,6 @@
         if (decisionHandler) {
             decisionHandler(WKNavigationActionPolicyCancel);
         }
-        [self.activityView stopAnimating];
     }
     else {
         if (decisionHandler) {
@@ -143,7 +145,6 @@
 #pragma mark - UI
 - (void)setViewConstraint {
     
-    NSURL *url  = [NSURL URLWithString:[NSString stringWithFormat:@"%@/vip?device=ios",ELITEU_URL]];
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, TDWidth, TDHeight)];
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self;
@@ -151,20 +152,10 @@
     self.webView.scrollView.showsHorizontalScrollIndicator = NO;
     self.webView.backgroundColor = [UIColor whiteColor];
     [self.webView.scrollView setBounces:NO];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     [self.view addSubview:self.webView];
     
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.mas_equalTo(self.view);
-    }];
-    
-    self.activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 33, 33)];
-    self.activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    [self.webView addSubview:self.activityView];
-    [self.activityView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.webView.mas_centerX);
-        make.centerY.mas_equalTo(self.webView.mas_centerY);
-        make.size.mas_equalTo(CGSizeMake(33, 33));
     }];
     
     self.shareButton = [[UIButton alloc] init];
@@ -179,6 +170,12 @@
         make.size.mas_equalTo(CGSizeMake(48, 48));
     }];
     
+    [self loadRequestWebView];
+}
+
+- (void)loadRequestWebView {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/vip?device=ios",ELITEU_URL]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 #pragma mark - Action

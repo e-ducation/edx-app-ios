@@ -10,6 +10,8 @@
 
 @interface TDAliPayModel : NSObject
 
+- (instancetype)initWithOrder:(NSDictionary *)order;
+
 //总金额
 @property (nonatomic,strong) NSString *total_fee;
 //商户网站唯一订单号
@@ -37,6 +39,8 @@
 @property (nonatomic,strong) NSString *sign_type;
 //合作者身份ID
 @property (nonatomic,strong) NSString *partner;
+//该笔订单允许的最晚付款时间，逾期将关闭交易。
+@property (nonatomic,strong) NSString *it_b_pay;
 
 
 @end

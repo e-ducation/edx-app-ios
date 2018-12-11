@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "TDPayView.h"
+#import "edX-Swift.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TDPaySheetView : UIView
 
-@property (nonatomic,strong) UIButton *payButton;
+@property (nonatomic,strong) SpinnerButton *payButton;
 @property (nonatomic,strong) TDPayView *wechatView;
 @property (nonatomic,strong) TDPayView *aliPayView;
 

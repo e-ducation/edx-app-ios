@@ -38,6 +38,7 @@
 #define URL_COURSE_ENROLLMENT_EMAIL_OPT_IN @"/api/user_api/v1/preferences/email_opt_in"
 #define SIGN_UP_URL @"/user_api/v1/account/registration/"
 
-#define VIP_INFO_URL @"/api/v1/mobile/vip/package/vip_info"//会员信息和套餐列表
+#define VIP_INFO_URL @"/api/v1/mobile/vip/package/vip_info"//会员VIP信息和套餐列表
+#define VIP_CTEATE_ORDER_URL @"/api/v1/mobile/vip/pay/alipay/paying/" //创建VIP订单
 
 #endif

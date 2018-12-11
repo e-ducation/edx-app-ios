@@ -16,8 +16,14 @@
 
 #import "TDVipMessageModel.h"
 #import "TDVipPackageModel.h"
+#import "TDAliPayModel.h"
+
+#import "NSDictionary+OEXEncoding.h"
+#import "edX-Swift.h"
 
 @interface TDVipPackageViewController () <UITableViewDelegate, TDVipPayDelegate, TDAlipayDelegate, TDWXDelegate>
+
+@property (nonatomic,strong) LoadStateViewController *loadController;
 
 @property (nonatomic,strong) TDVipPackageView *packageView;
 @property (nonatomic,strong) TDVipMessageModel *messageModel;
@@ -41,10 +47,13 @@
     self.navigationItem.title = @"VIP";
     [self setViewConstraint];
     [self getVipData];
+    
+    self.loadController = [[LoadStateViewController alloc] init];
+    [self.loadController setupInControllerWithController:self contentView:self.packageView];
 }
 
 #pragma mark - data
-- (void)getVipData {
+- (void)getVipData { //获取vip信息
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -53,22 +62,67 @@
 
     NSString *url = [NSString stringWithFormat:@"%@%@",ELITEU_URL,VIP_INFO_URL];
     [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"VIP数据：%@",responseObject);
+//        NSLog(@"VIP数据：%@",responseObject);
         NSDictionary *responseDic = (NSDictionary *)responseObject;
-        NSDictionary *extra = responseDic[@"extra"];
-        self.messageModel = [[TDVipMessageModel alloc] initWithInfo:extra];
-        self.packageView.messageModel = self.messageModel;
         
-        NSArray *results = responseDic[@"results"];
-        for (NSDictionary *dic in results) {
-            TDVipPackageModel *vipModel = [[TDVipPackageModel alloc] initWithInfo:dic];
-            [self.vipArray addObject:vipModel];
+        if ([[responseDic allKeys] containsObject:@"extra"]) {
+            NSDictionary *extra = responseDic[@"extra"];
+            self.messageModel = [[TDVipMessageModel alloc] initWithInfo:extra];
+            self.packageView.messageModel = self.messageModel;
         }
-        self.packageView.vipArray = self.vipArray;
+        
+        if ([[responseDic allKeys] containsObject:@"results"]) {
+            NSArray *results = responseDic[@"results"];
+            for (NSDictionary *dic in results) {
+                TDVipPackageModel *vipModel = [[TDVipPackageModel alloc] initWithInfo:dic];
+                [self.vipArray addObject:vipModel];
+            }
+            self.packageView.vipArray = self.vipArray;
+        }
+        
+        [self.loadController loadViewStateWithStatus:1 error:nil];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"VIP请求失败：%@",error);
+        [self.loadController loadViewStateWithStatus:2 error:error];
     }];
+}
+
+- (void)createOrder:(NSString *)packageId completion:(void(^)(TDAliPayModel *model))completion {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    [dict setValue:packageId forKey:@"package_id"];
+    
+    NSString *body = [dict oex_stringByUsingFormEncoding];
+    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [sessionConfig setHTTPAdditionalHeaders:[sessionConfig defaultHTTPHeaders]];
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ELITEU_URL, VIP_CTEATE_ORDER_URL]]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    NSString* authValue = [OEXAuthentication authHeaderForApiAccess];
+    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig];
+    [[session dataTaskWithRequest:request completionHandler:^(NSData* data, NSURLResponse* response, NSError* error) {
+        
+        NSHTTPURLResponse* httpResp = (NSHTTPURLResponse*) response;
+        if(httpResp.statusCode == 200) {
+            NSError* error;
+            NSDictionary* dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            NSLog(@"----->> %@",dictionary);
+            
+            if ([[dictionary allKeys] containsObject:@"data_url"]) {
+                NSDictionary *orderDic = dictionary[@"data_url"];
+                TDAliPayModel *alipayModel = [[TDAliPayModel alloc] initWithOrder:orderDic];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion(alipayModel);
+                });
+            }
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+            });
+        }
+    }]resume];
 }
 
 #pragma mark - UITableViewDelegate
@@ -87,8 +141,19 @@
 }
 
 #pragma mark - TDVipPayDelegate
-- (void)gotoPayByType:(NSInteger)type price:(NSString *)price {//支付
-    type == 0 ? [self wechatPayAction] : [self alipayAction];
+- (void)gotoPayByType:(NSInteger)type vipID:(NSString *)vipID {//支付 0 微信，1 支付宝
+    
+    if (type == 0) {
+        NSLog(@"微信支付");
+        [self wechatPayAction];
+    }
+    else {
+        NSLog(@"支付宝支付");
+        WS(weakSelf);
+        [self createOrder:vipID completion:^(TDAliPayModel *model) {
+            [weakSelf alipayAction:model];
+        }];
+    }
 }
 
 - (void)wechatPayAction { //微信支付
@@ -104,11 +169,9 @@
     [manager submitPostWechatPay:item];
 }
 
-- (void)alipayAction {//支付宝支付
+- (void)alipayAction:(TDAliPayModel *)aliPayModel {//支付宝支付
     TDAlipayManager *alipayManager = [TDAlipayManager shareManager];
     alipayManager.delegate = self;
-    
-    TDAliPayModel *aliPayModel = [[TDAliPayModel alloc] init];
     [alipayManager sumbmitAliPay:aliPayModel];
 }
 
@@ -136,6 +199,7 @@
 
 #pragma mark - UI
 - (void)setViewConstraint {
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.packageView = [[TDVipPackageView alloc] init];
     self.packageView.tableView.delegate = self;

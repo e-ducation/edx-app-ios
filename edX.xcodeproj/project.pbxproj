@@ -600,6 +600,7 @@
 		A423E0B721B11C580093FBD3 /* TDVipPackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0B621B11C580093FBD3 /* TDVipPackageCell.m */; };
 		A423E0BC21B11F6E0093FBD3 /* UIColor+TDHexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0BB21B11F6E0093FBD3 /* UIColor+TDHexColor.m */; };
 		A423E0C021B135660093FBD3 /* TDVipPackageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0BF21B135660093FBD3 /* TDVipPackageHeaderView.m */; };
+		A44433C821BFA07500123C2E /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = A44433C721BFA07400123C2E /* UIView+Toast.m */; };
 		A467A9AA21B7C05700C990C6 /* weChatParamsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A467A9A721B7C05600C990C6 /* weChatParamsItem.m */; };
 		A467A9AF21B7C0A300C990C6 /* Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = A467A9AE21B7C0A200C990C6 /* Encryption.m */; };
 		A49EE99321BA1C9E00EDCCC3 /* APOrderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A49EE98D21BA1C9D00EDCCC3 /* APOrderInfo.m */; };
@@ -1612,6 +1613,8 @@
 		A423E0BD21B12B800093FBD3 /* TDPchHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDPchHeader.h; sourceTree = "<group>"; };
 		A423E0BE21B135650093FBD3 /* TDVipPackageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipPackageHeaderView.h; sourceTree = "<group>"; };
 		A423E0BF21B135660093FBD3 /* TDVipPackageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipPackageHeaderView.m; sourceTree = "<group>"; };
+		A44433C621BFA07400123C2E /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		A44433C721BFA07400123C2E /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		A467A9A721B7C05600C990C6 /* weChatParamsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = weChatParamsItem.m; sourceTree = "<group>"; };
 		A467A9A921B7C05700C990C6 /* weChatParamsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weChatParamsItem.h; sourceTree = "<group>"; };
 		A467A9AD21B7C0A200C990C6 /* Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encryption.h; sourceTree = "<group>"; };
@@ -3322,6 +3325,7 @@
 			isa = PBXGroup;
 			children = (
 				A423E0BD21B12B800093FBD3 /* TDPchHeader.h */,
+				A44433C521BFA07400123C2E /* TDToast */,
 				A467A9AC21B7C0A200C990C6 /* TDMd5Tool */,
 				A423E0B921B11F1D0093FBD3 /* TDHexColor */,
 			);
@@ -3335,6 +3339,15 @@
 				A423E0BB21B11F6E0093FBD3 /* UIColor+TDHexColor.m */,
 			);
 			path = TDHexColor;
+			sourceTree = "<group>";
+		};
+		A44433C521BFA07400123C2E /* TDToast */ = {
+			isa = PBXGroup;
+			children = (
+				A44433C621BFA07400123C2E /* UIView+Toast.h */,
+				A44433C721BFA07400123C2E /* UIView+Toast.m */,
+			);
+			path = TDToast;
 			sourceTree = "<group>";
 		};
 		A467A9A321B7BFA900C990C6 /* TDPayManager */ = {
@@ -5117,6 +5130,7 @@
 				7C2DD5531D4A8669006148E0 /* UserPreferenceManager.swift in Sources */,
 				777DE71A1C1656ED0068E280 /* CourseCatalogDetailView.swift in Sources */,
 				775EB3AC1B1FC37C009526A8 /* SpinnerView.swift in Sources */,
+				A44433C821BFA07500123C2E /* UIView+Toast.m in Sources */,
 				B760E5562010DD6800ECACAB /* BulkDownloadHelper.swift in Sources */,
 				8FE04B4D1A1E2637007F88B8 /* OEXFBSocial.m in Sources */,
 				9EDB10B41B0C732300C760C6 /* CourseGenericBlockTableViewCell.swift in Sources */,

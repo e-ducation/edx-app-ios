@@ -36,10 +36,13 @@
     order.app_id = appID;
     
     // NOTE: 支付接口名称
-    order.method = aliPayModel.service;//@"alipay.trade.app.pay"; //回调地址
+    order.method = @"alipay.trade.app.pay";//@"alipay.trade.app.pay";
+    
+    //回调地址
+    order.notify_url = aliPayModel.notify_url;
     
     // NOTE: 参数编码格式
-    order.charset = @"utf-8"; //参数编码格式
+    order.charset = aliPayModel._input_charset; //参数编码格式@"utf-8"
     
     // NOTE: 当前时间点
     NSDateFormatter* formatter = [NSDateFormatter new];
@@ -50,14 +53,14 @@
     order.version = @"1.0";
     
     // NOTE: sign_type 根据商户设置的私钥来决定
-    order.sign_type = @"RSA"; //(rsa2PrivateKey.length > 1)?@"RSA2":@"RSA";
+    order.sign_type = aliPayModel.sign_type; //(rsa2PrivateKey.length > 1)?@"RSA2":@"RSA";
     
     // NOTE: 商品数据
     order.biz_content = [APBizContent new];
     order.biz_content.body = aliPayModel.body; //商品详情
     order.biz_content.subject = aliPayModel.subject; //商品标题
     order.biz_content.out_trade_no = aliPayModel.out_trade_no; //订单ID（由商家自行制定
-    order.biz_content.timeout_express = @"30m"; //超时时间设置
+    order.biz_content.timeout_express = aliPayModel.it_b_pay; //超时时间设置
     order.biz_content.total_amount = aliPayModel.total_fee;//[NSString stringWithFormat:@"%.2f", 0.01]; //商品价格
 //    order.biz_content.seller_id = aliPayModel.seller_id; //收款支付宝用户ID。 如果该值为空，则默认为商户签约账号对应的支付宝用户ID
     
@@ -69,7 +72,7 @@
     // NOTE: 获取私钥并将商户信息签名，外部商户的加签过程请务必放在服务端，防止公私钥数据泄露；
     //       需要遵循RSA签名规范，并将签名字符串base64编码和UrlEncode
     NSString *base64String = aliPayModel.sign;
-    NSString *signedString = [self urlEncodedString:base64String];
+    NSString *signedString = base64String;//[self urlEncodedString:base64String];
     
     // NOTE: 如果加签成功，则继续执行支付
     if (signedString != nil) {

@@ -16,7 +16,6 @@
 @property (nonatomic,strong) TDVipPackageHeaderView *packageHeaderView;
 @property (nonatomic,strong) TDPaySheetView *sheetView;
 
-@property (nonatomic,assign) NSInteger selectRow;
 @property (nonatomic,assign) NSInteger payType;
 
 @end
@@ -26,7 +25,6 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.selectRow = 0;
         self.payType = 0;
         [self setViewConstraint];
     }
@@ -49,15 +47,9 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.bgButton.tag = indexPath.section;
     
-    if (self.vipID.length > 0) {
-        cell.isSelect = [[model.id stringValue] isEqualToString:self.vipID];
-    }
-    else {
-      cell.isSelect = indexPath.section == self.selectRow;
-    }
-    
     [cell.bgButton addTarget:self action:@selector(bgButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    cell.isSelect = [[model.id stringValue] isEqualToString:self.vipID];
     cell.model = model;
     
     return cell;
@@ -65,13 +57,15 @@
 
 - (void)bgButtonAction:(UIButton *)sender { //选择套餐
     
-    self.vipID = nil;
-    self.selectRow = sender.tag;
+    self.payType = 0;
+    
+    TDVipPackageModel *model = self.vipArray[sender.tag];
+    self.vipID = [model.id stringValue];
     [self.tableView reloadData];
     
     UIView *view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
     self.sheetView = [[TDPaySheetView alloc] init];
-    [self.sheetView showSheetAnimation:88.00];
+    [self.sheetView showSheetAnimation:[model.price floatValue]];
     [view addSubview:self.sheetView];
     
     [self.sheetView.payButton addTarget:self action:@selector(payButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -84,7 +78,8 @@
 }
 
 - (void)payButtonAction:(UIButton *)sender { //支付
-    [self.delegate gotoPayByType:self.payType price:@"0.00"];
+    self.sheetView.payButton.showProgress = YES;
+    [self.delegate gotoPayByType:self.payType vipID:self.vipID];
 }
 
 - (void)wechatButtonAction:(UIButton *)sender { //微信
@@ -98,6 +93,7 @@
 }
 
 - (void)vipPaySheetViewDisapear { //收回支付页面
+    self.sheetView.payButton.showProgress = NO;
     [self.sheetView sheetDisapear];
 }
 

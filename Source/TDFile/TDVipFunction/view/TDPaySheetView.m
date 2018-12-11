@@ -57,7 +57,7 @@ static NSInteger height = 230;
     self.priceLabel.textColor = [UIColor colorWithHexString:@"#fa7f2b"];
     [self.sheetView addSubview:self.priceLabel];
     
-    self.payButton = [[UIButton alloc] init];
+    self.payButton = [[SpinnerButton alloc] init];
     self.payButton.backgroundColor = [UIColor colorWithHexString:@"#fc9753"];
     [self.sheetView addSubview:self.payButton];
   
