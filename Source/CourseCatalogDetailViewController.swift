@@ -48,6 +48,10 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
         
         self.aboutView.setupInController(controller: self)
         
+        self.aboutView.recomendView.checkButton.oex_addAction({ [weak self] (_) in
+            self?.showVipViewcontroller()
+        }, for: UIControlEvents.touchUpInside)
+        
         listen()
         load()
     }
@@ -64,7 +68,10 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
                 if enrolled {
                     self?.aboutView.actionText = Strings.CourseDetail.viewCourse
                     self?.aboutView.action = {completion in
-                        self?.showCourseScreen()
+//                        if (self?.judgeEnrollCourseCanShow(course: course))! {
+//                            self?.showCourseScreen()
+//                        }
+                        self?.showVipBuyView()
                         completion()
                     }
                 }
@@ -88,7 +95,7 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
     
     private func load() {
         let request = CourseCatalogAPI.getCourse(courseID: courseID)
-        let courseStream = environment.networkManager.streamForRequest(request)
+        let courseStream = environment.networkManager.streamForRequest(request, persistResponse: true)
         let enrolledStream = environment.dataManager.enrollmentManager.streamForCourseWithID(courseID: courseID).resultMap {
             return Result.success($0.isSuccess)
         }
@@ -105,6 +112,44 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
             DispatchQueue.main.asyncAfter(deadline: after) {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: EnrollmentShared.successNotification), object: message)
             }
+        }
+    }
+    
+    func judgeEnrollCourseCanShow(course :OEXCourse) -> (Bool) { //已加入的课程
+        
+        if course.is_normal_enroll { //普通购买
+            return true
+        }
+        else {
+            if course.has_cert || course.is_vip { //有证书 | VIP有效
+                return true
+            }
+            return false
+        }
+    }
+    
+    func showVipBuyView() { //显示VIP购买
+        
+        let alertView = TDVipAlertView()
+        let view = UIApplication.shared.keyWindow?.rootViewController?.view
+        view?.addSubview(alertView)
+        
+        alertView.snp.makeConstraints { (make) in
+            make.left.right.top.bottom.equalTo(view!)
+        }
+    }
+    
+    func judgeFindCourse(course :OEXCourse) -> Bool {
+        if course.is_subscribe_pay  { //属于VIP免费课程
+            if course.is_vip { //会员有效
+                return true
+            }
+            else {
+               return false
+            }
+        }
+        else {
+            return false
         }
     }
     
@@ -147,6 +192,11 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .allButUpsideDown
+    }
+    
+    func showVipViewcontroller() {
+        let vipVC = TDVipPackageViewController()
+        self.navigationController?.pushViewController(vipVC, animated: true)
     }
 }
 // Testing only

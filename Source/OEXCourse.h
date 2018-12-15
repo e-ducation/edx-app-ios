@@ -66,6 +66,11 @@ OEXStartType OEXStartTypeForString(NSString* type);
 @property (nonatomic, readonly) CourseShareUtmParameters *courseShareUtmParams;
 @property (readonly, nonatomic, assign) BOOL isStartDateOld;
 @property (readonly, nonatomic, assign) BOOL isEndDateOld;
+@property (readonly, nonatomic, assign) BOOL is_vip;
+@property (readonly, nonatomic, assign) BOOL is_normal_enroll;
+@property (readonly, nonatomic, assign) BOOL has_cert;
+@property (readonly, nonatomic, assign) BOOL is_enroll;
+@property (readonly, nonatomic, assign) BOOL is_subscribe_pay;
 
 @property (readonly, nonatomic, strong, nullable) NSString* courseImageURL;
 

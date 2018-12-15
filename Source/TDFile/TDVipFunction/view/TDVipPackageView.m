@@ -48,8 +48,13 @@
     cell.bgButton.tag = indexPath.section;
     
     [cell.bgButton addTarget:self action:@selector(bgButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    if (self.vipID.length == 0) {
+        cell.isSelect = indexPath.section == 0;
+    }
+    else {
+        cell.isSelect = [[model.id stringValue] isEqualToString:self.vipID];
+    }
     
-    cell.isSelect = [[model.id stringValue] isEqualToString:self.vipID];
     cell.model = model;
     
     return cell;
@@ -109,7 +114,7 @@
         make.left.right.top.bottom.mas_equalTo(self);
     }];
     
-    self.packageHeaderView = [[TDVipPackageHeaderView alloc] initWithFrame:CGRectMake(0, 0, TDWidth, 133)];
+    self.packageHeaderView = [[TDVipPackageHeaderView alloc] initWithFrame:CGRectMake(0, 0, TDWidth, 139)];
     self.tableView.tableHeaderView = self.packageHeaderView;
     
     TDVipMessageModel *model = [[TDVipMessageModel alloc] init];

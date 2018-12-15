@@ -29,6 +29,7 @@
 @property (nonatomic,strong) TDVipMessageModel *messageModel;
 
 @property (nonatomic,strong) NSMutableArray *vipArray;
+@property (nonatomic,strong) NSString *orderID;
 
 @end
 
@@ -59,10 +60,10 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSString *authent = [OEXAuthentication authHeaderForApiAccess];
     [manager.requestSerializer setValue:authent forHTTPHeaderField:@"Authorization"];
-
+    
     NSString *url = [NSString stringWithFormat:@"%@%@",ELITEU_URL,VIP_INFO_URL];
     [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"VIP数据：%@",responseObject);
+        //        NSLog(@"VIP数据：%@",responseObject);
         NSDictionary *responseDic = (NSDictionary *)responseObject;
         
         if ([[responseDic allKeys] containsObject:@"extra"]) {
@@ -72,6 +73,9 @@
         }
         
         if ([[responseDic allKeys] containsObject:@"results"]) {
+            if (self.vipArray.count > 0) {
+                [self.vipArray removeAllObjects];
+            }
             NSArray *results = responseDic[@"results"];
             for (NSDictionary *dic in results) {
                 TDVipPackageModel *vipModel = [[TDVipPackageModel alloc] initWithInfo:dic];
@@ -88,7 +92,8 @@
     }];
 }
 
-- (void)createOrder:(NSString *)packageId completion:(void(^)(TDAliPayModel *model))completion {
+//创建支付宝订单
+- (void)createAlipayOrder:(NSString *)packageId completion:(void(^)(NSString *orderString))completion {
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setValue:packageId forKey:@"package_id"];
@@ -96,9 +101,10 @@
     NSString *body = [dict oex_stringByUsingFormEncoding];
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     [sessionConfig setHTTPAdditionalHeaders:[sessionConfig defaultHTTPHeaders]];
-    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ELITEU_URL, VIP_CTEATE_ORDER_URL]]];
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ELITEU_URL, VIP_CTEATE_ALIPAY_ORDER]]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
     NSString* authValue = [OEXAuthentication authHeaderForApiAccess];
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig];
@@ -110,19 +116,118 @@
             NSDictionary* dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
             NSLog(@"----->> %@",dictionary);
             
-            if ([[dictionary allKeys] containsObject:@"data_url"]) {
-                NSDictionary *orderDic = dictionary[@"data_url"];
-                TDAliPayModel *alipayModel = [[TDAliPayModel alloc] initWithOrder:orderDic];
+            if ([[dictionary allKeys] containsObject:@"alipay_request"]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    completion(alipayModel);
+                    self.orderID = dictionary[@"order_id"];
+                    NSString *str = dictionary[@"alipay_request"];
+                    completion(str);
                 });
+            }
+            else {
+                [self createOrderFailed];
             }
         }
         else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-            });
+            [self createOrderFailed];
         }
     }]resume];
+}
+
+//创建微信订单
+- (void)createWechatOrder:(NSString *)packageId completion:(void(^)(weChatParamsItem *item))completion {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    [dict setValue:packageId forKey:@"package_id"];
+    
+    NSString *body = [dict oex_stringByUsingFormEncoding];
+    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [sessionConfig setHTTPAdditionalHeaders:[sessionConfig defaultHTTPHeaders]];
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ELITEU_URL, VIP_CTEATE_WECHAT_ORDER]]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSString* authValue = [OEXAuthentication authHeaderForApiAccess];
+    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig];
+    [[session dataTaskWithRequest:request completionHandler:^(NSData* data, NSURLResponse* response, NSError* error) {
+        
+        NSHTTPURLResponse* httpResp = (NSHTTPURLResponse*) response;
+        if(httpResp.statusCode == 200) {
+            NSError* error;
+            NSDictionary* dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            NSLog(@"----->> %@",dictionary);
+            
+            if ([[dictionary allKeys] containsObject:@"wechat_request"]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.orderID = dictionary[@"order_id"];
+                    NSDictionary *orderDic = dictionary[@"wechat_request"];
+                    weChatParamsItem *item = [[weChatParamsItem alloc] initWithOroderDic:orderDic];
+                    completion(item);
+                });
+            }
+            else {
+                [self createOrderFailed];
+            }
+        }
+        else {
+            [self createOrderFailed];
+        }
+    }]resume];
+}
+
+- (void)createOrderFailed {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.packageView vipPaySheetViewDisapear];
+        [self.view makeToast:@"订单创建失败" duration:1.08 position:CSToastPositionCenter];
+    });
+}
+
+//查询订单
+- (void)queryOrderStatus:(NSString *)orderID request:(NSInteger)num {
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSString *authent = [OEXAuthentication authHeaderForApiAccess];
+    [manager.requestSerializer setValue:authent forHTTPHeaderField:@"Authorization"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@%@",ELITEU_URL,VIP_ORDER_STATUS_URL,orderID];
+    [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"VIP数据：%@",responseObject);
+        NSDictionary *responseDic = (NSDictionary *)responseObject;
+        id code = responseDic[@"code"];
+        if ([code intValue] == 0) {
+            //1: 等待支付, 2: 已完成, 3: 已取消, 4: 已退款, 0: 查询失败
+            NSInteger status = [responseDic[@"data"][@"status"] integerValue];
+            if (status == 0 || status == 1) {
+                [self requestMore:orderID request:num];
+            }
+            else if (status == 2) {
+                [self.packageView vipPaySheetViewDisapear];
+                [self getVipData]; //刷新数据
+            }
+            else {
+                [self.packageView vipPaySheetViewDisapear];
+                [self.view makeToast:@"订单更新失败" duration:0.8 position:CSToastPositionCenter];
+            }
+        }
+        else {
+            [self requestMore:orderID request:num];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"VIP请求失败：%@",error);
+        [self requestMore:orderID request:num];
+    }];
+}
+
+- (void)requestMore:(NSString *)orderID request:(NSInteger)num {
+    [self.packageView vipPaySheetViewDisapear];
+    if (num == 0) {
+        [self queryOrderStatus:orderID request:1];
+    }
+    else {
+        [self.view makeToast:@"查询订单失败" duration:0.8 position:CSToastPositionCenter];
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -143,42 +248,38 @@
 #pragma mark - TDVipPayDelegate
 - (void)gotoPayByType:(NSInteger)type vipID:(NSString *)vipID {//支付 0 微信，1 支付宝
     
+    WS(weakSelf);
     if (type == 0) {
         NSLog(@"微信支付");
-        [self wechatPayAction];
+        [self createWechatOrder:vipID completion:^(weChatParamsItem *item) {
+            [weakSelf wechatPayAction:item];
+        }];
     }
     else {
         NSLog(@"支付宝支付");
-        WS(weakSelf);
-        [self createOrder:vipID completion:^(TDAliPayModel *model) {
-            [weakSelf alipayAction:model];
+        
+        [self createAlipayOrder:vipID completion:^(NSString *orderString) {
+            [weakSelf alipayAction:orderString];
         }];
     }
 }
 
-- (void)wechatPayAction { //微信支付
-    weChatParamsItem *item = [[weChatParamsItem alloc] init];
-    item.appid = [[OEXConfig sharedConfig] weixinAPPID];
-    item.mch_id = @"";
-    item.nonce_str = @"";
-    item.prepay_id = @"";
-    item.sign = @"";
-    
+- (void)wechatPayAction:(weChatParamsItem *)item { //微信支付
     TDWechatManager *manager = [TDWechatManager shareManager];
     manager.delegate = self;
     [manager submitPostWechatPay:item];
 }
 
-- (void)alipayAction:(TDAliPayModel *)aliPayModel {//支付宝支付
+- (void)alipayAction:(NSString *)orderString { //支付宝支付
     TDAlipayManager *alipayManager = [TDAlipayManager shareManager];
     alipayManager.delegate = self;
-    [alipayManager sumbmitAliPay:aliPayModel];
+    [alipayManager sumbmitAliPay:orderString];
 }
 
 #pragma mark - TDWXDelegate
 - (void)weixinPaySuccessHandle {//支付成功
     NSLog(@"支付宝 -- 支付成功");
-    [self.packageView vipPaySheetViewDisapear];
+    [self queryOrderStatus:self.orderID request:0];
 }
 
 - (void)weixinPayFailed:(NSInteger)status {//支付失败
@@ -189,7 +290,7 @@
 #pragma mark - TDAlipayDelegate
 - (void)alipaySuccessHandle { //支付成功
     NSLog(@"支付宝 -- 支付成功");
-    [self.packageView vipPaySheetViewDisapear];
+    [self queryOrderStatus:self.orderID request:0];
 }
 
 - (void)alipayFaile:(NSInteger)status { //支付失败

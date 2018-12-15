@@ -23,8 +23,8 @@
     return manager;
 }
 
-- (void)sumbmitAliPay:(TDAliPayModel *)aliPayModel {
-
+- (void)sumbmitAliPayOrder:(TDAliPayModel *)aliPayModel {
+    
     NSString *appID = [[OEXConfig sharedConfig] alipayAPPID];
     /*
      *生成订单信息及签名
@@ -62,7 +62,7 @@
     order.biz_content.out_trade_no = aliPayModel.out_trade_no; //订单ID（由商家自行制定
     order.biz_content.timeout_express = aliPayModel.it_b_pay; //超时时间设置
     order.biz_content.total_amount = aliPayModel.total_fee;//[NSString stringWithFormat:@"%.2f", 0.01]; //商品价格
-//    order.biz_content.seller_id = aliPayModel.seller_id; //收款支付宝用户ID。 如果该值为空，则默认为商户签约账号对应的支付宝用户ID
+    //    order.biz_content.seller_id = aliPayModel.seller_id; //收款支付宝用户ID。 如果该值为空，则默认为商户签约账号对应的支付宝用户ID
     
     //将商品信息拼接成字符串
     NSString *orderInfo = [order orderInfoEncoded:NO];
@@ -91,6 +91,19 @@
             [weakSelf dealWithAlipayResult:resultDic];
         }];
     }
+}
+
+- (void)sumbmitAliPay:(NSString *)orderString { //后台直接将签名成功字符串格式化为订单字符串
+    //应用注册scheme,在AliSDKDemo-Info.plist定义URL types
+    NSString *appScheme = @"alipayEliteMba";
+    
+    // NOTE: 调用支付结果开始支付
+    WS(weakSelf);
+    [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+        NSLog(@"手机未安装支付宝 reslut = %@",resultDic);
+        
+        [weakSelf dealWithAlipayResult:resultDic];
+    }];
 }
 
 - (void)processOrderWithPaymentResult:(NSURL *)url {
@@ -129,18 +142,20 @@
         default:
             break;
     }
+    
     if ([resultStatus isEqualToString:@"9000"]) {
         [self.delegate alipaySuccessHandle];
     }
-    else {
-        WS(weakSelf);
-        UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:strTitle message:str preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [weakSelf.delegate alipayFaile:[resultStatus integerValue]];
-        }];
-        [alertVc addAction:sureAction];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertVc animated:YES completion:nil];
-    }
+    
+    WS(weakSelf);
+    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:strTitle message:str preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [weakSelf.delegate alipayFaile:[resultStatus integerValue]];
+    }];
+    [alertVc addAction:sureAction];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertVc animated:YES completion:nil];
+    
 }
 
 #pragma mark - 编码

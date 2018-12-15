@@ -25,7 +25,7 @@
 #define ONLINE_ONLY_VIDEO_URL_EXTENSIONS @[ @".m3u8" ]
 
 #define URL_EXCHANGE_TOKEN @"/oauth2/exchange_access_token/{backend}/"
-#define URL_USER_DETAILS @"/api/mobile/v0.5/users"
+#define URL_USER_DETAILS @"/api/v1/mobile"// /api/mobile/v0.5/users
 #define URL_COURSE_ENROLLMENTS @"/course_enrollments/"
 #define URL_COURSE_HANDOUTS @"/handouts"
 #define URL_COURSE_ANNOUNCEMENTS @"/updates"
@@ -39,6 +39,7 @@
 #define SIGN_UP_URL @"/user_api/v1/account/registration/"
 
 #define VIP_INFO_URL @"/api/v1/mobile/vip/package/vip_info"//会员VIP信息和套餐列表
-#define VIP_CTEATE_ORDER_URL @"/api/v1/mobile/vip/pay/alipay/paying/" //创建VIP订单
-
+#define VIP_CTEATE_ALIPAY_ORDER @"/api/v1/mobile/vip/pay/alipay/paying/" //创建VIP支付宝订单
+#define VIP_CTEATE_WECHAT_ORDER @"/api/v1/mobile/vip/pay/wechat/paying/" //创建VIP微信订单
+#define VIP_ORDER_STATUS_URL @"/api/v1/vip/order/" //VIP订单状态
 #endif

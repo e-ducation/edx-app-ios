@@ -42,7 +42,7 @@ public struct CourseCatalogAPI {
         
         return NetworkRequest(
             method: .GET,
-            path : "api/courses/v1/courses/",
+            path : "api/v1/mobile/courses/", //api/courses/v1/courses/    api/v1/mobile/courses/
             requiresAuth : true,
             query : query,
             deserializer: .jsonResponse(coursesDeserializer)
@@ -50,9 +50,12 @@ public struct CourseCatalogAPI {
     }
     
     public static func getCourse(courseID: String) -> NetworkRequest<OEXCourse> {
+        let query = [Params.User.rawValue: JSON("ben1")]
         return NetworkRequest(
-            method: .GET,
+            method: .GET, //  api/courses/v1/courses/      api/v1/mobile/courses/
             path: "api/courses/v1/courses/{courseID}".oex_format(withParameters: ["courseID" : courseID]),
+            requiresAuth: true,
+            query : query,
             deserializer: .jsonResponse(courseDeserializer))
     }
     

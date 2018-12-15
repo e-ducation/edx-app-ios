@@ -30,6 +30,7 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
     private let descriptionView = UIWebView()
     fileprivate let fieldsList = TZStackView()
     fileprivate let playButton = UIButton(type: .system)
+    let recomendView = TDVipRecomendView()
     
     let insetsController = ContentInsetsController()
     // used to offset the overview webview content which is at the bottom
@@ -44,7 +45,7 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
     }
     
     init(frame: CGRect, environment: Environment) {
-        self.insetContainer = TZStackView(arrangedSubviews: [blurbLabel, actionButton, fieldsList])
+        self.insetContainer = TZStackView(arrangedSubviews: [blurbLabel, actionButton, recomendView, fieldsList])
         self.container = TZStackView(arrangedSubviews: [courseCard, insetContainer])
         self.environment = environment
         
@@ -72,7 +73,7 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
         courseCard.snp.makeConstraints { make in
             make.height.equalTo(CourseCardView.cardHeight())
         }
-
+    
         container.spacing = margin
         for stack in [container, fieldsList, insetContainer] {
             stack.axis = .vertical
@@ -88,6 +89,14 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
         fieldsList.layoutMarginsRelativeArrangement = true
         
         blurbLabel.numberOfLines = 0
+        
+        descriptionView.scrollView.addSubview(recomendView)
+        recomendView.snp.makeConstraints { make in
+            make.top.equalTo(container.snp.bottom)
+            make.leading.equalTo(descriptionView)
+            make.trailing.equalTo(descriptionView)
+            make.height.equalTo(60)
+        }
         
         actionButton.oex_addAction({[weak self] _ in
             self?.actionButton.showProgress = true
@@ -113,6 +122,7 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
             // the container view doesn't offset when the content scrolls.
             // As such, we manually offset it here
             observer.container.transform = CGAffineTransform(translationX: 0, y: -offset)
+            observer.recomendView.transform = CGAffineTransform(translationX: 0, y: -offset)
         }
     }
     
@@ -198,7 +208,7 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.topContentInsets.currentInsets = UIEdgeInsets(top: self.container.frame.height + StandardVerticalMargin, left: 0, bottom: 0, right: 0)
+        self.topContentInsets.currentInsets = UIEdgeInsets(top: self.container.frame.height + StandardVerticalMargin + 60, left: 0, bottom: 0, right: 0)
     }
     
     var actionText: String? {

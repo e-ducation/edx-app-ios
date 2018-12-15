@@ -74,3 +74,5 @@
 
 #import "TDVipPackageViewController.h"
 #import "TDVipIntroduceViewController.h"
+#import "UIColor+TDHexColor.h"
+#import "TDVipAlertView.h"

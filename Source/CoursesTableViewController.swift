@@ -16,6 +16,7 @@ class CourseCardCell : UITableViewCell {
     fileprivate var course : OEXCourse?
     private let courseCardBorderStyle = BorderStyle()
     private let iPadHorizMargin:CGFloat = 180
+    let vipExpiredView = TDVipExpiredView()
     
     override init(style : UITableViewCellStyle, reuseIdentifier : String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,6 +37,12 @@ class CourseCardCell : UITableViewCell {
         contentView.backgroundColor = OEXStyles.shared().neutralXLight()
         
         selectionStyle = .none
+    
+        vipExpiredView.isHidden = true
+        addSubview(vipExpiredView)
+        vipExpiredView.snp.makeConstraints { (make) in
+            make.leading.trailing.top.bottom.equalTo(self)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,8 +50,9 @@ class CourseCardCell : UITableViewCell {
     }
 }
 
-protocol CoursesTableViewControllerDelegate : class {
+@objc protocol CoursesTableViewControllerDelegate {
     func coursesTableChoseCourse(course : OEXCourse)
+    @objc optional func clickExpiredButton()
 }
 
 class CoursesTableViewController: UITableViewController {
@@ -111,6 +119,10 @@ class CoursesTableViewController: UITableViewController {
             self?.delegate?.coursesTableChoseCourse(course: course)
         }
         
+        cell.vipExpiredView.expiredButton.oex_addAction({ [weak self] _ in
+            self?.delegate?.clickExpiredButton?()
+            }, for: .touchUpInside)
+        
         switch context {
         case .CourseCatalog:
             CourseCardViewModel.onCourseCatalog(course: course, wrapTitle: true).apply(card: cell.courseView, networkManager: self.environment.networkManager)
@@ -118,6 +130,10 @@ class CoursesTableViewController: UITableViewController {
             CourseCardViewModel.onHome(course: course).apply(card: cell.courseView, networkManager: self.environment.networkManager)
         }
         cell.course = course
+        
+        if !course.is_normal_enroll && !course.is_vip && !course.has_cert {
+            cell.vipExpiredView.isHidden = true
+        }
         
         return cell
     }

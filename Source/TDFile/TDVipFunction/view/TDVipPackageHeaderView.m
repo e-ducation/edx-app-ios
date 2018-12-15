@@ -69,6 +69,7 @@
     self.remindLabel.text = @"开通VIP会员，可免费观看英荔商学院全部课程。"; //已开通1天 剩余 364天//会员已过期1天
     self.startLabel.text = @"上次开通日期：2018年1月2日";
     self.endLabel.text = @"到期日期：2019年1月1日";
+    
 }
 
 - (void)setViewConstraint {
@@ -86,22 +87,25 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.bgButton.mas_top).offset(13);
         make.left.mas_equalTo(self.bgButton.mas_left).offset(22);
-    }];
-    
-    [self.remindLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.bgButton.mas_left).offset(22);
-        make.right.mas_equalTo(self.bgButton.mas_right).offset(-22);
-        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(7);
+        make.height.mas_equalTo(23);
     }];
     
     [self.startLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.titleLabel.mas_left);
         make.bottom.mas_equalTo(self.bgButton.mas_bottom).offset(-12);
+        make.height.mas_equalTo(17);
     }];
     
     [self.endLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.bgButton.mas_right).offset(-22);
         make.bottom.mas_equalTo(self.startLabel.mas_bottom);
+        make.height.mas_equalTo(17);
+    }];
+    
+    [self.remindLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.bgButton.mas_left).offset(22);
+        make.right.mas_equalTo(self.bgButton.mas_right).offset(-22);
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(5);
     }];
 }
 

@@ -24,7 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shareManager;
 
-- (void)sumbmitAliPay:(TDAliPayModel *)aliPayModel;//调起支付
+- (void)sumbmitAliPay:(NSString *)orderString; //接口直接拼接
+- (void)sumbmitAliPayOrder:(TDAliPayModel *)aliPayModel;//调起支付
 - (void)processOrderWithPaymentResult:(NSURL *)url; //处理调起
 
 @end
