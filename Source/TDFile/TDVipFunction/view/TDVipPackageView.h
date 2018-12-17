@@ -13,7 +13,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol TDVipPayDelegate <NSObject>
-
 /**
  支付
 
@@ -21,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param vipID vip对应id
  */
 - (void)gotoPayByType:(NSInteger)type vipID:(NSString *)vipID;
+/**
+ 调起内购
+ */
+- (void)appApproveProgress:(TDVipPackageModel *)model;
 
 @end
 
@@ -32,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong,nullable) NSString *vipID;
 @property (nonatomic,strong) TDVipMessageModel *messageModel;
 @property (nonatomic,strong) NSArray <TDVipPackageModel *> *vipArray;
+
+@property (nonatomic,assign) BOOL approveSucess;//App审核通过
 
 - (void)vipPaySheetViewDisapear;//收回支付页面
 

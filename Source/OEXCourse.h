@@ -37,6 +37,7 @@ OEXStartType OEXStartTypeForString(NSString* type);
 
 @end
 
+
 @interface OEXCourse : NSObject
 
 - (id)initWithDictionary:(NSDictionary*)info;
@@ -66,11 +67,14 @@ OEXStartType OEXStartTypeForString(NSString* type);
 @property (nonatomic, readonly) CourseShareUtmParameters *courseShareUtmParams;
 @property (readonly, nonatomic, assign) BOOL isStartDateOld;
 @property (readonly, nonatomic, assign) BOOL isEndDateOld;
-@property (readonly, nonatomic, assign) BOOL is_vip;
-@property (readonly, nonatomic, assign) BOOL is_normal_enroll;
-@property (readonly, nonatomic, assign) BOOL has_cert;
-@property (readonly, nonatomic, assign) BOOL is_enroll;
-@property (readonly, nonatomic, assign) BOOL is_subscribe_pay;
+
+@property (readonly, nonatomic, assign) BOOL is_vip; //是否VIP
+@property (readonly, nonatomic, assign) BOOL is_normal_enroll; //是普通加入，还是VIP期间免费加入
+@property (readonly, nonatomic, assign) BOOL has_cert; //已获取证书
+@property (readonly, nonatomic, assign) BOOL is_enroll; //已加入
+@property (readonly, nonatomic, assign) BOOL is_subscribe_pay; //属于VIP免费课程？
+@property (readonly, nonatomic, assign) BOOL can_free_enroll; //可以免费加入(不是VIP情况下)
+@property (readonly, nonatomic, strong) NSDictionary *recommended_package; //推荐VIP
 
 @property (readonly, nonatomic, strong, nullable) NSString* courseImageURL;
 

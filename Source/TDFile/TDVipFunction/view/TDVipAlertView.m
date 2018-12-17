@@ -32,12 +32,12 @@
 
 #pragma mark - Action
 - (void)cancelButtonAction:(UIButton *)sender {
-//    [self removeFromSuperview];
+    [self removeFromSuperview];
 }
 
-- (void)sureButtonAction:(UIButton *)sender {
+//- (void)sureButtonAction:(UIButton *)sender {
 //    [self removeFromSuperview];
-}
+//}
 
 - (void)tapAction:(UITapGestureRecognizer *)sender {
     [self removeFromSuperview];
@@ -80,7 +80,7 @@
     self.sureButton.backgroundColor = [UIColor colorWithHexString:@"#4788c7"];
     self.sureButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
     [self.sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.sureButton addTarget:self action:@selector(sureButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.sureButton addTarget:self action:@selector(sureButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.alertView addSubview:self.sureButton];
     
     self.line = [[UILabel alloc] init];
@@ -115,7 +115,7 @@
     [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.mas_centerX);
         make.centerY.mas_equalTo(self.mas_centerY);
-        make.size.mas_equalTo(CGSizeMake(TDWidth - 88, 256));
+        make.size.mas_equalTo(CGSizeMake(TDWidth * 0.77, 256));
     }];
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {

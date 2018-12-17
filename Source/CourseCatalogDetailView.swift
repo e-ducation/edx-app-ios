@@ -262,6 +262,11 @@ extension CourseCatalogDetailView {
                     UIApplication.shared.openURL(url as URL)
                 }
             }, for: .touchUpInside)
+        
+        let price = course.recommended_package["suggested_price"] as! String
+        let time = course.recommended_package["name"] as! String
+        
+        self.recomendView.recomendLabel.text = "订阅会员课程 ¥\(price)/\(time)"
     }
 }
 

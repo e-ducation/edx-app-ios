@@ -23,6 +23,7 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
         return CourseCatalogDetailView(frame: CGRect.zero, environment: self.environment)
     }()
     private let courseStream = BackedStream<(OEXCourse, enrolled: Bool)>()
+    let alertView = TDVipAlertView()
     
     init(environment : Environment, courseID : String) {
         self.courseID = courseID
@@ -68,10 +69,12 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
                 if enrolled {
                     self?.aboutView.actionText = Strings.CourseDetail.viewCourse
                     self?.aboutView.action = {completion in
-//                        if (self?.judgeEnrollCourseCanShow(course: course))! {
-//                            self?.showCourseScreen()
-//                        }
-                        self?.showVipBuyView()
+                        if (self?.judgeEnrollCourseShowAlert(course: course))! {
+                            self?.showVipBuyView()
+                        }
+                        else {
+                            self?.showCourseScreen()
+                        }
                         completion()
                     }
                 }
@@ -81,7 +84,13 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
                 else {
                     self?.aboutView.actionText = Strings.CourseDetail.enrollNow
                     self?.aboutView.action = {[weak self] completion in
-                        self?.enrollInCourse(completion: completion)
+                        if (self?.judgeNotEnrollCourseShowAlert(course: course))! { //显示VIP弹框
+                            self?.showVipBuyView()
+                            completion()
+                        }
+                        else {
+                            self?.enrollInCourse(completion: completion)
+                        }
                     }
                 }
             }, failure: {[weak self] error in
@@ -115,28 +124,46 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
         }
     }
     
-    func judgeEnrollCourseCanShow(course :OEXCourse) -> (Bool) { //已加入的课程
+    func judgeEnrollCourseShowAlert(course :OEXCourse) -> (Bool) { //已加入的课程
         
         if course.is_normal_enroll { //普通购买
-            return true
+            return false
         }
         else {
-            if course.has_cert || course.is_vip { //有证书 | VIP有效
-                return true
+            if course.has_cert || course.is_vip { //有证书 || VIP有效
+                return false
             }
+            return true
+        }
+    }
+    
+    func judgeNotEnrollCourseShowAlert(course :OEXCourse) -> (Bool) { //未加入的课程
+        if course.can_free_enroll { //可以免费加入
             return false
+        }
+        else {
+            if course.is_subscribe_pay && course.is_vip { //会员免费加入
+                return false
+            }
+            return true
         }
     }
     
     func showVipBuyView() { //显示VIP购买
         
-        let alertView = TDVipAlertView()
+        alertView.sureButton.addTarget(self, action: #selector(sureButtonAction), for: .touchUpInside)
         let view = UIApplication.shared.keyWindow?.rootViewController?.view
         view?.addSubview(alertView)
         
         alertView.snp.makeConstraints { (make) in
             make.left.right.top.bottom.equalTo(view!)
         }
+    }
+    
+    func sureButtonAction() {
+        alertView.removeFromSuperview()
+        let packageVC = TDVipPackageViewController()
+        self.navigationController?.pushViewController(packageVC, animated: true)
     }
     
     func judgeFindCourse(course :OEXCourse) -> Bool {

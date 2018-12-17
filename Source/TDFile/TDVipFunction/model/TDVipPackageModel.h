@@ -14,12 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithInfo:(NSDictionary *)info;
 
-@property (nonatomic,strong) NSNumber *id;
-@property (nonatomic,strong) NSNumber *is_recommended;
-@property (nonatomic,strong) NSString *month;
-@property (nonatomic,strong) NSString *name;
-@property (nonatomic,strong) NSString *price;
-@property (nonatomic,strong) NSString *suggested_price;
+@property (nonatomic,strong) NSNumber *id;//id
+@property (nonatomic,strong) NSNumber *is_recommended; //是否是推荐
+@property (nonatomic,strong) NSString *month; //月数
+@property (nonatomic,strong) NSString *name; //名字
+@property (nonatomic,strong) NSString *price; //价格
+@property (nonatomic,strong) NSString *suggested_price; //建议价格
 
 @end
 

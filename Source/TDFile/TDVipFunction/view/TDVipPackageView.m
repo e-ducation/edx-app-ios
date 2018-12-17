@@ -62,24 +62,29 @@
 
 - (void)bgButtonAction:(UIButton *)sender { //选择套餐
     
-    self.payType = 0;
-    
     TDVipPackageModel *model = self.vipArray[sender.tag];
     self.vipID = [model.id stringValue];
     [self.tableView reloadData];
     
-    UIView *view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
-    self.sheetView = [[TDPaySheetView alloc] init];
-    [self.sheetView showSheetAnimation:[model.price floatValue]];
-    [view addSubview:self.sheetView];
-    
-    [self.sheetView.payButton addTarget:self action:@selector(payButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.sheetView.wechatView.selectButton addTarget:self action:@selector(wechatButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.sheetView.aliPayView.selectButton addTarget:self action:@selector(alipayButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.sheetView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.mas_equalTo(view);
-    }];
+    if (self.approveSucess) {//审核成功，弹出支付sheet
+        self.payType = 0;
+        
+        UIView *view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
+        self.sheetView = [[TDPaySheetView alloc] init];
+        [self.sheetView showSheetAnimation:[model.price floatValue]];
+        [view addSubview:self.sheetView];
+        
+        [self.sheetView.payButton addTarget:self action:@selector(payButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.sheetView.wechatView.selectButton addTarget:self action:@selector(wechatButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.sheetView.aliPayView.selectButton addTarget:self action:@selector(alipayButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.sheetView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.bottom.mas_equalTo(view);
+        }];
+    }
+    else {
+        [self.delegate appApproveProgress:model];
+    }
 }
 
 - (void)payButtonAction:(UIButton *)sender { //支付

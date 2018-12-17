@@ -600,6 +600,9 @@
 		A423E0B721B11C580093FBD3 /* TDVipPackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0B621B11C580093FBD3 /* TDVipPackageCell.m */; };
 		A423E0BC21B11F6E0093FBD3 /* UIColor+TDHexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0BB21B11F6E0093FBD3 /* UIColor+TDHexColor.m */; };
 		A423E0C021B135660093FBD3 /* TDVipPackageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0BF21B135660093FBD3 /* TDVipPackageHeaderView.m */; };
+		A436C69321C49B30003E7CEB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A436C69221C49B30003E7CEB /* StoreKit.framework */; };
+		A436C69921C4B0A4003E7CEB /* PurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A436C69721C4B0A4003E7CEB /* PurchaseManager.m */; };
+		A436C69A21C4B0A4003E7CEB /* PurchaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A436C69821C4B0A4003E7CEB /* PurchaseModel.m */; };
 		A4427CC321C2143E00891501 /* TDVipRecomendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4427CC221C2143E00891501 /* TDVipRecomendView.swift */; };
 		A44433C821BFA07500123C2E /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = A44433C721BFA07400123C2E /* UIView+Toast.m */; };
 		A44433D221BFDA9500123C2E /* TDVipAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44433D121BFDA9500123C2E /* TDVipAlertView.m */; };
@@ -1616,6 +1619,11 @@
 		A423E0BD21B12B800093FBD3 /* TDPchHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDPchHeader.h; sourceTree = "<group>"; };
 		A423E0BE21B135650093FBD3 /* TDVipPackageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipPackageHeaderView.h; sourceTree = "<group>"; };
 		A423E0BF21B135660093FBD3 /* TDVipPackageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipPackageHeaderView.m; sourceTree = "<group>"; };
+		A436C69221C49B30003E7CEB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A436C69521C4B0A4003E7CEB /* PurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseManager.h; sourceTree = "<group>"; };
+		A436C69621C4B0A4003E7CEB /* PurchaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseModel.h; sourceTree = "<group>"; };
+		A436C69721C4B0A4003E7CEB /* PurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseManager.m; sourceTree = "<group>"; };
+		A436C69821C4B0A4003E7CEB /* PurchaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseModel.m; sourceTree = "<group>"; };
 		A4427CC221C2143E00891501 /* TDVipRecomendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDVipRecomendView.swift; sourceTree = "<group>"; };
 		A44433C621BFA07400123C2E /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		A44433C721BFA07400123C2E /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
@@ -2078,6 +2086,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A436C69321C49B30003E7CEB /* StoreKit.framework in Frameworks */,
 				A49EEA4321BA225400EDCCC3 /* libssl.a in Frameworks */,
 				776F39291B4EF4CD00ED11E3 /* WebKit.framework in Frameworks */,
 				A4FA40D721B0E2B50089CEBA /* TencentOpenAPI.framework in Frameworks */,
@@ -3352,6 +3361,17 @@
 			path = TDHexColor;
 			sourceTree = "<group>";
 		};
+		A436C69421C4B0A4003E7CEB /* TDPurchaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				A436C69521C4B0A4003E7CEB /* PurchaseManager.h */,
+				A436C69721C4B0A4003E7CEB /* PurchaseManager.m */,
+				A436C69621C4B0A4003E7CEB /* PurchaseModel.h */,
+				A436C69821C4B0A4003E7CEB /* PurchaseModel.m */,
+			);
+			path = TDPurchaseManager;
+			sourceTree = "<group>";
+		};
 		A44433C521BFA07400123C2E /* TDToast */ = {
 			isa = PBXGroup;
 			children = (
@@ -3364,6 +3384,7 @@
 		A467A9A321B7BFA900C990C6 /* TDPayManager */ = {
 			isa = PBXGroup;
 			children = (
+				A436C69421C4B0A4003E7CEB /* TDPurchaseManager */,
 				A467A9A421B7BFA900C990C6 /* AlipayMabager */,
 				A467A9A521B7BFA900C990C6 /* WechatManager */,
 			);
@@ -3973,6 +3994,7 @@
 		BECB7B0D1924C0C3009C77F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A436C69221C49B30003E7CEB /* StoreKit.framework */,
 				776F39281B4EF4CD00ED11E3 /* WebKit.framework */,
 				805329111B0EA2DC0093B177 /* QuartzCore.framework */,
 				77ACA1C81A323C2500039AD1 /* Crashlytics.framework */,
@@ -4473,6 +4495,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
 							com.apple.Keychain = {
@@ -5211,6 +5236,7 @@
 				775DF4181AFAAC8C00F96B2F /* DataManager.swift in Sources */,
 				77C182AC1CD2E60E00AE1474 /* StackPaginationManipulator.swift in Sources */,
 				5D7EACC81B3E202C000A6C36 /* DiscussionAPI.swift in Sources */,
+				A436C69921C4B0A4003E7CEB /* PurchaseManager.m in Sources */,
 				77EA92261BB4590A00EC625A /* DownloadsAccessoryView.swift in Sources */,
 				3F92D6E620B19C9B00A69806 /* AgreementURLsConfig.swift in Sources */,
 				77ADF4A61AC1B35000AC8955 /* OEXExternalAuthProviderButton.m in Sources */,
@@ -5255,6 +5281,7 @@
 				5D43B1871B0C1F9200448B52 /* PostsViewController.swift in Sources */,
 				5DD0FFC31B17ED2100837121 /* DiscussionCommentsViewController.swift in Sources */,
 				770C514D1B1685F5009B9696 /* AuthenticatedWebViewController.swift in Sources */,
+				A436C69A21C4B0A4003E7CEB /* PurchaseModel.m in Sources */,
 				E0D159911EB87658005E2A76 /* WhatsNewViewController.swift in Sources */,
 				770A279D1A6F150B00DFC6FF /* OEXVideoPathEntry.m in Sources */,
 				9C9B7F6D1A8CC68400A857B2 /* OEXCourseInfoViewController.m in Sources */,

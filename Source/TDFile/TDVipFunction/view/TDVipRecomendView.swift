@@ -30,7 +30,7 @@ class TDVipRecomendView: UIView {
         bgView.backgroundColor = UIColor(hexString: "#ddecfa")
         self.addSubview(bgView)
         
-        recomendLabel.text = "订阅会员课程 ¥1199/年"
+        recomendLabel.text = "订阅会员课程 ¥1198/年"
         recomendLabel.font = UIFont(name: "PingFangSC-Regular", size: 14)
         recomendLabel.textColor = UIColor(hexString: "#346ca3")
         bgView.addSubview(recomendLabel)

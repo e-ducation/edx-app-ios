@@ -131,8 +131,11 @@ class CoursesTableViewController: UITableViewController {
         }
         cell.course = course
         
-        if !course.is_normal_enroll && !course.is_vip && !course.has_cert {
-            cell.vipExpiredView.isHidden = true
+        if course.is_enroll {
+            //VIP权利加入 + VIP过期 + 没取得证书
+            if !course.is_normal_enroll && !course.is_vip && !course.has_cert {
+                cell.vipExpiredView.isHidden = false
+            }
         }
         
         return cell

@@ -93,6 +93,8 @@ NSString* NSStringForOEXStartType(OEXStartType type) {
 @property (nonatomic, assign) BOOL has_cert;
 @property (nonatomic, assign) BOOL is_enroll;
 @property (nonatomic, assign) BOOL is_subscribe_pay;
+@property (nonatomic, assign) BOOL can_free_enroll;
+@property (nonatomic, strong) NSDictionary *recommended_package;
 
 @end
 
@@ -147,6 +149,7 @@ NSString* NSStringForOEXStartType(OEXStartType type) {
         self.has_cert = [[info objectForKey:@"has_cert"] boolValue];
         self.is_enroll = [[info objectForKey:@"is_enroll"] boolValue];
         self.is_subscribe_pay = [[info objectForKey:@"is_subscribe_pay"] boolValue];
+        self.recommended_package = [info objectForKey:@"recommended_package"];
         
         NSLog(@"课程 -- %@",info);
     }
