@@ -23,6 +23,7 @@ pod 'Weibo_SDK'
 pod 'WechatOpenSDK'
 pod 'AlipaySDK-iOS'
 pod 'AFNetworking'
+pod 'SVProgressHUD'
 end
 
 target 'edXTests' do

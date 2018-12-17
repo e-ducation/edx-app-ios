@@ -337,21 +337,19 @@
 
 - (void)appApproveProgress:(TDVipPackageModel *)model { //调起内购
     
-    self.purchaseModel.total_fee = @"188";
-    self.purchaseModel.trader_num = @"ddd";
-    self.purchaseModel.apple_receipt = @"dafafdafda";
-    
     WS(weakSelf);
     [self createINPurchaseOrder:[model.id stringValue] completion:^{
+        weakSelf.purchaseModel.trader_num = weakSelf.orderID;
         weakSelf.purchaseModel.total_fee = model.price;
         [weakSelf appInPurchaseAction:model.price];
     }];
 }
 
 - (void)appInPurchaseAction:(NSString *)total_fee { //苹果内购
-//    [SVProgressHUD showWithStatus:TDLocalizeSelect(@"IS_RECHARGE", nil)];
-//    SVProgressHUD.defaultMaskType = SVProgressHUDMaskTypeBlack;
-//    SVProgressHUD.defaultStyle = SVProgressHUDAnimationTypeNative;
+    
+    [SVProgressHUD showWithStatus:@"正在购买..."];
+    SVProgressHUD.defaultMaskType = SVProgressHUDMaskTypeBlack;
+    SVProgressHUD.defaultStyle = SVProgressHUDAnimationTypeNative;
     
     int payType = 1;
     switch ([total_fee intValue]) {
@@ -389,6 +387,7 @@
             else {
                 [weakSelf.view makeToast:@"充值失败" duration:0.8 position:CSToastPositionTop];
             }
+            [SVProgressHUD dismiss];
         }];
         
         //TODO:保存订单信息和receipt在本地，做丢单处理
@@ -398,7 +397,7 @@
     }
     else if (state == SKPaymentTransactionStateFailed) {
         self.isPurchassing = NO;
-//        [SVProgressHUD dismiss];
+        [SVProgressHUD dismiss];
     }
 }
 

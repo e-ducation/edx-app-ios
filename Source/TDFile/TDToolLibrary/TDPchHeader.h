@@ -14,6 +14,7 @@
 #import "UIView+Toast.h"
 #import "OEXConfig.h"
 #import "OEXNetworkConstants.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #define ELITEU_URL [OEXConfig sharedConfig].apiHostURL
 
