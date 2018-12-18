@@ -35,7 +35,6 @@
 @property (nonatomic,strong) PurchaseManager *purchaseManager;//内购工具类
 @property (nonatomic,strong) PurchaseModel *purchaseModel;
 @property (nonatomic,assign) BOOL isPurchassing; //正在进行内购
-@property (nonatomic,assign) BOOL approveSucess; //是否审核通过
 
 @end
 
@@ -60,6 +59,12 @@
     [self.loadController setupInControllerWithController:self contentView:self.packageView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [SVProgressHUD dismiss];
+}
+
 - (void)purchaseAction { //内购初始化
     self.isPurchassing = NO;
     
@@ -69,7 +74,8 @@
     self.purchaseManager.delegate = self;
     WS(weakSelf);
     [self.purchaseManager showPurchaseComplete:^(BOOL approveSucess) {
-        weakSelf.approveSucess = approveSucess;
+//        weakSelf.packageView.approveSucess = approveSucess;
+        weakSelf.packageView.approveSucess = YES;
     }];
 }
 
@@ -114,6 +120,7 @@
 
 //创建支付宝订单
 - (void)createAlipayOrder:(NSString *)packageId completion:(void(^)(NSString *orderString))completion {
+    [self showLoading:@"正在支付..."];
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setValue:packageId forKey:@"package_id"];
@@ -134,7 +141,7 @@
         if(httpResp.statusCode == 200) {
             NSError* error;
             NSDictionary* dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            NSLog(@"支付宝订单 ----->> %@",dictionary);
+            NSLog(@"支付宝 ----->> %@",dictionary);
             
             if ([[dictionary allKeys] containsObject:@"alipay_request"]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -155,6 +162,7 @@
 
 //创建微信订单
 - (void)createWechatOrder:(NSString *)packageId completion:(void(^)(weChatParamsItem *item))completion {
+    [self showLoading:@"正在支付..."];
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setValue:packageId forKey:@"package_id"];
@@ -175,7 +183,7 @@
         if(httpResp.statusCode == 200) {
             NSError* error;
             NSDictionary* dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            NSLog(@"微信订单 ----->> %@",dictionary);
+            NSLog(@"微信 ----->> %@",dictionary);
             
             if ([[dictionary allKeys] containsObject:@"wechat_request"]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -197,6 +205,8 @@
 
 //创建内购订单
 - (void)createINPurchaseOrder:(NSString *)packageId completion:(void(^)(void))completion {
+    
+    [self showLoading:@"正在支付..."];
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setValue:packageId forKey:@"package_id"];
@@ -237,6 +247,7 @@
 
 - (void)createOrderFailed {
     dispatch_async(dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
         [self.packageView vipPaySheetViewDisapear];
         [self.view makeToast:@"订单创建失败" duration:1.08 position:CSToastPositionCenter];
     });
@@ -262,12 +273,10 @@
                 [self requestMore:orderID request:num];
             }
             else if (status == 2) {
-                [self.packageView vipPaySheetViewDisapear];
                 [self getVipData]; //刷新数据
             }
             else {
-                [self.packageView vipPaySheetViewDisapear];
-                [self.view makeToast:@"订单更新失败" duration:0.8 position:CSToastPositionCenter];
+                [self.view makeToast:@"更新失败" duration:0.8 position:CSToastPositionCenter];
             }
         }
         else {
@@ -281,12 +290,11 @@
 }
 
 - (void)requestMore:(NSString *)orderID request:(NSInteger)num {
-    [self.packageView vipPaySheetViewDisapear];
     if (num == 0) {
         [self queryOrderStatus:orderID request:1];
     }
     else {
-        [self.view makeToast:@"查询订单失败" duration:0.8 position:CSToastPositionCenter];
+        [self.view makeToast:@"查询失败" duration:0.8 position:CSToastPositionCenter];
     }
 }
 
@@ -312,12 +320,16 @@
     if (type == 0) {
         NSLog(@"微信支付");
         [self createWechatOrder:vipID completion:^(weChatParamsItem *item) {
+            [SVProgressHUD dismiss];
+            [self.packageView vipPaySheetViewDisapear];
             [weakSelf wechatPayAction:item];
         }];
     }
     else {
         NSLog(@"支付宝支付");
         [self createAlipayOrder:vipID completion:^(NSString *orderString) {
+            [SVProgressHUD dismiss];
+            [self.packageView vipPaySheetViewDisapear];
             [weakSelf alipayAction:orderString];
         }];
     }
@@ -341,15 +353,12 @@
     [self createINPurchaseOrder:[model.id stringValue] completion:^{
         weakSelf.purchaseModel.trader_num = weakSelf.orderID;
         weakSelf.purchaseModel.total_fee = model.price;
+        weakSelf.purchaseModel.package_id = [model.id stringValue];
         [weakSelf appInPurchaseAction:model.price];
     }];
 }
 
 - (void)appInPurchaseAction:(NSString *)total_fee { //苹果内购
-    
-    [SVProgressHUD showWithStatus:@"正在购买..."];
-    SVProgressHUD.defaultMaskType = SVProgressHUDMaskTypeBlack;
-    SVProgressHUD.defaultStyle = SVProgressHUDAnimationTypeNative;
     
     int payType = 1;
     switch ([total_fee intValue]) {
@@ -373,6 +382,13 @@
     [self.purchaseManager reqToUpMoneyFromApple:payType];
 }
 
+- (void)showLoading:(NSString *)status {
+    [SVProgressHUD showWithStatus:status];
+    SVProgressHUD.defaultMaskType = SVProgressHUDMaskTypeBlack;
+    SVProgressHUD.defaultStyle = SVProgressHUDAnimationTypeNative;
+}
+
+
 #pragma mark - TDPurchaseDelegate
 - (void)updatedTAppApproveransactions:(int)state receiveStr:(NSString *)receiveStr {
     NSLog(@"更新内购交易 -->> %@",receiveStr);
@@ -380,14 +396,15 @@
     if (state == SKPaymentTransactionStatePurchased) {//成功
         self.purchaseModel.apple_receipt = receiveStr;
         WS(weakSelf);
-        [self.purchaseManager verificationAction:self.purchaseModel completion:^(id dataObject, BOOL isSuccess) {
+        [self.purchaseManager verificationAction:self.purchaseModel completion:^(BOOL isSuccess) {
             if (isSuccess) {
                 [weakSelf getVipData];
+                [SVProgressHUD dismiss];
             }
             else {
+                [SVProgressHUD dismiss];
                 [weakSelf.view makeToast:@"充值失败" duration:0.8 position:CSToastPositionTop];
             }
-            [SVProgressHUD dismiss];
         }];
         
         //TODO:保存订单信息和receipt在本地，做丢单处理
@@ -409,7 +426,6 @@
 
 - (void)weixinPayFailed:(NSInteger)status {//支付失败
     NSLog(@"支付宝 -- 支付失败");
-    [self.packageView vipPaySheetViewDisapear];
 }
 
 #pragma mark - TDAlipayDelegate
@@ -420,7 +436,6 @@
 
 - (void)alipayFaile:(NSInteger)status { //支付失败
     NSLog(@"支付宝 -- 支付失败");
-    [self.packageView vipPaySheetViewDisapear];
 }
 
 #pragma mark - UI

@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger,IAP) {
 @property (nonatomic,weak,nullable) id <TDPurchaseDelegate>delegate;
 
 - (void)showPurchaseComplete:(void(^)(BOOL approveSucess))completion;//App是否审核通过
-- (void)verificationAction:(PurchaseModel *)purchaseModel completion:(void(^)(id dataObject, BOOL isSuccess))completion;//App Store验证
+- (void)verificationAction:(PurchaseModel *)purchaseModel completion:(void(^)(BOOL isSuccess))completion;//App Store验证
 - (void)reqToUpMoneyFromApple:(int)type; //发起内购
 
 @end

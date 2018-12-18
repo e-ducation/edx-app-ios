@@ -24,6 +24,8 @@
 
 @property (nonatomic,strong) TDVipAlertView *alertView;
 
+@property (nonatomic,strong) NSURL *url;
+
 @end
 
 @implementation TDVipIntroduceViewController
@@ -32,15 +34,13 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"商学院";
+    self.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/vip?device=ios",ELITEU_URL]];
     [self setViewConstraint];
     
     self.loadController = [[LoadStateViewController alloc] init];
     [self.loadController setupInControllerWithController:self contentView:self.webView];
 }
 
-- (void)loadStateViewReload {
-    [self loadRequestWebView];
-}
 #pragma mark - WKUIDelegate
 ////在JS端调用alert函数时，会触发此代理方法。JS端调用alert时所传的数据可以通过message拿到。在原生得到结果后，需要回调JS，是通过completionHandler回调。
 //- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
@@ -178,19 +178,21 @@
 }
 
 - (void)loadRequestWebView {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/vip?device=ios",ELITEU_URL]];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
+}
+
+#pragma mark - LoadStateViewReloadSupport
+- (void)loadStateViewReload {
+    [self loadRequestWebView];
 }
 
 #pragma mark - Action
 - (void)shareButtonAction:(UIButton *)sender { //分享
     
-    NSURL *url = [NSURL URLWithString:@"http://www.eliteu.xyz/api-docs/"];
-    NSArray *itemArray = @[@"文件分享",url];
+    NSArray *itemArray = @[@"VIP介绍页",self.url];
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:itemArray applicationActivities:nil];
     activityController.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll];
     activityController.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
-
         if (completed) {//成功
             NSLog(@"---->> 分享成功");
         }

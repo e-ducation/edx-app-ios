@@ -65,7 +65,7 @@
     }];
 }
 
-- (void)verificationAction:(PurchaseModel *)purchaseModel completion:(void(^)(id dataObject, BOOL isSuccess))completion {
+- (void)verificationAction:(PurchaseModel *)purchaseModel completion:(void(^)(BOOL isSuccess))completion {
     
     NSMutableDictionary *newDic = [[NSMutableDictionary alloc] init];
     NSString *file = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
@@ -80,29 +80,44 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",ELITEU_URL,APP_PURCHASE_VERIFY_URL];
     urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    NSString *authent = [OEXAuthentication authHeaderForApiAccess];
-
-    [manager.requestSerializer setValue:authent forHTTPHeaderField:@"Authorization"];
-
-    [manager POST:urlStr parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //状态返回0为成功，其他是错误
-        NSDictionary *responDic = (NSDictionary *)responseObject;
-        if ([responDic[@"status"] intValue] == 0) {
-            completion(responDic,YES);
-            NSLog(@"-----验证成功---------");
+    NSString *body = [dic oex_stringByUsingFormEncoding];
+    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [sessionConfig setHTTPAdditionalHeaders:[sessionConfig defaultHTTPHeaders]];
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSString* authValue = [OEXAuthentication authHeaderForApiAccess];
+    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig];
+    
+    [[session dataTaskWithRequest:request completionHandler:^(NSData* data, NSURLResponse* response, NSError* error) {
+        
+        NSHTTPURLResponse* httpResp = (NSHTTPURLResponse*) response;
+        if(httpResp.statusCode == 200) {
+            NSError* error;
+            NSDictionary* dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            NSLog(@"内购验证 ----->> %@",dictionary);
+            if ([dictionary[@"status"] intValue] == 0) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                     completion(YES);
+                });
+                NSLog(@"-----验证成功---------");
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion(NO);
+                });
+                NSLog(@"-----验证失败---------");
+            }
         }
         else {
-            completion(nil,NO);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(NO);
+            });
             NSLog(@"-----验证失败---------");
         }
-
-        NSLog(@"%@",responDic[@"msg"]);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        completion(nil,NO);
-        NSLog(@"-----请求失败---------");
-    }];
+    }]resume];
 }
 
 - (void)reqToUpMoneyFromApple:(int)type {//发起内购

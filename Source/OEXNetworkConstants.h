@@ -45,5 +45,7 @@
 #define APP_APPROVE_STATUS_URL @"/api/mobile/v0.5/app_version/last/"//App是否审核中
 #define VIP_CTEATE_INPURCHASE_ORDER @"/api/v1/mobile/vip/pay/apple/inapp_purchase/"//创建VIP内购订单
 #define APP_PURCHASE_VERIFY_URL @"/api/v1/mobile/vip/pay/apple/receipt_verify/" //App Store内购验证
+#define APP_BINDPHONE_CODE_URL @"/api/user/v1/accounts/send_code_binding_phone/" //发送验证码
+#define APP_BINGPHONE_URL @"/api/user/v1/accounts/binding_phone/" //绑定手机
 
 #endif
