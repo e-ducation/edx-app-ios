@@ -137,6 +137,19 @@ class LoadStateViewController : UIViewController {
         return false
     }
     
+    func loadViewState(status: Int, error: NSError?) { 
+        switch status {
+        case 0:
+            self.state = .Initial
+        case 1:
+            self.state = .Loaded
+        case 2:
+            self.state = LoadState.failed(error: error)
+        default:
+            self.state = LoadState.empty(icon: nil, message: "空白页")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -28,11 +28,11 @@ struct ShadowStyle {
 extension OEXStyles {
     
     var navigationTitleTextStyle : OEXTextStyle {
-        return OEXTextStyle(weight: .semiBold, size: .base, color : navigationItemTintColor())
+        return OEXTextStyle(weight: .semiBold, size: .xLarge, color : navigationItemTintColor())
     }
     
     var navigationButtonTextStyle : OEXTextStyle {
-        return OEXTextStyle(weight: .semiBold, size: .small, color: nil)
+        return OEXTextStyle(weight: .semiBold, size: .large, color: nil)
     }
     
     private var searchBarTextStyle : OEXTextStyle {

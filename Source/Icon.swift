@@ -150,6 +150,7 @@ public enum Icon {
     case Account
     case ArrowLeft
     case Clone
+    case BankHouse
     
     private var renderer : IconRenderer {
         switch self {
@@ -279,6 +280,8 @@ public enum Icon {
             return FontAwesomeRenderer(icon: .EllipsisH)
         case .ArrowLeft:
             return FontAwesomeRenderer(icon: .AngleLeft)
+        case .BankHouse:
+            return FontAwesomeRenderer(icon: .Bank)
         }
     }
     

@@ -217,6 +217,11 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         }
     }
     
+    func clickExpiredButton() {
+        let vipVC = TDVipPackageViewController()
+        self.navigationController?.pushViewController(vipVC, animated: true)
+    }
+    
     private func showWhatsNewIfNeeded() {
         if WhatsNewViewController.canShowWhatsNew(environment: environment as? RouterEnvironment) {
             environment.router?.showWhatsNew(fromController: self)

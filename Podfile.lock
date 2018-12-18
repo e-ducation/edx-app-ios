@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - AlipaySDK-iOS (15.5.5)
   - Analytics (3.0.7)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
@@ -89,11 +90,13 @@ PODS:
     - GoogleAnalytics (~> 3.14)
     - GoogleIDFASupport (~> 3.14)
   - Smartling.i18n (1.0.13)
+  - SVProgressHUD (2.2.5)
   - WechatOpenSDK (1.8.3)
   - Weibo_SDK (3.2.3)
 
 DEPENDENCIES:
   - AFNetworking
+  - AlipaySDK-iOS
   - Analytics (~> 3.0.0)
   - Branch (= 0.25.5)
   - Crashlytics (~> 3.10.1)
@@ -110,12 +113,14 @@ DEPENDENCIES:
   - OHHTTPStubs (~> 4.0)
   - Segment-GoogleAnalytics (~> 1.0.0)
   - Smartling.i18n (~> 1.0)
+  - SVProgressHUD
   - WechatOpenSDK
   - Weibo_SDK
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
+    - AlipaySDK-iOS
     - Analytics
     - Bolts
     - Branch
@@ -145,11 +150,13 @@ SPEC REPOS:
     - OHHTTPStubs
     - Segment-GoogleAnalytics
     - Smartling.i18n
+    - SVProgressHUD
     - WechatOpenSDK
     - Weibo_SDK
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AlipaySDK-iOS: 7b700342e71cb3b626603ce96f9d2fb158acbcfb
   Analytics: b342fb4f43fa4f97ca6f4358b44d3295217ba294
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Branch: 848e8e908182a97678d9f5a854d10e59a40af2aa
@@ -179,9 +186,10 @@ SPEC CHECKSUMS:
   OHHTTPStubs: b393565822317305b87a1440d4c7aff131679f66
   Segment-GoogleAnalytics: ffea73c99196720b28b58ea93bcc0e6d11f172e1
   Smartling.i18n: 03ef7a5643965212c6ca9ed7d65385950ca4a989
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   WechatOpenSDK: 3117412f8aafde4758cac1e8d20b93c67cafcfef
   Weibo_SDK: 652ca78c2f7147a5de5e75e7cbea89838a81772a
 
-PODFILE CHECKSUM: 12e7e934e9a2d264738c1c2bce8ff1a31597308e
+PODFILE CHECKSUM: 5349e6d0396931b4fc750d66c6c022c7b1a0fca2
 
 COCOAPODS: 1.5.0

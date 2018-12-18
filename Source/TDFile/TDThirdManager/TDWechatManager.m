@@ -9,6 +9,7 @@
 #import "TDWechatManager.h"
 #import <WXApi.h>
 #import "OEXConfig.h"
+#import "Encryption.h" //md5加密
 
 @interface TDWechatManager () <WXApiDelegate>
 
@@ -61,8 +62,46 @@
  如果第三方程序向微信发送了sendReq的请求，那么onResp会被回调。sendReq请求调用后，会切到微信终端程序界面。
  */
 - (void)onResp:(BaseResp *)resp {
-    SendAuthResp *authResp = (SendAuthResp *)resp;
-    [self WXApiUtilsDidRecvAuthResponse:authResp];
+    
+    if ([resp isKindOfClass:[PayResp class]]) { //微信支付
+        if (resp.errCode == WXSuccess) {
+            [self.delegate weixinPaySuccessHandle];
+        }
+        else {
+            NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+            switch (resp.errCode) {
+                case WXSuccess:
+                    strMsg = @"支付成功";
+                    break;
+                case WXErrCodeUserCancel:
+                    strMsg = @"取消支付";
+                    break;
+                case WXErrCodeSentFail:
+                    strMsg = @"支付失败";
+                    break;
+                case WXErrCodeAuthDeny:
+                    strMsg = @"授权失败";
+                    break;
+                default:
+                    strMsg = @"不支持微信支付";
+                    break;
+            }
+            
+            WS(weakSelf);
+            NSString *strTitle = @"支付结果";
+            UIAlertController *alerVC = [UIAlertController alertControllerWithTitle:strTitle message:strMsg preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [weakSelf.delegate weixinPayFailed:resp.errCode];
+            }];
+            [alerVC addAction:sureAction];
+            
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alerVC animated:YES completion:nil];
+        }
+    }
+    else if ([SendAuthResp class]) { //第三方授权
+        SendAuthResp *authResp = (SendAuthResp *)resp;
+        [self WXApiUtilsDidRecvAuthResponse:authResp];
+    }
 }
 
 - (void)WXApiUtilsDidRecvAuthResponse:(SendAuthResp *)response {//第三方登录
@@ -155,5 +194,23 @@
     NSLog(@"执行登录 %@",response);
     [self.delegate thirdLoginSuccess:response];
 }
+
+#pragma mark - 微信支付
+- (void)submitPostWechatPay:(weChatParamsItem *)weChatItem {
+    //微信支付的所有参数都用服务器返回
+    
+    //调起微信支付
+    PayReq* req             = [PayReq alloc];
+    req.openID              = weChatItem.appid;
+    req.partnerId           = weChatItem.mch_id;
+    req.prepayId            = weChatItem.prepay_id;
+    req.nonceStr            = weChatItem.nonce_str;;
+    req.timeStamp           = weChatItem.timestamp.intValue;
+    req.package             = weChatItem.package;
+    req.sign                = weChatItem.sign;
+    
+    [WXApi sendReq:req];
+}
+
 
 @end

@@ -298,7 +298,7 @@
     </scenes>
     <resources>
         <image name="loginScreenImage.png" width="320" height="171"/>
-        <image name="logo.png" width="141" height="65"/>
+        <image name="logo.png" width="316" height="65"/>
         <image name="separator.png" width="526" height="2"/>
     </resources>
 </document>

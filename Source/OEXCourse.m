@@ -88,6 +88,14 @@ NSString* NSStringForOEXStartType(OEXStartType type) {
 @property (nonatomic, copy) NSDictionary<NSString*, CourseMediaInfo*>* mediaInfo;
 @property (nonatomic, readwrite) CourseShareUtmParameters *courseShareUtmParams;
 
+@property (nonatomic, assign) BOOL is_vip;
+@property (nonatomic, assign) BOOL is_normal_enroll;
+@property (nonatomic, assign) BOOL has_cert;
+@property (nonatomic, assign) BOOL is_enroll;
+@property (nonatomic, assign) BOOL is_subscribe_pay;
+@property (nonatomic, assign) BOOL can_free_enroll;
+@property (nonatomic, strong) NSDictionary *recommended_package;
+
 @end
 
 @implementation OEXCourse
@@ -136,6 +144,14 @@ NSString* NSStringForOEXStartType(OEXStartType type) {
         NSDictionary *courseShareUtmParametersDictionary = [info objectForKey:@"course_sharing_utm_parameters"];
         self.courseShareUtmParams = [[CourseShareUtmParameters alloc] initWithParams:courseShareUtmParametersDictionary];
         
+        self.is_vip = [[info objectForKey:@"is_vip"] boolValue];
+        self.is_normal_enroll = [[info objectForKey:@"is_normal_enroll"] boolValue];
+        self.has_cert = [[info objectForKey:@"has_cert"] boolValue];
+        self.is_enroll = [[info objectForKey:@"is_enroll"] boolValue];
+        self.is_subscribe_pay = [[info objectForKey:@"is_subscribe_pay"] boolValue];
+        self.recommended_package = [info objectForKey:@"recommended_package"];
+        
+        NSLog(@"课程 -- %@",info);
     }
     return self;
 }

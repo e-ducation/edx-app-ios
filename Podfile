@@ -21,7 +21,9 @@ pod 'Firebase/Core', '= 3.11.0'
 pod 'Branch', '= 0.25.5'
 pod 'Weibo_SDK'
 pod 'WechatOpenSDK'
+pod 'AlipaySDK-iOS'
 pod 'AFNetworking'
+pod 'SVProgressHUD'
 end
 
 target 'edXTests' do

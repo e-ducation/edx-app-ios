@@ -61,7 +61,7 @@
  * \return 处理结果，YES表示成功，NO表示失败
  */
 - (BOOL)handleOpenURL:(NSURL *)url {
-    NSLog(@"qq---222");
+    NSLog(@"qq -- 调起");
     return [TencentOAuth HandleOpenURL:url];
 }
 
