@@ -7,6 +7,7 @@
 //
 
 #import "TDPayView.h"
+#import "edX-Swift.h"
 
 @interface TDPayView ()
 
@@ -41,7 +42,7 @@
     [self.selectButton addSubview:self.imageView];
     
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.text = self.type == 0 ? @"微信支付" : @"支付宝支付";
+    self.titleLabel.text = self.type == 0 ? [Strings wechatPayStyle] : [Strings alipayStyle];
     self.titleLabel.textColor = [UIColor colorWithHexString:@"#2e313c"];
     self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
     [self.selectButton addSubview:self.titleLabel];

@@ -23,7 +23,7 @@ private enum TabBarOptions: Int {
         case .Debug:
             return Strings.debug
         case .Vip:
-            return "商学院"
+            return Strings.elitemba
         }
     }
 }

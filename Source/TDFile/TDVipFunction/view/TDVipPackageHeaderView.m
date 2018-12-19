@@ -7,6 +7,7 @@
 //
 
 #import "TDVipPackageHeaderView.h"
+#import "edX-Swift.h"
 
 @interface TDVipPackageHeaderView ()
 
@@ -65,10 +66,10 @@
     self.endLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     [self.bgButton addSubview:self.endLabel];
     
-    self.titleLabel.text = @"英荔商学院VIP会员";
-    self.remindLabel.text = @"开通VIP会员，可免费观看英荔商学院全部课程。"; //已开通1天 剩余 364天//会员已过期1天
-    self.startLabel.text = @"上次开通日期：2018-1-2";
-    self.endLabel.text = @"到期日期：2019-1-1";
+    self.titleLabel.text = [Strings elitembaVipMember];
+    self.remindLabel.text = [Strings vipMemberWatchFree]; //已开通1天 剩余 364天//会员已过期1天
+    self.startLabel.text = [NSString stringWithFormat:@"%@2018-1-2",[Strings lastOpend]];
+    self.endLabel.text = [NSString stringWithFormat:@"%@2019-1-1",[Strings edpireOn]];
     
 }
 
@@ -128,17 +129,17 @@
     
     switch (type) {
         case 0:
-            self.remindLabel.text = @"开通VIP会员，可免费观看英荔商学院全部课程。";
+            self.remindLabel.text = [Strings vipMemberWatchFree];
             break;
         case 1:
             [self setDateStr:[messageModel.vip_remain_days stringValue] pastStr:[messageModel.vip_pass_days stringValue] type:1];
-            self.startLabel.text = [NSString stringWithFormat:@"开通日期：%@",messageModel.start_at];
-            self.endLabel.text = [NSString stringWithFormat:@"到期日期：%@",messageModel.expired_at];
+            self.startLabel.text = [NSString stringWithFormat:@"%@%@",[Strings opendOn],messageModel.start_at];
+            self.endLabel.text = [NSString stringWithFormat:@"%@%@",[Strings edpireOn],messageModel.expired_at];
             break;
         default:
             [self setDateStr:[messageModel.vip_expired_days stringValue] pastStr:0 type:2];
-            self.startLabel.text = [NSString stringWithFormat:@"上次开通日期：%@",messageModel.start_at];
-            self.endLabel.text = [NSString stringWithFormat:@"到期日期：%@",messageModel.expired_at];
+            self.startLabel.text = [NSString stringWithFormat:@"%@%@",[Strings lastOpend],messageModel.start_at];
+            self.endLabel.text = [NSString stringWithFormat:@"%@%@",[Strings edpireOn],messageModel.expired_at];
             break;
     }
     
@@ -150,7 +151,7 @@
 - (void)setDateStr:(NSString *)validStr pastStr:(NSString *)pastStr type:(NSInteger)type {
     NSString *str;
     if (type == 1) {
-        str =  [NSString stringWithFormat:@"已开通%@天 剩余%@天",pastStr,validStr];
+        str = [Strings opneDayLeftWithOpenday:pastStr leftday:validStr];
     }
     else {
       str = [NSString stringWithFormat:@"会员已过期%@天",validStr];

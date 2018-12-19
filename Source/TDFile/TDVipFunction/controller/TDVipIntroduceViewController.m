@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"商学院";
+    self.navigationItem.title = [Strings elitemba];
     [self setViewConstraint];
     
     self.loadController = [[LoadStateViewController alloc] init];
@@ -188,7 +188,7 @@
 - (void)shareButtonAction:(UIButton *)sender { //分享
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/vip",ELITEU_URL]];
-    NSArray *itemArray = @[@"VIP介绍页",url];
+    NSArray *itemArray = @[[Strings studyMbaEliteu],url];
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:itemArray applicationActivities:nil];
     activityController.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll];
     activityController.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {

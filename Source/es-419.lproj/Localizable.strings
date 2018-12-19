@@ -811,3 +811,122 @@
 "WIFI_ONLY_DETAIL_MESSAGE" = "Sólo descargar contenido cuando el Wifi está encendido";
 /* Alert dialog button title to confirm an action */
 "YES"="Si";
+
+/* 请先安装微信或者选择其他支付方式 Please install Wechat or choose other payment methods. */
+"INSTALL_WECHAT"="Please install Wechat or choose other payment methods.";
+/* 加载中... Loading… */
+"LOADING_TEXT"="Loading…";
+/* 恭喜您已成功加入EliteMBA会员 Congratulations! You’ve become an EliteMBA VIP. */
+"BECOME_ELITEMBA_VIP"="Congratulations! You’ve become an EliteMBA VIP.";
+/* 查询失败，请稍后重试 Failed. Please try again later. */
+"QUERY_FAILED"="Failed. Please try again later.";
+/* 支付已取消 Payment cancelled. */
+"PAYMENT_CANCEL"="Payment cancelled.";
+/* 支付失败，请稍后重试 Failed. Please try again later. */
+"PAYMENT_FAILED"="Failed. Please try again later.";
+/* 正在确认中... Payment processing… */
+"PAYMENT_PROCESS"="Payment processing…";
+/* 移动端暂不支持，请至PC端完成购买 Sorry, purchase is currently unavailable in App. Please proceed on PC. */
+"PURCHASE_PC"="Sorry, purchase is currently unavailable in App. Please proceed on PC.";
+/* 请输入正确的手机号码 Wrong mobile format. */
+"WRONG_MOBILE"="Wrong mobile format.";
+/* 获取验证码失败，请稍后重试 Failed to get verification code, please try again later. */
+"VERIFYCODE_FAILED"="Failed to get verification code, please try again later.";
+/*  学则变 · 变则进 Learn to Change·Change to Improve */
+"CHANGE_INPROVE"="Learn to Change·Change to Improve";
+/* 马上开始你的在线MBA学习吧！ Begin your online MBA learning right now! */
+"BEGIN_MBA_LEARN"="Begin your online MBA learning right now!";
+/* 价值数十万的MBA课程体系，最低月均99.8元全年畅学 Enjoy high-value MBA curriculum with ￥99.8 monthly payment!*/
+"ENJOY_MBA"="Enjoy high-value MBA curriculum with ￥99.8 monthly payment!";
+/* 商学院 EliteMBA */
+"ELITEMBA"="EliteMBA";
+/* 英荔商学院VIP会员 EliteMBA VIP membership */
+"ELITEMBA_VIP_MEMBER"="EliteMBA VIP membership";
+/* 开通VIP会员，可免费观看英荔商学院全部课程。 Become a VIP member and watch all EliteMBA courses for free. */
+"VIP_MEMBER_WATCH_FREE"="Become a VIP member and watch all EliteMBA courses for free.";
+/* 上次开通日期: Last Opened on: */
+"LAST_OPEND"="Last Opened on:";
+/* 到期日期： Expire on: */
+"EDPIRE_ON"="Expire on:";
+/* 开通日期： Opened on: */
+"OPEND_ON"="Opened on:";
+/* 已开通{openday}天 剩余{leftday}天  Opened for {openday} day(s) {leftday} day(s) left */
+"OPNE_DAY_LEFT"="Opened for {openday} day(s) {leftday} day(s) left";
+/* 交学费 Submit Payment */
+"SUMIT_PAYMENT"="Submit Payment";
+/* 选择支付方式 Choose payment method */
+"CHOOSE_PAYMENT_METHOD"="Choose payment method";
+/* 学费: Payment: */
+"PAYMENT_NUM"="Payment:";
+/* 微信支付 WeChat */
+"WECHAT_PAY_STYLE"="WeChat";
+/* 支付宝支付  Alipay */
+"ALIPAY_STYLE"="Alipay";
+/* 正在支付... Paying now... */
+"PAYING_NOW"="Paying now...";
+/* 支付失败 Payment Failed */
+"PAYMENT_FALIED"="Payment Failed";
+/* 支付结果 Payment Result */
+"PAYMENT_RESULT"="Payment Result";
+/* 网络错误 Network Error */
+"INTERNET_ERROR"="Network Error";
+/* 支付成功 Payment Succeed */
+"PAYMENT_SUCCESS"="Payment Succeed";
+/* 正在处理... Processing... */
+"PROCESSING_TEXT"="Processing...";
+/* 不支持微信支付 Does not support WeChat */
+"NO_SUPPORT_WECHAT"="Does not support WeChat";
+/* 授权失败 Authorization Failed */
+"AUTHORIZATION_FAILED"="Authorization Failed";
+/* 系统提示 System Reminder */
+"SYSTEM_REMINDER"="System Reminder";
+/* 购买失败，请重新购买 Purchase failed. Please purchase again. */
+"PURCHASE_FAILED"="Purchase failed. Please purchase again.";
+/* 你选择的该门课程是属于英荔商学院的课程，成为会员可以在有效期内免费学习 The course you have chosen belongs to EliteMBA. Become a VIP member and learn your course for free. */
+"ELITEMBA_COURSE"="The course you have chosen belongs to EliteMBA. Become a VIP member and learn your course for free.";
+/* 英荔商学院 EliteMBA*/
+"ELITEMBA_VIP"="EliteMBA";
+/* 免费学习 learn your course for free*/
+"LEARN_COURSE_FREE"="learn your course for free";
+/* 订阅期满请及时续费 Renew Your VIP Membership */
+"RENEW_VIP_MEMBERSHIP"="Renew Your VIP Membership";
+/* 订阅会员课程 Subscribe VIP */
+"SUBSCRIBE_VIP"="Subscribe VIP";
+/* 查看详情 Details */
+"DETAILS_TEXT"="Details";
+/* 请输入手机号 Please enter cellphone number */
+"ENTER_CELLPHONE"="Please enter cellphone number";
+/* 请输入验证码 Please enter verification code */
+"ENTER_VERIFICATE_CODE"="Please enter verification code";
+/* 获取验证码 Verification */
+"GET_VERIFICATION"="Verification";
+/* 提交 Submit */
+"SUBMIT_TEXT"="Submit";
+/* 绑定手机 Binding Your Cellphone */
+"BIND_CELLPHONE_TITLE"="Binding Your Cellphone";
+/* 发送验证码... Sending verification... */
+"SEND_VERIFICATE_CODE"="Sending verification...";
+/* 验证码已发送 Verification sent */
+"VERIFICATION_SENT"="Verification sent";
+/* 正在提交... Submitting */
+"SUBMINTING_TEXT"="Submitting";
+/* 绑定成功 Binding Succeed! */
+"BIND_SUCCED"="Binding Succeed!";
+/* 绑定失败 Binding Failed! */
+"BIND_FAILED"="Binding Failed!";
+/* 重新获取 Resend */
+"RESEND_CODE"="Resend";
+/* 验证码不正确 Incorrect code! */
+"INCORRECT_CODE"="Incorrect code!";
+/* 未绑定手机号 Unbound cellphone */
+"UNBOUND_CELLPHONE"="Unbound cellphone";
+/* 已绑定手机号： Bound cellphone: */
+"BOUND_CELLPHONE"="Bound cellphone:";
+/* 应国家法规对于账号实名的要求，请您在进行下一步操作前，先完成手机绑定。 In response to national regulations on the real-name requirement of the account, please complete the phone binding before proceeding. */
+"REALNAME_REQUIREMENT"="In response to national regulations on the real-name requirement of the account, please complete the phone binding before proceeding.";
+/* 绑定手机 Bind Phone */
+"BIND_PHONE_TEXT"="Bind Phone";
+/* 下次再说 No */
+"NEXT_TIME"="No";
+/* 跟我一起，去英荔学MBA Come with me and study MBA at Eliteu */
+"STUDY_MBA_ELITEU"="Come with me and study MBA at Eliteu";

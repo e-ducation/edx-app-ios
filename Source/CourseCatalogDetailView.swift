@@ -265,9 +265,18 @@ extension CourseCatalogDetailView {
         
         if course.recommended_package.keys.contains("suggested_price") {
             let price = course.recommended_package["suggested_price"] as! String
-            let time = course.recommended_package["name"] as! String
-            
-            self.recomendView.recomendLabel.text = "订阅会员课程 ¥\(price)/\(time)"
+            let month = course.recommended_package["month"] as! Int
+            var timeStr: String = "年"
+            if month == 6 {
+                timeStr = "半年"
+            }
+            else if month == 3 {
+                timeStr = "季度"
+            }
+            else if month == 1 {
+                timeStr = "月"
+            }
+            self.recomendView.recomendLabel.text = "\(Strings.subscribeVip) ¥\(price)/\(timeStr)"
         }
     }
 }

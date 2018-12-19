@@ -10,6 +10,7 @@
 #import <WXApi.h>
 #import "OEXConfig.h"
 #import "Encryption.h" //md5加密
+#import "edX-Swift.h"
 
 @interface TDWechatManager () <WXApiDelegate>
 
@@ -71,26 +72,26 @@
             NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
             switch (resp.errCode) {
                 case WXSuccess:
-                    strMsg = @"支付成功";
+                    strMsg = [Strings paymentSuccess];
                     break;
                 case WXErrCodeUserCancel:
-                    strMsg = @"支付已取消";
+                    strMsg = [Strings paymentCancel];
                     break;
                 case WXErrCodeSentFail:
-                    strMsg = @"支付失败，请稍后重试";
+                    strMsg = [Strings paymentFailed];
                     break;
                 case WXErrCodeAuthDeny:
-                    strMsg = @"授权失败";
+                    strMsg = [Strings authorizationFailed];
                     break;
                 default:
-                    strMsg = @"不支持微信支付";
+                    strMsg = [Strings noSupportWechat];
                     break;
             }
             
             WS(weakSelf);
-            NSString *strTitle = @"支付结果";
+            NSString *strTitle = [Strings paymentResult];
             UIAlertController *alerVC = [UIAlertController alertControllerWithTitle:strTitle message:strMsg preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:[Strings ok] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [weakSelf.delegate weixinPayFailed:resp.errCode];
             }];
             [alerVC addAction:sureAction];

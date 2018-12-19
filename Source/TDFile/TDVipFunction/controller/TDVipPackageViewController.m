@@ -120,7 +120,7 @@
 
 //创建支付宝订单
 - (void)createAlipayOrder:(NSString *)packageId completion:(void(^)(NSString *orderString))completion {
-    [self showLoading:@"正在支付..."];
+    [self showLoading:[Strings payingNow]];
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setValue:packageId forKey:@"package_id"];
@@ -162,7 +162,7 @@
 
 //创建微信订单
 - (void)createWechatOrder:(NSString *)packageId completion:(void(^)(weChatParamsItem *item))completion {
-    [self showLoading:@"正在支付..."];
+    [self showLoading:[Strings payingNow]];
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setValue:packageId forKey:@"package_id"];
@@ -206,7 +206,7 @@
 //创建内购订单
 - (void)createINPurchaseOrder:(NSString *)packageId completion:(void(^)(void))completion {
     
-    [self showLoading:@"正在支付..."];
+    [self showLoading:[Strings payingNow]];
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setValue:packageId forKey:@"package_id"];
@@ -249,14 +249,14 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
         [self.packageView vipPaySheetViewDisapear];
-        [self.view makeToast:@"支付失败" duration:1.08 position:CSToastPositionCenter];
+        [self.view makeToast:[Strings paymentFalied] duration:1.08 position:CSToastPositionCenter];
     });
 }
 
 //查询订单
 - (void)queryOrderStatus:(NSString *)orderID request:(NSInteger)num { //num第几次请求
     
-    [self showLoading:@"加载中..."];
+    [self showLoading:[Strings loadingText]];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -278,10 +278,11 @@
                 [self requestMore:orderID request:num];
             }
             else if (status == 2) {
+                [self.view makeToast:[Strings becomeElitembaVip] duration:0.8 position:CSToastPositionCenter];
                 [self getVipData]; //刷新数据
             }
             else {
-                [self.view makeToast:@"查询失败，请稍后重试" duration:0.8 position:CSToastPositionCenter];
+                [self.view makeToast:[Strings queryFailed] duration:0.8 position:CSToastPositionCenter];
             }
         }
         else {
@@ -300,7 +301,7 @@
     }
     else {
         [SVProgressHUD dismiss];
-        [self.view makeToast:@"查询失败，请稍后重试" duration:0.8 position:CSToastPositionCenter];
+        [self.view makeToast:[Strings queryFailed] duration:0.8 position:CSToastPositionCenter];
     }
 }
 
@@ -333,7 +334,7 @@
             }];
         }
         else {
-            [self.view makeToast:@"请先安装微信或者选择其他支付方式" duration:0.8 position:CSToastPositionCenter];
+            [self.view makeToast:[Strings installWechat] duration:0.8 position:CSToastPositionCenter];
         }
     }
     else {
@@ -414,7 +415,7 @@
             }
             else {
                 [SVProgressHUD dismiss];
-                [weakSelf.view makeToast:@"支付失败" duration:0.8 position:CSToastPositionTop];
+                [weakSelf.view makeToast:[Strings paymentFalied] duration:0.8 position:CSToastPositionTop];
             }
         }];
         

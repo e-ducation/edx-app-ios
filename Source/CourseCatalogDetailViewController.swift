@@ -90,7 +90,7 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
                         }
                         else {
                             if !course.can_free_enroll && course.is_subscribe_pay { //有价格，且不属于VIP免费的
-                                self?.view.makeToast("移动端暂不支持，请至PC端完成购买", duration: 0.8, position: CSToastPositionCenter)
+                                self?.view.makeToast(Strings.purchasePc, duration: 0.8, position: CSToastPositionCenter)
                             }
                             else {
                                 self?.enrollInCourse(completion: completion)
@@ -130,7 +130,6 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
     }
     
     func judgeEnrollCourseShowAlert(course :OEXCourse) -> (Bool) { //已加入的课程
-        
         if course.is_normal_enroll { //普通购买
             return false
         }

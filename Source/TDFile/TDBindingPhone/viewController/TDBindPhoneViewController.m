@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"绑定手机";
+    self.navigationItem.title = [Strings bindCellphoneTitle];
     [self setViewConstraint];
 }
 
@@ -44,7 +44,7 @@
 
 #pragma mark - request
 - (void)sendPhoneCode {
-    [self showLoading:@"发送验证码..."];
+    [self showLoading:[Strings sendVerificateCode]];
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setValue:self.phoneView.phoneText.text forKey:@"phone"];
@@ -66,7 +66,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD dismiss];
                 [self cutDownTime];
-                [self.view makeToast:@"验证码已发送" duration:0.8 position:CSToastPositionCenter];
+                [self.view makeToast:[Strings verificationSent] duration:0.8 position:CSToastPositionCenter];
             });
         }
         else {
@@ -74,14 +74,14 @@
 //            NSLog(@"返回信息 ----->> %@",str);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD dismiss];
-                [self.view makeToast:@"获取验证码失败，请稍后重试" duration:0.8 position:CSToastPositionCenter];
+                [self.view makeToast:[Strings verifycodeFailed] duration:0.8 position:CSToastPositionCenter];
             });
         }
     }]resume];
 }
 
 - (void)handinBindPhone {
-    [self showLoading:@"正在提交..."];
+    [self showLoading:[Strings submintingText]];
     
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setValue:self.phoneView.phoneText.text forKey:@"phone"];
@@ -106,14 +106,14 @@
                     self.bindingPhoneSuccess();
                 }
                 [SVProgressHUD dismiss];
-                [self.view makeToast:@"绑定成功" duration:0.8 position:CSToastPositionCenter];
+                [self.view makeToast:[Strings bindSucced] duration:0.8 position:CSToastPositionCenter];
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }
         else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD dismiss];
-                [self.view makeToast:@"绑定失败" duration:0.8 position:CSToastPositionCenter];
+                [self.view makeToast:[Strings bindPhoneText] duration:0.8 position:CSToastPositionCenter];
             });
         }
     }]resume];
@@ -134,7 +134,7 @@
     if (self.timeNum <= 0) {
         [self timerInvalidate];
         self.phoneView.sendButton.userInteractionEnabled = YES;
-        [self.phoneView.sendButton setTitle:@"重新获取" forState:UIControlStateNormal];
+        [self.phoneView.sendButton setTitle:[Strings resendCode] forState:UIControlStateNormal];
     }
 }
 
@@ -166,7 +166,7 @@
         return NO;
     }
     if (codeStr.length != 6) {
-        [self.view makeToast:@"验证码不正确" duration:1.08 position:CSToastPositionCenter];
+        [self.view makeToast:[Strings incorrectCode] duration:1.08 position:CSToastPositionCenter];
         return NO;
     }
     else {
@@ -181,7 +181,7 @@
         return NO;
     }
     else if (![self isValidateMobile:self.phoneView.phoneText.text]) {
-        [self.view makeToast:@"请输入正确的手机号码" duration:1.08 position:CSToastPositionCenter];
+        [self.view makeToast:[Strings wrongMobile] duration:1.08 position:CSToastPositionCenter];
         return NO;
     }
     else {

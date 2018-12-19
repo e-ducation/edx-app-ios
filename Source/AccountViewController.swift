@@ -196,11 +196,11 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
             return "VIP"
         case .BindPhone:
             if (self.profile.phone?.isEmpty)! {
-                return "未绑定手机号"
+                return Strings.unboundCellphone
             }
             else {
                 print("手机 \(self.profile.phone!)")
-                return "已绑定手机号：\(self.profile.phone!)"
+                return "\(Strings.boundCellphone)\(self.profile.phone!)"
             }
         }
         

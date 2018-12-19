@@ -10,6 +10,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "APOrderInfo.h"
 #import "OEXConfig.h"
+#import "edX-Swift.h"
 
 @implementation TDAlipayManager
 
@@ -120,23 +121,23 @@
 
 - (void)dealWithAlipayResult:(NSDictionary *)resultDic {
     NSString *resultStatus = resultDic[@"resultStatus"];
-    NSString *strTitle = @"支付结果";
+    NSString *strTitle = [Strings paymentResult];
     NSString *str;
     switch ([resultStatus integerValue]) {
         case 6001:
-            str = @"支付已取消";
+            str = [Strings paymentCancel];
             break;
         case 9000:
-            str = @"支付成功";
+            str = [Strings paymentSuccess];
             break;
         case 8000:
-            str = @"正在处理...";
+            str = [Strings processingText];
             break;
         case 4000:
-            str = @"支付失败，请稍后重试";
+            str = [Strings paymentFailed];
             break;
         case 6002:
-            str = @"网络出错";
+            str = [Strings internetError];
             break;
             
         default:
@@ -149,7 +150,7 @@
     
     WS(weakSelf);
     UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:strTitle message:str preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:[Strings ok] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         [weakSelf.delegate alipayFaile:[resultStatus integerValue]];
     }];

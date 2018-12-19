@@ -7,6 +7,7 @@
 //
 
 #import "TDVipAlertView.h"
+#import "edX-Swift.h"
 
 @interface TDVipAlertView ()
 
@@ -93,11 +94,11 @@
     [self.cancelButton setTitle:@"暂不加入" forState:UIControlStateNormal];
     [self.sureButton setTitle:@"加入会员" forState:UIControlStateNormal];
     
-    NSString *str = @"你选择的该门课程是属于英荔商学院的课程，成为会员可以在有效期内免费学习";
+    NSString *str = [Strings elitembaCourse];
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:str];
     UIColor *color = [UIColor colorWithHexString:@"#3288cc"];
-    NSRange messageRange = [str rangeOfString:@"免费学习"];
-    NSRange ylRange = [str rangeOfString:@"英荔商学院"];
+    NSRange messageRange = [str rangeOfString:[Strings learnCourseFree]];
+    NSRange ylRange = [str rangeOfString:[Strings elitembaVip]];
     [attStr addAttributes:@{NSForegroundColorAttributeName:color} range:messageRange];
     [attStr addAttribute:NSForegroundColorAttributeName value:color range:ylRange];
     NSMutableParagraphStyle *para = [[NSMutableParagraphStyle alloc] init];
