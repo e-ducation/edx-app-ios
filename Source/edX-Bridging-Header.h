@@ -76,3 +76,6 @@
 #import "TDVipIntroduceViewController.h"
 #import "UIColor+TDHexColor.h"
 #import "TDVipAlertView.h"
+#import "TDBindPhoneViewController.h"
+#import "UIView+Toast.h"
+

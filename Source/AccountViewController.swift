@@ -12,11 +12,12 @@ import MessageUI
 fileprivate enum AccountviewOptions : Int {
     case VipPackage,
          Profile,
+         BindPhone,
          UserSettings,
          SubmitFeedback,
          Logout
     
-        static let accountOptions = [VipPackage, Profile, UserSettings, SubmitFeedback, Logout]
+        static let accountOptions = [VipPackage, Profile, BindPhone, UserSettings, SubmitFeedback, Logout]
 }
 
 class AccountViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -24,10 +25,12 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     private let contentView = UIView()
     private let tableView = UITableView()
     private let versionLabel = UILabel()
-    typealias Environment =  OEXAnalyticsProvider & OEXConfigProvider & OEXSessionProvider & OEXStylesProvider & OEXRouterProvider
+    typealias Environment =  OEXAnalyticsProvider & OEXConfigProvider & OEXSessionProvider & OEXStylesProvider & OEXRouterProvider & DataManagerProvider & NetworkManagerProvider
     fileprivate let environment: Environment
+    var profile: UserProfile
     
-    init(environment: Environment) {
+    init(profile: UserProfile, environment: Environment) {
+        self.profile = profile
         self.environment = environment
         super.init(nibName: nil, bundle :nil)
     }
@@ -138,12 +141,22 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
             case .Logout:
                 OEXFileUtility.nukeUserPIIData()
                 dismiss(animated: true, completion: { [weak self] in
+                    
+                    let username = self?.profile.username ?? ""
+                    UserDefaults.standard.setValue("", forKey: "bindPhone_alertView_\(username)")
                     self?.environment.router?.logout()
                 })
             case .VipPackage:
                 let vipPackageVc = TDVipPackageViewController()
                 self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
                 self.navigationController?.pushViewController(vipPackageVc, animated: true)
+            case .BindPhone:
+                let bindPhoneVC = TDBindPhoneViewController()
+                bindPhoneVC.bindingPhoneSuccess = { [weak self] _ in
+                    self?.reloadProfileFromImageChange()
+                }
+                self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+                self.navigationController?.pushViewController(bindPhoneVC, animated: true)
             }
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -181,10 +194,33 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
             return Strings.logout
         case .VipPackage:
             return "VIP"
+        case .BindPhone:
+            if (self.profile.phone?.isEmpty)! {
+                return "未绑定手机号"
+            }
+            else {
+                print("手机 \(self.profile.phone!)")
+                return "已绑定手机号：\(self.profile.phone!)"
+            }
         }
         
         return nil
     }
+    
+    private func reloadProfileFromImageChange() {
+        let feed = environment.dataManager.userProfileManager.feedForCurrentUser()
+        feed.refresh()
+        feed.output.listenOnce(self, fireIfAlreadyLoaded: false) { result in
+            if let newProf = result.value {
+                self.profile = newProf
+                self.tableView.reloadData()
+            }
+            else {
+                self.view.makeToast(Strings.Profile.unableToGet, duration: 0.8, position: CSToastPositionCenter)
+            }
+        }
+    }
+
 }
 
 extension AccountViewController : MFMailComposeViewControllerDelegate {

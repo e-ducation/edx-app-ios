@@ -27,6 +27,7 @@ public class UserProfile {
         case YearOfBirth = "year_of_birth"
         case ParentalConsent = "requires_parental_consent"
         case AccountPrivacy = "account_privacy"
+        case Phone = "phone"
     }
     
     let hasProfileImage: Bool
@@ -39,6 +40,7 @@ public class UserProfile {
     
     let parentalConsent: Bool?
     var accountPrivacy: ProfilePrivacy?
+    let phone: String?
     
     var hasUpdates: Bool { return updateDictionary.count > 0 }
     var updateDictionary = [String: AnyObject]()
@@ -59,9 +61,11 @@ public class UserProfile {
         birthYear = json[ProfileFields.YearOfBirth].int
         parentalConsent = json[ProfileFields.ParentalConsent].bool
         accountPrivacy = ProfilePrivacy(rawValue: json[ProfileFields.AccountPrivacy].string ?? "")
+        phone = json[ProfileFields.Phone].string
+        print("手机号码 \(phone!)")
     }
     
-    internal init(username : String, bio : String? = nil, parentalConsent : Bool? = false, countryCode : String? = nil, accountPrivacy : ProfilePrivacy? = nil) {
+    internal init(username : String, bio : String? = nil, parentalConsent : Bool? = false, countryCode : String? = nil, accountPrivacy : ProfilePrivacy? = nil, phone: String? = nil) {
         self.accountPrivacy = accountPrivacy
         self.username = username
         self.hasProfileImage = false
@@ -69,6 +73,7 @@ public class UserProfile {
         self.parentalConsent = parentalConsent
         self.bio = bio
         self.countryCode = countryCode
+        self.phone = phone
     }
     
     var languageCode: String? {

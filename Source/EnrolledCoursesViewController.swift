@@ -12,7 +12,7 @@ var isActionTakenOnUpgradeSnackBar: Bool = false
 
 class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTableViewControllerDelegate, PullRefreshControllerDelegate, LoadStateViewReloadSupport,InterfaceOrientationOverriding {
     
-    typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & ReachabilityProvider & OEXRouterProvider
+    typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & ReachabilityProvider & OEXRouterProvider & OEXSessionProvider
     
     private let environment : Environment
     private let tableController : CoursesTableViewController
@@ -80,6 +80,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         super.viewWillAppear(animated)
         hideSnackBarForFullScreenError()
         showWhatsNewIfNeeded()
+        showBindphoneAlertView()
     }
     
     override func reloadViewData() {
@@ -242,6 +243,55 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
     //MARK:- LoadStateViewReloadSupport method 
     func loadStateViewReload() {
         refreshIfNecessary()
+    }
+    
+    
+    func judgeBindPhoneShow() -> Bool { //是否在同一天
+        
+        let username = self.environment.session.currentUser?.username ?? ""
+        
+        var showAlert : Bool = false
+        let formater = DateFormatter.init()
+        formater.dateFormat = "yyyy-MM-dd"
+        
+        let currentdate = Date.init()
+        let nowDay : String = formater.string(from: currentdate)
+        var agoDay : String? = UserDefaults.standard.string(forKey: "bindPhone_alertView_\(username)") ?? ""
+        
+        if (agoDay?.isEmpty)! {
+            agoDay = ""
+        }
+        if agoDay != nowDay {
+            UserDefaults.standard.setValue(nowDay, forKey: "bindPhone_alertView_\(username)")
+            showAlert = true
+        }
+        return showAlert
+    }
+    
+    func showBindphoneAlertView() {
+        
+        guard let profile = environment.dataManager.userProfileManager.feedForCurrentUser().output.value else {
+            return
+        }
+        if !(profile.phone?.isEmpty)! {
+            return
+        }
+        
+        if !judgeBindPhoneShow() {
+            return
+        }
+        
+        let alertController = UIAlertController(title: "提示", message: "应国家法规对于账号实名的要求，请您在进行下一步操作前，先完成手机绑定。", preferredStyle: .alert)
+        let sureAction = UIAlertAction(title: "绑定手机", style: .default) { [weak self](action) in
+            let bindPhoneVc = TDBindPhoneViewController()
+            self?.navigationController?.pushViewController(bindPhoneVc, animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "下次再说", style: .destructive) { (action) in
+            
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(sureAction)
+        self.navigationController?.present(alertController, animated: true, completion: nil)
     }
 }
 

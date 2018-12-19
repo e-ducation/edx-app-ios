@@ -603,6 +603,8 @@
 		A436C69321C49B30003E7CEB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A436C69221C49B30003E7CEB /* StoreKit.framework */; };
 		A436C69921C4B0A4003E7CEB /* PurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A436C69721C4B0A4003E7CEB /* PurchaseManager.m */; };
 		A436C69A21C4B0A4003E7CEB /* PurchaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A436C69821C4B0A4003E7CEB /* PurchaseModel.m */; };
+		A43E631E21C92D70002286BF /* TDBindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E631A21C92D6F002286BF /* TDBindPhoneViewController.m */; };
+		A43E631F21C92D70002286BF /* TDBindPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E631C21C92D6F002286BF /* TDBindPhoneView.m */; };
 		A4427CC321C2143E00891501 /* TDVipRecomendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4427CC221C2143E00891501 /* TDVipRecomendView.swift */; };
 		A44433C821BFA07500123C2E /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = A44433C721BFA07400123C2E /* UIView+Toast.m */; };
 		A44433D221BFDA9500123C2E /* TDVipAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44433D121BFDA9500123C2E /* TDVipAlertView.m */; };
@@ -1624,6 +1626,10 @@
 		A436C69621C4B0A4003E7CEB /* PurchaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseModel.h; sourceTree = "<group>"; };
 		A436C69721C4B0A4003E7CEB /* PurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseManager.m; sourceTree = "<group>"; };
 		A436C69821C4B0A4003E7CEB /* PurchaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseModel.m; sourceTree = "<group>"; };
+		A43E631921C92D6F002286BF /* TDBindPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBindPhoneViewController.h; sourceTree = "<group>"; };
+		A43E631A21C92D6F002286BF /* TDBindPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBindPhoneViewController.m; sourceTree = "<group>"; };
+		A43E631C21C92D6F002286BF /* TDBindPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBindPhoneView.m; sourceTree = "<group>"; };
+		A43E631D21C92D6F002286BF /* TDBindPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBindPhoneView.h; sourceTree = "<group>"; };
 		A4427CC221C2143E00891501 /* TDVipRecomendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDVipRecomendView.swift; sourceTree = "<group>"; };
 		A44433C621BFA07400123C2E /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		A44433C721BFA07400123C2E /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
@@ -3372,6 +3378,33 @@
 			path = TDPurchaseManager;
 			sourceTree = "<group>";
 		};
+		A43E631721C92D6F002286BF /* TDBindingPhone */ = {
+			isa = PBXGroup;
+			children = (
+				A43E631821C92D6F002286BF /* viewController */,
+				A43E631B21C92D6F002286BF /* views */,
+			);
+			path = TDBindingPhone;
+			sourceTree = "<group>";
+		};
+		A43E631821C92D6F002286BF /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				A43E631921C92D6F002286BF /* TDBindPhoneViewController.h */,
+				A43E631A21C92D6F002286BF /* TDBindPhoneViewController.m */,
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		A43E631B21C92D6F002286BF /* views */ = {
+			isa = PBXGroup;
+			children = (
+				A43E631D21C92D6F002286BF /* TDBindPhoneView.h */,
+				A43E631C21C92D6F002286BF /* TDBindPhoneView.m */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		A44433C521BFA07400123C2E /* TDToast */ = {
 			isa = PBXGroup;
 			children = (
@@ -3531,6 +3564,7 @@
 		A4FA40C321B0E2B40089CEBA /* TDFile */ = {
 			isa = PBXGroup;
 			children = (
+				A43E631721C92D6F002286BF /* TDBindingPhone */,
 				A4FA40C421B0E2B40089CEBA /* TDAuthenProvider */,
 				A4FA40CB21B0E2B40089CEBA /* TDThirdManager */,
 				A423E0AB21B112980093FBD3 /* TDVipFunction */,
@@ -5137,6 +5171,7 @@
 				A4FA40D521B0E2B50089CEBA /* TDQQAuthProvider.m in Sources */,
 				B7CCC724209B16B100A66923 /* ConstraintInsets.swift in Sources */,
 				B7CCC72A209B16B100A66923 /* ConstraintConfig.swift in Sources */,
+				A43E631F21C92D70002286BF /* TDBindPhoneView.m in Sources */,
 				B7CCC72B209B16B100A66923 /* UILayoutSupport+Extensions.swift in Sources */,
 				9EEB85A71BD6564E000F3E9E /* PressableCustomButton.swift in Sources */,
 				1A3671F51BB03C7A00704032 /* OEXRearTableViewController.swift in Sources */,
@@ -5345,6 +5380,7 @@
 				77236EEB1C21C32E006AC1A4 /* PaginationController.swift in Sources */,
 				1AFEB1B31BBD52C7004C471D /* JSONFormBuilderTextEditor.swift in Sources */,
 				B4B6D6391A95042B000F44E8 /* OEXCheckBoxView.m in Sources */,
+				A43E631E21C92D70002286BF /* TDBindPhoneViewController.m in Sources */,
 				1A22CD901B90B31A005B07D0 /* UIImage+OEXIcon.swift in Sources */,
 				1ACD163C1BB1BE63006ACC82 /* UserProfileViewController.swift in Sources */,
 				5D836DCA1B2FA12E00411CAB /* DiscussionNewCommentViewController.swift in Sources */,
