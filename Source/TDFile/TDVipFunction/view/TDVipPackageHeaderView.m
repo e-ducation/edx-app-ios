@@ -67,8 +67,8 @@
     
     self.titleLabel.text = @"英荔商学院VIP会员";
     self.remindLabel.text = @"开通VIP会员，可免费观看英荔商学院全部课程。"; //已开通1天 剩余 364天//会员已过期1天
-    self.startLabel.text = @"上次开通日期：2018年1月2日";
-    self.endLabel.text = @"到期日期：2019年1月1日";
+    self.startLabel.text = @"上次开通日期：2018-1-2";
+    self.endLabel.text = @"到期日期：2019-1-1";
     
 }
 

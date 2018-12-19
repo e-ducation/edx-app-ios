@@ -89,7 +89,12 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
                             completion()
                         }
                         else {
-                            self?.enrollInCourse(completion: completion)
+                            if !course.can_free_enroll && course.is_subscribe_pay { //有价格，且不属于VIP免费的
+                                self?.view.makeToast("移动端暂不支持，请至PC端完成购买", duration: 0.8, position: CSToastPositionCenter)
+                            }
+                            else {
+                                self?.enrollInCourse(completion: completion)
+                            }
                         }
                     }
                 }
@@ -137,7 +142,7 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
         }
     }
     
-    func judgeNotEnrollCourseShowAlert(course :OEXCourse) -> (Bool) { //未加入的课程
+    func judgeNotEnrollCourseShowAlert(course :OEXCourse) -> (Bool) { //未加入的课程 是否显示VIP弹框
         if course.can_free_enroll { //可以免费加入
             return false
         }

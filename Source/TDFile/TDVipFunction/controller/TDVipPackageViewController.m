@@ -249,12 +249,14 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
         [self.packageView vipPaySheetViewDisapear];
-        [self.view makeToast:@"订单创建失败" duration:1.08 position:CSToastPositionCenter];
+        [self.view makeToast:@"支付失败" duration:1.08 position:CSToastPositionCenter];
     });
 }
 
 //查询订单
 - (void)queryOrderStatus:(NSString *)orderID request:(NSInteger)num { //num第几次请求
+    
+    [self showLoading:@"加载中..."];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -264,8 +266,11 @@
     NSString *url = [NSString stringWithFormat:@"%@%@%@",ELITEU_URL,VIP_ORDER_STATUS_URL,orderID];
     [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"VIP数据：%@",responseObject);
+        [SVProgressHUD dismiss];
+        
         NSDictionary *responseDic = (NSDictionary *)responseObject;
         id code = responseDic[@"code"];
+        
         if ([code intValue] == 0) {
             //1: 等待支付, 2: 已完成, 3: 已取消, 4: 已退款, 0: 查询失败
             NSInteger status = [responseDic[@"data"][@"status"] integerValue];
@@ -276,7 +281,7 @@
                 [self getVipData]; //刷新数据
             }
             else {
-                [self.view makeToast:@"更新失败" duration:0.8 position:CSToastPositionCenter];
+                [self.view makeToast:@"查询失败，请稍后重试" duration:0.8 position:CSToastPositionCenter];
             }
         }
         else {
@@ -294,7 +299,8 @@
         [self queryOrderStatus:orderID request:1];
     }
     else {
-        [self.view makeToast:@"查询失败" duration:0.8 position:CSToastPositionCenter];
+        [SVProgressHUD dismiss];
+        [self.view makeToast:@"查询失败，请稍后重试" duration:0.8 position:CSToastPositionCenter];
     }
 }
 
@@ -319,11 +325,16 @@
     WS(weakSelf);
     if (type == 0) {
         NSLog(@"微信支付");
-        [self createWechatOrder:vipID completion:^(weChatParamsItem *item) {
-            [SVProgressHUD dismiss];
-            [self.packageView vipPaySheetViewDisapear];
-            [weakSelf wechatPayAction:item];
-        }];
+        if ([TDWechatManager wxAppInstall]) {
+            [self createWechatOrder:vipID completion:^(weChatParamsItem *item) {
+                [SVProgressHUD dismiss];
+                [self.packageView vipPaySheetViewDisapear];
+                [weakSelf wechatPayAction:item];
+            }];
+        }
+        else {
+            [self.view makeToast:@"请先安装微信或者选择其他支付方式" duration:0.8 position:CSToastPositionCenter];
+        }
     }
     else {
         NSLog(@"支付宝支付");
@@ -403,7 +414,7 @@
             }
             else {
                 [SVProgressHUD dismiss];
-                [weakSelf.view makeToast:@"充值失败" duration:0.8 position:CSToastPositionTop];
+                [weakSelf.view makeToast:@"支付失败" duration:0.8 position:CSToastPositionTop];
             }
         }];
         

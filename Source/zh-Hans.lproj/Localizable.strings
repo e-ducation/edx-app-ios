@@ -678,7 +678,7 @@
 /* Label for date when course starts */
 "STARTING"="Starting {start_date}";
 /* Info message text on the startup screen */
-"STARTUP.INFO_MESSAGE_TEXT"="世界顶级大学的免费课程，应有尽有！";
+"STARTUP.INFO_MESSAGE_TEXT"="价值数十万的MBA课程体系，最低月均99.8元全年畅学！";
 /*Placeholder text for search textfield on the startup screen*/
 "STARTUP.SEARCH_PLACEHOLDER_TEXT"="搜索课程";
 /*Log In button title on the startup screen*/

@@ -70,11 +70,11 @@
             });
         }
         else {
-            NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"返回信息 ----->> %@",str);
+//            NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//            NSLog(@"返回信息 ----->> %@",str);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD dismiss];
-                [self.view makeToast:str duration:0.8 position:CSToastPositionCenter];
+                [self.view makeToast:@"获取验证码失败，请稍后重试" duration:0.8 position:CSToastPositionCenter];
             });
         }
     }]resume];
@@ -181,7 +181,7 @@
         return NO;
     }
     else if (![self isValidateMobile:self.phoneView.phoneText.text]) {
-        [self.view makeToast:@"手机号码不正确" duration:1.08 position:CSToastPositionCenter];
+        [self.view makeToast:@"请输入正确的手机号码" duration:1.08 position:CSToastPositionCenter];
         return NO;
     }
     else {

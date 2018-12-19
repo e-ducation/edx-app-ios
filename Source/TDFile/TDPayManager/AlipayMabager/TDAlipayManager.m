@@ -124,7 +124,7 @@
     NSString *str;
     switch ([resultStatus integerValue]) {
         case 6001:
-            str = @"取消支付";
+            str = @"支付已取消";
             break;
         case 9000:
             str = @"支付成功";
@@ -133,7 +133,7 @@
             str = @"正在处理...";
             break;
         case 4000:
-            str = @"支付失败";
+            str = @"支付失败，请稍后重试";
             break;
         case 6002:
             str = @"网络出错";

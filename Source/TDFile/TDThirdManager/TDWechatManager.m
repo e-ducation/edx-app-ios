@@ -33,7 +33,7 @@
     [WXApi registerApp:appid];
 }
 
-- (BOOL)wxAppInstall {//是否安装微信
++ (BOOL)wxAppInstall {//是否安装微信
     return [WXApi isWXAppInstalled];
 }
 
@@ -74,10 +74,10 @@
                     strMsg = @"支付成功";
                     break;
                 case WXErrCodeUserCancel:
-                    strMsg = @"取消支付";
+                    strMsg = @"支付已取消";
                     break;
                 case WXErrCodeSentFail:
-                    strMsg = @"支付失败";
+                    strMsg = @"支付失败，请稍后重试";
                     break;
                 case WXErrCodeAuthDeny:
                     strMsg = @"授权失败";
