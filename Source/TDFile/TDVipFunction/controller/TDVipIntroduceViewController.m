@@ -24,8 +24,6 @@
 
 @property (nonatomic,strong) TDVipAlertView *alertView;
 
-@property (nonatomic,strong) NSURL *url;
-
 @end
 
 @implementation TDVipIntroduceViewController
@@ -34,7 +32,6 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"商学院";
-    self.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/vip?device=ios",ELITEU_URL]];
     [self setViewConstraint];
     
     self.loadController = [[LoadStateViewController alloc] init];
@@ -178,7 +175,8 @@
 }
 
 - (void)loadRequestWebView {
-    [self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/vip?device=ios",ELITEU_URL]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 #pragma mark - LoadStateViewReloadSupport
@@ -189,7 +187,8 @@
 #pragma mark - Action
 - (void)shareButtonAction:(UIButton *)sender { //分享
     
-    NSArray *itemArray = @[@"VIP介绍页",self.url];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/vip",ELITEU_URL]];
+    NSArray *itemArray = @[@"VIP介绍页",url];
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:itemArray applicationActivities:nil];
     activityController.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll];
     activityController.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {

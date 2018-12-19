@@ -6,5 +6,7 @@
   Copyright © 2017 edX. All rights reserved.
 */
 
+CFBundleName= "英荔商学院";
+CFBundleDisplayName = "英荔商学院";
 NSPhotoLibraryUsageDescription = "以选择头像图片";
 NSCameraUsageDescription = "以拍摄头像";

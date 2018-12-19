@@ -6,5 +6,7 @@
   Copyright © 2017 edX. All rights reserved.
 */
 
+CFBundleName= "EliteMBA";
+CFBundleDisplayName = "EliteMBA";
 NSPhotoLibraryUsageDescription = "so you can select a profile image";
 NSCameraUsageDescription = "so you can take a profile image";
