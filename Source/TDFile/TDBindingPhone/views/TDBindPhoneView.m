@@ -106,14 +106,14 @@
         make.left.mas_equalTo(self.bgView.mas_left).offset(33);
         make.right.mas_equalTo(self.bgView.mas_right).offset(-33);
         make.top.mas_equalTo(self.bgView.mas_top).offset(28);
-        make.height.mas_equalTo(41);
+        make.height.mas_equalTo(43);
     }];
     
     [self.codeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.phoneView.mas_left);
         make.right.mas_equalTo(self.phoneView.mas_right);
         make.top.mas_equalTo(self.phoneView.mas_bottom).offset(18);
-        make.height.mas_equalTo(41);
+        make.height.mas_equalTo(43);
     }];
     
     [self.areaButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -137,7 +137,7 @@
     [self.sendButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.codeView.mas_right).offset(-10);
         make.centerY.mas_equalTo(self.codeView.mas_centerY);
-        make.size.mas_equalTo(CGSizeMake(74, 28));
+        make.size.mas_equalTo(CGSizeMake(74, 31));
     }];
     
     [self.codeText mas_makeConstraints:^(MASConstraintMaker *make) {

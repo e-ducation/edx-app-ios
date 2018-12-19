@@ -21,7 +21,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
     private let insetsController = ContentInsetsController()
     fileprivate let enrollmentFeed: Feed<[UserCourseEnrollment]?>
     private let userPreferencesFeed: Feed<UserPreference?>
-
+    
     init(environment: Environment) {
         self.tableController = CoursesTableViewController(environment: environment, context: .EnrollmentList)
         self.enrollmentFeed = environment.dataManager.enrollmentManager.feed
@@ -269,6 +269,13 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
     }
     
     func showBindphoneAlertView() {
+        
+        guard let profile = environment.dataManager.userProfileManager.feedForCurrentUser().output.value else {
+            return
+        }
+        if !(profile.phone?.isEmpty)! {
+            return
+        }
         
         if !judgeBindPhoneShow() {
             return

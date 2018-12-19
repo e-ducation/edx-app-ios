@@ -3399,8 +3399,8 @@
 		A43E631B21C92D6F002286BF /* views */ = {
 			isa = PBXGroup;
 			children = (
-				A43E631C21C92D6F002286BF /* TDBindPhoneView.m */,
 				A43E631D21C92D6F002286BF /* TDBindPhoneView.h */,
+				A43E631C21C92D6F002286BF /* TDBindPhoneView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
