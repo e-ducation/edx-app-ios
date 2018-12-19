@@ -21,10 +21,14 @@ private extension OEXConfig {
 
 class AccountViewControllerTest: SnapshotTestCase {
 
+    var profile : UserProfile {
+        return UserProfile(username: "Test Person", bio: "Hello I am a lorem ipsum dolor sit amet", parentalConsent: false, countryCode: "de", accountPrivacy: .Public)
+    }
+    
     func accountViewcontroller() -> AccountViewController {
         let config = OEXConfig(profileEnabled: true)
         let mockEnv = TestRouterEnvironment(config: config, interface: nil)
-        let controller = AccountViewController(environment: mockEnv)
+        let controller = AccountViewController(profile: profile, environment: mockEnv)
         controller.view.setNeedsDisplay()
         
         return controller
