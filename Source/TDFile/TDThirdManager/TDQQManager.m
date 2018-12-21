@@ -51,7 +51,7 @@
 /**
  是否已安装QQ
  */
-- (BOOL)isQQInstalled {
++ (BOOL)isQQInstalled {
     return [TencentOAuth iphoneQQInstalled];
 }
 
