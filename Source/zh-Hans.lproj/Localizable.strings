@@ -21,7 +21,7 @@
 /* Label for action hint on check box when it's checked. */
 "ACCESSIBILITY_CHECKBOX_HINT_UNCHECKED" = "点击选择";
 /* Appending By before course organization and number on My Find Courses*/
-"ACCESSIBILITY_BY" = "By";
+"ACCESSIBILITY_BY" = "通过";
 /* Accessibility hint for subject name label */
 "ACCESSIBILITY.BROWSER_BY_SUBJECT_HINT" = "双击浏览科目，{subject_name}";
 /* Accessibility hint for bulk download switch when in new state */
@@ -37,15 +37,15 @@
 /* Accessibility hint for Vote button for discussion responses*/
 "ACCESSIBILITY.DISCUSSION_VOTE_HINT" = "双击投票";
 /* Accessibility hint for Unvote button for discussion responses*/
-"ACCESSIBILITY.DISCUSSION_UNVOTE_HINT" = "双加撤投";
+"ACCESSIBILITY.DISCUSSION_UNVOTE_HINT" = "双击取消投票";
 /* Accessibility hint for Report button for discussion responses*/
-"ACCESSIBILITY.DISCUSSION_REPORT_HINT" = "双击报告";
+"ACCESSIBILITY.DISCUSSION_REPORT_HINT" = "双击发送报告";
 /* Accessibility hint for Unreport button for discussion responses*/
-"ACCESSIBILITY.DISCUSSION_UNREPORT_HINT" = "双击撤报";
+"ACCESSIBILITY.DISCUSSION_UNREPORT_HINT" = "双击取消报告";
 /* Accessibility hint for Follow button for discussion responses*/
 "ACCESSIBILITY.DISCUSSION_FOLLOW_HINT" = "双击关注";
 /* Accessibility hint for Unfollow button for discussion responses*/
-"ACCESSIBILITY.DISCUSSION_UNFOLLOW_HINT" = "双击取关";
+"ACCESSIBILITY.DISCUSSION_UNFOLLOW_HINT" = "双击取消关注";
 /* Acessibility hint for the show downloads button. */
 "ACCESSIBILITY.SHOW_CURRENT_DOWNLOADS_BUTTON_HINT" = "双击查看已下载内容";
 /* Accessibility hint for view all subjects label*/
@@ -78,7 +78,7 @@
 /* Optional text needs to be added for accesibility*/
 "ACCESSIBILITY.OPTIONAL_INPUT"="选填";
 /* Required text needs to be added for accesibility*/
-"ACCESSIBILITY_REQUIRED_INPUT"="Required";
+"ACCESSIBILITY_REQUIRED_INPUT"="必填项";
 /* Accessibility label for Rewind Button in the Video Player */
 "ACCESSIBILITY_REWIND" = "后退";
 /* Call to action for Rewind Button in the Video Player */
@@ -108,11 +108,11 @@
 /* Accessibility Hint to view user profile*/
 "ACCESSIBILITY_SHOW_USER_PROFILE_HINT" = "双击查看用户档案";
 /*Accessibility text for pinned discussion thread(Posts screen)*/
-"ACCESSIBILITY.DISCUSSION_PINNED" = "标记的";
+"ACCESSIBILITY.DISCUSSION_PINNED" = "已标记";
 /*Accessibility text for closed discussion thread(Posts screen)*/
-"ACCESSIBILITY.DISCUSSION_CLOSED" = "关闭的";
+"ACCESSIBILITY.DISCUSSION_CLOSED" = "已关闭";
 /*Accessibility text for followed discussion thread(Posts screen)*/
-"ACCESSIBILITY.DISCUSSION_FOLLOWED" = "关注的";
+"ACCESSIBILITY.DISCUSSION_FOLLOWED" = "已关注";
 /* Accessibility text for unread discussion comments count (Posts screen) - {count} is a number of unread comments */
 "ACCESSIBILITY.DISCUSSION_UNREAD_REPLIES"="{count} 未读回复";
 /*Accessibility text for unread discussion thread (Posts screen)*/
@@ -134,9 +134,9 @@
 /*Accessibility text for close button on whats new screen*/
 "ACCESSIBILITY.WHATSNEW.CLOSE_LABEL"="关闭";
 /*Accessibility label for header on new screen*/
-"ACCESSIBILITY.WHATSNEW.HEADER_LABEL"="版本 {app_version}, 新特性";
+"ACCESSIBILITY.WHATSNEW.HEADER_LABEL"="{app_version}版本, 新特性";
 /*Accessibility text for course share button on course dashboard*/
-"ACCESSIBILITY.SHARE_A_COURSE"="分享一门课程";
+"ACCESSIBILITY.SHARE_A_COURSE"="分享课程";
 /*Accessibility text for close button*/
 "ACCESSIBILITY.CLOSE_LABEL"="关闭";
 /*Accessibility text for profile button*/
@@ -166,7 +166,7 @@
 /*Link Text for End Use License Agreement*/
 "AGREEMENT.LINK_TEXT_EULA"="{platform_name}终端用户许可协议";
 /*Link Text for End Use License Agreement*/
-"AGREEMENT.LINK_TEXT_TOS"="{platform_name}服务条款和诚信守则 ";
+"AGREEMENT.LINK_TEXT_TOS"="{platform_name}免责声明 ";
 /*Link Text for End Use License Agreement*/
 "AGREEMENT.LINK_TEXT_PRIVACY_POLICY"="隐私政策";
 /* Alert dialog button allowing user to chosing to allow downloads on cellular */
@@ -192,15 +192,15 @@
 /* Alert title for positive app review */
 "APP_REVIEW.RATE_THE_APP" = "评价应用";
 /* Positive review message */
-"APP_REVIEW.POSITIVE_REVIEW_MESSAGE" = "在应用商店中随手评论一下，让他人了解你对这个应用的看法";
+"APP_REVIEW.POSITIVE_REVIEW_MESSAGE" = "在应用商店中写下快速评论，让他人了解你对这个应用的看法";
 /* Send feedback message for negative app review */
 "APP_REVIEW.SEND_FEEDBACK_TITLE" = "反馈一下？";
 /* Help us improve message for negative app review */
 "APP_REVIEW.HELP_US_IMPROVE" = "帮助我们改进！";
 /* Maybe later message for positive/negative app review */
-"APP_REVIEW.MAYBE_LATER" = "再议";
+"APP_REVIEW.MAYBE_LATER" = "稍后再说";
 /* Send feedback message for negative app review */
-"APP_REVIEW.SEND_FEEDBACK" = "反馈";
+"APP_REVIEW.SEND_FEEDBACK" = "发送反馈";
 /* Question for rating view */
 "APP_REVIEW.RATE_THE_APP_QUESTION" = "你怎样评价此应用？";
 /* Submit button for rating view */
@@ -215,7 +215,7 @@
 /*Subtitle for bulk download view when in new, partial or downloaded state - {count} is number of videos*/
 "BULK_DOWNLOAD_VIDEOS_SUB_TITLE##{other}" = "{count}个视频，总共{videos_size}MB";
 /* Prefix used with Staff of Community TA on the posts screen */
-"BY_AUTHOR" = " {作者名称}作";
+"BY_AUTHOR" = " {author_name}作";
 /* Prefix used with Staff of Community TA on the posts screen */
 "BY_AUTHOR_LOWER_CASE" = "{author_name}作";
 /* Course completion title */
@@ -326,9 +326,9 @@
 /* Text describing the course due date*/
 "COURSE_DUE_DATE"="截止 {due_date}";
 /* Label indicated that a course has ended */
-"COURSE_ENDED"="Ended {end_date}";
+"COURSE_ENDED"="{end_date}已结束";
 /* Label indicating that a course will end */
-"COURSE_ENDING"="Ending {end_date}";
+"COURSE_ENDING"="将于{end_date}结束";
 /* Option to show all different types of course content. Constrasts with 'Show Videos Only'. */
 "COURSE_MODE_FULL"="显示全部课程";
 /* Option to show only video course content. Constrasts with 'Show All Course Content'. */
@@ -394,7 +394,7 @@
 /*Debug option title in tabbar */
 "DEBUG"="排除故障";
 /* Error message shown when email address is not properly formatted */
-"ERROR_MESSAGE.INVALID_EMAIL_FORMAT"="请确保你的电子邮件地址格式正确，再重试";
+"ERROR_MESSAGE.INVALID_EMAIL_FORMAT"="请确保您的电子邮件地址格式正确，再重试";
 /* Alert message shown when user tries to send an email, but email isn't setup */
 "EMAIL_ACCOUNT_NOT_SET_UP_MESSAGE"="你似乎没有设置 email 客户端。";
 /* Alert dialog title shown when user tries to send an email, but email isn't setup */
@@ -432,7 +432,7 @@
 /* Overlay message shown when enrolling in a course fails */
 "FIND_COURSES_ENROLLMENT_ERROR_DESCRIPTION"="加入新课程时出现了一个错误";
 /* AlertView message shown when enrolling in a course fails */
-"FIND_COURSES_UNABLE_TO_ENROLL_ERROR_DESCRIPTION"="您在{platform_name}移动App中报名此门课程未成功，请在网页端重新报名。";
+"FIND_COURSES_UNABLE_TO_ENROLL_ERROR_DESCRIPTION"="您在{platform_name}移动 App 中报名此门课程未成功，请在网页端重新报名。";
 /* Title of overlay message shown when enrolling in a course fails */
 "FIND_COURSES_ENROLLMENT_ERROR_TITLE"="加入课程出错";
 /* Title of overlay message shown when enrolling in a course succeeds */
@@ -676,9 +676,9 @@
 /* Label for posts pinned by Staff */
 "STAFF"="员工";
 /* Label for date when course starts */
-"STARTING"="Starting {start_date}";
+"STARTING"="开始于 {start_date}";
 /* Info message text on the startup screen */
-"STARTUP.INFO_MESSAGE_TEXT"="世界顶级大学的免费课程，应有尽有！";
+"STARTUP.INFO_MESSAGE_TEXT"="价值数十万的MBA课程体系，最低月均99.8元全年畅学！";
 /*Placeholder text for search textfield on the startup screen*/
 "STARTUP.SEARCH_PLACEHOLDER_TEXT"="搜索课程";
 /*Log In button title on the startup screen*/
@@ -736,7 +736,7 @@
 /* Screen title showing a user's account */
 "USER_ACCOUNT"="账户";
 /* Button title for profile view in account*/
-"USER_ACCOUNT.PROFILE"= "档案";
+"USER_ACCOUNT.PROFILE"= "个人资料";
 /* Text shown to display the current version number. Environment is a server name like "prod", "dev", stage" and may be empty. For example "Version 1.2.3 Prod" */
 "VERSION_DISPLAY" = "版本 {number} {environment}";
 /* Error shown when video download fails */
@@ -795,3 +795,143 @@
 "WIFI_ONLY_DETAIL_MESSAGE" = "仅在 Wi-Fi 开启时下载内容";
 /* Alert dialog button title to confirm an action */
 "YES"="是";
+
+/* 请先安装微信或者选择其他支付方式 Please install Wechat or choose other payment methods. */
+"INSTALL_WECHAT"="请先安装微信或者选择其他支付方式";
+/* 加载中... Loading… */
+"LOADING_TEXT"="加载中...";
+/* 恭喜您已成功加入EliteMBA会员 Congratulations! You’ve become an EliteMBA VIP. */
+"BECOME_ELITEMBA_VIP"="恭喜您已成功加入EliteMBA会员";
+/* 查询失败，请稍后重试 Failed. Please try again later. */
+"QUERY_FAILED"="查询失败，请稍后重试";
+/* 支付已取消 Payment cancelled. */
+"PAYMENT_CANCEL"="支付已取消";
+/* 支付失败，请稍后重试 Failed. Please try again later. */
+"PAYMENT_FAILED"="支付失败，请稍后重试";
+/* 正在确认中... Payment processing… */
+"PAYMENT_PROCESS"="正在确认中...";
+/* 移动端暂不支持，请至PC端完成购买 Sorry, purchase is currently unavailable in App. Please proceed on PC. */
+"PURCHASE_PC"="移动端暂不支持，请至PC端完成购买";
+/* 请输入正确的手机号码 Wrong mobile format. */
+"WRONG_MOBILE"="请输入正确的手机号码";
+/* 获取验证码失败，请稍后重试 Failed to get verification code, please try again later. */
+"VERIFYCODE_FAILED"="获取验证码失败，请稍后重试";
+/*  学则变 · 变则进 Learn to Change·Change to Improve */
+"CHANGE_INPROVE"="学则变 · 变则进";
+/* 马上开始你的在线MBA学习吧！ Begin your online MBA learning right now! */
+"BEGIN_MBA_LEARN"="马上开始你的在线MBA学习吧！";
+/* 商学院 EliteMBA */
+"ELITEMBA"="商学院";
+/* 英荔商学院VIP会员 EliteMBA VIP membership */
+"ELITEMBA_VIP_MEMBER"="英荔商学院VIP会员";
+/* 开通VIP会员，可免费观看英荔商学院全部课程。 Become a VIP member and watch all EliteMBA courses for free. */
+"VIP_MEMBER_WATCH_FREE"="开通VIP会员，可免费观看英荔商学院全部课程。";
+/* 上次开通日期: Last Opened on: */
+"LAST_OPEND"="上次开通日期: ";
+/* 到期日期： Expire on: */
+"EDPIRE_ON"="到期日期：";
+/* 开通日期： Opened on: */
+"OPEND_ON"="开通日期：";
+/* 已开通{openday}天 剩余{leftday}天  Opened for {openday} day(s) {leftday} day(s) left */
+"OPNE_DAY_LEFT"="已开通{openday}天 剩余{leftday}天";
+/* 去支付 Submit Payment */
+"SUMIT_PAYMENT"="去支付";
+/* 选择支付方式 Choose payment method */
+"CHOOSE_PAYMENT_METHOD"="选择支付方式";
+/* 学费: Payment: */
+"PAYMENT_NUM"="学费:";
+/* 微信支付 WeChat */
+"WECHAT_PAY_STYLE"="微信支付";
+/* 支付宝支付  Alipay */
+"ALIPAY_STYLE"="支付宝支付";
+/* 正在支付... Paying now... */
+"PAYING_NOW"="正在支付...";
+/* 支付失败 Payment Failed */
+"PAYMENT_FALIED"="支付失败";
+/* 支付结果 Payment Result */
+"PAYMENT_RESULT"="支付结果";
+/* 网络错误 Internet Error */
+"INTERNET_ERROR"="网络错误";
+/* 支付成功 Payment Succeed */
+"PAYMENT_SUCCESS"="支付成功";
+/* 正在处理... Processing... */
+"PROCESSING_TEXT"="正在处理...";
+/* 不支持微信支付 Does not support WeChat */
+"NO_SUPPORT_WECHAT"="不支持微信支付";
+/* 授权失败 Authorization Failed */
+"AUTHORIZATION_FAILED"="授权失败";
+/* 系统提示 System Reminder */
+"SYSTEM_REMINDER"="系统提示";
+/* 购买失败，请重新购买 Purchase failed. Please purchase again. */
+"PURCHASE_FAILED"="购买失败，请重新购买";
+/* 你选择的该门课程是属于英荔商学院的课程，成为会员可以在有效期内免费学习 The course you have chosen belongs to EliteMBA. Become a VIP member and learn your course for free. */
+"ELITEMBA_COURSE"="你选择的该门课程是属于英荔商学院的课程，成为会员可以在有效期内免费学习";
+/* 英荔商学院 EliteMBA*/
+"ELITEMBA_VIP"="英荔商学院";
+/* 免费学习 learn your course for free*/
+"LEARN_COURSE_FREE"="免费学习";
+/* 订阅期满请及时续费 Renew Your VIP Membership */
+"RENEW_VIP_MEMBERSHIP"="订阅期满请及时续费";
+/* 订阅会员课程 Subscribe VIP */
+"SUBSCRIBE_VIP"="订阅会员课程";
+/* 查看详情 Details */
+"DETAILS_TEXT"="查看详情";
+/* 请输入手机号 Please enter cellphone number */
+"ENTER_CELLPHONE"="请输入手机号";
+/* 请输入验证码 Please enter verification code */
+"ENTER_VERIFICATE_CODE"="请输入验证码";
+/* 获取验证码 Verification */
+"GET_VERIFICATION"="获取验证码";
+/* 提交 Submit */
+"SUBMIT_TEXT"="提交";
+/* 绑定手机 Binding Your Cellphone */
+"BIND_CELLPHONE_TITLE"="绑定手机";
+/* 发送验证码... Sending verification... */
+"SEND_VERIFICATE_CODE"="发送验证码...";
+/* 验证码已发送 Verification sent */
+"VERIFICATION_SENT"="验证码已发送";
+/* 正在提交... Submitting */
+"SUBMINTING_TEXT"="正在提交...";
+/* 绑定成功 Binding Succeed! */
+"BIND_SUCCED"="绑定成功";
+/* 绑定失败 Binding Failed! */
+"BIND_FAILED"="绑定失败";
+/* 重新获取 Resend */
+"RESEND_CODE"="重新获取";
+/* 验证码不正确 Incorrect code! */
+"INCORRECT_CODE"="验证码不正确";
+/* 未绑定手机号 Unbound cellphone */
+"UNBOUND_CELLPHONE"="未绑定手机号";
+/* 已绑定手机号： Bound cellphone: */
+"BOUND_CELLPHONE"="已绑定手机号：";
+/* 应国家法规对于账号实名的要求，请您在进行下一步操作前，先完成手机绑定。 In response to national regulations on the real-name requirement of the account, please complete the phone binding before proceeding. */
+"REALNAME_REQUIREMENT"="应国家法规对于账号实名的要求，请您在进行下一步操作前，先完成手机绑定。";
+/* 绑定手机 Bind Phone */
+"BIND_PHONE_TEXT"="绑定手机";
+/* 下次再说 No */
+"NEXT_TIME"="下次再说";
+/* 跟我一起，去英荔学MBA Come with me and study MBA at Eliteu */
+"STUDY_MBA_ELITEU"="跟我一起，去英荔学MBA";
+
+/* 月 Month */
+"MONTH_TEXT"="月";
+/* 季度 Quarter */
+"QUARTER_TEXT"="季度";
+/* 半年 Semi-Annual */
+"SEMI_ANNUAL_TEXT"="半年";
+/* 年 Semi-Annual */
+"YEAR_TEXT"="年";
+/* 会员已过期{day}天 VIP expired {day} day(s) */
+"VIP_EXPIRED_DAY"="会员已过期{day}天";
+/* 加入会员 Yes */
+"VIP_YEX"="加入会员";
+/* 暂不加入 No */
+"VIP_NO"="暂不加入";
+/* 您的手机没有打开程序内付费购买 Your phone is not open for in-app purchases */
+"NO_IN_PURCHASE"="Your phone is not open for in-app purchases";
+/* 请先登录，再进行操作 Please log in first. */
+"LOGIN_FIRST"="请先登录，再进行操作";
+/* 请先安装微信客户端，或选择其他登录方式 Please install Wechat or choose other login methods. */
+"NO_INSTALL_WECHAT"="请先安装微信客户端，或选择其他登录方式";
+/* 请先安装微博客户端，或选择其他登录方式 Please install Weibo or choose other login methods. */
+"NO_INSTALL_WEIBO"="请先安装微博客户端，或选择其他登录方式";

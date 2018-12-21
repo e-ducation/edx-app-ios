@@ -27,7 +27,7 @@ typedef void (^TDWechatUserinfo)(NSDictionary *userProfile,NSError *error);
 
 + (instancetype)shareManager; //初始化
 + (void)wechatRegister; //向微信注册
-- (BOOL)wxAppInstall; //是否安装微信
++ (BOOL)wxAppInstall; //是否安装微信
 
 - (void)sendWXReq:(TDWechatAuthHandler)compleHandler;  //登录
 - (BOOL)handleOpenURL:(NSURL *)url; //处理微信通过URL启动App时传递的数据

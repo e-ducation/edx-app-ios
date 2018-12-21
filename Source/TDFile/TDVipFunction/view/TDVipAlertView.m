@@ -7,6 +7,7 @@
 //
 
 #import "TDVipAlertView.h"
+#import "edX-Swift.h"
 
 @interface TDVipAlertView ()
 
@@ -14,7 +15,6 @@
 @property (nonatomic,strong) UIView *alertView;
 @property (nonatomic,strong) UIImageView *imageView;
 @property (nonatomic,strong) UILabel *messageLabel;
-@property (nonatomic,strong) UIButton *cancelButton;
 @property (nonatomic,strong) UILabel *line;
 
 @end
@@ -31,9 +31,9 @@
 }
 
 #pragma mark - Action
-- (void)cancelButtonAction:(UIButton *)sender {
-    [self removeFromSuperview];
-}
+//- (void)cancelButtonAction:(UIButton *)sender {
+//    [self removeFromSuperview];
+//}
 
 //- (void)sureButtonAction:(UIButton *)sender {
 //    [self removeFromSuperview];
@@ -73,7 +73,7 @@
     self.cancelButton.backgroundColor = [UIColor whiteColor];
     self.cancelButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
     [self.cancelButton setTitleColor:[UIColor colorWithHexString:@"#b6b6b6"] forState:UIControlStateNormal];
-    [self.cancelButton addTarget:self action:@selector(cancelButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.cancelButton addTarget:self action:@selector(cancelButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.alertView addSubview:self.cancelButton];
     
     self.sureButton = [[UIButton alloc] init];
@@ -90,14 +90,14 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     [self.bgView addGestureRecognizer:tap];
     
-    [self.cancelButton setTitle:@"暂不加入" forState:UIControlStateNormal];
-    [self.sureButton setTitle:@"加入会员" forState:UIControlStateNormal];
+    [self.cancelButton setTitle:[Strings vipNo] forState:UIControlStateNormal];
+    [self.sureButton setTitle:[Strings vipYex] forState:UIControlStateNormal];
     
-    NSString *str = @"你选择的该门课程是属于英荔商学院的课程，成为会员可以在有效期内免费学习";
+    NSString *str = [Strings elitembaCourse];
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:str];
     UIColor *color = [UIColor colorWithHexString:@"#3288cc"];
-    NSRange messageRange = [str rangeOfString:@"免费学习"];
-    NSRange ylRange = [str rangeOfString:@"英荔商学院"];
+    NSRange messageRange = [str rangeOfString:[Strings learnCourseFree]];
+    NSRange ylRange = [str rangeOfString:[Strings elitembaVip]];
     [attStr addAttributes:@{NSForegroundColorAttributeName:color} range:messageRange];
     [attStr addAttribute:NSForegroundColorAttributeName value:color range:ylRange];
     NSMutableParagraphStyle *para = [[NSMutableParagraphStyle alloc] init];

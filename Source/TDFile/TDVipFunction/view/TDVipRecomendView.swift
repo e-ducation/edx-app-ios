@@ -30,12 +30,12 @@ class TDVipRecomendView: UIView {
         bgView.backgroundColor = UIColor(hexString: "#ddecfa")
         self.addSubview(bgView)
         
-        recomendLabel.text = "订阅会员课程 ¥1198/年"
+        recomendLabel.text = "\(Strings.subscribeVip) ¥1198/年"
         recomendLabel.font = UIFont(name: "PingFangSC-Regular", size: 14)
         recomendLabel.textColor = UIColor(hexString: "#346ca3")
         bgView.addSubview(recomendLabel)
         
-        checkButton.setTitle("查看详情", for: .normal)
+        checkButton.setTitle(Strings.detailsText, for: .normal)
         checkButton.titleLabel?.font = UIFont(name: "PingFangSC-Medium", size: 14)
         checkButton.layer.cornerRadius = 4.0
         checkButton.layer.borderWidth = 1.0;

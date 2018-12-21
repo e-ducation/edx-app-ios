@@ -36,7 +36,7 @@ class WhatsNewDataModel {
     private func populateFields() {
         guard let objects = whatsNewForCurrentVersion() else {
             //Assert to crash on development
-            assert(false, "Could not find any messages for current version in whats_new.json")
+//            assert(false, "Could not find any messages for current version in whats_new.json")
             return
         }
         

@@ -53,7 +53,7 @@ public struct CourseCatalogAPI {
         return NetworkRequest(
             method: .GET, //  api/courses/v1/courses/      api/v1/mobile/courses/
             path: "api/v1/mobile/courses/{courseID}/".oex_format(withParameters: ["courseID" : courseID]),
-            requiresAuth: true,
+            requiresAuth : true,
             deserializer: .jsonResponse(courseDeserializer))
     }
     

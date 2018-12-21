@@ -7,6 +7,7 @@
 //
 
 #import "TDBindPhoneView.h"
+#import "edX-Swift.h"
 
 @interface TDBindPhoneView ()
 
@@ -90,10 +91,10 @@
     self.sendButton.userInteractionEnabled = NO;
     self.handinButton.userInteractionEnabled = NO;
     
-    self.phoneText.placeholder = @"请输入手机号";
-    self.codeText.placeholder = @"请输入验证码";
-    [self.sendButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-    [self.handinButton setTitle:@"提交" forState:UIControlStateNormal];
+    self.phoneText.placeholder = [Strings enterCellphone];
+    self.codeText.placeholder = [Strings enterVerificateCode];
+    [self.sendButton setTitle:[Strings getVerification] forState:UIControlStateNormal];
+    [self.handinButton setTitle:[Strings submitText] forState:UIControlStateNormal];
     [self.areaButton setTitle:@"+86" forState:UIControlStateNormal];
 }
 

@@ -129,8 +129,8 @@
     }
     else {
         NSLog(@"不允许程序内付费购买");
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"您的手机没有打开程序内付费购买" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[Strings systemReminder] message:[Strings noInPurchase] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:[Strings close] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
         }];
         [alertController addAction:action];
@@ -215,8 +215,8 @@
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error{
     NSLog(@"-------弹出错误信息----------");
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"购买失败，请重新购买" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[Strings systemReminder] message:[Strings purchaseFailed] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:[Strings ok] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
     }];
     [alertController addAction:action];

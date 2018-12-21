@@ -225,12 +225,12 @@ extension OEXRouter {
     }
     
     func showAccount(controller: UIViewController? = nil, modalTransitionStylePresent: Bool = false) {
-        guard let profile = environment.dataManager.userProfileManager.feedForCurrentUser().output.value else {
-            return
-        }
-        let accountController = AccountViewController(profile: profile, environment: environment)
+       
+        let phoneStr = environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.phone ?? ""
+     
+        let accountController = AccountViewController(phoneStr: phoneStr, environment: environment)
         if modalTransitionStylePresent {
-            controller?.present(ForwardingNavigationController(rootViewController: AccountViewController(profile: profile, environment:environment)), animated: true, completion: nil)
+            controller?.present(ForwardingNavigationController(rootViewController: AccountViewController(phoneStr: phoneStr, environment:environment)), animated: true, completion: nil)
         }
         else {
             showContentStack(withRootController: accountController, animated: true)

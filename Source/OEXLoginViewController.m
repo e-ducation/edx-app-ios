@@ -36,6 +36,8 @@
 #import "TDSinaWBAuthProvider.h"
 #import "TDWeixinAuthProvider.h"
 #import "TDQQAuthProvider.h"
+#import "TDWechatManager.h"
+#import "TDWeiboManeger.h"
 
 #define USER_EMAIL @"USERNAME"
 
@@ -445,6 +447,20 @@
 }
 
 - (void)externalLoginWithProvider:(id <OEXExternalAuthProvider>)provider {
+    
+    if ([provider isKindOfClass:[TDWeixinAuthProvider class]]) {
+        if (![TDWechatManager wxAppInstall]) {
+            [self.view makeToast:[Strings noInstallWechat] duration:0.8 position:CSToastPositionCenter];
+            return;
+        }
+    }
+    else if ([provider isKindOfClass:[TDSinaWBAuthProvider class]]) {
+        if (![TDWeiboManeger isWeiboInstalled]) {
+            [self.view makeToast:[Strings noInstallWechat] duration:0.8 position:CSToastPositionCenter];
+            return;
+        }
+    }
+    
     self.authProvider = provider;
     if(!self.reachable) {
         [[UIAlertController alloc] showAlertWithTitle:[Strings networkNotAvailableTitle]

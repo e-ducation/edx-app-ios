@@ -62,7 +62,6 @@ public class UserProfile {
         parentalConsent = json[ProfileFields.ParentalConsent].bool
         accountPrivacy = ProfilePrivacy(rawValue: json[ProfileFields.AccountPrivacy].string ?? "")
         phone = json[ProfileFields.Phone].string
-        print("手机号码 \(phone!)")
     }
     
     internal init(username : String, bio : String? = nil, parentalConsent : Bool? = false, countryCode : String? = nil, accountPrivacy : ProfilePrivacy? = nil, phone: String? = nil) {

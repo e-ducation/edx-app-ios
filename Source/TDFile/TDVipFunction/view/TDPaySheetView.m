@@ -7,6 +7,7 @@
 //
 
 #import "TDPaySheetView.h"
+#import "edX-Swift.h"
 
 static NSInteger height = 230;
 
@@ -67,9 +68,9 @@ static NSInteger height = 230;
     self.aliPayView = [[TDPayView alloc] initWithType:1];
     [self.sheetView addSubview:self.aliPayView];
     
-    [self.payButton setTitle:@"交学费" forState:UIControlStateNormal];
-    self.titleLabel.text = @"选择支付方式";
-    self.payLabel.text = @"学费:";
+    [self.payButton setTitle:[Strings sumitPayment] forState:UIControlStateNormal];
+    self.titleLabel.text = [Strings choosePaymentMethod];
+    self.payLabel.text = [Strings paymentNum];
     
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:@"0.00"];
     [attStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:14] range:NSMakeRange(attStr.length - 2, 2)];

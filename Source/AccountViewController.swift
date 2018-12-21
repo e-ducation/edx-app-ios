@@ -27,10 +27,10 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     private let versionLabel = UILabel()
     typealias Environment =  OEXAnalyticsProvider & OEXConfigProvider & OEXSessionProvider & OEXStylesProvider & OEXRouterProvider & DataManagerProvider & NetworkManagerProvider
     fileprivate let environment: Environment
-    var profile: UserProfile
+    var phoneStr: String
     
-    init(profile: UserProfile, environment: Environment) {
-        self.profile = profile
+    init(phoneStr: String, environment: Environment) {
+        self.phoneStr = phoneStr
         self.environment = environment
         super.init(nibName: nil, bundle :nil)
     }
@@ -142,7 +142,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
                 OEXFileUtility.nukeUserPIIData()
                 dismiss(animated: true, completion: { [weak self] in
                     
-                    let username = self?.profile.username ?? ""
+                    let username = self?.environment.session.currentUser?.username ?? ""
                     UserDefaults.standard.setValue("", forKey: "bindPhone_alertView_\(username)")
                     self?.environment.router?.logout()
                 })
@@ -195,12 +195,12 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         case .VipPackage:
             return "VIP"
         case .BindPhone:
-            if (self.profile.phone?.isEmpty)! {
-                return "未绑定手机号"
+            if (self.phoneStr.isEmpty) {
+                return Strings.unboundCellphone
             }
             else {
-                print("手机 \(self.profile.phone!)")
-                return "已绑定手机号：\(self.profile.phone!)"
+                print("手机 \(self.phoneStr)")
+                return "\(Strings.boundCellphone)\(self.phoneStr)"
             }
         }
         
@@ -212,7 +212,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         feed.refresh()
         feed.output.listenOnce(self, fireIfAlreadyLoaded: false) { result in
             if let newProf = result.value {
-                self.profile = newProf
+                self.phoneStr = newProf.phone ?? ""
                 self.tableView.reloadData()
             }
             else {

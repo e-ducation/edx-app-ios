@@ -178,7 +178,7 @@ extension UINavigationBar {
     func applyUserProfileNavbarColorScheme() {
         // Profile has different navbar color scheme that's why we need to update nav bar color for profile
         let neutralWhiteColor = OEXStyles.shared().neutralWhite()
-        let titleStyle = OEXTextStyle(weight: .semiBold, size: .base, color : neutralWhiteColor)
+        let titleStyle = OEXTextStyle(weight: .semiBold, size: .xLarge, color : neutralWhiteColor)
         apply(barTintColor: OEXStyles.shared().primaryBaseColor(), tintColor: neutralWhiteColor, titleStyle: titleStyle)
     }
     

@@ -27,7 +27,7 @@ class TDVipExpiredView: UIView {
         bgView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         self.addSubview(bgView)
         
-        expiredButton.setTitle("订阅期满请及时续费", for: .normal)
+        expiredButton.setTitle(Strings.renewVipMembership, for: .normal)
         expiredButton.titleLabel?.font = UIFont(name: "PingFangSC-Regular", size: 16)
         expiredButton.backgroundColor = UIColor.init(hexString: "#06a5ff")
         expiredButton.layer.cornerRadius = 17.0

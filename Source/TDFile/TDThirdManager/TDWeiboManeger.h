@@ -19,7 +19,7 @@ typedef void (^TDSinaUserInfo)(NSDictionary* userProfile, NSError* error);
 //微博登录
 - (void)weiboAuthLogin:(TDSinaWbAuthCompleHandler)compleHandler;
 //是否已安装
-- (BOOL)isWeiboInstalled;
++ (BOOL)isWeiboInstalled;
 //处理拉起应用
 - (BOOL)handleOpenURL:(NSURL *)url;
 //获取用户信息

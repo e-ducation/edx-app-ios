@@ -10,6 +10,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "APOrderInfo.h"
 #import "OEXConfig.h"
+#import "edX-Swift.h"
 
 @implementation TDAlipayManager
 
@@ -65,9 +66,9 @@
     //    order.biz_content.seller_id = aliPayModel.seller_id; //收款支付宝用户ID。 如果该值为空，则默认为商户签约账号对应的支付宝用户ID
     
     //将商品信息拼接成字符串
-    NSString *orderInfo = [order orderInfoEncoded:NO];
+//    NSString *orderInfo = [order orderInfoEncoded:NO];
     NSString *orderInfoEncoded = [order orderInfoEncoded:YES];
-    NSLog(@"orderSpec = %@",orderInfo);
+//    NSLog(@"orderSpec = %@",orderInfo);
     
     // NOTE: 获取私钥并将商户信息签名，外部商户的加签过程请务必放在服务端，防止公私钥数据泄露；
     //       需要遵循RSA签名规范，并将签名字符串base64编码和UrlEncode
@@ -120,23 +121,23 @@
 
 - (void)dealWithAlipayResult:(NSDictionary *)resultDic {
     NSString *resultStatus = resultDic[@"resultStatus"];
-    NSString *strTitle = @"支付结果";
+    NSString *strTitle = [Strings paymentResult];
     NSString *str;
     switch ([resultStatus integerValue]) {
         case 6001:
-            str = @"取消支付";
+            str = [Strings paymentCancel];
             break;
         case 9000:
-            str = @"支付成功";
+            str = [Strings paymentSuccess];
             break;
         case 8000:
-            str = @"正在处理...";
+            str = [Strings processingText];
             break;
         case 4000:
-            str = @"支付失败";
+            str = [Strings paymentFailed];
             break;
         case 6002:
-            str = @"网络出错";
+            str = [Strings internetError];
             break;
             
         default:
@@ -149,7 +150,7 @@
     
     WS(weakSelf);
     UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:strTitle message:str preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:[Strings ok] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         [weakSelf.delegate alipayFaile:[resultStatus integerValue]];
     }];

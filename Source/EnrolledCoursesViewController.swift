@@ -45,7 +45,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         addChildViewController(tableController)
         tableController.didMove(toParentViewController: self)
         self.loadController.setupInController(controller: self, contentView: tableController.view)
-        
+        tableController.fromEnroll = true
         self.view.addSubview(tableController.view)
         tableController.view.snp.makeConstraints { make in
             make.edges.equalTo(safeEdges)
@@ -81,6 +81,8 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         hideSnackBarForFullScreenError()
         showWhatsNewIfNeeded()
         showBindphoneAlertView()
+        
+        enrollmentFeed.refresh()
     }
     
     override func reloadViewData() {
@@ -281,12 +283,12 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
             return
         }
         
-        let alertController = UIAlertController(title: "提示", message: "应国家法规对于账号实名的要求，请您在进行下一步操作前，先完成手机绑定。", preferredStyle: .alert)
-        let sureAction = UIAlertAction(title: "绑定手机", style: .default) { [weak self](action) in
+        let alertController = UIAlertController(title: Strings.systemReminder, message: Strings.realnameRequirement, preferredStyle: .alert)
+        let sureAction = UIAlertAction(title: Strings.bindPhoneText, style: .default) { [weak self](action) in
             let bindPhoneVc = TDBindPhoneViewController()
             self?.navigationController?.pushViewController(bindPhoneVc, animated: true)
         }
-        let cancelAction = UIAlertAction(title: "下次再说", style: .destructive) { (action) in
+        let cancelAction = UIAlertAction(title: Strings.nextTime, style: .destructive) { (action) in
             
         }
         alertController.addAction(cancelAction)

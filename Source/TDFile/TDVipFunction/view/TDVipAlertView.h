@@ -11,5 +11,6 @@
 @interface TDVipAlertView : UIView
 
 @property (nonatomic,strong) UIButton *sureButton;
+@property (nonatomic,strong) UIButton *cancelButton;
 
 @end
