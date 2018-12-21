@@ -85,7 +85,7 @@ public struct NetworkRequest<Out> {
                 headers: [String: String]? = nil,
                 deserializer : ResponseDeserializer<Out>) {
         self.method = method
-        self.path = path
+        self.path = path.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         self.requiresAuth = requiresAuth
         self.body = body
         self.query = query
