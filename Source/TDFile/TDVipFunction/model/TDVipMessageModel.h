@@ -14,12 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithInfo:(NSDictionary *)info;
 
-@property (nonatomic,strong) NSString *expired_at;
-@property (nonatomic,strong) NSString *is_vip;
-@property (nonatomic,strong) NSString *start_at;
-@property (nonatomic,strong) NSNumber *vip_expired_days;
-@property (nonatomic,strong) NSNumber *vip_pass_days;
-@property (nonatomic,strong) NSNumber *vip_remain_days;
+@property (nonatomic,strong) NSString *expired_at; //过期日期
+@property (nonatomic,strong) NSString *is_vip; //VIP？
+@property (nonatomic,strong) NSString *start_at;  //开通时间
+@property (nonatomic,strong) NSNumber *vip_expired_days; //过期天数
+@property (nonatomic,strong) NSNumber *vip_pass_days; //过去天数
+@property (nonatomic,strong) NSNumber *vip_remain_days; //剩余天数
 
 @end
 

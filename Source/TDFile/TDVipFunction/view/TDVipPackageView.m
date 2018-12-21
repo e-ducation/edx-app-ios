@@ -69,7 +69,7 @@
     if (self.approveSucess) {//审核成功，弹出支付sheet
         self.payType = 0;
         
-        UIView *view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
+        UIView *view = self.navigationController.view;
         self.sheetView = [[TDPaySheetView alloc] init];
         [self.sheetView showSheetAnimation:[model.price floatValue]];
         [view addSubview:self.sheetView];

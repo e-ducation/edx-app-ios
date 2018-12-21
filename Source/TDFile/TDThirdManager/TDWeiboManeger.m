@@ -50,7 +50,7 @@
 }
 
 //是否已安装
-- (BOOL)isWeiboInstalled {
++ (BOOL)isWeiboInstalled {
     return [WeiboSDK isWeiboAppInstalled];
 }
 

@@ -154,7 +154,7 @@
         str = [Strings opneDayLeftWithOpenday:pastStr leftday:validStr];
     }
     else {
-      str = [NSString stringWithFormat:@"会员已过期%@天",validStr];
+      str = [Strings vipExpiredDayWithDay:validStr];
     }
     NSRange range = NSMakeRange(str.length - validStr.length - 1, validStr.length);
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:str];

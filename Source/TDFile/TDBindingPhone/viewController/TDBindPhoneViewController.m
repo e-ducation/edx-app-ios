@@ -69,9 +69,16 @@
                 [self.view makeToast:[Strings verificationSent] duration:0.8 position:CSToastPositionCenter];
             });
         }
+        else if (httpResp.statusCode == 400) {
+            NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSString *string = [str stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+            //            NSLog(@"返回信息 ----->> %@",str);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+                [self.view makeToast:string duration:0.8 position:CSToastPositionCenter];
+            });
+        }
         else {
-//            NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//            NSLog(@"返回信息 ----->> %@",str);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD dismiss];
                 [self.view makeToast:[Strings verifycodeFailed] duration:0.8 position:CSToastPositionCenter];
@@ -107,13 +114,24 @@
                 }
                 [SVProgressHUD dismiss];
                 [self.view makeToast:[Strings bindSucced] duration:0.8 position:CSToastPositionCenter];
-                [self.navigationController popViewControllerAnimated:YES];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+            });
+        }
+        else if (httpResp.statusCode == 400) {
+            NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSString *string = [str stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+            //            NSLog(@"返回信息 ----->> %@",str);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+                [self.view makeToast:string duration:0.8 position:CSToastPositionCenter];
             });
         }
         else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD dismiss];
-                [self.view makeToast:[Strings bindPhoneText] duration:0.8 position:CSToastPositionCenter];
+                [self.view makeToast:[Strings bindFailed] duration:0.8 position:CSToastPositionCenter];
             });
         }
     }]resume];
@@ -131,10 +149,13 @@
     self.phoneView.sendButton.userInteractionEnabled = NO;
     self.timeNum -= 1;
     [self.phoneView.sendButton setTitle:[NSString stringWithFormat:@"%ds",self.timeNum] forState:UIControlStateNormal];
+    self.phoneView.sendButton.backgroundColor = [UIColor colorWithHexString:@"#d3d3d3"];
+    
     if (self.timeNum <= 0) {
         [self timerInvalidate];
         self.phoneView.sendButton.userInteractionEnabled = YES;
         [self.phoneView.sendButton setTitle:[Strings resendCode] forState:UIControlStateNormal];
+        self.phoneView.sendButton.backgroundColor = [UIColor colorWithHexString:@"#0692e1"];
     }
 }
 
@@ -196,7 +217,7 @@
     if (mobile.length <= 0) {
         return NO;
     }
-    NSString *phoneRegex = @"^((13[0-9])|(17[0-9])|(14[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$";//^开始，|或，$终止，？允许匹配不上，手机号码以13、15、18、14、17开头，八个\d数字字符
+    NSString *phoneRegex = @"^((13[0-9])|16[56]|19[89]|(17[0-9])|(14[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$";//^开始，|或，$终止，？允许匹配不上，手机号码以13、15、18、14、17开头，八个\d数字字符
     NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex];
     return [phoneTest evaluateWithObject:mobile];
 }

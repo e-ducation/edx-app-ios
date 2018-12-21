@@ -129,7 +129,7 @@
     }
     else {
         NSLog(@"不允许程序内付费购买");
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[Strings systemReminder] message:@"您的手机没有打开程序内付费购买" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[Strings systemReminder] message:[Strings noInPurchase] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:[Strings close] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
         }];

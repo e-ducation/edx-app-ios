@@ -74,8 +74,8 @@
     self.purchaseManager.delegate = self;
     WS(weakSelf);
     [self.purchaseManager showPurchaseComplete:^(BOOL approveSucess) {
-//        weakSelf.packageView.approveSucess = approveSucess;
-        weakSelf.packageView.approveSucess = YES;
+        weakSelf.packageView.approveSucess = approveSucess;
+//        weakSelf.packageView.approveSucess = YES;
     }];
 }
 
@@ -458,6 +458,7 @@
     self.packageView.tableView.delegate = self;
     self.packageView.delegate = self;
     self.packageView.vipID = self.vipID;
+    self.packageView.navigationController = self.navigationController;
     [self.view addSubview:self.packageView];
     
     [self.packageView mas_makeConstraints:^(MASConstraintMaker *make) {

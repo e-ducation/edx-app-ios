@@ -45,7 +45,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         addChildViewController(tableController)
         tableController.didMove(toParentViewController: self)
         self.loadController.setupInController(controller: self, contentView: tableController.view)
-        
+        tableController.fromEnroll = true
         self.view.addSubview(tableController.view)
         tableController.view.snp.makeConstraints { make in
             make.edges.equalTo(safeEdges)
@@ -81,6 +81,8 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         hideSnackBarForFullScreenError()
         showWhatsNewIfNeeded()
         showBindphoneAlertView()
+        
+        enrollmentFeed.refresh()
     }
     
     override func reloadViewData() {

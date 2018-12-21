@@ -263,18 +263,18 @@ extension CourseCatalogDetailView {
                 }
             }, for: .touchUpInside)
         
-        if course.recommended_package.keys.contains("suggested_price") {
-            let price = course.recommended_package["suggested_price"] as! String
+        if course.recommended_package.keys.contains("price") {
+            let price = course.recommended_package["price"] as! String
             let month = course.recommended_package["month"] as! Int
-            var timeStr: String = "年"
+            var timeStr: String = Strings.yearText
             if month == 6 {
-                timeStr = "半年"
+                timeStr = Strings.semiAnnualText
             }
             else if month == 3 {
-                timeStr = "季度"
+                timeStr = Strings.monthText
             }
             else if month == 1 {
-                timeStr = "月"
+                timeStr = Strings.monthText
             }
             self.recomendView.recomendLabel.text = "\(Strings.subscribeVip) ¥\(price)/\(timeStr)"
         }

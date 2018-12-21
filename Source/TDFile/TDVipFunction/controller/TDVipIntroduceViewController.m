@@ -88,8 +88,8 @@
 //在收到响应开始加载后，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(nonnull WKNavigationResponse *)navigationResponse decisionHandler:(nonnull void (^)(WKNavigationResponsePolicy))decisionHandler {
     
-    NSString *url = navigationResponse.response.URL.absoluteString;
-     NSLog(@"响应链接 --->> %@",url);
+//    NSString *url = navigationResponse.response.URL.absoluteString;
+//     NSLog(@"响应链接 --->> %@",url);
     decisionHandler(WKNavigationResponsePolicyAllow);
 }
 

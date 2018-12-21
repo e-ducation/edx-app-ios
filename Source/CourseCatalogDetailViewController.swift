@@ -15,7 +15,7 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
     private let courseID: String
     fileprivate var enrollmentFailureAlertView: UIAlertController?
     
-    typealias Environment = OEXAnalyticsProvider & DataManagerProvider & NetworkManagerProvider & OEXRouterProvider & OEXStylesProvider & OEXConfigProvider
+    typealias Environment = OEXAnalyticsProvider & DataManagerProvider & NetworkManagerProvider & OEXRouterProvider & OEXStylesProvider & OEXConfigProvider & OEXSessionProvider
     
     private let environment: Environment
     private lazy var loadController = LoadStateViewController()
@@ -84,18 +84,7 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
                 else {
                     self?.aboutView.actionText = Strings.CourseDetail.enrollNow
                     self?.aboutView.action = {[weak self] completion in
-                        if (self?.judgeNotEnrollCourseShowAlert(course: course))! { //显示VIP弹框
-                            self?.showVipBuyView()
-                            completion()
-                        }
-                        else {
-                            if !course.can_free_enroll && course.is_subscribe_pay { //有价格，且不属于VIP免费的
-                                self?.view.makeToast(Strings.purchasePc, duration: 0.8, position: CSToastPositionCenter)
-                            }
-                            else {
-                                self?.enrollInCourse(completion: completion)
-                            }
-                        }
+                        self?.judgeNotEnrollCourseShowAlert(course: course, completion: completion)
                     }
                 }
             }, failure: {[weak self] error in
@@ -130,32 +119,55 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
     }
     
     func judgeEnrollCourseShowAlert(course :OEXCourse) -> (Bool) { //已加入的课程
-        if course.is_normal_enroll { //普通购买
+        if course.has_cert {
             return false
         }
         else {
-            if course.has_cert || course.is_vip { //有证书 || VIP有效
+            if course.is_normal_enroll {
                 return false
             }
-            return true
+            else {
+                if course.is_vip {
+                    return false
+                }
+                else {
+                    return true
+                }
+            }
         }
     }
     
-    func judgeNotEnrollCourseShowAlert(course :OEXCourse) -> (Bool) { //未加入的课程 是否显示VIP弹框
+    func judgeNotEnrollCourseShowAlert(course :OEXCourse,completion : @escaping () -> Void) { //未加入的课程 是否显示VIP弹框
+        guard (environment.session.currentUser?.username) != nil else {
+            self.view.makeToast(Strings.loginFirst, duration: 0.8, position: CSToastPositionCenter)
+            completion()
+            return
+        }
+        
         if course.can_free_enroll { //可以免费加入
-            return false
+            enrollInCourse(completion: completion)
         }
         else {
-            if course.is_subscribe_pay && course.is_vip { //会员免费加入
-                return false
+            if course.is_subscribe_pay { //是否是VIP付费
+                self.view.makeToast(Strings.purchasePc, duration: 0.8, position: CSToastPositionCenter)
+                completion()
             }
-            return true
+            else {
+                if course.is_vip {
+                    enrollInCourse(completion: completion)
+                }
+                else {
+                    showVipBuyView()
+                    completion()
+                }
+            }
         }
     }
     
     func showVipBuyView() { //显示VIP购买
         
         alertView.sureButton.addTarget(self, action: #selector(sureButtonAction), for: .touchUpInside)
+        alertView.cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
         let view = UIApplication.shared.keyWindow?.rootViewController?.view
         view?.addSubview(alertView)
         
@@ -170,18 +182,9 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
         self.navigationController?.pushViewController(packageVC, animated: true)
     }
     
-    func judgeFindCourse(course :OEXCourse) -> Bool {
-        if course.is_subscribe_pay  { //属于VIP免费课程
-            if course.is_vip { //会员有效
-                return true
-            }
-            else {
-               return false
-            }
-        }
-        else {
-            return false
-        }
+    func cancelButtonAction() {
+        alertView.removeFromSuperview()
+        self.view.makeToast(Strings.purchasePc, duration: 0.8, position: CSToastPositionCenter)
     }
     
     fileprivate func enrollInCourse(completion : @escaping () -> Void) {
@@ -226,6 +229,10 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
     }
     
     func showVipViewcontroller() {
+        guard (environment.session.currentUser?.username) != nil else {
+            self.view.makeToast(Strings.loginFirst, duration: 0.8, position: CSToastPositionCenter)
+            return
+        }
         let vipVC = TDVipPackageViewController()
         self.navigationController?.pushViewController(vipVC, animated: true)
     }

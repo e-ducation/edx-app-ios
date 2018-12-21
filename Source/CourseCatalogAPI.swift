@@ -52,7 +52,8 @@ public struct CourseCatalogAPI {
     public static func getCourse(courseID: String) -> NetworkRequest<OEXCourse> {
         return NetworkRequest(
             method: .GET, //  api/courses/v1/courses/      api/v1/mobile/courses/
-            path: "api/v1/mobile/courses/{courseID}".oex_format(withParameters: ["courseID" : courseID]),
+            path: "api/v1/mobile/courses/{courseID}/".oex_format(withParameters: ["courseID" : courseID]),
+            requiresAuth : true,
             deserializer: .jsonResponse(courseDeserializer))
     }
     

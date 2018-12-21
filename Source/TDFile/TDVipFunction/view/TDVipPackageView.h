@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray <TDVipPackageModel *> *vipArray;
 
 @property (nonatomic,assign) BOOL approveSucess;//App审核通过
+@property (nonatomic,strong) UINavigationController *navigationController;
 
 - (void)vipPaySheetViewDisapear;//收回支付页面
 

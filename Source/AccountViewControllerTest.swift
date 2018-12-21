@@ -28,7 +28,7 @@ class AccountViewControllerTest: SnapshotTestCase {
     func accountViewcontroller() -> AccountViewController {
         let config = OEXConfig(profileEnabled: true)
         let mockEnv = TestRouterEnvironment(config: config, interface: nil)
-        let controller = AccountViewController(profile: profile, environment: mockEnv)
+        let controller = AccountViewController(phoneStr: profile.phone!, environment: mockEnv)
         controller.view.setNeedsDisplay()
         
         return controller

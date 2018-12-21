@@ -18,6 +18,8 @@ class CourseCardCell : UITableViewCell {
     private let iPadHorizMargin:CGFloat = 180
     let vipExpiredView = TDVipExpiredView()
     
+    var clickAction : (() -> ())?
+    
     override init(style : UITableViewCellStyle, reuseIdentifier : String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let horizMargin = UIDevice.current.userInterfaceIdiom == .pad ? iPadHorizMargin : CourseCardCell.margin
@@ -38,11 +40,17 @@ class CourseCardCell : UITableViewCell {
         
         selectionStyle = .none
     
-        vipExpiredView.isHidden = true
+        vipExpiredView.expiredButton.oex_addAction({ [weak self] _ in
+            self?.showVipVC()
+            }, for: .touchUpInside)
         addSubview(vipExpiredView)
         vipExpiredView.snp.makeConstraints { (make) in
             make.leading.trailing.top.bottom.equalTo(self)
         }
+    }
+    
+    func showVipVC() {
+        clickAction!()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -70,6 +78,7 @@ class CoursesTableViewController: UITableViewController {
     weak var delegate : CoursesTableViewControllerDelegate?
     var courses : [OEXCourse] = []
     let insetsController = ContentInsetsController()
+    var fromEnroll: Bool = false
     
     init(environment : Environment, context: Context) {
         self.context = context
@@ -119,9 +128,9 @@ class CoursesTableViewController: UITableViewController {
             self?.delegate?.coursesTableChoseCourse(course: course)
         }
         
-        cell.vipExpiredView.expiredButton.oex_addAction({ [weak self] _ in
+        cell.clickAction = { [weak self] _ in
             self?.delegate?.clickExpiredButton?()
-            }, for: .touchUpInside)
+        }
         
         switch context {
         case .CourseCatalog:
@@ -131,11 +140,17 @@ class CoursesTableViewController: UITableViewController {
         }
         cell.course = course
         
-        if course.is_enroll {
+        if fromEnroll {
             //VIP权利加入 + VIP过期 + 没取得证书
             if !course.is_normal_enroll && !course.is_vip && !course.has_cert {
                 cell.vipExpiredView.isHidden = false
             }
+            else {
+                cell.vipExpiredView.isHidden = true
+            }
+        }
+        else {
+            cell.vipExpiredView.isHidden = true
         }
         
         return cell

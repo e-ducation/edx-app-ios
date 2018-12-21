@@ -45,7 +45,7 @@ class WhatsNewViewController: UIViewController, UIPageViewControllerDelegate, UI
         else {
             self.dataModel = WhatsNewDataModel(environment: environment as? RouterEnvironment, version: Bundle.main.oex_buildVersionString())
         }
-        titleString = title ?? Strings.WhatsNew.headerText(appVersion: Bundle.main.oex_buildVersionString())
+        titleString = title ?? Strings.WhatsNew.headerText(appVersion: Bundle.main.oex_shortVersionString())
         pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         environment.interface?.saveAppVersionOnWhatsNewAppear()
         super.init(nibName: nil, bundle: nil)
@@ -128,7 +128,7 @@ class WhatsNewViewController: UIViewController, UIPageViewControllerDelegate, UI
         }
         
         closeButton.snp.makeConstraints { make in
-            make.top.equalTo(containerView).offset(topSpace)
+            make.centerY.equalTo(headerLabel.snp.centerY)
             make.trailing.equalTo(containerView)
         }
         

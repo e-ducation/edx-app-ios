@@ -15,7 +15,6 @@
 @property (nonatomic,strong) UIView *alertView;
 @property (nonatomic,strong) UIImageView *imageView;
 @property (nonatomic,strong) UILabel *messageLabel;
-@property (nonatomic,strong) UIButton *cancelButton;
 @property (nonatomic,strong) UILabel *line;
 
 @end
@@ -32,9 +31,9 @@
 }
 
 #pragma mark - Action
-- (void)cancelButtonAction:(UIButton *)sender {
-    [self removeFromSuperview];
-}
+//- (void)cancelButtonAction:(UIButton *)sender {
+//    [self removeFromSuperview];
+//}
 
 //- (void)sureButtonAction:(UIButton *)sender {
 //    [self removeFromSuperview];
@@ -74,7 +73,7 @@
     self.cancelButton.backgroundColor = [UIColor whiteColor];
     self.cancelButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
     [self.cancelButton setTitleColor:[UIColor colorWithHexString:@"#b6b6b6"] forState:UIControlStateNormal];
-    [self.cancelButton addTarget:self action:@selector(cancelButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.cancelButton addTarget:self action:@selector(cancelButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.alertView addSubview:self.cancelButton];
     
     self.sureButton = [[UIButton alloc] init];
@@ -91,8 +90,8 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     [self.bgView addGestureRecognizer:tap];
     
-    [self.cancelButton setTitle:@"暂不加入" forState:UIControlStateNormal];
-    [self.sureButton setTitle:@"加入会员" forState:UIControlStateNormal];
+    [self.cancelButton setTitle:[Strings vipNo] forState:UIControlStateNormal];
+    [self.sureButton setTitle:[Strings vipYex] forState:UIControlStateNormal];
     
     NSString *str = [Strings elitembaCourse];
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:str];

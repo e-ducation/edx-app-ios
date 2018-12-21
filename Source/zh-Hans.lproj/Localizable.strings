@@ -166,7 +166,7 @@
 /*Link Text for End Use License Agreement*/
 "AGREEMENT.LINK_TEXT_EULA"="{platform_name}终端用户许可协议";
 /*Link Text for End Use License Agreement*/
-"AGREEMENT.LINK_TEXT_TOS"="{platform_name}服务条款和诚信守则 ";
+"AGREEMENT.LINK_TEXT_TOS"="{platform_name}免责声明 ";
 /*Link Text for End Use License Agreement*/
 "AGREEMENT.LINK_TEXT_PRIVACY_POLICY"="隐私政策";
 /* Alert dialog button allowing user to chosing to allow downloads on cellular */
@@ -820,8 +820,6 @@
 "CHANGE_INPROVE"="学则变 · 变则进";
 /* 马上开始你的在线MBA学习吧！ Begin your online MBA learning right now! */
 "BEGIN_MBA_LEARN"="马上开始你的在线MBA学习吧！";
-/* 价值数十万的MBA课程体系，最低月均99.8元全年畅学  Enjoy high-value MBA curriculum with ￥99.8 monthly payment!  */
-"ENJOY_MBA"="价值数十万的MBA课程体系，最低月均99.8元全年畅学";
 /* 商学院 EliteMBA */
 "ELITEMBA"="商学院";
 /* 英荔商学院VIP会员 EliteMBA VIP membership */
@@ -836,8 +834,8 @@
 "OPEND_ON"="开通日期：";
 /* 已开通{openday}天 剩余{leftday}天  Opened for {openday} day(s) {leftday} day(s) left */
 "OPNE_DAY_LEFT"="已开通{openday}天 剩余{leftday}天";
-/* 交学费 Submit Payment */
-"SUMIT_PAYMENT"="交学费";
+/* 去支付 Submit Payment */
+"SUMIT_PAYMENT"="去支付";
 /* 选择支付方式 Choose payment method */
 "CHOOSE_PAYMENT_METHOD"="选择支付方式";
 /* 学费: Payment: */
@@ -914,3 +912,26 @@
 "NEXT_TIME"="下次再说";
 /* 跟我一起，去英荔学MBA Come with me and study MBA at Eliteu */
 "STUDY_MBA_ELITEU"="跟我一起，去英荔学MBA";
+
+/* 月 Month */
+"MONTH_TEXT"="月";
+/* 季度 Quarter */
+"QUARTER_TEXT"="季度";
+/* 半年 Semi-Annual */
+"SEMI_ANNUAL_TEXT"="半年";
+/* 年 Semi-Annual */
+"YEAR_TEXT"="年";
+/* 会员已过期{day}天 VIP expired {day} day(s) */
+"VIP_EXPIRED_DAY"="会员已过期{day}天";
+/* 加入会员 Yes */
+"VIP_YEX"="加入会员";
+/* 暂不加入 No */
+"VIP_NO"="暂不加入";
+/* 您的手机没有打开程序内付费购买 Your phone is not open for in-app purchases */
+"NO_IN_PURCHASE"="Your phone is not open for in-app purchases";
+/* 请先登录，再进行操作 Please log in first. */
+"LOGIN_FIRST"="请先登录，再进行操作";
+/* 请先安装微信客户端，或选择其他登录方式 Please install Wechat or choose other login methods. */
+"NO_INSTALL_WECHAT"="请先安装微信客户端，或选择其他登录方式";
+/* 请先安装微博客户端，或选择其他登录方式 Please install Weibo or choose other login methods. */
+"NO_INSTALL_WEIBO"="请先安装微博客户端，或选择其他登录方式";
