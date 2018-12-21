@@ -1,5 +1,19 @@
  [
   {
+  "version": "2.17",
+  "messages": [
+               {
+               "platforms": [
+                             "ios",
+                             "android"
+                             ],
+               "image": "screen_1",
+               "title": "Learn to Change·Change to Improve",
+               "message": "Begin your online MBA learning right now!"
+               }
+               ]
+  },
+  {
   "version": "2.16",
   "messages": [
                {
