@@ -912,8 +912,6 @@
 "BIND_SUCCED"="Binding Succeed!";
 /* 绑定失败 Binding Failed! */
 "BIND_FAILED"="Binding Failed!";
-/* 重新获取 Resend */
-"RESEND_CODE"="Resend";
 /* 验证码不正确 Incorrect code! */
 "INCORRECT_CODE"="Incorrect code!";
 /* 未绑定手机号 Unbound cellphone */
