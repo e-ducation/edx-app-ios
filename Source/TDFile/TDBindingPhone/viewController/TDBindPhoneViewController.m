@@ -154,7 +154,7 @@
     if (self.timeNum <= 0) {
         [self timerInvalidate];
         self.phoneView.sendButton.userInteractionEnabled = YES;
-        [self.phoneView.sendButton setTitle:[Strings resendCode] forState:UIControlStateNormal];
+        [self.phoneView.sendButton setTitle:[Strings getVerification] forState:UIControlStateNormal];
         self.phoneView.sendButton.backgroundColor = [UIColor colorWithHexString:@"#0692e1"];
     }
 }

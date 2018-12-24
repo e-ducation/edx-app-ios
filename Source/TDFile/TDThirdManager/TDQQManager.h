@@ -16,7 +16,7 @@ typedef void (^TDQQUserinfo)(NSDictionary *userProfile,NSError *error);
 + (instancetype)shareManager;
 
 - (void)qqAuthenLogin:(TDQQAuthHandler)compleHandler; //登录
-- (BOOL)isQQInstalled; //是否安装qq
++ (BOOL)isQQInstalled; //是否安装qq
 
 - (BOOL)handleOpenURL:(NSURL *)url; //处理拉起应用
 - (void)getQQUserinfo:(TDQQUserinfo)completion;//获取用户信息

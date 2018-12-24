@@ -82,7 +82,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         showWhatsNewIfNeeded()
         showBindphoneAlertView()
         
-        enrollmentFeed.refresh()
+//        enrollmentFeed.refresh()
     }
     
     override func reloadViewData() {

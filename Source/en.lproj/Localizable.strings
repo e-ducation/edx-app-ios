@@ -806,7 +806,7 @@
 /*Whats new screen done button title*/
 "WHATS_NEW.DONE"="Done";
 /*Title for wifi only switch at Settings screen*/
-"WIFI_ONLY_TITLE" = "Wi-fi only download";
+"WIFI_ONLY_TITLE" = "Wi-Fi only download";
 /*Detail message for wifi only switch at Settings screen*/
 "WIFI_ONLY_DETAIL_MESSAGE" = "Only download content when Wi-Fi is turned on";
 /* Alert dialog button title to confirm an action */
@@ -912,8 +912,6 @@
 "BIND_SUCCED"="Binding Succeed!";
 /* 绑定失败 Binding Failed! */
 "BIND_FAILED"="Binding Failed!";
-/* 重新获取 Resend */
-"RESEND_CODE"="Resend";
 /* 验证码不正确 Incorrect code! */
 "INCORRECT_CODE"="Incorrect code!";
 /* 未绑定手机号 Unbound cellphone */
