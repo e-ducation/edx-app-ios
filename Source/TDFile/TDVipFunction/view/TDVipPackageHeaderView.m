@@ -156,7 +156,8 @@
     else {
       str = [Strings vipExpiredDayWithDay:validStr];
     }
-    NSRange range = NSMakeRange(str.length - validStr.length - 1, validStr.length);
+    
+    NSRange range = [str rangeOfString:validStr];
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:str];
     [attStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:24] range:range];
     [attStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#fa7f2b"] range:range];

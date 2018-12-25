@@ -169,8 +169,8 @@ NSString* const OEXExternalRegistrationWithExistingAccountNotification = @"OEXEx
 //    if(self.environment.config.facebookConfig.enabled) {
 //        [providers addObject:[[OEXFacebookAuthProvider alloc] init]];
 //    }
-    [providers addObject:[[TDWeixinAuthProvider alloc] init]];
     [providers addObject:[[TDQQAuthProvider alloc] init]];
+    [providers addObject:[[TDWeixinAuthProvider alloc] init]];
     [providers addObject:[[TDSinaWBAuthProvider alloc] init]];
     
     if(providers.count > 0) {

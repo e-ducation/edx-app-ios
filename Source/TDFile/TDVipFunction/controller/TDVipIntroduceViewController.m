@@ -13,16 +13,12 @@
 #import "edX-Swift.h"
 #import "OEXConfig.h"
 
-#import "TDVipAlertView.h"
-
 @interface TDVipIntroduceViewController () <WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,LoadStateViewReloadSupport>
 
 @property (nonatomic,strong) WKWebView *webView;
 @property (nonatomic,strong) UIButton *shareButton;
 
 @property (nonatomic,strong) LoadStateViewController *loadController;
-
-@property (nonatomic,strong) TDVipAlertView *alertView;
 
 @end
 
