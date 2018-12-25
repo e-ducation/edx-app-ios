@@ -115,7 +115,7 @@
     [self.alertView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.mas_centerX);
         make.centerY.mas_equalTo(self.mas_centerY);
-        make.size.mas_equalTo(CGSizeMake(TDWidth * 0.77, 256));
+        make.size.mas_equalTo(CGSizeMake(TDWidth * 0.77, 288));
     }];
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -145,8 +145,8 @@
     [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.alertView.mas_left).offset(28);
         make.right.mas_equalTo(self.alertView.mas_right).offset(-28);
-        make.top.mas_equalTo(self.imageView.mas_bottom).offset(18);
-        make.bottom.mas_equalTo(self.line.mas_top).offset(-18);
+        make.top.mas_equalTo(self.imageView.mas_bottom).offset(0);
+        make.bottom.mas_equalTo(self.line.mas_top).offset(-0);
     }];
 }
 

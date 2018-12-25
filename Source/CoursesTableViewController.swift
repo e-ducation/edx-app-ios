@@ -15,7 +15,7 @@ class CourseCardCell : UITableViewCell {
     fileprivate let courseView = CourseCardView(frame: CGRect.zero)
     fileprivate var course : OEXCourse?
     private let courseCardBorderStyle = BorderStyle()
-    private let iPadHorizMargin:CGFloat = 180
+    private let iPadHorizMargin:CGFloat = 18//180
     let vipExpiredView = TDVipExpiredView()
     
     var clickAction : (() -> ())?
