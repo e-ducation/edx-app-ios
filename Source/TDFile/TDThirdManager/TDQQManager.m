@@ -8,6 +8,7 @@
 
 #import "TDQQManager.h"
 #import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
 #import <AFNetworking/AFNetworking.h>
 #import "OEXConfig.h"
 
@@ -52,7 +53,7 @@
  是否已安装QQ
  */
 + (BOOL)isQQInstalled {
-    return [TencentOAuth iphoneQQInstalled];
+    return [QQApiInterface isQQInstalled];
 }
 
 /**
