@@ -1,561 +1,560 @@
 [
  {
- "aa": "Afar"
+ "aa": "阿法文"
  },
  {
- "ab": "Abkhazian"
+ "ab": "阿布哈西亚文"
  },
  {
- "af": "Afrikaans"
+ "af": "南非荷兰文"
  },
  {
- "ak": "Akan"
+ "ak": "阿肯文"
  },
  {
- "sq": "Albanian"
+ "sq": "阿尔巴尼亚文"
  },
  {
- "am": "Amharic"
+ "am": "阿姆哈拉文"
  },
  {
- "ar": "Arabic"
+ "ar": "阿拉伯文"
  },
  {
- "an": "Aragonese"
+ "an": "阿拉贡文"
  },
  {
- "hy": "Armenian"
+ "hy": "亚美尼亚文"
  },
  {
- "as": "Assamese"
+ "as": "阿萨姆文"
  },
  {
- "av": "Avaric"
+ "av": "阿瓦尔文"
  },
  {
- "ae": "Avestan"
+ "ae": "阿维斯塔文"
  },
  {
- "ay": "Aymara"
+ "ay": "艾马拉文"
  },
  {
- "az": "Azerbaijani"
+ "az": "阿塞拜疆文"
  },
  {
- "ba": "Bashkir"
+ "ba": "巴什客尔文"
  },
  {
- "bm": "Bambara"
+ "bm": "班巴拉文"
  },
  {
- "eu": "Basque"
+ "eu": "巴斯克文"
  },
  {
- "be": "Belarusian"
+ "be": "白俄罗斯文"
  },
  {
- "bn": "Bengali"
+ "bn": "孟加拉文"
  },
  {
- "bh": "Bihari languages"
+ "bh": "比哈尔文"
  },
  {
- "bi": "Bislama"
+ "bi": "比斯拉马文"
  },
  {
- "bs": "Bosnian"
+ "bs": "波斯尼亚文"
  },
  {
- "br": "Breton"
+ "br": "布里多尼文"
  },
  {
- "bg": "Bulgarian"
+ "bg": "保加利亚文"
  },
  {
- "my": "Burmese"
+ "my": "缅甸文"
  },
  {
- "ca": "Catalan"
+ "ca": "加泰罗尼亚文"
  },
  {
- "ch": "Chamorro"
+ "ch": "查莫罗文"
  },
  {
- "ce": "Chechen"
+ "ce": "车臣文"
  },
  {
- "zh": "Chinese"
+ "zh": "中文"
  },
  {
- "zh_HANS": "Simplified Chinese"
+ "zh_HANS": "简体中文"
  },
  {
- "zh_HANT": "Traditional Chinese"
+ "zh_HANT": "繁体中文"
  },
  {
- "cu": "Church Slavic"
+ "cu": "宗教斯拉夫文"
  },
  {
- "cv": "Chuvash"
+ "cv": "楚瓦什文"
  },
  {
- "kw": "Cornish"
+ "kw": "康沃尔文"
  },
  {
- "co": "Corsican"
+ "co": "科西嘉文"
  },
  {
- "cr": "Cree"
+ "cr": "克里族文"
  },
  {
- "cs": "Czech"
+ "cs": "捷克文"
  },
  {
- "da": "Danish"
+ "da": "丹麦文"
  },
  {
- "dv": "Divehi"
+ "dv": "迪维希文"
  },
  {
- "nl": "Dutch"
+ "nl": "荷兰文"
  },
  {
- "dz": "Dzongkha"
+ "dz": "不丹文"
  },
  {
- "en": "English"
+ "en": "英文"
  },
  {
- "eo": "Esperanto"
+ "eo": "世界文"
  },
  {
- "et": "Estonian"
+ "et": "爱沙尼亚文"
  },
  {
- "ee": "Ewe"
+ "ee": "埃维文"
  },
  {
- "fo": "Faroese"
+ "fo": "法罗文"
  },
  {
- "fj": "Fijian"
+ "fj": "斐济文"
  },
  {
- "fi": "Finnish"
+ "fi": "芬兰文"
  },
  {
- "fr": "French"
+ "fr": "法文"
  },
  {
- "fy": "Western Frisian"
+ "fy": "西弗里西亚文"
  },
  {
- "ff": "Fulah"
+ "ff": "夫拉文"
  },
  {
- "ka": "Georgian"
+ "ka": "格鲁吉亚文"
  },
  {
- "de": "German"
+ "de": "德文"
  },
  {
- "gd": "Gaelic"
+ "gd": "苏格兰盖尔文"
  },
  {
- "ga": "Irish"
+ "ga": "爱尔兰文"
  },
  {
- "gl": "Galician"
+ "gl": "加利西亚文"
  },
  {
- "gv": "Manx"
+ "gv": "马恩岛文"
  },
  {
- "el": "Greek"
+ "el": "希腊文"
  },
  {
- "gn": "Guarani"
+ "gn": "瓜拉尼文"
  },
  {
- "gu": "Gujarati"
+ "gu": "古吉拉特文"
  },
  {
- "ht": "Haitian"
+ "ht": "海地文"
  },
  {
- "ha": "Hausa"
+ "ha": "豪萨文"
  },
  {
- "he": "Hebrew"
+ "he": "希伯来文"
  },
  {
- "hz": "Herero"
+ "hz": "赫雷罗文"
  },
  {
- "hi": "Hindi"
+ "hi": "印地文"
  },
  {
- "ho": "Hiri Motu"
+ "ho": "希里莫图文"
  },
  {
- "hr": "Croatian"
+ "hr": "克罗地亚文"
  },
  {
- "hu": "Hungarian"
+ "hu": "匈牙利文"
  },
  {
- "ig": "Igbo"
+ "ig": "伊布文"
  },
  {
- "is": "Icelandic"
+ "is": "冰岛文"
  },
  {
- "io": "Ido"
+ "io": "伊多文"
  },
  {
- "ii": "Sichuan Yi"
+ "ii": "四川彝文"
  },
  {
- "iu": "Inuktitut"
+ "iu": "因纽特文"
  },
  {
- "value": "ie",
- "name": "Interlingue"
+ "ie": "国际文字（E）"
  },
  {
- "ia": "Interlingua"
+ "ia": "国际文字"
  },
  {
- "id": "Indonesian"
+ "id": "印度尼西亚文"
  },
  {
- "ik": "Inupiaq"
+ "ik": "依奴皮维克文"
  },
  {
- "it": "Italian"
+ "it": "意大利文"
  },
  {
- "jv": "Javanese"
+ "jv": "爪哇文"
  },
  {
- "ja": "Japanese"
+ "ja": "日文"
  },
  {
- "kl": "Kalaallisut"
+ "kl": "格陵兰文"
  },
  {
- "kn": "Kannada"
+ "kn": "卡纳达文"
  },
  {
- "ks": "Kashmiri"
+ "ks": "克什米尔文"
  },
  {
- "kr": "Kanuri"
+ "kr": "卡努里文"
  },
  {
- "kk": "Kazakh"
+ "kk": "哈萨克文"
  },
  {
- "km": "Central Khmer"
+ "km": "高棉文"
  },
  {
- "ki": "Kikuyu"
+ "ki": "吉库尤文"
  },
  {
- "rw": "Kinyarwanda"
+ "rw": "卢旺达文"
  },
  {
- "ky": "Kirghiz"
+ "ky": "吉尔吉斯文"
  },
  {
- "kv": "Komi"
+ "kv": "科米文"
  },
  {
- "kg": "Kongo"
+ "kg": "刚果文"
  },
  {
- "ko": "Korean"
+ "ko": "韩文"
  },
  {
- "kj": "Kuanyama"
+ "kj": "宽亚玛文"
  },
  {
- "ku": "Kurdish"
+ "ku": "库尔德文"
  },
  {
- "lo": "Lao"
+ "lo": "老挝文"
  },
  {
- "la": "Latin"
+ "la": "拉丁文"
  },
  {
- "lv": "Latvian"
+ "lv": "拉脱维亚文"
  },
  {
- "li": "Limburgan"
+ "li": "淋布尔吉文"
  },
  {
- "ln": "Lingala"
+ "ln": "林加拉文"
  },
  {
- "lt": "Lithuanian"
+ "lt": "立陶宛文"
  },
  {
- "lb": "Luxembourgish"
+ "lb": "卢森堡文"
  },
  {
- "lu": "Luba-Katanga"
+ "lu": "鲁巴加丹加文"
  },
  {
- "lg": "Ganda"
+ "lg": "卢干达文"
  },
  {
- "mk": "Macedonian"
+ "mk": "马其顿文"
  },
  {
- "mh": "Marshallese"
+ "mh": "马绍尔文"
  },
  {
- "ml": "Malayalam"
+ "ml": "马拉雅拉姆文"
  },
  {
- "mi": "Maori"
+ "mi": "毛利文"
  },
  {
- "mr": "Marathi"
+ "mr": "马拉地文"
  },
  {
- "ms": "Malay"
+ "ms": "马来文"
  },
  {
- "mg": "Malagasy"
+ "mg": "马尔加什文"
  },
  {
- "mt": "Maltese"
+ "mt": "马耳他文"
  },
  {
- "mn": "Mongolian"
+ "mn": "蒙古文"
  },
  {
- "na": "Nauru"
+ "na": "瑙鲁文"
  },
  {
- "nv": "Navajo"
+ "nv": "纳瓦霍文"
  },
  {
- "nr": "Ndebele, South"
+ "nr": "南恩德贝勒文"
  },
  {
- "nd": "Ndebele, North"
+ "nd": "北恩德贝勒文"
  },
  {
- "ng": "Ndonga"
+ "ng": "恩东加文"
  },
  {
- "ne": "Nepali"
+ "ne": "尼泊尔文"
  },
  {
- "nn": "Norwegian Nynorsk"
+ "nn": "挪威尼诺斯克文"
  },
  {
- "nb": "Bokmål, Norwegian"
+ "nb": "挪威博克马尔文"
  },
  {
- "no": "Norwegian"
+ "no": "挪威文"
  },
  {
- "ny": "Chichewa"
+ "ny": "尼扬扎文"
  },
  {
- "oc": "Occitan"
+ "oc": "奥克西唐文"
  },
  {
- "oj": "Ojibwa"
+ "oj": "奥吉布瓦文"
  },
  {
- "or": "Oriya"
+ "or": "奥里亚文"
  },
  {
- "om": "Oromo"
+ "om": "奥洛莫文"
  },
  {
- "os": "Ossetian"
+ "os": "奥塞梯文"
  },
  {
- "pa": "Panjabi"
+ "pa": "旁遮普文"
  },
  {
- "fa": "Persian"
+ "fa": "波斯文"
  },
  {
- "pi": "Pali"
+ "pi": "巴利文"
  },
  {
- "pl": "Polish"
+ "pl": "波兰文"
  },
  {
- "pt": "Portuguese"
+ "pt": "葡萄牙文"
  },
  {
- "ps": "Pushto"
+ "ps": "普什图文"
  },
  {
- "qu": "Quechua"
+ "qu": "盖丘亚文"
  },
  {
- "rm": "Romansh"
+ "rm": "罗曼什文"
  },
  {
- "ro": "Romanian"
+ "ro": "罗马尼亚文"
  },
  {
- "rn": "Rundi"
+ "rn": "基隆迪文"
  },
  {
- "ru": "Russian"
+ "ru": "俄文"
  },
  {
- "sg": "Sango"
+ "sg": "桑戈文"
  },
  {
- "sa": "Sanskrit"
+ "sa": "梵文"
  },
  {
- "si": "Sinhala"
+ "si": "僧伽罗文"
  },
  {
- "sk": "Slovak"
+ "sk": "斯洛伐克文"
  },
  {
- "sl": "Slovenian"
+ "sl": "斯洛文尼亚文"
  },
  {
- "se": "Northern Sami"
+ "se": "北萨米文"
  },
  {
- "sm": "Samoan"
+ "sm": "萨摩亚文"
  },
  {
- "sn": "Shona"
+ "sn": "绍纳文"
  },
  {
- "sd": "Sindhi"
+ "sd": "信德文"
  },
  {
- "so": "Somali"
+ "so": "索马里文"
  },
  {
- "st": "Sotho, Southern"
+ "st": "南索托文"
  },
  {
- "es": "Spanish"
+ "es": "西班牙文"
  },
  {
- "sc": "Sardinian"
+ "sc": "萨丁文"
  },
  {
- "sr": "Serbian"
+ "sr": "塞尔维亚文"
  },
  {
- "ss": "Swati"
+ "ss": "斯瓦特文"
  },
  {
- "su": "Sundanese"
+ "su": "巽他文"
  },
  {
- "sw": "Swahili"
+ "sw": "斯瓦希里文"
  },
  {
- "sv": "Swedish"
+ "sv": "瑞典文"
  },
  {
- "ty": "Tahitian"
+ "ty": "塔西提文"
  },
  {
- "ta": "Tamil"
+ "ta": "泰米尔文"
  },
  {
- "tt": "Tatar"
+ "tt": "塔塔尔文"
  },
  {
- "te": "Telugu"
+ "te": "泰卢固文"
  },
  {
- "tg": "Tajik"
+ "tg": "塔吉克文"
  },
  {
- "tl": "Tagalog"
+ "tl": "塔加洛文"
  },
  {
- "th": "Thai"
+ "th": "泰文"
  },
  {
- "bo": "Tibetan"
+ "bo": "藏文"
  },
  {
- "ti": "Tigrinya"
+ "ti": "提格里尼亚文"
  },
  {
- "to": "Tonga (Tonga Islands)"
+ "to": "汤加文"
  },
  {
- "tn": "Tswana"
+ "tn": "塞茨瓦纳文"
  },
  {
- "ts": "Tsonga"
+ "ts": "宗加文"
  },
  {
- "tk": "Turkmen"
+ "tk": "土库曼文"
  },
  {
- "tr": "Turkish"
+ "tr": "土耳其文"
  },
  {
- "tw": "Twi"
+ "tw": "特威文"
  },
  {
- "ug": "Uighur"
+ "ug": "维吾尔文"
  },
  {
- "uk": "Ukrainian"
+ "uk": "乌克兰文"
  },
  {
- "ur": "Urdu"
+ "ur": "乌尔都文"
  },
  {
- "uz": "Uzbek"
+ "uz": "乌兹别克文"
  },
  {
- "ve": "Venda"
+ "ve": "文达文"
  },
  {
- "vi": "Vietnamese"
+ "vi": "越南文"
  },
  {
- "vo": "Volapük"
+ "vo": "沃拉普克文"
  },
  {
- "cy": "Welsh"
+ "cy": "威尔士文"
  },
  {
- "wa": "Walloon"
+ "wa": "瓦隆文"
  },
  {
- "wo": "Wolof"
+ "wo": "沃洛夫文"
  },
  {
- "xh": "Xhosa"
+ "xh": "科萨文"
  },
  {
- "yi": "Yiddish"
+ "yi": "依地文"
  },
  {
- "yo": "Yoruba"
+ "yo": "约鲁巴文"
  },
  {
- "za": "Zhuang"
+ "za": "壮文"
  },
  {
- "zu": "Zulu"
+ "zu": "祖鲁文"
  }
  ]
