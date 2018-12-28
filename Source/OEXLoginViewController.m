@@ -38,6 +38,7 @@
 #import "TDQQAuthProvider.h"
 #import "TDWechatManager.h"
 #import "TDWeiboManeger.h"
+#import "TDQQManager.h"
 
 #define USER_EMAIL @"USERNAME"
 
@@ -93,6 +94,13 @@
         self.agreementTextViewTop.constant = -30;
     }
 
+    BOOL isAuthen = [TDQQManager isQQInstalled] || [TDWechatManager wxAppInstall] || [TDWeiboManeger isWeiboInstalled];
+    if (!isAuthen) {
+        self.lbl_OrSignIn.hidden = YES;
+        self.seperatorLeft.hidden = YES;
+        self.seperatorRight.hidden = YES;
+    }
+    
     if(IS_IPHONE_4) {
         self.constraint_MapTop.constant = 70;
         self.constraint_UsernameTop.constant = 20;
@@ -141,10 +149,15 @@
 //    if([self isFacebookEnabled]) {
 //        [providers addObject:[[OEXFacebookAuthProvider alloc] init]];
 //    }
-    [providers addObject:[[TDQQAuthProvider alloc] init]];
-    [providers addObject:[[TDWeixinAuthProvider alloc] init]];
-    [providers addObject:[[TDSinaWBAuthProvider alloc] init]];
-
+    if ([TDQQManager isQQInstalled]) {
+        [providers addObject:[[TDQQAuthProvider alloc] init]];
+    }
+    if ([TDWechatManager wxAppInstall]) {
+        [providers addObject:[[TDWeixinAuthProvider alloc] init]];
+    }
+    if ([TDWeiboManeger isWeiboInstalled]) {
+        [providers addObject:[[TDSinaWBAuthProvider alloc] init]];
+    }
     __weak __typeof(self) owner = self;
     OEXExternalAuthOptionsView* externalAuthOptions = [[OEXExternalAuthOptionsView alloc] initWithFrame:self.externalAuthContainer.bounds providers:providers tapAction:^(id<OEXExternalAuthProvider> provider) {
         [owner externalLoginWithProvider:provider];

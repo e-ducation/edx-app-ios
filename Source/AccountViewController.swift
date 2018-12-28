@@ -242,6 +242,20 @@ extension AccountViewController : MFMailComposeViewControllerDelegate {
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            if result == MFMailComposeResult.sent {
+                self.view.makeToast(Strings.emailSend, duration: 0.8, position: CSToastPositionCenter)
+            }
+            else if result == MFMailComposeResult.saved {
+                self.view.makeToast(Strings.emailSaved, duration: 0.8, position: CSToastPositionCenter)
+            }
+            else if result == MFMailComposeResult.cancelled {
+                self.view.makeToast(Strings.emailCencel, duration: 0.8, position: CSToastPositionCenter)
+            }
+            else {
+                self.view.makeToast(Strings.emailFailed, duration: 0.8, position: CSToastPositionCenter)
+            }
+        }
     }
 }
