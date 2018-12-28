@@ -949,3 +949,12 @@
 "NO_INSTALL_WECHAT"="Please install Wechat or choose other login methods.";
 /* 请先安装微博客户端，或选择其他登录方式 Please install Weibo or choose other login methods. */
 "NO_INSTALL_WEIBO"="Please install Weibo or choose other login methods.";
+/* 发送成功 Successfully Sent*/
+"EMAIL_SEND"="Successfully Sent";
+/* 保存成功 Successfully Saved */
+"EMAIL_SAVED"="Successfully Saved";
+/* 取消发送 Cancel Sending */
+"EMAIL_CENCEL"="Cancel Sending";
+/* 发送失败 Sending Failed */
+"EMAIL_FAILED"="Sending Failed";
+

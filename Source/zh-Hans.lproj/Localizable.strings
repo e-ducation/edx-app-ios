@@ -402,7 +402,7 @@
 /* Placeholder text for email address entry field */
 "EMAIL_ADDRESS_PROMPT"="电子邮件地址";
 /* Text displayed when no results are found in the search */
-"EMPTY_RESULTSET" = "未找到\"{query_string}\" 请输入其他关键词或选择一个讨论的种类";
+"EMPTY_RESULTSET" = "未找到\"{query_string}\"的搜索结果。请尝试其它关键词或选择相关讨论分组进行查找。";
 /* Prompt shown to users on the course list encouraging them to find new courses */
 "ENROLLMENT_LIST.FIND_COURSES_PROMPT" = "寻找新的挑战？";
 /* Button title opening course catalog */
@@ -602,7 +602,7 @@
 /* Section title to display recently downloaded videos */
 "RECENT_VIDEOS"="近期视频";
 /* Label before Sort and Filter buttons on Posts Screen ( The Colon(:) is part of the string) */
-"REFINE" = "改善：";
+"REFINE" = "筛选：";
 /* Button title when responses are closed for a thread */
 "RESPONSES_CLOSED"="已关闭此发帖的回复";
 /* Create account agreement. Followed by list of agreement names like "End User License Agreement" */
@@ -933,3 +933,11 @@
 "NO_INSTALL_WECHAT"="请先安装微信客户端，或选择其他登录方式";
 /* 请先安装微博客户端，或选择其他登录方式 Please install Weibo or choose other login methods. */
 "NO_INSTALL_WEIBO"="请先安装微博客户端，或选择其他登录方式";
+/* 发送成功 Successfully Sent*/
+"EMAIL_SEND"="发送成功";
+/* 保存成功 Successfully Saved */
+"EMAIL_SAVED"="保存成功";
+/* 取消发送 Cancel Sending */
+"EMAIL_CENCEL"="取消发送";
+/* 发送失败 Sending Failed */
+"EMAIL_FAILED"="发送失败";

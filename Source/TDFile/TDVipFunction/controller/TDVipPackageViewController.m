@@ -334,6 +334,7 @@
             }];
         }
         else {
+            [self.packageView vipPaySheetViewDisapear];
             [self.view makeToast:[Strings installWechat] duration:0.8 position:CSToastPositionCenter];
         }
     }
