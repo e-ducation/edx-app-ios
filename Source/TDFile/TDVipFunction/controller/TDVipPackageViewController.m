@@ -416,7 +416,7 @@
             }
             else {
                 [SVProgressHUD dismiss];
-                [weakSelf.view makeToast:[Strings paymentFalied] duration:0.8 position:CSToastPositionTop];
+                [weakSelf.view makeToast:[Strings paymentFalied] duration:0.8 position:CSToastPositionCenter];
             }
         }];
         

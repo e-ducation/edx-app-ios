@@ -32,11 +32,11 @@ class VideoPlayerControls: UIView, VideoPlayerSettingsDelegate {
     weak private var videoPlayer: VideoPlayer?
     weak var delegate : VideoPlayerControlsDelegate?
     private let previousButtonSize = CGSize(width: 42.0, height: 42.0)
-    private let rewindButtonSize = CGSize(width: 42.0, height: 42.0)
+    private let rewindButtonSize = CGSize(width: 25.0, height: 28.0)
     private let durationSliderHeight: CGFloat = 34.0
     private let timeRemainingLabelSize = CGSize(width: 75.0, height: 34.0)
-    private let settingButtonSize = CGSize(width: 24.0, height: 24.0)
-    private let fullScreenButtonSize = CGSize(width: 20.0, height: 20.0)
+    private let settingButtonSize = CGSize(width: 21.0, height: 24.0)
+    private let fullScreenButtonSize = CGSize(width: 18.0, height: 20.0)
     private let tableSettingSize = CGSize(width: 110.0, height: 100.0)
     private let nextButtonSize = CGSize(width: 42.0, height: 42.0)
     
@@ -368,6 +368,8 @@ class VideoPlayerControls: UIView, VideoPlayerSettingsDelegate {
         
         playPauseButton.snp.makeConstraints { make in
             make.center.equalTo(self.snp.center)
+            make.height.equalTo(previousButtonSize.height)
+            make.width.equalTo(previousButtonSize.width)
         }
         
         btnNext.snp.makeConstraints { make in
