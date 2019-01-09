@@ -21,6 +21,12 @@ struct CoursesAPI {
         if let orgCode = organizationCode {
             path = "api/v1/mobile/users/{username}/course_enrollments/?org={org}".oex_format(withParameters: ["username": username, "org": orgCode])
         }
+        
+        //        var path = "api/mobile/v1/users/{username}/course_enrollments/".oex_format(withParameters: ["username": username])
+        //        if let orgCode = organizationCode {
+        //            path = "api/mobile/v1/users/{username}/course_enrollments/?org={org}".oex_format(withParameters: ["username": username, "org": orgCode])
+        //        }
+        
         return NetworkRequest(
             method: .GET,
             path: path,
