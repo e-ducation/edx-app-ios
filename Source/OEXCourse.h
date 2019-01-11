@@ -40,7 +40,8 @@ OEXStartType OEXStartTypeForString(NSString* type);
 
 @interface OEXCourse : NSObject
 
-- (id)initWithDictionary:(NSDictionary*)info;
+- (id)initWithDictionary:(NSDictionary *)info;
+- (instancetype) initWithDictionary:(NSDictionary *)info auditExpiryDate:(nullable NSString *) auditExpiryDate;
 // TODO: Rename these to CamelCase (MK - eh just make this swift)
 @property (readonly, nonatomic, strong, nullable) OEXLatestUpdates* latest_updates;
 @property (readonly, nonatomic, strong, nullable) NSDate* end;
@@ -65,8 +66,11 @@ OEXStartType OEXStartTypeForString(NSString* type);
 @property (readonly, nonatomic, strong, nullable) CourseMediaInfo* courseImageMediaInfo;
 @property (readonly, nonatomic, strong, nullable) CourseMediaInfo* courseVideoMediaInfo;
 @property (nonatomic, readonly) CourseShareUtmParameters *courseShareUtmParams;
+@property (readonly, nonatomic, strong, nullable) NSString* courseImageURL;
+@property (nonatomic, strong, nullable) NSDate* audit_expiry_date;
 @property (readonly, nonatomic, assign) BOOL isStartDateOld;
 @property (readonly, nonatomic, assign) BOOL isEndDateOld;
+@property (readonly, nonatomic, assign) BOOL isAuditExpired;
 
 @property (readonly, nonatomic, assign) BOOL is_vip; //是否VIP
 @property (readonly, nonatomic, assign) BOOL is_normal_enroll; //是普通加入，还是VIP期间免费加入
@@ -75,8 +79,6 @@ OEXStartType OEXStartTypeForString(NSString* type);
 @property (readonly, nonatomic, assign) BOOL is_subscribe_pay; //VIP付费课程？ false 免费，true 付费
 @property (readonly, nonatomic, assign) BOOL can_free_enroll; //可以免费加入(不是VIP情况下)
 @property (readonly, nonatomic, strong) NSDictionary *recommended_package; //推荐VIP
-
-@property (readonly, nonatomic, strong, nullable) NSString* courseImageURL;
 
 
 @end

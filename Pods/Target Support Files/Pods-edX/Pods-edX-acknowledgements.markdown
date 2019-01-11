@@ -219,7 +219,7 @@ Copyright 2016 Google
 
 ## FirebaseInstanceID
 
-Copyright 2016 Google
+Copyright 2017 Google
 
 ## GoogleAnalytics
 

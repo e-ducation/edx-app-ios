@@ -58,6 +58,8 @@ static CGFloat OEXExternalAuthButtonAspectRatio = 1.0;//3.4;
                 tapAction(provider);
             } forEvents:UIControlEventTouchUpInside];
             [self addSubview:button];
+            // We made adjustsFontSizeToFitWidth as true to fix the dynamic type text
+            [button.titleLabel setAdjustsFontSizeToFitWidth:true];
             return button;
         }];
         
