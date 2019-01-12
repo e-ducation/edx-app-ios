@@ -720,7 +720,7 @@
 /* Label for posts pinned by Staff */
 "STAFF"="STAFF";
 /* Info message text on the startup screen */
-"STARTUP.INFO_MESSAGE_TEXT"="Enjoy high-value MBA curriculum with ￥99.8 monthly payment!";
+"STARTUP.INFO_MESSAGE_TEXT"="Enjoy high-value MBA curriculum with ￥99.84 monthly payment!";
 /*Placeholder text for search textfield on the startup screen*/
 "STARTUP.SEARCH_PLACEHOLDER_TEXT"="Search Courses";
 /*Log In button title on the startup screen*/
@@ -864,7 +864,7 @@
 "VERIFYCODE_FAILED"="Failed to get verification code, please try again later.";
 /*  学则变 · 变则进 Learn to Change·Change to Improve */
 "CHANGE_INPROVE"="Learn to Change·Change to Improve";
-/* 马上开始你的在线MBA学习吧！ Begin your online MBA learning right now! */
+/* 马上开始您的在线MBA学习吧！ Begin your online MBA learning right now! */
 "BEGIN_MBA_LEARN"="Begin your online MBA learning right now!";
 /* 商学院 EliteMBA */
 "ELITEMBA"="EliteMBA";
@@ -910,7 +910,7 @@
 "SYSTEM_REMINDER"="System Reminder";
 /* 购买失败，请重新购买 Purchase failed. Please purchase again. */
 "PURCHASE_FAILED"="Purchase failed. Please purchase again.";
-/* 你选择的该门课程是属于英荔商学院的课程，成为会员可以在有效期内免费学习 The course you have chosen belongs to EliteMBA. Become a VIP member and learn your course for free. */
+/* 您选择的该门课程是属于英荔商学院的课程，成为会员可以在有效期内免费学习 The course you have chosen belongs to EliteMBA. Become a VIP member and learn your course for free. */
 "ELITEMBA_COURSE"="The course you have chosen belongs to EliteMBA. Become a VIP member and learn your course for free.";
 /* 英荔商学院 EliteMBA*/
 "ELITEMBA_VIP"="EliteMBA";
@@ -987,3 +987,9 @@
 "EMAIL_CENCEL"="Cancel Sending";
 /* 发送失败 Sending Failed */
 "EMAIL_FAILED"="Sending Failed";
+/* 已成功添加到邮件 Successfully added to the mail */
+"ADD_EMAIL_SUCCESS"="Successfully added to the mail";
+/*字幕 Closed Captions*/
+"CLOSED_CAPTIONS" = "Closed Captions";
+/*播放速度 Video Speed*/
+"VIDEO_SPEED" = "Video Speed";
