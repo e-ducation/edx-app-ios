@@ -53,6 +53,7 @@ class ProfileBanner: UIView {
         usernameLabel.snp.makeConstraints { make in
             make.leading.equalTo(shortProfView.snp.trailing).offset(6)
             make.centerY.equalTo(shortProfView)
+            make.trailing.equalTo(self).offset(-68)
         }
         
         if editable {
