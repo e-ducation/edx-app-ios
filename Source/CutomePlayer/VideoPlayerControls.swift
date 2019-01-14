@@ -37,7 +37,7 @@ class VideoPlayerControls: UIView, VideoPlayerSettingsDelegate {
     private let timeRemainingLabelSize = CGSize(width: 75.0, height: 34.0)
     private let settingButtonSize = CGSize(width: 21.0, height: 24.0)
     private let fullScreenButtonSize = CGSize(width: 18.0, height: 20.0)
-    private let tableSettingSize = CGSize(width: 110.0, height: 100.0)
+    private let tableSettingSize = CGSize(width: 110.0, height: 88.0)
     private let nextButtonSize = CGSize(width: 42.0, height: 42.0)
     
     var video : OEXHelperVideoDownload? {
@@ -148,6 +148,8 @@ class VideoPlayerControls: UIView, VideoPlayerSettingsDelegate {
             if let weakSelf = self {
                 weakSelf.tableSettings.isHidden = true
                 button.isSelected = !button.isSelected
+                let left: CGFloat = button.isSelected ? 3 : 0
+                button.contentEdgeInsets = UIEdgeInsetsMake(0, left, 0, -left)
                 weakSelf.delegate?.playPausePressed(playerControls: weakSelf, isPlaying: button.isSelected)
                 weakSelf.autoHide()
             }

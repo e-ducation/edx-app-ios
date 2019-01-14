@@ -145,7 +145,7 @@ class StartupViewController: UIViewController, InterfaceOrientationOverriding {
             make.leading.equalTo(StandardHorizontalMargin)
             make.centerY.equalTo(searchView)
             make.width.equalTo(15)
-            make.height.equalTo(15)
+            make.height.equalTo(18)
         }
         
         let textStyle = OEXTextStyle(weight: .normal, size: .large, color: environment.styles.primaryBaseColor())

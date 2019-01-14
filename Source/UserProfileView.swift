@@ -52,6 +52,7 @@ class UserProfileView : UIView, UIScrollViewDelegate {
         scrollView.addSubview(avatarImage)
 
         usernameLabel.setContentHuggingPriority(1000, for: .vertical)
+        usernameLabel.numberOfLines = 0
         scrollView.addSubview(usernameLabel)
         
         messageLabel.numberOfLines = 0
@@ -112,6 +113,8 @@ class UserProfileView : UIView, UIScrollViewDelegate {
         usernameLabel.snp.makeConstraints { make in
             make.top.equalTo(avatarImage.snp.bottom).offset(margin)
             make.centerX.equalTo(scrollView)
+            make.leading.equalTo(scrollView.snp.leading).offset(20)
+            make.trailing.equalTo(scrollView.snp.trailing).offset(-20)
         }
         
         messageLabel.snp.makeConstraints { make in
@@ -196,6 +199,7 @@ class UserProfileView : UIView, UIScrollViewDelegate {
 
 
         usernameLabel.attributedText = usernameStyle.attributedString(withText: profile.username)
+        usernameLabel.textAlignment = .center
         bioSystemMessage.isHidden = true
         avatarImage.remoteImage = profile.image(networkManager: networkManager)
         setDefaultValues()

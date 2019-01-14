@@ -60,8 +60,8 @@ class JSONFormViewController<T>: UIViewController {
             label.snp.makeConstraints { make in
                 make.top.equalTo(headerView.snp.topMargin)
                 make.bottom.equalTo(headerView.snp.bottomMargin)
-                make.leading.equalTo(headerView.snp.leading).offset(20)
-                make.trailing.equalTo(headerView.snp.trailing).inset(20)
+                make.leading.equalTo(headerView.snp.leading).offset(15)
+                make.trailing.equalTo(headerView.snp.trailing).inset(15)
             }
             
             let size = label.sizeThatFits(CGSize(width: 240, height: CGFloat.greatestFiniteMagnitude))

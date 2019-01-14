@@ -48,6 +48,7 @@
     [self.selectButton addSubview:self.titleLabel];
     
     self.checkButton = [[UIButton alloc] init];
+    self.checkButton.userInteractionEnabled = NO;
     [self.checkButton setBackgroundImage:[UIImage imageNamed:@"no_select_pay"] forState:UIControlStateNormal];
     [self.checkButton setBackgroundImage:[UIImage imageNamed:@"select_pay"] forState:UIControlStateSelected];
     [self.selectButton addSubview:self.checkButton];

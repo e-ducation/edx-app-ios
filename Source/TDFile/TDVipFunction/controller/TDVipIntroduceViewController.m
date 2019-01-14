@@ -139,6 +139,10 @@
     }];
 }
 
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return nil;
+}
+
 #pragma mark - UI
 - (void)setViewConstraint {
     
