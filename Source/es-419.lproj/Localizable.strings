@@ -846,7 +846,7 @@
 "INSTALL_WECHAT"="Please install Wechat or choose other payment methods.";
 /* 加载中... Loading… */
 "LOADING_TEXT"="Loading…";
-/* 恭喜您已成功加入EliteMBA会员 Congratulations! You’ve become an EliteMBA VIP. */
+/* 恭喜您已经成功加入英荔商学院VIP Congratulations! You’ve become an EliteMBA VIP. */
 "BECOME_ELITEMBA_VIP"="Congratulations! You’ve become an EliteMBA VIP.";
 /* 查询失败，请稍后重试 Failed. Please try again later. */
 "QUERY_FAILED"="Failed. Please try again later.";
@@ -870,16 +870,18 @@
 "ELITEMBA"="EliteMBA";
 /* 英荔商学院VIP会员 EliteMBA VIP membership */
 "ELITEMBA_VIP_MEMBER"="EliteMBA VIP membership";
-/* 开通VIP会员，可免费观看英荔商学院全部课程。 Become a VIP member and watch all EliteMBA courses for free. */
-"VIP_MEMBER_WATCH_FREE"="Become a VIP member and watch all EliteMBA courses for free.";
+/* 开通VIP会员，可免费观看英荔商学院全部课程。 Join VIP, view all EliteMBA courses for free. */
+"VIP_MEMBER_WATCH_FREE"="Join VIP, view all EliteMBA courses for free.";
+/* 会员身份将在{day}天后过期 VIP membership will expire in {day} days */
+"OPNE_DAY_LEFT"="VIP membership will expire in {day} days";
+/* 会员身份已在{day}天前过期 VIP expired {day} day(s) */
+"VIP_EXPIRED_DAY"="VIP expired {day} day(s)";
 /* 上次开通日期: Last Opened on: */
 "LAST_OPEND"="Last Opened on:";
 /* 到期日期： Expire on: */
 "EDPIRE_ON"="Expire on:";
 /* 开通日期： Opened on: */
 "OPEND_ON"="Opened on:";
-/* 已开通{openday}天 剩余{leftday}天  Opened for {openday} day(s) {leftday} day(s) left */
-"OPNE_DAY_LEFT"="Opened for {openday} day(s) {leftday} day(s) left";
 /* 去支付 Submit Payment */
 "SUMIT_PAYMENT"="Submit Payment";
 /* 选择支付方式 Choose payment method */
@@ -965,8 +967,6 @@
 "SEMI_ANNUAL_TEXT"="Semi-Annual";
 /* 年 Semi-Annual */
 "YEAR_TEXT"="Semi-Annual";
-/* 会员已过期n天 VIP expired {day} day(s) */
-"VIP_EXPIRED_DAY"="VIP expired {day} day(s)";
 /* 加入会员 Yes */
 "VIP_YEX"="Yes";
 /* 暂不加入 No */
