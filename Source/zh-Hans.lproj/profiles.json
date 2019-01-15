@@ -7,11 +7,11 @@
               "data_type" : "boolean",
               "options" : {
                 "values" : [
-                            { "name" : "完整档案", "value" : "all_users" },
+                            { "name" : "完整资料", "value" : "all_users" },
                             { "name" : "有限档案",  "value" : "private" }
                  ]
               },
-              "instructions" : "有限档案仅分享您的用户名和档案照片。",
+              "instructions" : "有限资料仅显示您的用户名和头像。",
               "accessibility_hint" : "变更可与其他人分享的信息。"
     },
     {
@@ -24,7 +24,7 @@
                 "allows_none" : true,
                 "none_label" : "没有出生年份"
               },
-              "instructions" : "在分享您的完整档案之前，您必须填写您的出生年份。",
+              "instructions" : "在分享您的完整资料之前，您必须填写您的出生年份。",
               "sub_instructions" : "此信息不会被公开显示"
     },
     {

@@ -22,8 +22,6 @@
 "ACCESSIBILITY_CHECKBOX_HINT_UNCHECKED" = "点击选择";
 /* Appending By before course organization and number on My Find Courses*/
 "ACCESSIBILITY_BY" = "作者";
-/*Accessibility hint for user bio on user profile screen*/
-"ACCESSIBILITY.ACCOUNT.BIO_LABEL" = "Description";
 /* Accessibility hint for subject name label */
 "ACCESSIBILITY.BROWSER_BY_SUBJECT_HINT" = "双击按科目浏览，{subject_name}";
 /* Accessibility hint for bulk download switch when in new state */
@@ -48,8 +46,6 @@
 "ACCESSIBILITY.DISCUSSION_FOLLOW_HINT" = "双击关注";
 /* Accessibility hint for Unfollow button for discussion responses*/
 "ACCESSIBILITY.DISCUSSION_UNFOLLOW_HINT" = "双击取消关注";
-/*Accessibility hint for disabled buttons, cells, etc like for disabled user profile fields on user edit profile screen*/
-"ACCESSIBILITY.DISABLED_HINT" = "Dimmed";
 /* Acessibility hint for the show downloads button. */
 "ACCESSIBILITY.SHOW_CURRENT_DOWNLOADS_BUTTON_HINT" = "双击查看当前下载";
 /* Accessibility hint for view all subjects label*/
@@ -110,7 +106,7 @@
 /* Accessibility label for hiding keyboard*/
 "ACCESSIBILITY_HIDE_KEYBOARD" = "隐藏键盘";
 /* Accessibility Hint to view user profile*/
-"ACCESSIBILITY_SHOW_USER_PROFILE_HINT" = "双击查看用户档案";
+"ACCESSIBILITY_SHOW_USER_PROFILE_HINT" = "双击查看用户资料";
 /*Accessibility text for pinned discussion thread(Posts screen)*/
 "ACCESSIBILITY.DISCUSSION_PINNED" = "已标记";
 /*Accessibility text for closed discussion thread(Posts screen)*/
@@ -168,9 +164,9 @@
 /*Agreement text prefix for user on signup screen*/
 "AGREEMENT.TEXT_PREFIX_SIGNUP"="创建账号即表示";
 /*Link Text for End Use License Agreement*/
-"AGREEMENT.LINK_TEXT_EULA"="{platform_name}终端用户许可协议";
+"AGREEMENT.LINK_TEXT_EULA"="{platform_name}用户协议";
 /*Link Text for End Use License Agreement*/
-"AGREEMENT.LINK_TEXT_TOS"="{platform_name}服务条款和诚信守则 ";
+"AGREEMENT.LINK_TEXT_TOS"="{platform_name}免责声明";
 /*Link Text for End Use License Agreement*/
 "AGREEMENT.LINK_TEXT_PRIVACY_POLICY"="隐私政策";
 /* Alert dialog button allowing user to chosing to allow downloads on cellular */
@@ -278,13 +274,13 @@
 /* Label for posts pinned by Community TA(s)" */
 "COMMUNITY_TA"="社区助教";
 /* Label indicating the amount of time a course will take */
-"COURSE_DETAIL.EFFORT"="预计课时：";
+"COURSE_DETAIL.EFFORT"="预计时长：";
 /* Label indicating when a course ends. */
 "COURSE_DETAIL.END_DATE"="截止日期：";
 /* Button title allowing user to enroll in a course */
 "COURSE_DETAIL.ENROLL_NOW" = "现在加入";
 /* Button title allowing user to view a course from the course's catalog detail page */
-"COURSE_DETAIL.VIEW_COURSE" = "查看课程";
+"COURSE_DETAIL.VIEW_COURSE" = "发现课程";
 /* Button title describing that the course is invitation only */
 "COURSE_DETAIL.INVITATION_ONLY" = "仅限受邀";
 /* Message shown when there is no course content */
@@ -296,39 +292,36 @@
 /* Message shown when there is no course dates */
 "COURSEDATES.COURSE_DATE_UNAVAILABLE"="课程日期当前不可用。";
 /* Label for date when course starts */
-"COURSE.STARTING" = "Starting {start_date}";
+"COURSE.STARTING" = "即将于{start_date}开始";
 /* Label for date when course end */
-"COURSE.ENDING" = "Ending {end_date}";
+"COURSE.ENDING" = "将于{end_date}结束";
 /* Label indicated that a course has ended */
-"COURSE.ENDED"="Ended {end_date}";
+"COURSE.ENDED"="{end_date}结束";
 /* Course audit will expires on date*/
-"COURSE.AUDIT.EXPIRES_ON" = "Course access expires on {expiry_date}";
+"COURSE.AUDIT.EXPIRES_ON" = "课程访问于{expiry_date}到期";
 /* Course audit will expires in {time_duration}*/
-"COURSE.AUDIT.EXPIRES_IN" = "Course access expires in {time_duration}";
+"COURSE.AUDIT.EXPIRES_IN" = "课程访问权限于{time_duration}到期";
 /* Course audit expired n days ago*/
-"COURSE.AUDIT.EXPIRED_DAYS_AGO" = "Course access expired {days} days ago";
+"COURSE.AUDIT.EXPIRED_DAYS_AGO" = "课程访问于{days}前已过期";
 /* Course audit expired in less than 24 hours*/
-"COURSE.AUDIT.EXPIRED_AGO" = "Course access expired {time_duaration}";
+"COURSE.AUDIT.EXPIRED_AGO" = "课程访问在{time_duaration}已过期";
 /* Course audit expired on date*/
-"COURSE.AUDIT.EXPIRED_ON" = "Course access expired on {expiry_date}";
+"COURSE.AUDIT.EXPIRED_ON" = "课程访问时间在{expiry_date}前已过期";
 /* Course audit expiry in n number of days*/
-"COURSE.AUDIT.DAYS" = "{days} days";
+"COURSE.AUDIT.DAYS" = "{days}天";
 /* 1 hour remaining in course audit expiry*/
-"COURSE_AUDIT_REMAINING_HOURS##{one}" = "{hours} hour";
 /* More than 1 hours remaining in course audit expiry*/
-"COURSE_AUDIT_REMAINING_HOURS##{other}" = "{hours} hours";
+"COURSE_AUDIT_REMAINING_HOURS##{other}" = "{hours}小时";
 /* 1 minutes remaining in course audit expiry*/
-"COURSE_AUDIT_REMAINING_MINUTES##{one}" = "{minutes} minute";
 /* More than 1 minutes remaining in course audit expiry*/
-"COURSE_AUDIT_REMAINING_MINUTES##{other}" = "{minutes} minutes";
+"COURSE_AUDIT_REMAINING_MINUTES##{other}" = "{minutes}分钟";
 /* 1 second remaining in course audit expiry*/
-"COURSE_AUDIT_REMAINING_SECONDS##{one}" = "{seconds} second";
 /* More than 1 seconds remaining in course audit expiry*/
-"COURSE_AUDIT_REMAINING_SECONDS##{other}" = "{seconds} seconds";
+"COURSE_AUDIT_REMAINING_SECONDS##{other}" = "{seconds}秒";
 /*Error meessage on course content screen if course audit expires*/
-"COURSE_AUDIT_EXPIRED_ERROR_MESSAGE" = "Your access to this course has expired";
+"COURSE_AUDIT_EXPIRED_ERROR_MESSAGE" = "您访问本课程的权限已过期";
 /* Title text for the Announcements section within the course dashboard */
-"DASHBOARD.COURSE_ANNOUNCEMENTS"="课程公告";
+"DASHBOARD.COURSE_ANNOUNCEMENTS"="公告";
 /* Text describing the Announcements section within the course dashboard */
 "DASHBOARD.COURSE_ANNOUNCEMENTS_DETAIL"="及时了解最新动态";
 /* Title text for the Courseware section of the course dashboard */
@@ -420,19 +413,19 @@
 /*Title for bulk download view when in new or partial state */
 "DOWNLOAD_TO_DEVICE_TITLE" = "下载至设备中";
 /*Discover in left drawer(used for courses and programs discovery)*/
-"DISCOVER"="发现";
+"DISCOVER"="发现课程";
 /*Title for the programs in tabbar and navigation bar*/
 "PROGRAMS"="学习计划";
 /*Debug option title in tabbar */
 "DEBUG"="排除故障";
 /* Error message shown when email address is not properly formatted */
-"ERROR_MESSAGE.INVALID_EMAIL_FORMAT"="请确保您的电子邮件地址格式正确，再重试。";
+"ERROR_MESSAGE.INVALID_EMAIL_FORMAT"="请确保您的邮箱格式正确，并重试。";
 /* Alert message shown when user tries to send an email, but email isn't setup */
 "EMAIL_ACCOUNT_NOT_SET_UP_MESSAGE"="您似乎没有设置邮箱客户端。";
 /* Alert dialog title shown when user tries to send an email, but email isn't setup */
 "EMAIL_ACCOUNT_NOT_SET_UP_TITLE"="无法发送邮件";
 /* Placeholder text for email address entry field */
-"EMAIL_ADDRESS_PROMPT"="电子邮件地址";
+"EMAIL_ADDRESS_PROMPT"="邮箱";
 /* Text displayed when no results are found in the search */
 "EMPTY_RESULTSET" = "未找到“{search_query}”。请尝试其他搜索词或选择一个讨论类别以浏览。";
 /* Prompt shown to users on the course list encouraging them to find new courses */
@@ -442,13 +435,13 @@
 /* Error message when user is not enrolled to any course and course discovery is also disabled.*/
 "ENROLLMENT_LIST.NO_ENROLLMENT" = "您还没有加入任何课程。";
 /* Prompt indicating user needs to enter an email address */
-"ENTER_EMAIL"="请输入您的用户名或邮箱地址并重试。";
+"ENTER_EMAIL"="请输入您的用户名或邮箱并重试。";
 /* Prompt indicating user needs to enter a password */
 "ENTER_PASSWORD"="请输入您的密码重试。";
 /* Text used when the post is visible to everyone */
 "EVERYONE"="每个人";
 /* Message when user attempts to register an account using an external service like Facebook or Google, but they already have an account linked to that service */
-"EXTERNAL_REGISTRATION_BECAME_LOGIN" = "您已用您的{service}经建立好一个{platform_name}账号。您已经用此帐号登录。";
+"EXTERNAL_REGISTRATION_BECAME_LOGIN" = "您已用您的{service}经建立好一个{platform_name}账号。您已经用此账号登录。";
 /* Endorsed text */
 "ENDORSED" = "已认可";
 /* Facebook login method */
@@ -480,9 +473,9 @@
 /* Google login method */
 "GOOGLE"="Google";
 /* Overlay message shown when third party login fails because the user's account isn't linked. {service} is a third party login service like "Facebook". {platform_name} is the name of the service like "edX". {destination_name} is the name of service's web destination like "edx.org" */
-"SERVICE_ACCOUNT_NOT_ASSOCIATED_MESSAGE"="请确认您的{service}帐户与您{destination_name}上的{platform_name}账户匹配。";
+"SERVICE_ACCOUNT_NOT_ASSOCIATED_MESSAGE"="请确认您的{service}账号与您{destination_name}上的{platform_name}账号匹配。";
 /* Title of overlay message shown when login through an external service fails because the user's account isn't linked. For example, "Google account not associated with edX account" */
-"SERVICE_ACCOUNT_NOT_ASSOCIATED_TITLE"="{service}帐户与{platform_name}帐户未关联";
+"SERVICE_ACCOUNT_NOT_ASSOCIATED_TITLE"="{service}账号与{platform_name}账号未关联";
 /* Indicator for course content that is marked as having a graded component */
 "GRADED" = "已批阅";
 /* Warning shown to indicate that the user is in a section of graded content. */
@@ -490,9 +483,9 @@
 /* Message shown when there are no handouts for a course */
 "HANDOUTS_UNAVAILABLE"="本课程现在尚无任何讲义。";
 /* Overlay error shown when logging in with an invalid email address */
-"INVALID_EMAIL_MESSAGE"="请确保您的电子邮件地址格式正确，再重试。";
+"INVALID_EMAIL_MESSAGE"="请确保您的邮箱格式正确，并重试。";
 /* Overlay error shown when logging in with an invalid username or password */
-"INVALID_USERNAME_PASSWORD"="请确保输入正确的户名/邮箱与密码，再重试。";
+"INVALID_USERNAME_PASSWORD"="请确保输入正确的用户名/邮箱与密码，再重试。";
 /* Alert dialog text asking whether it's okay to download large videos */
 "LARGE_DOWNLOAD_MESSAGE"="所选中视频大于1GB。是否要下载这些视频 ？";
 /* Alert dialog title when asking whether it's okay to download large videos */
@@ -502,7 +495,7 @@
 /* Prompt leading user to create account screen */
 "LOGIN_SPLASH_SIGN_UP"="注册并开始学习";
 /* Prompt leading user to sign in screen */
-"LOGIN_SPLASH_SIGN_IN"="已有账户？登录";
+"LOGIN_SPLASH_SIGN_IN"="已有账号？登录";
 /* Button title to log out the current user */
 "LOGOUT"="退出";
 /* Option to sort discussion post list by most activity */
@@ -524,9 +517,9 @@
 /* Title of alert dialog shown when attempting an action without an internet connection */
 "NETWORK_NOT_AVAILABLE_TITLE"="连接错误";
 /* Button title for moving to the next block in the course */
-"NEXT" = "下一步";
+"NEXT" = "下一个";
 /* Button title for moving to the next unit in the course */
-"NEXT_UNIT" = "下一单元";
+"NEXT_UNIT" = "下一个";
 /* Message shown when tapping on enroll courses when in app course enrollment is disabled */
 "NO_ENROLLMENT_INTERSTITIAL_BOTTOM_LABEL" = "在此期间， 您可以通过我们的 Web 页面加入课程。您需要登录，加入某个课程，然后在完成之后回到这个应用。";
 /* Message shown when tapping on enroll courses when in app course enrollment is disabled */
@@ -536,7 +529,7 @@
 /* Message shown to indicate video transcript support has not yet been implemented */
 "NO_TRANSCRIPT" = "该视频字幕不可用。";
 /* Message shown when user attempts to download a video over cellular data, but has chosen to only allow video downloads over wifi */
-"NO_WIFI_MESSAGE" = "当前下载设置只允许在 WiFi 环境下下载。\n请连接到一个 WiFi 网络或者更改下载设置。";
+"NO_WIFI_MESSAGE" = "当前下载设置只允许在 Wi-Fi 环境下下载。\n请连接到一个 Wi-Fi 网络或者改变下载设置。";
 /* Message shown on videos screen when user has not downloaded any videos */
 "NO_VIDEOS_DOWNLOADED" = "您还未下载任何视频。";
 /* Text shown when examining part of a course in video only mode, but that part of the course has no videos. {mode_switcher} will be replaced with a name or icon for the mode switch button */
@@ -582,15 +575,15 @@
 /* Post question button title in Create a new post */
 "POST_QUESTION"="发布问题";
 /* Button title for moving to the previous block in the course */
-"PREVIOUS" = "上一步";
+"PREVIOUS" = "上一个";
 /* Button title for moving to the next unit in the course */
-"PREVIOUS_UNIT" = "前一单元";
+"PREVIOUS_UNIT" = "上一个";
 /* A10y hint for the change picture button. */
-"PROFILE.CHANGE_PICTURE_ACCESSIBILITY_HINT" = "上传新的档案图片。";
+"PROFILE.CHANGE_PICTURE_ACCESSIBILITY_HINT" = "上传新的头像图片。";
 /* Change picture button text on edit profile screen. */
 "PROFILE.CHANGE_PICTURE_BUTTON" = "更改";
 /* Text for use a photo already in library for user profile photo alert */
-"PROFILE.CHOOSE_EXISTING" = "选择照片";
+"PROFILE.CHOOSE_EXISTING" = "选择图片";
 /* Instruction title text on the photo crop view. */
 "PROFILE.CROP_AND_RESIZE_PICTURE" = "裁剪和调整大小";
 /* 'Current Language' label on top row of edit language in user's profile */
@@ -598,33 +591,33 @@
 /* 'Current Location' label on top row of edit country in user's profile */
 "PROFILE.CURRENT_LOCATION_LABEL" = "当前位置：";
 /* Profile edit view title */
-"PROFILE.EDIT_TITLE" = "编辑档案";
+"PROFILE.EDIT_TITLE" = "编辑资料";
 /* Accessibility label for edit profile button */
-"PROFILE.EDIT_ACCESSIBILITY" = "编辑档案";
+"PROFILE.EDIT_ACCESSIBILITY" = "编辑资料";
 /* Accessibility hint for country field in user profile */
 "PROFILE.COUNTRY_ACCESSIBILITY_HINT" = "您的国家/地区";
 /* Accessibility hint for language field in user profile */
 "PROFILE.LANGUAGE_ACCESSIBILITY_HINT" = "您的首选语言";
 /* Shown when viewing someone else's limied profile. */
-"PROFILE.LEARNER_HAS_LIMITED_PROFILE" = "{platform_name}学员当前正在分享受限的档案。";
+"PROFILE.LEARNER_HAS_LIMITED_PROFILE" = "{platform_name}学员当前仅分享部分资料。";
 /* User has not filled in an "about me" on their profile */
 "PROFILE.NO_BIO" = "没有提供“关于我”的信息。";
 /* Text in the picture taker alert to delete the existing image */
 "PROFILE.REMOVE_IMAGE" = "移除";
 /* Profile screen text indicating that the user is currently only displaying a limited profile */
-"PROFILE.SHOWING_LIMITED" = "您当前正在分享受限的档案";
+"PROFILE.SHOWING_LIMITED" = "您当前仅分享部分资料";
 /* Text for take picture for user profile photo alert */
 "PROFILE.TAKE_PICTURE" = "拍照";
 /* Descriptive text for why a limited profile is shown for users under 13, first line */
-"PROFILE.AGE_LIMIT" = "您必须年满13岁才能分享完整档案。";
+"PROFILE.AGE_LIMIT" = "您必须年满13岁才能分享完整的用户资料。";
 /* Error retrieving a profile */
-"PROFILE.UNABLE_TO_GET" = "我们无法加载此档案。";
+"PROFILE.UNABLE_TO_GET" = "我们无法加载此资料。";
 /* Error message when removing profile picture */
-"PROFILE.UNABLE_TO_REMOVE_PHOTO" = "我们无法移除您的照片。";
+"PROFILE.UNABLE_TO_REMOVE_PHOTO" = "我们无法移除您的图片。";
 /* Error saving user profile, for field `field_name` */
 "PROFILE.UNABLE_TO_SEND" = "我们无法更新您的{field_name}。";
 /* Error message when setting a new profile picture */
-"PROFILE.UNABLE_TO_SET_PHOTO" = "我们无法更新您的照片。";
+"PROFILE.UNABLE_TO_SET_PHOTO" = "我们无法更新您的图片。";
 /*Pipe sign using for formatting in discussion posts*/
 "PIPE_SIGN" = "我";
 /* Question used in the segmented control Creating a new post */
@@ -638,11 +631,11 @@
 /* Button title when responses are closed for a thread */
 "RESPONSES_CLOSED"="已关闭此发帖的回复";
 /* Create account agreement. Followed by list of agreement names like "End User License Agreement" */
-"REGISTRATION_AGREEMENT_MESSAGE"="创建账户即表示您同意此";
+"REGISTRATION_AGREEMENT_MESSAGE"="创建账号即表示您同意此";
 /* Button text allowing user create an account */
-"REGISTRATION_CREATE_MY_ACCOUNT"="创建我的账户";
+"REGISTRATION_CREATE_MY_ACCOUNT"="创建我的账号";
 /* Text shown while waiting for registration request */
-"REGISTRATION_CREATING_ACCOUNT"="创建账户...";
+"REGISTRATION_CREATING_ACCOUNT"="创建账号...";
 /* Error prompt shown during registration to indicate an empty field. {field_name} is the name of a registration field like 'password' */
 "REGISTRATION_FIELD_EMPTY_ERROR"="请输入您的{field_name}。";
 /* Error prompt shown during registration to indicate a field missing a selection. {field_name} is the name of a registration field like 'year of birth' */
@@ -669,7 +662,7 @@
 /* Alert dialog title prompting user to enter an email address to reset their password */
 "RESET_PASSWORD_TITLE"="重置密码";
 /* Alert dialog content prompting user to enter an email address to reset their password */
-"RESET_PASSWORD_POPUP_TEXT"="请输入您帐号的邮件地址，我们将发送重置密码的邮件。";
+"RESET_PASSWORD_POPUP_TEXT"="请输入您账号的邮件地址，我们将发送重置密码的邮件。";
 /* Alert dialog title confirming to the user that a reset password was sent to them */
 "RESET_PASSWORD_CONFIRMATION_TITLE"="已发送密码重置邮件";
 /* Alert dialog content confirming to the user that a reset password was sent to them */
@@ -708,7 +701,7 @@
 /* Label for posts pinned by Staff */
 "STAFF"="员工";
 /* Info message text on the startup screen */
-"STARTUP.INFO_MESSAGE_TEXT"="价值数十万的MBA课程体系，最低月均99.84元全年畅学！";
+"STARTUP.INFO_MESSAGE_TEXT"="世界顶级大学的免费课程，应有尽有！";
 /*Placeholder text for search textfield on the startup screen*/
 "STARTUP.SEARCH_PLACEHOLDER_TEXT"="搜索课程";
 /*Log In button title on the startup screen*/
@@ -760,15 +753,15 @@
 /* Placeholder title for course content with no title */
 "UNTITLED"="无标题";
 /* Title text for login field */
-"USERNAME_TITLE_TEXT" = "用户名或邮箱地址";
+"USERNAME_TITLE_TEXT" = "用户名或邮箱";
 /*Error message when operation failed with unknow error*/
 "UNKNOWN_ERROR" = "您的操作无法完成。";
 /* Screen title showing a user's account */
-"USER_ACCOUNT"="账户";
+"USER_ACCOUNT"="账号";
 /* Button title for profile view in account*/
 "USER_ACCOUNT.PROFILE"= "个人资料";
 /* Text shown to display the current version number. Environment is a server name like "prod", "dev", stage" and may be empty. For example "Version 1.2.3 Prod" */
-"VERSION_DISPLAY" = "版本{number} {environment}";
+"VERSION_DISPLAY" = "版本 {number} {environment}";
 /* Error shown when video download fails */
 "VIDEO_CONTENT_NOT_AVAILABLE"="此视频暂时不可访问。请稍后再试。";
 /* Floating overlay text shown after deleting a video. {count} is a number of videos */
@@ -826,12 +819,13 @@
 /* Alert dialog button title to confirm an action */
 "YES"="是";
 
+
 /* 请先安装微信或者选择其他支付方式 Please install Wechat or choose other payment methods. */
 "INSTALL_WECHAT"="请先安装微信或者选择其他支付方式";
 /* 加载中... Loading… */
 "LOADING_TEXT"="加载中...";
-/* 恭喜您已成功加入EliteMBA会员 Congratulations! You’ve become an EliteMBA VIP. */
-"BECOME_ELITEMBA_VIP"="恭喜您已成功加入EliteMBA会员";
+/* 恭喜您已经成功加入英荔商学院VIP Congratulations! You’ve become an EliteMBA VIP. */
+"BECOME_ELITEMBA_VIP"="恭喜您已经成功加入英荔商学院VIP";
 /* 查询失败，请稍后重试 Failed. Please try again later. */
 "QUERY_FAILED"="查询失败，请稍后重试";
 /* 支付已取消 Payment cancelled. */
@@ -854,16 +848,18 @@
 "ELITEMBA"="商学院";
 /* 英荔商学院VIP会员 EliteMBA VIP membership */
 "ELITEMBA_VIP_MEMBER"="英荔商学院VIP会员";
-/* 开通VIP会员，可免费观看英荔商学院全部课程。 Become a VIP member and watch all EliteMBA courses for free. */
+/* 开通VIP会员，可免费观看英荔商学院全部课程。 Join VIP, view all EliteMBA courses for free. */
 "VIP_MEMBER_WATCH_FREE"="开通VIP会员，可免费观看英荔商学院全部课程。";
+/* 会员身份将在{day}天后过期 VIP membership will expire in {day} days */
+"OPNE_DAY_LEFT"="会员身份将在{day}天后过期";
+/* 会员身份已在{day}天前过期 VIP expired {day} day(s) */
+"VIP_EXPIRED_DAY"="会员身份已在{day}天前过期";
 /* 上次开通日期: Last Opened on: */
 "LAST_OPEND"="上次开通日期: ";
 /* 到期日期： Expire on: */
 "EDPIRE_ON"="到期日期：";
 /* 开通日期： Opened on: */
 "OPEND_ON"="开通日期：";
-/* 已开通{openday}天 剩余{leftday}天  Opened for {openday} day(s) {leftday} day(s) left */
-"OPNE_DAY_LEFT"="已开通{openday}天 剩余{leftday}天";
 /* 去支付 Submit Payment */
 "SUMIT_PAYMENT"="去支付";
 /* 选择支付方式 Choose payment method */
@@ -949,8 +945,6 @@
 "SEMI_ANNUAL_TEXT"="半年";
 /* 年 Semi-Annual */
 "YEAR_TEXT"="年";
-/* 会员已过期{day}天 VIP expired {day} day(s) */
-"VIP_EXPIRED_DAY"="会员已过期{day}天";
 /* 加入会员 Yes */
 "VIP_YEX"="加入会员";
 /* 只学此课 No */
