@@ -92,6 +92,15 @@ open class DateFormatting: NSObject {
         return formattedDate
     }
     
+    open class func getDateString(withFormat format: String, date: Date?) -> String? {
+        guard let date = date else { return nil }
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        let dateString = formatter.string(from: date as Date)
+        return dateString
+    }
+
     /// Format like 12:00 if same day otherwise April 11, 2013
     open class func format(asMinHourOrMonthDayYearString date: NSDate) -> String {
         let formatter = DateFormatter()

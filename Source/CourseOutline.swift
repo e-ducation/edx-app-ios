@@ -96,25 +96,24 @@ public struct CourseOutline {
                             type = .Discussion(discussionModel)
                         }
                     }
+                    validBlocks[blockID] = CourseBlock(
+                        type: type,
+                        children: children,
+                        blockID: blockID,
+                        minifiedBlockID: minifiedBlockID,
+                        name: name,
+                        dueDate: dueDate,
+                        blockCounts : blockCounts,
+                        blockURL : blockURL,
+                        webURL: webURL,
+                        format : format,
+                        multiDevice : multiDevice,
+                        graded : graded
+                    )
                 }
                 else {
                     type = .Unknown(typeName)
                 }
-                
-                validBlocks[blockID] = CourseBlock(
-                    type: type,
-                    children: children,
-                    blockID: blockID,
-                    minifiedBlockID: minifiedBlockID,
-                    name: name,
-                    dueDate: dueDate,
-                    blockCounts : blockCounts,
-                    blockURL : blockURL,
-                    webURL: webURL,
-                    format : format,
-                    multiDevice : multiDevice,
-                    graded : graded
-                )
             }
             self = CourseOutline(root: root, blocks: validBlocks)
         }

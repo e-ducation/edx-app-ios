@@ -61,6 +61,7 @@ public class CourseHandoutsViewController: OfflineSupportViewController, UIWebVi
     }
     
     private func addSubviews() {
+        self.view.backgroundColor = OEXStyles.shared().standardBackgroundColor()
         view.addSubview(webView)
     }
     

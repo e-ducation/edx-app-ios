@@ -98,8 +98,8 @@ extension OEXCourse {
             case .string where start_display_info.displayDate != nil:
                 return Strings.Course.starting(startDate: start_display_info.displayDate!)
             case .timestamp where start_display_info.date != nil:
-                let formattedStartDate = DateFormatting.format(asMonthDayString: start_display_info.date! as NSDate)
-                return Strings.Course.starting(startDate: formattedStartDate ?? "")
+                let formattedStartDate = DateFormatting.getDateString(withFormat: "yyyy-MM-dd", date: start_display_info.date! as Date)//format(asMonthDayString: start_display_info.date! as NSDate)
+                return Strings.Course.starting(startDate: formattedStartDate ?? "" )
             case .none, .timestamp, .string:
                 return Strings.Course.starting(startDate: Strings.soon)
             }

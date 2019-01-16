@@ -153,7 +153,7 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
             profileButton.accessibilityLabel = Strings.Accessibility.profileLabel
             profileView.addSubview(userProfileImageView)
             profileView.addSubview(profileButton)
-            
+            userProfileImageView.borderColor = UIColor(hexString: "#4788c7")
             profileButton.snp.makeConstraints { make in
                 make.edges.equalTo(profileView)
                 make.width.equalTo(UserProfileImageSize.width)

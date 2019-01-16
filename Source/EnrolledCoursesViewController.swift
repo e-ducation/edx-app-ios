@@ -278,7 +278,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         if !(profile.phone?.isEmpty)! {
             return
         }
-        
+
         if !judgeBindPhoneShow() {
             return
         }
@@ -286,6 +286,9 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         let alertController = UIAlertController(title: Strings.systemReminder, message: Strings.realnameRequirement, preferredStyle: .alert)
         let sureAction = UIAlertAction(title: Strings.bindPhoneText, style: .default) { [weak self](action) in
             let bindPhoneVc = TDBindPhoneViewController()
+            bindPhoneVc.bindingPhoneSuccess = { [weak self] _ in
+                self?.reloadProfileFromImageChange()
+            }
             self?.navigationController?.pushViewController(bindPhoneVc, animated: true)
         }
         let cancelAction = UIAlertAction(title: Strings.nextTime, style: .destructive) { (action) in
@@ -294,6 +297,19 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         alertController.addAction(cancelAction)
         alertController.addAction(sureAction)
         self.navigationController?.present(alertController, animated: true, completion: nil)
+    }
+
+    private func reloadProfileFromImageChange() {
+        let feed = environment.dataManager.userProfileManager.feedForCurrentUser()
+        feed.refresh()
+        feed.output.listenOnce(self, fireIfAlreadyLoaded: false) { result in
+            if let newProf = result.value {
+                print("手机绑定成功- \(newProf.phone ?? "")")
+            }
+            else {
+                self.view.makeToast(Strings.Profile.unableToGet, duration: 0.8, position: CSToastPositionCenter)
+            }
+        }
     }
 }
 

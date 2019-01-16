@@ -236,6 +236,7 @@ extension UITabBarController {
         //  animate the tabBar
         UIView.animate(withDuration: duration) {[weak self] in
             self?.tabBar.frame = frame.offsetBy(dx: 0, dy: offsetY)
+            self?.tabBar.isHidden = true
         }
     }
     
