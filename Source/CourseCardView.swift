@@ -89,17 +89,18 @@ class CourseCardView: UIView, UIGestureRecognizerDelegate {
         dateLabel.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: UILayoutConstraintAxis.horizontal)
         dateLabel.setContentCompressionResistancePriority(UILayoutPriorityDefaultHigh, for: UILayoutConstraintAxis.horizontal)
         
-        container.snp.makeConstraints { make in
-            make.leading.equalTo(self)
-            make.trailing.equalTo(self).priority(.required)
-            make.bottom.equalTo(self).offset(-OEXStyles.dividerSize())
-        }
         coverImageView.snp.makeConstraints { make in
             make.top.equalTo(self)
             make.leading.equalTo(self)
             make.trailing.equalTo(self)
             make.height.equalTo(coverImageView.snp.width).multipliedBy(coverImageAspectRatio).priority(.low)
-            make.bottom.equalTo(self)
+//            make.bottom.equalTo(self)
+        }
+        container.snp.makeConstraints { make in
+            make.leading.equalTo(self)
+            make.trailing.equalTo(self).priority(.required)
+            make.bottom.equalTo(self).offset(-OEXStyles.dividerSize())
+            make.top.equalTo(coverImageView.snp.bottom)
         }
         dateLabel.snp.makeConstraints { make in
             make.leading.equalTo(container).offset(StandardHorizontalMargin)
@@ -236,7 +237,7 @@ extension CourseCardView {
         let screenHeight = UIScreen.main.bounds.size.height
         let halfScreenHeight = (screenHeight / 2.0) - (leftMargin + rightMargin)
         let ratioedHeight = screenWidth * defaultCoverImageAspectRatio
-        height = CGFloat(Int(halfScreenHeight > ratioedHeight ? ratioedHeight : halfScreenHeight))
+        height = CGFloat(Int(halfScreenHeight > ratioedHeight ? ratioedHeight : halfScreenHeight)) + 48.0
         return height
     }
 }

@@ -9,6 +9,8 @@
 private let margin : CGFloat = 20
 
 import edXCore
+import AVFoundation
+import AVKit
 
 class CourseCatalogDetailView : UIView, UIWebViewDelegate {
 
@@ -45,7 +47,7 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
     }
     
     init(frame: CGRect, environment: Environment) {
-        self.insetContainer = TZStackView(arrangedSubviews: [blurbLabel, actionButton, recomendView, fieldsList])
+        self.insetContainer = TZStackView(arrangedSubviews: [blurbLabel, actionButton, fieldsList])
         self.container = TZStackView(arrangedSubviews: [courseCard, insetContainer])
         self.environment = environment
         
@@ -61,6 +63,8 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
     func setup() {
         addSubview(descriptionView)
         descriptionView.scrollView.addSubview(container)
+        descriptionView.scrollView.addSubview(recomendView)
+
         descriptionView.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
@@ -73,13 +77,20 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
         courseCard.snp.makeConstraints { make in
             make.height.equalTo(CourseCardView.cardHeight())
         }
-    
+
         container.spacing = margin
         for stack in [container, fieldsList, insetContainer] {
             stack.axis = .vertical
             stack.alignment = .fill
         }
         
+        recomendView.snp.makeConstraints { make in
+            make.top.equalTo(container.snp.bottom)
+            make.leading.equalTo(descriptionView)
+            make.trailing.equalTo(descriptionView)
+            make.height.equalTo(60)
+        }
+
         insetContainer.layoutMarginsRelativeArrangement = true
         insetContainer.layoutMargins = UIEdgeInsetsMake(0, margin, 0, margin)
         insetContainer.spacing = margin
@@ -90,18 +101,10 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
         
         blurbLabel.numberOfLines = 0
         
-        descriptionView.scrollView.addSubview(recomendView)
-        recomendView.snp.makeConstraints { make in
-            make.top.equalTo(container.snp.bottom)
-            make.leading.equalTo(descriptionView)
-            make.trailing.equalTo(descriptionView)
-            make.height.equalTo(60)
-        }
-        
         actionButton.oex_addAction({[weak self] _ in
             self?.actionButton.showProgress = true
             self?.action?( {[weak self] _ in
-                            self?.actionButton.showProgress = false
+                self?.actionButton.showProgress = false
             } )
             }, for: .touchUpInside)
         
@@ -165,8 +168,8 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
                 self.descriptionView.loadHTMLString("", baseURL: environment.networkManager.baseURL)
                 return
             }
-            
-            self.descriptionView.loadHTMLString(html, baseURL: environment.networkManager.baseURL)
+            let h = html + "<link rel=\"stylesheet\" type=\"text/css\" href=\"//oss.elitemba.cn/web_static/css/overview.css\" /><script src=\"//oss.elitemba.cn/web_static/js/overview.js\"></script>"
+            self.descriptionView.loadHTMLString(h, baseURL: environment.networkManager.baseURL)
         }
     }
     
@@ -200,7 +203,15 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if let URL = request.url, navigationType != .other {
-            UIApplication.shared.openURL(URL)
+            if URL.absoluteString.contains(find: ".mp4") {
+                let vc = AVPlayerViewController()
+                vc.player = AVPlayer.init(url: URL)
+                vc.player?.play()
+                UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+            }
+            else {
+                UIApplication.shared.openURL(URL)
+            }
             return false
         }
         return true
@@ -208,7 +219,7 @@ class CourseCatalogDetailView : UIView, UIWebViewDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.topContentInsets.currentInsets = UIEdgeInsets(top: self.container.frame.height + StandardVerticalMargin + 60, left: 0, bottom: 0, right: 0)
+        self.topContentInsets.currentInsets = UIEdgeInsets(top: self.container.frame.height + StandardVerticalMargin + 38, left: 0, bottom: 0, right: 0)
     }
     
     var actionText: String? {
@@ -263,21 +274,24 @@ extension CourseCatalogDetailView {
                 }
             }, for: .touchUpInside)
         
-        if course.recommended_package.keys.contains("price") {
-            let price = course.recommended_package["price"] as! String
-            let month = course.recommended_package["month"] as! Int
-            var timeStr: String = Strings.yearText
-            if month == 6 {
-                timeStr = Strings.semiAnnualText
-            }
-            else if month == 3 {
-                timeStr = Strings.monthText
-            }
-            else if month == 1 {
-                timeStr = Strings.monthText
-            }
-            self.recomendView.recomendLabel.text = "\(Strings.subscribeVip) ¥\(price)/\(timeStr)"
-        }
+//        if course.recommended_package.keys.contains("price") {
+//            let price = course.recommended_package["price"] as! String
+//            let month = course.recommended_package["month"] as! Int
+//            var timeStr: String = Strings.yearText
+//            if month == 6 {
+//                timeStr = Strings.semiAnnualText
+//            }
+//            else if month == 3 {
+//                timeStr = Strings.monthText
+//            }
+//            else if month == 1 {
+//                timeStr = Strings.monthText
+//            }
+//            self.recomendView.recomendLabel.text = "\(Strings.subscribeVip) ¥\(price)/\(timeStr)"
+//        }
+
+        self.recomendView.recomendLabel.lineBreakMode = Strings.mbaOnlinePrice == "月均99.84元，畅享在线MBA体系化学习！" ? .byCharWrapping : .byWordWrapping
+        self.recomendView.recomendLabel.text = Strings.mbaOnlinePrice
     }
 }
 

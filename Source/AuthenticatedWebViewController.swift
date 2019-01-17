@@ -57,6 +57,7 @@ private class WKWebViewContentController : WebContentController {
     }
     
     var scrollView : UIScrollView {
+        webView.scrollView.showsHorizontalScrollIndicator = false
         return webView.scrollView
     }
     

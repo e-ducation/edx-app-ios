@@ -46,6 +46,7 @@ class CourseCatalogViewController: UIViewController, CoursesTableViewControllerD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         environment.analytics.trackScreen(withName: OEXAnalyticsScreenFindCourses)
+        self.navigationItem.title = Strings.findCourses
     }
 
     private func setupAndLoadCourseCatalog() {
