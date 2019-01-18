@@ -631,7 +631,7 @@
 /* Error message when removing profile picture */
 "PROFILE.UNABLE_TO_REMOVE_PHOTO" = "We weren't able to remove your photo.";
 /* Error saving user profile, for field `field_name` */
-"PROFILE.UNABLE_TO_SEND" = "We weren't able to update your {field_name}.";
+"PROFILE.UNABLE_TO_SEND" = "We weren't able to update your profile.";//{field_name}
 /* Error message when setting a new profile picture */
 "PROFILE.UNABLE_TO_SET_PHOTO" = "We weren't able to update your photo.";
 /*Pipe sign using for formatting in discussion posts*/
@@ -993,3 +993,5 @@
 "CLOSED_CAPTIONS" = "Closed Captions";
 /*播放速度 Video Speed*/
 "VIDEO_SPEED" = "Video Speed";
+/* 月均99.84元，畅享在线MBA体系化学习！Enjoy MBA-like curriculum online with only ¥99.84/month! */
+"MBA_ONLINE_PRICE" = "Enjoy MBA-like curriculum online with only ¥99.84/month!";

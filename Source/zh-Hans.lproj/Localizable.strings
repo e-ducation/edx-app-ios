@@ -114,7 +114,7 @@
 /*Accessibility text for followed discussion thread(Posts screen)*/
 "ACCESSIBILITY.DISCUSSION_FOLLOWED" = "已关注";
 /* Accessibility text for unread discussion comments count (Posts screen) - {count} is a number of unread comments */
-"ACCESSIBILITY.DISCUSSION_UNREAD_REPLIES"="{count} 未读回复";
+"ACCESSIBILITY.DISCUSSION_UNREAD_REPLIES"="{count}未读回复";
 /*Accessibility text for unread discussion thread (Posts screen)*/
 "ACCESSIBILITY.DISCUSSION_UNREAD_THREAD" = "未读讨论话题";
 /*Accessibility text for read discussion thread (Posts screen)*/
@@ -280,7 +280,7 @@
 /* Button title allowing user to enroll in a course */
 "COURSE_DETAIL.ENROLL_NOW" = "现在加入";
 /* Button title allowing user to view a course from the course's catalog detail page */
-"COURSE_DETAIL.VIEW_COURSE" = "发现课程";
+"COURSE_DETAIL.VIEW_COURSE" = "查看课程";
 /* Button title describing that the course is invitation only */
 "COURSE_DETAIL.INVITATION_ONLY" = "仅限受邀";
 /* Message shown when there is no course content */
@@ -431,7 +431,7 @@
 /* Prompt shown to users on the course list encouraging them to find new courses */
 "ENROLLMENT_LIST.FIND_COURSES_PROMPT" = "寻找新的挑战？";
 /* Button title opening course catalog */
-"ENROLLMENT_LIST.FIND_COURSES" = "查找课程";
+"ENROLLMENT_LIST.FIND_COURSES" = "发现课程";
 /* Error message when user is not enrolled to any course and course discovery is also disabled.*/
 "ENROLLMENT_LIST.NO_ENROLLMENT" = "您还没有加入任何课程。";
 /* Prompt indicating user needs to enter an email address */
@@ -449,7 +449,7 @@
 /* Overlay message shown when facebook login fails because the user's account isn't linked */
 "FAILED_TO_LOAD_TOPICS"="下载主题失败";
 /* Title of find courses screen */
-"FIND_COURSES"="查找课程";
+"FIND_COURSES"="发现课程";
 /* No available courses on find courses section */
 "FIND_COURSES_NO_AVAILABLE_COURSES"="无课程";
 /* Overlay message shown when enrolling in a course fails because the user is already in the course */
@@ -529,7 +529,7 @@
 /* Message shown to indicate video transcript support has not yet been implemented */
 "NO_TRANSCRIPT" = "该视频字幕不可用。";
 /* Message shown when user attempts to download a video over cellular data, but has chosen to only allow video downloads over wifi */
-"NO_WIFI_MESSAGE" = "当前下载设置只允许在 Wi-Fi 环境下下载。\n请连接到一个 Wi-Fi 网络或者改变下载设置。";
+"NO_WIFI_MESSAGE" = "当前下载设置只允许在Wi-Fi环境下下载。\n请连接到一个Wi-Fi网络或者更改下载设置。";
 /* Message shown on videos screen when user has not downloaded any videos */
 "NO_VIDEOS_DOWNLOADED" = "您还未下载任何视频。";
 /* Text shown when examining part of a course in video only mode, but that part of the course has no videos. {mode_switcher} will be replaced with a name or icon for the mode switch button */
@@ -615,11 +615,11 @@
 /* Error message when removing profile picture */
 "PROFILE.UNABLE_TO_REMOVE_PHOTO" = "我们无法移除您的图片。";
 /* Error saving user profile, for field `field_name` */
-"PROFILE.UNABLE_TO_SEND" = "我们无法更新您的{field_name}。";
+"PROFILE.UNABLE_TO_SEND" = "我们无法更新您的资料。";//{field_name}
 /* Error message when setting a new profile picture */
 "PROFILE.UNABLE_TO_SET_PHOTO" = "我们无法更新您的图片。";
 /*Pipe sign using for formatting in discussion posts*/
-"PIPE_SIGN" = "我";
+"PIPE_SIGN" = "|";
 /* Question used in the segmented control Creating a new post */
 "QUESTION"="问题";
 /* Option to sort discussion post list by recent activity */
@@ -701,7 +701,7 @@
 /* Label for posts pinned by Staff */
 "STAFF"="员工";
 /* Info message text on the startup screen */
-"STARTUP.INFO_MESSAGE_TEXT"="世界顶级大学的免费课程，应有尽有！";
+"STARTUP.INFO_MESSAGE_TEXT"="价值数十万的MBA课程体系，最低月均99.84元全年畅学！";
 /*Placeholder text for search textfield on the startup screen*/
 "STARTUP.SEARCH_PLACEHOLDER_TEXT"="搜索课程";
 /*Log In button title on the startup screen*/
@@ -971,3 +971,5 @@
 "CLOSED_CAPTIONS" = "字幕";
 /*播放速度 Video Speed*/
 "VIDEO_SPEED" = "播放速度";
+/* 月均99.84元，畅享在线MBA体系化学习！Enjoy MBA-like curriculum online with only ¥99.84/month! */
+"MBA_ONLINE_PRICE" = "月均99.84元，畅享在线MBA体系化学习！";

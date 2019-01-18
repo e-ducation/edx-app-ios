@@ -78,6 +78,7 @@ class JSONFormViewController<T>: UIViewController {
         tableView.dataSource = dataSource
         tableView.delegate = dataSource
         tableView.cellLayoutMarginsFollowReadableWidth = false
+        tableView.tableFooterView = UIView()
         makeAndInstallHeader()
         addSubViews()
     }
