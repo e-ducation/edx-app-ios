@@ -36,7 +36,7 @@
 - (void)configView {
     self.bgImageView = [[UIImageView alloc] init];
     self.bgImageView.image = [UIImage imageNamed:@"vip_bg_image"];
-    self.bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.bgImageView.contentMode = UIViewContentModeScaleToFill;
     [self addSubview:self.bgImageView];
     
     self.bgButton = [[UIButton alloc] init];
@@ -122,7 +122,7 @@
         type = 1;
     }
     else {
-        if (messageModel.start_at.length > 0) {
+        if (messageModel.last_start_at.length > 0) {
             type = 2;
         }
     }
@@ -138,7 +138,7 @@
             break;
         default:
             [self setDateStr:[messageModel.vip_expired_days stringValue] pastStr:0 type:2];
-            self.startLabel.text = [NSString stringWithFormat:@"%@%@",[Strings lastOpend],messageModel.start_at];
+            self.startLabel.text = [NSString stringWithFormat:@"%@%@",[Strings lastOpend],messageModel.last_start_at];
             self.endLabel.text = [NSString stringWithFormat:@"%@%@",[Strings edpireOn],messageModel.expired_at];
             break;
     }
@@ -151,7 +151,7 @@
 - (void)setDateStr:(NSString *)validStr pastStr:(NSString *)pastStr type:(NSInteger)type {
     NSString *str;
     if (type == 1) {
-        str = [Strings opneDayLeftWithOpenday:pastStr leftday:validStr];
+        str = [Strings opneDayLeftWithDay:validStr];
     }
     else {
       str = [Strings vipExpiredDayWithDay:validStr];
@@ -160,7 +160,7 @@
     NSRange range = [str rangeOfString:validStr];
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:str];
     [attStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:24] range:range];
-    [attStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#fa7f2b"] range:range];
+    [attStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:type == 1 ? @"#4788c7" : @"#fa7f2b"] range:range];
     self.remindLabel.attributedText = attStr;
 }
 

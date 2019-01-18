@@ -33,6 +33,8 @@ class TDVipRecomendView: UIView {
         recomendLabel.text = "\(Strings.subscribeVip) ¥1198/年"
         recomendLabel.font = UIFont(name: "PingFangSC-Regular", size: 14)
         recomendLabel.textColor = UIColor(hexString: "#346ca3")
+        recomendLabel.numberOfLines = 0
+        recomendLabel.lineBreakMode = .byWordWrapping
         bgView.addSubview(recomendLabel)
         
         checkButton.setTitle(Strings.detailsText, for: .normal)

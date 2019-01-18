@@ -124,7 +124,7 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         self.shareButton.alpha = 0.0;
     } completion:^(BOOL finished) {
         self.shareButton.hidden = YES;
@@ -132,7 +132,7 @@
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         self.shareButton.alpha = 1.0;
     } completion:^(BOOL finished) {
         self.shareButton.hidden = NO;

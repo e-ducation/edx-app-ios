@@ -257,12 +257,24 @@
             return YES;
         }
     }
+    else if ([textField isEqual:self.phoneView.phoneText]) {
+        NSString *phonstr = textField.text;
+        if (range.length == 0) {
+            phonstr = [phonstr stringByAppendingString:string];
+        }
+        else {
+            phonstr = [phonstr substringToIndex:range.location];
+        }
+        BOOL enable = [self isValidateMobile:phonstr];
+        [self sendButtonUserEnable:enable];
+    }
     return YES;
 }
 
 - (void)sendButtonUserEnable:(BOOL)enable {
     self.phoneView.sendButton.userInteractionEnabled = enable;
     self.phoneView.sendButton.backgroundColor = [UIColor colorWithHexString:enable ? @"#0692e1" : @"#d3d3d3"];
+    [self.phoneView.sendButton setTitle:[Strings getVerification] forState:UIControlStateNormal];
 }
 
 - (void)handinButtonUserEnable:(BOOL)enable {

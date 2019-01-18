@@ -213,9 +213,9 @@ class UserProfileEditViewController: UIViewController, UITableViewDelegate, UITa
     
     private func updateProfile() {
         if profile.hasUpdates {
-            let fieldName = profile.updateDictionary.first!.0
-            let field = fields.filter{$0.name == fieldName}[0]
-            let fieldDescription = field.title!
+//            let fieldName = profile.updateDictionary.first!.0
+//            let field = fields.filter{$0.name == fieldName}[0]
+//            let fieldDescription = field.title!
             
             view.addSubview(spinner)
             spinner.snp.makeConstraints { make in
@@ -228,7 +228,7 @@ class UserProfileEditViewController: UIViewController, UITableViewDelegate, UITa
                     self?.profile = newProf
                     self?.reloadViews()
                 } else {
-                    let message = Strings.Profile.unableToSend(fieldName: fieldDescription)
+                    let message = Strings.Profile.unableToSend//Strings.Profile.unableToSend(fieldName: fieldDescription)
                     self?.showToast(message: message)
                 }
             }
