@@ -37,9 +37,11 @@
     
     NSDate *startDate = [DateFormatting dateWithServerString:info[@"start_at"]];
     NSDate *endDate = [DateFormatting dateWithServerString:info[@"expired_at"]];
+    NSDate *lastDate = [DateFormatting dateWithServerString:info[@"last_start_at"]];
     
     self.start_at = [self getStringFromDate:startDate];
     self.expired_at = [self getStringFromDate:endDate];
+    self.last_start_at = [self getStringFromDate:lastDate];
 }
 
 - (NSString *)getStringFromDate:(NSDate *)date {

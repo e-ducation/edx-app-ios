@@ -250,6 +250,9 @@ class UserProfileView : UIView, UIScrollViewDelegate {
     }
     
     @objc func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.avatarImage.frame.maxY == 0.0 {
+            return
+        }
         UIView.animate(withDuration: 0.25) {
             self.header.isHidden = scrollView.contentOffset.y < self.avatarImage.frame.maxY
         }

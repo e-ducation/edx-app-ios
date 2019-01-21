@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSNumber *vip_expired_days; //过期天数
 @property (nonatomic,strong) NSNumber *vip_pass_days; //过去天数
 @property (nonatomic,strong) NSNumber *vip_remain_days; //剩余天数
+@property (nonatomic,strong) NSString *last_start_at;//上次开通时间
 
 @end
 
