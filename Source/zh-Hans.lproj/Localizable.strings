@@ -176,7 +176,7 @@
 /* Tab allowing the user to see all videos */
 "ALL_VIDEOS"="所有视频";
 /*Subtitle for bulk download view when in downloading state */
-"ALL_DOWNLOADING_VIDEOS_SUB_TITLE" = "剩余{remaining_videos_count}个视频，总共{remaining_videos_size}MB";
+"ALL_DOWNLOADING_VIDEOS_SUB_TITLE" = "剩余{remaining_videos_count}个视频";//，总共{remaining_videos_size}MB
 /*Title for bulk download view when in downloaded state */
 "ALL_VIDEOS_DOWNLOADED_TITLE" = "已下载所有视频";
 /* Message shown when there are no announcements for a course */
@@ -213,7 +213,7 @@
 "AUTH_PROVIDER_ERROR" = "此{auth_provider}账号未与任何{platform_name}账号相关联，请先注册。";
 /*Subtitle for bulk download view when in new, partial or downloaded state - {count} is single video*/
 /*Subtitle for bulk download view when in new, partial or downloaded state - {count} is number of videos*/
-"BULK_DOWNLOAD_VIDEOS_SUB_TITLE##{other}" = "{count}个视频，总共{videos_size}MB";
+"BULK_DOWNLOAD_VIDEOS_SUB_TITLE##{other}" = "{count}个视频";//，总共{videos_size}MB
 /* Prefix used with Staff of Community TA on the posts screen */
 "BY_AUTHOR" = "{author_name}作";
 /* Prefix used with Staff of Community TA on the posts screen */
@@ -427,7 +427,7 @@
 /* Placeholder text for email address entry field */
 "EMAIL_ADDRESS_PROMPT"="邮箱";
 /* Text displayed when no results are found in the search */
-"EMPTY_RESULTSET" = "未找到“{search_query}”。请尝试其他搜索词或选择一个讨论类别以浏览。";
+"EMPTY_RESULTSET" = "未找到“{query_string}”。请尝试其他搜索词或选择一个讨论类别以浏览。";
 /* Prompt shown to users on the course list encouraging them to find new courses */
 "ENROLLMENT_LIST.FIND_COURSES_PROMPT" = "寻找新的挑战？";
 /* Button title opening course catalog */
