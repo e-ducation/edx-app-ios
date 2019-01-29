@@ -34,7 +34,7 @@ class VideoPlayerControls: UIView, VideoPlayerSettingsDelegate {
     private let previousButtonSize = CGSize(width: 42.0, height: 42.0)
     private let rewindButtonSize = CGSize(width: 25.0, height: 28.0)
     private let durationSliderHeight: CGFloat = 34.0
-    private let timeRemainingLabelSize = CGSize(width: 75.0, height: 34.0)
+    private let timeRemainingLabelSize = CGSize(width: 80.0, height: 34.0)
     private let settingButtonSize = CGSize(width: 21.0, height: 24.0)
     private let fullScreenButtonSize = CGSize(width: 18.0, height: 20.0)
     private let tableSettingSize = CGSize(width: 110.0, height: 88.0)
@@ -449,7 +449,7 @@ class VideoPlayerControls: UIView, VideoPlayerSettingsDelegate {
         guard let duration = videoPlayer?.duration else { return }
         let totalTime: Float64 = CMTimeGetSeconds (duration)
         
-        timeRemainingLabel.text = String(format: "%02d:%02d / %02d:%02d", ((lround(elapsedTime) / 60) % 60), lround(elapsedTime) % 60, ((lround(totalTime) / 60) % 60), lround(totalTime) % 60)
+        timeRemainingLabel.text = String(format: "%02d:%02d/%02d:%02d", ((lround(elapsedTime) / 60) % 60), lround(elapsedTime) % 60, ((lround(totalTime) / 60) % 60), lround(totalTime) % 60)
         if subtitleActivated {
             subTitleLabel.text = videoPlayer?.subTitle(at: elapsedTime).decodingHTMLEntities
         }

@@ -25,7 +25,7 @@ class DetailToolbarButton: UIView {
         self.direction = direction
         // TODO: Switch to size classes when giving htis this a maximum size when we add tablet support
         super.init(frame: CGRect(x: 0, y: 0, width: 140, height: 44))
-        
+        button.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: UILayoutConstraintAxis.horizontal)
         addSubview(button)
         
         let styledTitle = titleStyle.attributedString(withText: titleText)
@@ -54,6 +54,7 @@ class DetailToolbarButton: UIView {
             make.trailing.equalTo(self)
             make.top.equalTo(self)
             make.bottom.equalTo(self)
+            make.width.greaterThanOrEqualTo(88)
         }
     }
 

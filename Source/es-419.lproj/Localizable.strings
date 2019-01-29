@@ -183,7 +183,7 @@
 /* Tab allowing the user to see all videos */
 "ALL_VIDEOS"="Todos los videos";
 /*Subtitle for bulk download view when in downloading state */
-"ALL_DOWNLOADING_VIDEOS_SUB_TITLE" = "{remaining_videos_count} Remaining, {remaining_videos_size}MB total";
+"ALL_DOWNLOADING_VIDEOS_SUB_TITLE" = "{remaining_videos_count} Remaining";//, {remaining_videos_size}MB total
 /*Title for bulk download view when in downloaded state */
 "ALL_VIDEOS_DOWNLOADED_TITLE" = "All Videos Downloaded";
 /* Message shown when there are no announcements for a course */
@@ -219,9 +219,9 @@
 /* This error message will be shown if user tried to login with third party (facebook/google) and server returns 400 status code*/
 "AUTH_PROVIDER_ERROR" = "This {auth_provider} account is not linked with any {platform_name} account. Please register.";
 /*Subtitle for bulk download view when in new, partial or downloaded state - {count} is single video*/
-"BULK_DOWNLOAD_VIDEOS_SUB_TITLE##{one}" = "{count} Video, {videos_size}MB total";
+"BULK_DOWNLOAD_VIDEOS_SUB_TITLE##{one}" = "{count} Video";//, {videos_size}MB total
 /*Subtitle for bulk download view when in new, partial or downloaded state - {count} is number of videos*/
-"BULK_DOWNLOAD_VIDEOS_SUB_TITLE##{other}" = "{count} Videos, {videos_size}MB total";
+"BULK_DOWNLOAD_VIDEOS_SUB_TITLE##{other}" = "{count} Videos";//, {videos_size}MB total
 /* Prefix used with Staff of Community TA on the posts screen */
 "BY_AUTHOR" = "Por {author_name}";
 /* Prefix used with Staff of Community TA on the posts screen */

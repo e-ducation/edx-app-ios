@@ -122,11 +122,11 @@ class CourseVideosHeaderView: UIView {
     private var subTitle: String {
         switch state {
         case .partial:
-            return Strings.bulkDownloadVideosSubTitle(count: "\(bulkDownloadHelper.partialAndNewVideosCount)", videosSize: "\(videoSizeForSubTitle)")(bulkDownloadHelper.partialAndNewVideosCount)
+            return Strings.bulkDownloadVideosSubTitle(count: bulkDownloadHelper.partialAndNewVideosCount)//Strings.bulkDownloadVideosSubTitle(count: "\(bulkDownloadHelper.partialAndNewVideosCount)", videosSize: "\(videoSizeForSubTitle)")(bulkDownloadHelper.partialAndNewVideosCount)
         case .downloading:
-            return Strings.allDownloadingVideosSubTitle(remainingVideosCount: "\(bulkDownloadHelper.partialAndNewVideosCount)", remainingVideosSize: "\(videoSizeForSubTitle)")
+            return Strings.allDownloadingVideosSubTitle(remainingVideosCount: "\(bulkDownloadHelper.partialAndNewVideosCount)")//, remainingVideosSize: "\(videoSizeForSubTitle)"
         default:
-            return Strings.bulkDownloadVideosSubTitle(count: "\(videos.count)", videosSize: "\(videoSizeForSubTitle)")(videos.count)
+            return Strings.bulkDownloadVideosSubTitle(count: videos.count)//Strings.bulkDownloadVideosSubTitle(count: "\(videos.count)", videosSize: "\(videoSizeForSubTitle)")(videos.count)
         }
     }
     
