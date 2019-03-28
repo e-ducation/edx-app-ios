@@ -116,6 +116,10 @@ public class AuthenticatedWebViewController: UIViewController, WKNavigationDeleg
     
     }()
     
+    var scrollView: UIScrollView {
+        return webController.scrollView
+    }
+    
     private var state = State.CreatingSession
     
     private var contentRequest : NSURLRequest? = nil
@@ -205,7 +209,7 @@ public class AuthenticatedWebViewController: UIViewController, WKNavigationDeleg
     }
     
     public func showError(error : NSError?, icon : Icon? = nil, message : String? = nil) {
-        let buttonInfo = MessageButtonInfo(title: Strings.reload) {[weak self] _ in
+        let buttonInfo = MessageButtonInfo(title: Strings.reload) {[weak self] in
             if let request = self?.contentRequest, self?.environment.reachability.isReachable() ?? false {
                 self?.loadController.state = .Initial
                 self?.webController.loadURLRequest(request: request)
@@ -252,7 +256,7 @@ public class AuthenticatedWebViewController: UIViewController, WKNavigationDeleg
     
     private func refreshAccessibility() {
         DispatchQueue.main.async {
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil)
+            UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: nil)
         }
     }
     

@@ -54,7 +54,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func configureViews() {
         tableView.estimatedRowHeight = 40
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
@@ -152,7 +152,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.navigationController?.pushViewController(vipPackageVc, animated: true)
             case .BindPhone:
                 let bindPhoneVC = TDBindPhoneViewController()
-                bindPhoneVC.bindingPhoneSuccess = { [weak self] _ in
+                bindPhoneVC.bindingPhoneSuccess = { [weak self] in
                     self?.reloadProfileFromImageChange()
                 }
                 self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -171,7 +171,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         return tableView.estimatedRowHeight
     }
     
-    private func accessoryType(option: AccountviewOptions) -> UITableViewCellAccessoryType{
+    private func accessoryType(option: AccountviewOptions) -> UITableViewCell.AccessoryType{
         switch option {
         case .SubmitFeedback, .Logout:
             return .none

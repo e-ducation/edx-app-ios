@@ -51,7 +51,7 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
         
         self.aboutView.recomendView.checkButton.oex_addAction({ [weak self] (_) in
             self?.showVipViewcontroller()
-        }, for: UIControlEvents.touchUpInside)
+            }, for: UIControl.Event.touchUpInside)
         
         listen()
         load()
@@ -176,13 +176,13 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
         }
     }
     
-    func sureButtonAction() {
+    @objc     func sureButtonAction() {
         alertView.removeFromSuperview()
         let packageVC = TDVipPackageViewController()
         self.navigationController?.pushViewController(packageVC, animated: true)
     }
     
-    func cancelButtonAction() {
+    @objc     func cancelButtonAction() {
         alertView.removeFromSuperview()
         self.view.makeToast(Strings.purchasePc, duration: 0.8, position: CSToastPositionCenter)
     }

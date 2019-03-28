@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - AlipaySDK-iOS (15.5.5)
+  - AlipaySDK-iOS (15.5.9)
   - Analytics (3.0.7)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
@@ -34,19 +34,20 @@ PODS:
   - FBSDKLoginKit (4.31.1):
     - FBSDKCoreKit
   - FBSnapshotTestCase/Core (2.0.1)
-  - Firebase/Core (3.11.0):
-    - FirebaseAnalytics (= 3.6.0)
-    - FirebaseCore (= 3.4.6)
-  - FirebaseAnalytics (3.6.0):
-    - FirebaseCore (~> 3.4)
-    - FirebaseInstanceID (~> 1.0)
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
+  - Firebase/Core (5.4.1):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.0.1)
+  - Firebase/CoreOnly (5.4.1):
+    - FirebaseCore (= 5.0.6)
+  - FirebaseAnalytics (5.0.1):
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseCore (3.4.6):
-    - GoogleInterchangeUtilities (~> 1.2)
+    - nanopb (~> 0.3)
+  - FirebaseCore (5.0.6):
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseInstanceID (1.0.9)
+  - FirebaseInstanceID (3.1.1):
+    - FirebaseCore (~> 5.0)
   - GoogleAnalytics (3.17.0)
   - GoogleAppUtilities (1.1.2):
     - GoogleSymbolUtilities (~> 1.1)
@@ -54,8 +55,6 @@ PODS:
     - GoogleNetworkingUtilities (~> 1.0)
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleIDFASupport (3.14.0)
-  - GoogleInterchangeUtilities (1.2.2):
-    - GoogleSymbolUtilities (~> 1.1)
   - GoogleNetworkingUtilities (1.2.2):
     - GoogleSymbolUtilities (~> 1.1)
   - GoogleSignIn (2.4.0):
@@ -64,12 +63,17 @@ PODS:
     - GoogleNetworkingUtilities (~> 1.0)
     - GoogleUtilities (~> 1.0)
   - GoogleSymbolUtilities (1.1.2)
-  - GoogleToolboxForMac/Defines (2.1.4)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
-    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - GoogleToolboxForMac/Defines (2.2.0)
+  - "GoogleToolboxForMac/NSData+zlib (2.2.0)":
+    - GoogleToolboxForMac/Defines (= 2.2.0)
   - GoogleUtilities (1.3.2):
     - GoogleSymbolUtilities (~> 1.1)
-  - Masonry (0.6.4)
+  - Masonry (1.1.0)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
   - NewRelicAgent (4.186.1)
   - OCMock (3.4.3)
   - OHHTTPStubs (4.8.0):
@@ -91,7 +95,7 @@ PODS:
     - GoogleIDFASupport (~> 3.14)
   - Smartling.i18n (1.0.14)
   - SVProgressHUD (2.2.5)
-  - WechatOpenSDK (1.8.3)
+  - WechatOpenSDK (1.8.4)
   - Weibo_SDK (3.2.3)
 
 DEPENDENCIES:
@@ -105,9 +109,9 @@ DEPENDENCIES:
   - FBSDKCoreKit (~> 4.31.1)
   - FBSDKLoginKit (~> 4.31.1)
   - FBSnapshotTestCase/Core (= 2.0.1)
-  - Firebase/Core (= 3.11.0)
+  - Firebase/Core (= 5.4.1)
   - GoogleSignIn (~> 2.4)
-  - Masonry (~> 0.6)
+  - Masonry
   - NewRelicAgent (~> 4.1)
   - OCMock (~> 3.1)
   - OHHTTPStubs (~> 4.0)
@@ -118,7 +122,7 @@ DEPENDENCIES:
   - Weibo_SDK
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
     - AlipaySDK-iOS
     - Analytics
@@ -138,13 +142,13 @@ SPEC REPOS:
     - GoogleAppUtilities
     - GoogleAuthUtilities
     - GoogleIDFASupport
-    - GoogleInterchangeUtilities
     - GoogleNetworkingUtilities
     - GoogleSignIn
     - GoogleSymbolUtilities
     - GoogleToolboxForMac
     - GoogleUtilities
     - Masonry
+    - nanopb
     - NewRelicAgent
     - OCMock
     - OHHTTPStubs
@@ -156,7 +160,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  AlipaySDK-iOS: 7b700342e71cb3b626603ce96f9d2fb158acbcfb
+  AlipaySDK-iOS: 1c5283b30977a24acecc0114662697f7dc78f618
   Analytics: b342fb4f43fa4f97ca6f4358b44d3295217ba294
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Branch: 848e8e908182a97678d9f5a854d10e59a40af2aa
@@ -166,30 +170,30 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: e08ccfcefa7bc1347a07c276dac9bf6c7fe57024
   FBSDKLoginKit: 99797ac39252fef6f72600b886f6ee60b4b29cab
   FBSnapshotTestCase: bdb997ab2397495205f11156d4d444606daebd27
-  Firebase: b8134e285eb33201115bc688bc5d7f112923bc1f
-  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
-  FirebaseCore: 03da1cb32615569bbc2830a22f9ad753d9a02ef5
-  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
+  Firebase: 355bd535bfdacaa82a7fe8d9784115edefd6fc03
+  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
+  FirebaseCore: 4c28e3b9708ba48a765e76515f913a71596eb5dd
+  FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
   GoogleAuthUtilities: 049ffd3a297cdffd271451b82fd4e75304f15ef3
   GoogleIDFASupport: aaf8c10bd429abb1c15349d5252244f5eda8ead1
-  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleNetworkingUtilities: 3edd3a8161347494f2da60ea0deddc8a472d94cb
   GoogleSignIn: 79929b51e6299c69f1197bbd9c7a1367d523ecd8
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
-  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
-  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NewRelicAgent: 5cd52dafe03e74c5066073a00fd500df9d966e7e
   OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
   OHHTTPStubs: b393565822317305b87a1440d4c7aff131679f66
   Segment-GoogleAnalytics: ffea73c99196720b28b58ea93bcc0e6d11f172e1
   Smartling.i18n: 0d508b89a2a12f0e070e6369e4dcdcf46ae2d59f
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  WechatOpenSDK: 3117412f8aafde4758cac1e8d20b93c67cafcfef
+  WechatOpenSDK: 9b721089507c895d05f997408c30bb6e6f5f9b60
   Weibo_SDK: 652ca78c2f7147a5de5e75e7cbea89838a81772a
 
-PODFILE CHECKSUM: 5349e6d0396931b4fc750d66c6c022c7b1a0fca2
+PODFILE CHECKSUM: 2647e5bf4ae36192690012c91a9e6abd179cf580
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.7.0.beta.2

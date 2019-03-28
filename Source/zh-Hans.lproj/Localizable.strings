@@ -678,6 +678,12 @@
 "RESPONSE##{other}"="{count}回复";
 /* Discussion topics search placeholder */
 "SEARCH_ALL_POSTS"="搜索全部帖子";
+/*Placeholder text for search courses textfield*/
+"SEARCH_COURSES_PLACEHOLDER_TEXT"="搜索课程";
+/*Placeholder text for search programs textfield*/
+"SEARCH_PROGRAMS_PLACEHOLDER_TEXT"="Search program";
+/*Placeholder text for search degree textfield*/
+"SEARCH_DEGREES_PLACEHOLDER_TEXT"="搜索学位";
 /* Discussion search results  */
 "SEARCH_RESULTS"="搜索结果";
 /* Text shown below the video, in portrait mode */
