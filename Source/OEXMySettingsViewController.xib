@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="OpenSans-Regular.ttf">
-            <string>OpenSans</string>
-        </array>
-        <array key="OpenSans-Semibold.ttf">
-            <string>OpenSans-Semibold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OEXMySettingsViewController">
             <connections>
-                <outlet property="subtitleLabel" destination="WXt-Km-JcG" id="9oH-mO-0Yg"/>
+                <outlet property="tableView" destination="E5U-Y5-ppG" id="0Xf-Kz-iVp"/>
                 <outlet property="titleLabel" destination="EEh-gf-YWm" id="euK-8C-9KG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wifiOnlyCell" destination="EgQ-CD-OaS" id="xqF-cr-Aa2"/>
@@ -32,9 +24,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="E5U-Y5-ppG">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="E5U-Y5-ppG">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="KM3-2D-6lz"/>
                         <outlet property="delegate" destination="-1" id="The-1p-oIc"/>
@@ -52,30 +44,21 @@
             <point key="canvasLocation" x="203" y="308"/>
         </view>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="EgQ-CD-OaS">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EgQ-CD-OaS" id="cne-Vt-XgN">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="48.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="205" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wi-fi only download" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEh-gf-YWm">
-                        <rect key="frame" x="18" y="4.5" width="143" height="20.5"/>
+                        <rect key="frame" x="18" y="14.5" width="135.5" height="20"/>
                         <accessibility key="accessibilityConfiguration" label=""/>
-                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="15"/>
-                        <color key="textColor" red="0.27058823529411763" green="0.28627450980392155" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="206" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Only download content when Wi-fi is turned on" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="94" translatesAutoresizingMaskIntoConstraints="NO" id="WXt-Km-JcG">
-                        <rect key="frame" x="18" y="25" width="210" height="36"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="36" id="yP0-P2-Nct"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="14"/>
                         <color key="textColor" red="0.27058823529411763" green="0.28627450980392155" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OZg-Qp-RW9">
-                        <rect key="frame" x="263" y="19.5" width="51" height="31"/>
+                        <rect key="frame" x="263" y="9" width="51" height="31"/>
                         <accessibility key="accessibilityConfiguration" label=""/>
                         <color key="onTintColor" red="0.16078431369999999" green="0.61960784310000006" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
@@ -85,16 +68,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="OZg-Qp-RW9" secondAttribute="trailing" constant="8" id="E9E-tA-2WA"/>
-                    <constraint firstItem="WXt-Km-JcG" firstAttribute="leading" secondItem="EEh-gf-YWm" secondAttribute="leading" id="FuJ-Ed-lL3"/>
                     <constraint firstAttribute="centerY" secondItem="OZg-Qp-RW9" secondAttribute="centerY" id="LMa-De-TfF"/>
                     <constraint firstItem="EEh-gf-YWm" firstAttribute="leading" secondItem="cne-Vt-XgN" secondAttribute="leading" constant="18" id="Oft-Tc-Zac"/>
-                    <constraint firstAttribute="centerY" secondItem="EEh-gf-YWm" secondAttribute="centerY" constant="20" id="iaP-RC-WKX"/>
-                    <constraint firstItem="WXt-Km-JcG" firstAttribute="top" secondItem="EEh-gf-YWm" secondAttribute="bottom" id="n2h-yH-DsB"/>
-                    <constraint firstItem="OZg-Qp-RW9" firstAttribute="leading" secondItem="WXt-Km-JcG" secondAttribute="trailing" constant="35" id="pRv-Mh-XT7"/>
+                    <constraint firstAttribute="centerY" secondItem="EEh-gf-YWm" secondAttribute="centerY" id="iaP-RC-WKX"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="94e-Ly-5ru"/>
-            <point key="canvasLocation" x="588" y="292"/>
+            <point key="canvasLocation" x="587.20000000000005" y="291.45427286356824"/>
         </tableViewCell>
     </objects>
 </document>
