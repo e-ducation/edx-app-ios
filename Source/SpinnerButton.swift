@@ -47,7 +47,7 @@ class SpinnerButton: UIButton {
         return CGSize(width: width, height: height)
     }
     
-    var showProgress : Bool = false {
+    @objc var showProgress : Bool = false {
         didSet {
             if showProgress {
                 spinnerView.isHidden = false

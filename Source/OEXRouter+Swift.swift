@@ -138,18 +138,101 @@ extension OEXRouter {
     
     // MARK: Deep Linking
     //Method can be use to navigate on particular tab of course dashboard with deep link type
-    func showCourseWithDeepLink(type: DeepLinkType, courseID: String) {
-        let controller = EnrolledTabBarViewController(environment: environment)
-        showContentStack(withRootController: controller, animated: true)
-        let dashboardController = CourseDashboardViewController(environment: environment, courseID: courseID)
-        controller.navigationController?.pushViewController(dashboardController, animated: true)
-        dashboardController.switchTab(with: type)
+    func showCourse(with deeplink: DeepLink, courseID: String, from controller: UIViewController) {
+        var courseDashboardController = controller.navigationController?.viewControllers.compactMap({ (controller) -> UIViewController? in
+            if controller is CourseDashboardViewController {
+                return controller
+            }
+            
+            return nil
+        }).first
+    
+        if  let dashboardController = courseDashboardController as? CourseDashboardViewController, dashboardController.courseID == deeplink.courseId {
+            controller.navigationController?.setToolbarHidden(true, animated: false)
+            controller.navigationController?.popToViewController(dashboardController, animated: true)
+        }
+        else {
+            if let controllers = controller.navigationController?.viewControllers, let enrolledTabBarController = controllers.first as? EnrolledTabBarViewController {
+                popToRoot(controller: controller)
+                enrolledTabBarController.switchTab(with: deeplink.type)
+                let dashboardController = CourseDashboardViewController(environment: environment, courseID: courseID)
+                courseDashboardController = dashboardController
+                enrolledTabBarController.navigationController?.pushViewController(dashboardController, animated: true)
+            }
+        }
+        
+        if let dashboardController = courseDashboardController as? CourseDashboardViewController {
+            dashboardController.switchTab(with: deeplink.type)
+        }
     }
 
-    func showPrograms(with type: DeepLinkType) {
-        let controller = EnrolledTabBarViewController(environment: environment)
-        showContentStack(withRootController: controller, animated: false)
-        controller.switchTab(with: type)
+    func showProgram(with type: DeepLinkType, url: URL? = nil, from controller: UIViewController) {
+        var controller = controller
+        if let controllers = controller.navigationController?.viewControllers, let enrolledTabBarView = controllers.first as? EnrolledTabBarViewController {
+            popToRoot(controller: controller)
+            let programView = enrolledTabBarView.switchTab(with: type)
+            controller = programView
+        } else {
+            let enrolledTabBarControler = EnrolledTabBarViewController(environment: environment)
+            controller = enrolledTabBarControler
+            showContentStack(withRootController: enrolledTabBarControler, animated: false)
+        }
+        if let url = url, type == .programDetail {
+            showProgramDetails(with: url, from: controller)
+        }
+    }
+    
+    private func popToRoot(controller: UIViewController) {
+        controller.navigationController?.setToolbarHidden(true, animated: false)
+        controller.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func showDiscoveryController(from controller: UIViewController, type: DeepLinkType, isUserLoggedIn: Bool, pathID: String?) {
+        let bottomBar = BottomBarView(environment: environment)
+        var discoveryController = discoveryViewController(bottomBar: bottomBar, searchQuery: nil)
+        if isUserLoggedIn {
+        
+            // Pop out all views and switches enrolledCourses tab on the bases of link type
+            if let controllers = controller.navigationController?.viewControllers, let enrolledTabBarView = controllers.first as? EnrolledTabBarViewController {
+                popToRoot(controller: controller)
+                discoveryController = enrolledTabBarView.switchTab(with: type)
+            }
+            else {
+                
+                //Create new stack of views and switch tab
+                let enrolledTabController = EnrolledTabBarViewController(environment: environment)
+                showContentStack(withRootController: enrolledTabController, animated: false)
+                discoveryController = enrolledTabController.switchTab(with: type)
+            }
+        }
+        else {
+            if let controllers = controller.navigationController?.viewControllers, let discoveryView = controllers.first as? DiscoveryViewController {
+                popToRoot(controller: controller)
+                discoveryController = discoveryView
+            }
+            else if let discoveryController = discoveryController {
+                showControllerFromStartupScreen(controller: discoveryController)
+            }
+        }
+        
+        // Switch segment tab on discovery view
+        if let discoveryController = discoveryController as? DiscoveryViewController {
+            discoveryController.switchSegment(with: type)
+        }
+        
+        // If the pathID is given the detail view will open
+        if let pathID = pathID, let discoveryController = discoveryController {
+            showDiscoveryDetail(from: discoveryController, type: type, pathID: pathID, bottomBar: bottomBar)
+        }
+    }
+    
+     func showDiscoveryDetail(from controller: UIViewController, type: DeepLinkType, pathID: String, bottomBar: UIView?) {
+        if type == .courseDetail {
+            showCourseDetails(from: controller, with: pathID, bottomBar: bottomBar)
+        }
+        else if type == .programDiscoveryDetail {
+            showProgramDetail(from: controller, with: pathID, bottomBar: bottomBar)
+        }
     }
 
     func showDiscussionResponsesFromViewController(controller: UIViewController, courseID : String, thread : DiscussionThread, isDiscussionBlackedOut: Bool) {
@@ -158,6 +241,16 @@ extension OEXRouter {
         responsesViewController.environment = environment
         responsesViewController.courseID = courseID
         responsesViewController.thread = thread
+        responsesViewController.isDiscussionBlackedOut = isDiscussionBlackedOut
+        controller.navigationController?.pushViewController(responsesViewController, animated: true)
+    }
+    
+    func showDiscussionResponses(from controller: UIViewController, courseID: String, threadID: String, isDiscussionBlackedOut: Bool) {
+        let storyboard = UIStoryboard(name: "DiscussionResponses", bundle: nil)
+        let responsesViewController = storyboard.instantiateInitialViewController() as! DiscussionResponsesViewController
+        responsesViewController.environment = environment
+        responsesViewController.courseID = courseID
+        responsesViewController.threadID = threadID
         responsesViewController.isDiscussionBlackedOut = isDiscussionBlackedOut
         controller.navigationController?.pushViewController(responsesViewController, animated: true)
     }
@@ -184,6 +277,11 @@ extension OEXRouter {
     
     func showPostsFromController(controller : UIViewController, courseID : String, topic: DiscussionTopic) {
         let postsController = PostsViewController(environment: environment, courseID: courseID, topic: topic)
+        controller.navigationController?.pushViewController(postsController, animated: true)
+    }
+
+    func showDiscussionPosts(from controller: UIViewController, courseID: String, topicID: String) {
+        let postsController = PostsViewController(environment: environment, courseID: courseID, topicID: topicID)
         controller.navigationController?.pushViewController(postsController, animated: true)
     }
     
@@ -236,11 +334,11 @@ extension OEXRouter {
         }
     }
     
-    func showProfileForUsername(controller: UIViewController? = nil, username : String, editable: Bool = true, modalTransitionStylePresent: Bool = false) {
+    func showProfileForUsername(controller: UIViewController? = nil, username : String, editable: Bool = true, modal: Bool = false) {
         OEXAnalytics.shared().trackProfileViewed(username: username)
         let editable = self.environment.session.currentUser?.username == username
         let profileController = UserProfileViewController(environment: environment, username: username, editable: editable)
-        if modalTransitionStylePresent {
+        if modal {
             controller?.present(ForwardingNavigationController(rootViewController: profileController), animated: true, completion: nil)
         }
         else {
@@ -274,7 +372,7 @@ extension OEXRouter {
     }
     
     @objc(showCourseCatalogFromController: bottomBar: searchQuery:) func showCourseCatalog(fromController: UIViewController? = nil, bottomBar: UIView? = nil, searchQuery: String? = nil) {
-        let controller = discoveryViewController(bottomBar: bottomBar, searchQuery: searchQuery)
+        guard let controller = discoveryViewController(bottomBar: bottomBar, searchQuery: searchQuery) else { return }
         if let fromController = fromController {
             fromController.tabBarController?.navigationItem.title = Strings.findCourses
             fromController.tabBarController?.selectedIndex = EnrolledTabBarViewController.courseCatalogIndex
@@ -282,6 +380,7 @@ extension OEXRouter {
             showControllerFromStartupScreen(controller: controller)
         }
         self.environment.analytics.trackUserFindsCourses()
+        
     }
     
     func showAllSubjects(from controller: UIViewController? = nil, delegate: SubjectsViewControllerDelegate?) {
@@ -290,16 +389,25 @@ extension OEXRouter {
         controller?.navigationController?.pushViewController(subjectsVC, animated: true)
     }
     
-    func discoveryViewController(bottomBar: UIView? = nil, searchQuery: String? = nil) -> UIViewController {
-        let controller: UIViewController
-        switch environment.config.courseEnrollmentConfig.type {
-        case .Webview:
-            controller =  OEXFindCoursesViewController(environment: environment, bottomBar: bottomBar, searchQuery: searchQuery)
-        case .Native, .None:
-            controller = CourseCatalogViewController(environment: environment)
-        }
+    func discoveryViewController(bottomBar: UIView? = nil, searchQuery: String? = nil) -> UIViewController? {
+        let isCourseDiscoveryEnabled = environment.config.discovery.course.isEnabled
+        let isProgramDiscoveryEnabled = environment.config.discovery.program.isEnabled
+        let isDegreeDiscveryEnabled = environment.config.discovery.degree.isEnabled
         
-        return controller
+        if (isCourseDiscoveryEnabled && isProgramDiscoveryEnabled && isDegreeDiscveryEnabled) ||
+            (isCourseDiscoveryEnabled && isProgramDiscoveryEnabled) ||
+            (isCourseDiscoveryEnabled && isDegreeDiscveryEnabled) {
+            return DiscoveryViewController(with: environment, bottomBar: bottomBar, searchQuery: searchQuery)
+        }
+        else if isCourseDiscoveryEnabled {
+            return environment.config.discovery.course.type == .webview ? OEXFindCoursesViewController(environment: environment, showBottomBar: true, bottomBar: bottomBar, searchQuery: searchQuery) : CourseCatalogViewController(environment: environment)
+        }
+        return nil
+    }
+    
+    func showProgramDetail(from controller: UIViewController, with pathId: String, bottomBar: UIView?) {
+        let programDetailViewController = ProgramsDiscoveryViewController(with: environment, pathId: pathId, bottomBar: bottomBar?.copy() as? UIView)
+        pushViewController(controller: programDetailViewController, fromController: controller)
     }
 
     private func showControllerFromStartupScreen(controller: UIViewController) {
@@ -341,7 +449,7 @@ extension OEXRouter {
 
     // MARK: - LOGIN / LOGOUT
 
-    func showSplash() {
+    @objc func showSplash() {
         removeCurrentContentController()
 
         let splashController: UIViewController
@@ -362,7 +470,7 @@ extension OEXRouter {
         fromController.navigationController?.pushViewController(controller, animated: true)
     }
     
-    public func logout() {
+    @objc public func logout() {
         invalidateToken()
         environment.session.closeAndClear()
         environment.session.removeAllWebData()
@@ -383,11 +491,11 @@ extension OEXRouter {
     }
     
     public func showProgramDetails(with url: URL, from controller: UIViewController) {
-        let programDetailsController = ProgramsViewController(environment: environment, programsURL: url)
+        let programDetailsController = ProgramsViewController(environment: environment, programsURL: url, viewType: .detail)
         controller.navigationController?.pushViewController(programDetailsController, animated: true)
     }
     
-    public func showCourseDetails(from controller: UIViewController, with coursePathID: String, bottomBar: UIView?) {
+    @objc public func showCourseDetails(from controller: UIViewController, with coursePathID: String, bottomBar: UIView?) {
         let courseInfoViewController = OEXCourseInfoViewController(environment: environment, pathID: coursePathID, bottomBar: bottomBar?.copy() as? UIView)
         controller.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         controller.navigationController?.pushViewController(courseInfoViewController, animated: true)

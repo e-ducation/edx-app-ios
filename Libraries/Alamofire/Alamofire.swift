@@ -160,8 +160,7 @@ public enum ParameterEncoding {
     }
 
     func escape(_ string: String) -> String {
-        let legalURLCharactersToBeEscaped: CFString = ":&=;+!@#$()',*" as CFString
-        return CFURLCreateStringByAddingPercentEscapes(nil, string as CFString!, nil, legalURLCharactersToBeEscaped, CFStringBuiltInEncodings.UTF8.rawValue) as String
+        return string.addingPercentEncoding(withAllowedCharacters: .URLQueryAllowed) ?? string
     }
 }
 
@@ -934,7 +933,9 @@ extension Request {
         let subtype: String
 
         init?(_ string: String) {
-            let components = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).substring(to: string.range(of: ";")?.upperBound ?? string.endIndex).components(separatedBy: "/")
+            let str = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            let index = string.range(of: ";")?.upperBound ?? string.endIndex
+            let components = String(str[..<index]).components(separatedBy: "/")
 
             if let type = components.first,
                     let subtype = components.last
@@ -1364,7 +1365,7 @@ extension Request : CustomDebugStringConvertible {
                let cookies = cookieStorage.cookies(for: URL!), !cookies.isEmpty
         {
             let string = cookies.reduce(""){ $0 + "\($1.name)=\($1.value );" }
-            components.append("-b \"\(string.substring(to: string.index(before: string.endIndex)))\"")
+            components.append("-b \"\(string[..<string.index(before: string.endIndex)]))\"")
         }
         #endif
 
@@ -1700,7 +1701,27 @@ public func download(resumeData data: Data, destination: @escaping Request.Downl
 }
 
 extension URLSessionConfiguration {
-    public func defaultHTTPHeaders() -> NSDictionary {
+    @objc public func defaultHTTPHeaders() -> NSDictionary {
         return Manager.defaultHTTPHeaders as NSDictionary
     }
+}
+
+extension CharacterSet {
+    /// Creates a CharacterSet from RFC 3986 allowed characters.
+    ///
+    /// RFC 3986 states that the following characters are "reserved" characters.
+    ///
+    /// - General Delimiters: ":", "#", "[", "]", "@", "?", "/"
+    /// - Sub-Delimiters: "!", "$", "&", "'", "(", ")", "*", "+", ",", ";", "="
+    ///
+    /// In RFC 3986 - Section 3.4, it states that the "?" and "/" characters should not be escaped to allow
+    /// query strings to include a URL. Therefore, all "reserved" characters with the exception of "?" and "/"
+    /// should be percent-escaped in the query string.
+    public static let URLQueryAllowed: CharacterSet = {
+        let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
+        let subDelimitersToEncode = "!$&'()*+,;="
+        let encodableDelimiters = CharacterSet(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
+
+        return CharacterSet.urlQueryAllowed.subtracting(encodableDelimiters)
+    }()
 }

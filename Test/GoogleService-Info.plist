@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.edx.mobile</string>
+	<string>cn.elitemba.iOS</string>
 	<key>PROJECT_ID</key>
 	<string>edx-mobile-ios</string>
 	<key>STORAGE_BUCKET</key>

@@ -20,7 +20,7 @@ class CourseCardCell : UITableViewCell {
     
     var clickAction : (() -> ())?
     
-    override init(style : UITableViewCellStyle, reuseIdentifier : String?) {
+    override init(style : UITableViewCell.CellStyle, reuseIdentifier : String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let horizMargin = UIDevice.current.userInterfaceIdiom == .pad ? iPadHorizMargin : CourseCardCell.margin
         
@@ -103,7 +103,7 @@ class CoursesTableViewController: UITableViewController {
         }
         
         tableView.estimatedRowHeight = 200
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(CourseCardCell.self, forCellReuseIdentifier: CourseCardCell.cellIdentifier)
         
         self.insetsController.addSource(
@@ -128,7 +128,7 @@ class CoursesTableViewController: UITableViewController {
             self?.delegate?.coursesTableChoseCourse(course: course)
         }
         
-        cell.clickAction = { [weak self] _ in
+        cell.clickAction = { [weak self] in
             self?.delegate?.clickExpiredButton?()
         }
         

@@ -71,7 +71,6 @@
 #import "OEXRegistrationFieldSelectController.h"
 #import "OEXRegistrationFieldCheckBoxController.h"
 #import "NSURL+OEXPathExtensions.h"
-
 #import "TDVipPackageViewController.h"
 #import "TDVipIntroduceViewController.h"
 #import "UIColor+TDHexColor.h"
@@ -79,3 +78,4 @@
 #import "TDBindPhoneViewController.h"
 #import "UIView+Toast.h"
 
+#import "ListenableObject.h"

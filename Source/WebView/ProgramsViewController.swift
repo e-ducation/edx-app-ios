@@ -9,20 +9,28 @@
 import UIKit
 import WebKit
 
-class ProgramsViewController: UIViewController, InterfaceOrientationOverriding {
+public enum ProgramScreen {
+    case base
+    case detail
+}
+
+class ProgramsViewController: UIViewController, InterfaceOrientationOverriding, PullRefreshControllerDelegate {
     
     typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & OEXSessionProvider & OEXRouterProvider & ReachabilityProvider
     fileprivate let environment: Environment
-    private let webController: AuthenticatedWebViewController
-    private let programsURL: URL
+    fileprivate let webController: AuthenticatedWebViewController
+    private(set) var programsURL: URL
+    fileprivate let refreshController = PullRefreshController()
+    private(set) var type: ProgramScreen
     
-    init(environment: Environment, programsURL: URL) {
+    init(environment: Environment, programsURL: URL, viewType type: ProgramScreen? = .base) {
         webController = AuthenticatedWebViewController(environment: environment)
         self.environment = environment
         self.programsURL = programsURL
+        self.type = type ?? .base
         super.init(nibName: nil, bundle: nil)
         webController.webViewDelegate = self
-
+        webController.delegate = self
         setupView()
         loadPrograms()
     }
@@ -35,16 +43,23 @@ class ProgramsViewController: UIViewController, InterfaceOrientationOverriding {
     private func setupView() {
         title = Strings.programs
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        addChildViewController(webController)
-        webController.didMove(toParentViewController: self)
+        addChild(webController)
+        webController.didMove(toParent: self)
         view.addSubview(webController.view)
         webController.view.snp.makeConstraints { make in
             make.edges.equalTo(safeEdges)
         }
+        refreshController.setupInScrollView(scrollView: webController.scrollView)
+        refreshController.delegate = self
     }
     
     private func loadPrograms() {
         webController.loadRequest(request: NSURLRequest(url: programsURL))
+    }
+    
+    func loadPrograms(with url: URL) {
+        programsURL = url
+        webController.loadRequest(request: NSURLRequest(url: url))
     }
     
     override var shouldAutorotate: Bool {
@@ -54,47 +69,25 @@ class ProgramsViewController: UIViewController, InterfaceOrientationOverriding {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .allButUpsideDown
     }
+    
+    //MARK: PullRefreshControllerDelegate
+    public func refreshControllerActivated(controller: PullRefreshController) {
+        loadPrograms()
+    }
+}
+
+extension ProgramsViewController: AuthenticatedWebViewControllerDelegate {
+    func authenticatedWebViewController(authenticatedController: AuthenticatedWebViewController, didFinishLoading webview: WKWebView) {
+        refreshController.endRefreshing()
+        webController.setLoadControllerState(withState: .Loaded)
+    }
 }
 
 extension ProgramsViewController: WebViewNavigationDelegate {
     
-    private func enrollInCourse(with url: URL) {
-        if let urlData = CourseDiscoveryHelper.parse(url: url), let courseId = urlData.courseId {
-            CourseDiscoveryHelper.enrollInCourse(courseID: courseId, emailOpt: urlData.emailOptIn, from: self)
-        }
-    }
-    
-    private func navigate(to url: URL, from controller: UIViewController, bottomBar: UIView?) {
-        guard let urlAction = CourseDiscoveryHelper.urlAction(from: url) else { return  }
-        switch urlAction {
-        case .courseDetail:
-            if let courseDetailPath = CourseDiscoveryHelper.detailPathID(from: url) {
-                environment.router?.showCourseDetails(from: controller, with: courseDetailPath, bottomBar: bottomBar)
-            }
-            break
-        case .enrolledCourseDetail:
-            if let urlData = CourseDiscoveryHelper.parse(url: url), let courseId = urlData.courseId {
-                environment.router?.showCourseWithID(courseID: courseId, fromController: controller, animated: true)
-            }
-            break
-        case .enrolledProgramDetail:
-            if let programDetailsURL = CourseDiscoveryHelper.programDetailURL(from: url, config: environment.config) {
-                environment.router?.showProgramDetails(with: programDetailsURL, from: controller)
-            }
-            break
-        default: break
-        }
-    }
-    
     func webView(_ webView: WKWebView, shouldLoad request: URLRequest) -> Bool {
         guard let url = request.url else { return true }
-        if let urlAction = CourseDiscoveryHelper.urlAction(from: url), urlAction == .courseEnrollment {
-            enrollInCourse(with: url)
-        }
-        else {
-            navigate(to: url, from: self, bottomBar: nil)
-        }
-        return false
+        return !DiscoveryHelper.navigate(to: url, from: self, bottomBar: nil)
     }
     
     func webViewContainingController() -> UIViewController {

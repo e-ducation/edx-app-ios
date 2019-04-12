@@ -107,9 +107,9 @@ class LoadStateViewController : UIViewController {
         view = PassthroughView()
     }
     
-    func setupInController(controller : UIViewController, contentView : UIView) {
-        controller.addChildViewController(self)
-        didMove(toParentViewController: controller)
+    @objc func setupInController(controller : UIViewController, contentView : UIView) {
+        controller.addChild(self)
+        didMove(toParent: controller)
         
         self.contentView = contentView
         contentView.alpha = 0
@@ -137,7 +137,7 @@ class LoadStateViewController : UIViewController {
         return false
     }
     
-    func loadViewState(status: Int, error: NSError?) { 
+    @objc func loadViewState(status: Int, error: NSError?) { 
         switch status {
         case 0:
             self.state = .Initial

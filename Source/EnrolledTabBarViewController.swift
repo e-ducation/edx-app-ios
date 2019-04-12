@@ -19,7 +19,7 @@ private enum TabBarOptions: Int {
         case .Program:
             return Strings.programs
         case .CourseCatalog:
-            return config?.courseEnrollmentConfig.type == .Native ? Strings.findCourses : Strings.discover
+            return config?.discovery.course.type == .native ? Strings.findCourses : Strings.discover
         case .Debug:
             return Strings.debug
         case .Vip:
@@ -95,8 +95,9 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
                 item = TabBarItem(title: option.title(), viewController: ProgramsViewController(environment: environment, programsURL: programsURL), icon: Icon.Clone, detailText: Strings.Dashboard.courseCourseDetail)
                 tabBarItems.append(item)
             case .CourseCatalog:
-                guard environment.config.courseEnrollmentConfig.isCourseDiscoveryEnabled(), let router = environment.router else { break }
-                item = TabBarItem(title: option.title(config: environment.config), viewController: router.discoveryViewController(), icon: Icon.Discovery, detailText: Strings.Dashboard.courseCourseDetail)
+                guard let router = environment.router,
+                    let discoveryController = router.discoveryViewController() else { break }
+                item = TabBarItem(title: option.title(config: environment.config), viewController: discoveryController, icon: Icon.Discovery, detailText: Strings.Dashboard.courseCourseDetail)
                 tabBarItems.append(item)
                 EnrolledTabBarViewController.courseCatalogIndex = tabBarItems.count - 1
             case .Debug:
@@ -168,7 +169,7 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
             
             profileButton.oex_addAction({[weak self] _  in
                 guard let currentUserName = self?.environment.session.currentUser?.username else { return }
-                self?.environment.router?.showProfileForUsername(controller: self, username: currentUserName, modalTransitionStylePresent: true)
+                self?.environment.router?.showProfileForUsername(controller: self, username: currentUserName, modal: true)
             }, for: .touchUpInside)
             
             navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileView)
@@ -187,15 +188,20 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
     }
     
     // MARK: Deep Linking
-    func switchTab(with type: DeepLinkType) {
+    @discardableResult
+    func switchTab(with type: DeepLinkType) -> UIViewController {
         switch type {
-        case .programs:
+        case .program, .programDetail:
             selectedIndex = tabBarViewControllerIndex(with: ProgramsViewController.self)
+        case .courseDiscovery, .courseDetail, .programDiscovery, .programDiscoveryDetail:
+            selectedIndex = tabBarViewControllerIndex(with: DiscoveryViewController.self)
         default:
             selectedIndex = 0
             break
         }
         navigationItem.title = titleOfViewController(index: selectedIndex)
+        
+        return tabBarItems[selectedIndex].viewController
     }
     
 }
