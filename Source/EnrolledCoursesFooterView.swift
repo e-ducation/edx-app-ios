@@ -20,6 +20,17 @@ class EnrolledCoursesFooterView : UIView {
         return OEXTextStyle(weight: .normal, size: .base, color: OEXStyles.shared().neutralDark())
     }
     
+    func refreshFooterText(days: Int, date: String) {
+        guard days > 0 else {
+            return
+        }
+        let findStr: String = Strings.harvardLearnCamp(date: date)
+
+        let styles = OEXStyles.shared().filledPrimaryButtonStyle
+        styles.textStyle.alignment = .center
+        self.findCoursesButton.applyButtonStyle(style: styles, withTitle: findStr)
+    }
+
     init() {
         super.init(frame: CGRect.zero)
         
@@ -30,7 +41,11 @@ class EnrolledCoursesFooterView : UIView {
         self.promptLabel.attributedText = findCoursesTextStyle.attributedString(withText: Strings.EnrollmentList.findCoursesPrompt)
         self.promptLabel.textAlignment = .center
         
-        self.findCoursesButton.applyButtonStyle(style: OEXStyles.shared().filledPrimaryButtonStyle, withTitle: Strings.EnrollmentList.findCourses.oex_uppercaseStringInCurrentLocale())
+        let styles = OEXStyles.shared().filledPrimaryButtonStyle
+        styles.textStyle.alignment = .center
+
+        self.findCoursesButton.titleLabel?.numberOfLines = 0
+        self.findCoursesButton.applyButtonStyle(style: styles, withTitle: Strings.EnrollmentList.findCourses.oex_uppercaseStringInCurrentLocale())
         
         container.backgroundColor = OEXStyles.shared().standardBackgroundColor()
         container.applyBorderStyle(style: BorderStyle())

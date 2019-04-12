@@ -12,7 +12,7 @@ var isActionTakenOnUpgradeSnackBar: Bool = false
 
 class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTableViewControllerDelegate, PullRefreshControllerDelegate, LoadStateViewReloadSupport,InterfaceOrientationOverriding {
     
-    typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & ReachabilityProvider & OEXRouterProvider & OEXSessionProvider
+    typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & ReachabilityProvider & OEXRouterProvider & OEXSessionProvider & OEXStylesProvider & ReachabilityProvider
     
     private let environment : Environment
     private let tableController : CoursesTableViewController
@@ -21,7 +21,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
     private let insetsController = ContentInsetsController()
     fileprivate let enrollmentFeed: Feed<[UserCourseEnrollment]?>
     private let userPreferencesFeed: Feed<UserPreference?>
-
+    private let footer = EnrolledCoursesFooterView()
     init(environment: Environment) {
         self.tableController = CoursesTableViewController(environment: environment, context: .EnrollmentList)
         self.enrollmentFeed = environment.dataManager.enrollmentManager.feed
@@ -67,6 +67,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         self.enrollmentFeed.refresh()
         self.userPreferencesFeed.refresh()
         
+        setupProfileListener()
         setupListener()
         setupFooter()
         setupObservers()
@@ -150,9 +151,14 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
     
     private func setupFooter() {
         if isCourseDiscoveryEnabled {
-            let footer = EnrolledCoursesFooterView()
             footer.findCoursesAction = {[weak self] in
-                self?.environment.router?.showCourseCatalog(fromController: self, bottomBar: nil)
+                let day: Int = self?.environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.hmm_remaining_days ?? 0
+                if day  > 0 {//哈佛学习营
+                   self?.authenWebView()
+                }
+                else {
+                    self?.environment.router?.showCourseCatalog(fromController: self, bottomBar: nil)
+                }
             }
             
             footer.sizeToFit()
@@ -225,8 +231,11 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
     }
     
     func clickExpiredButton() {
-        let vipVC = TDVipPackageViewController()
-        self.navigationController?.pushViewController(vipVC, animated: true)
+        let packageVC = TDVipPackageViewController()
+        packageVC.vipBuySuccessHandle = { [weak self] in
+            self?.enrollmentFeed.refresh()
+        }
+        self.navigationController?.pushViewController(packageVC, animated: true)
     }
     
     private func showWhatsNewIfNeeded() {
@@ -251,27 +260,31 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         refreshIfNecessary()
     }
     
+}
+
+extension EnrolledCoursesViewController {
     
-    func judgeBindPhoneShow() -> Bool { //是否在同一天
+    func authenWebView() {
+        let webController = AuthenticatedWebViewController(environment: environment)
+        webController.title = Strings.harvardLearnCampTitle
         
-        let username = self.environment.session.currentUser?.username ?? ""
-        
-        var showAlert : Bool = false
-        let formater = DateFormatter.init()
-        formater.dateFormat = "yyyy-MM-dd"
-        
-        let currentdate = Date.init()
-        let nowDay : String = formater.string(from: currentdate)
-        var agoDay : String? = UserDefaults.standard.string(forKey: "bindPhone_alertView_\(username)") ?? ""
-        
-        if (agoDay?.isEmpty)! {
-            agoDay = ""
+        let hmmUrl: String = environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.hmm_entry_url ?? ""
+        if let hostUrl = environment.config.apiHostURL() {
+            let url = hostUrl.appendingPathComponent(hmmUrl)
+            let request = NSURLRequest(url: url)
+            webController.contentRequest = request
+            self.navigationController?.pushViewController(webController, animated: true)
         }
-        if agoDay != nowDay {
-            UserDefaults.standard.setValue(nowDay, forKey: "bindPhone_alertView_\(username)")
-            showAlert = true
+    }
+
+    func setupProfileListener() {
+        let feed = environment.dataManager.userProfileManager.feedForCurrentUser()
+        feed.output.listen(self) { (result) in
+            let day: Int = feed.output.value?.hmm_remaining_days ?? 0
+            let date: String = feed.output.value?.hmm_expiry_date ?? ""
+            self.footer.refreshFooterText(days: day, date: date)
+            self.tableController.tableView.autolayoutFooter()
         }
-        return showAlert
     }
     
     func showBindphoneAlertView() {
@@ -291,7 +304,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         let sureAction = UIAlertAction(title: Strings.bindPhoneText, style: .default) { [weak self](action) in
             let bindPhoneVc = TDBindPhoneViewController()
             bindPhoneVc.bindingPhoneSuccess = { [weak self] in
-                self?.reloadProfileFromImageChange()
+                self?.reloadProfileChange()
             }
             self?.navigationController?.pushViewController(bindPhoneVc, animated: true)
         }
@@ -302,8 +315,29 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         alertController.addAction(sureAction)
         self.navigationController?.present(alertController, animated: true, completion: nil)
     }
+    
+    func judgeBindPhoneShow() -> Bool { //是否在同一天
 
-    private func reloadProfileFromImageChange() {
+        let username = self.environment.session.currentUser?.username ?? ""
+        var showAlert : Bool = false
+        let formater = DateFormatter.init()
+        formater.dateFormat = "yyyy-MM-dd"
+
+        let currentdate = Date.init()
+        let nowDay : String = formater.string(from: currentdate)
+        var agoDay : String? = UserDefaults.standard.string(forKey: "bindPhone_alertView_\(username)") ?? ""
+
+        if (agoDay?.isEmpty)! {
+            agoDay = ""
+        }
+        if agoDay != nowDay {
+            UserDefaults.standard.setValue(nowDay, forKey: "bindPhone_alertView_\(username)")
+            showAlert = true
+        }
+        return showAlert
+    }
+
+    private func reloadProfileChange() {
         let feed = environment.dataManager.userProfileManager.feedForCurrentUser()
         feed.refresh()
         feed.output.listenOnce(self, fireIfAlreadyLoaded: false) { result in

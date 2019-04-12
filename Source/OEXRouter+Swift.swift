@@ -315,8 +315,9 @@ extension OEXRouter {
         controller.navigationController?.pushViewController(handoutsViewController, animated: true)
     }
 
-    func showMySettings(controller: UIViewController? = nil) {
+    func showMySettings(controller: UIViewController? = nil, logoutHandle:@escaping ()-> Void) {
         let settingController = OEXMySettingsViewController(nibName: nil, bundle: nil)
+        settingController.logoutHandle = logoutHandle
         controller?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         controller?.navigationController?.pushViewController(settingController, animated: true)
     }
@@ -324,7 +325,7 @@ extension OEXRouter {
     func showAccount(controller: UIViewController? = nil, modalTransitionStylePresent: Bool = false) {
        
         let phoneStr = environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.phone ?? ""
-     
+
         let accountController = AccountViewController(phoneStr: phoneStr, environment: environment)
         if modalTransitionStylePresent {
             controller?.present(ForwardingNavigationController(rootViewController: AccountViewController(phoneStr: phoneStr, environment:environment)), animated: true, completion: nil)
