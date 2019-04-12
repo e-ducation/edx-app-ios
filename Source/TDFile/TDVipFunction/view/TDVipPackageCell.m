@@ -104,7 +104,8 @@
     }];
     
     [self.cornerImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.mas_equalTo(self.bgButton);
+        make.top.mas_equalTo(self.bgButton.mas_top).offset(2);
+        make.left.mas_equalTo(self.bgButton.mas_left).offset(4);
         make.size.mas_equalTo(CGSizeMake(33, 33));
     }];
     

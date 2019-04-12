@@ -50,7 +50,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"VIP";
+    self.navigationItem.title = Strings.membership;
     [self setViewConstraint];
     [self getVipData];
     [self purchaseAction];
@@ -435,6 +435,7 @@
 - (void)weixinPaySuccessHandle {//支付成功
     NSLog(@"支付宝 -- 支付成功");
     [self queryOrderStatus:self.orderID request:0];
+    [self vipBuySuceess];
 }
 
 - (void)weixinPayFailed:(NSInteger)status {//支付失败
@@ -445,10 +446,17 @@
 - (void)alipaySuccessHandle { //支付成功
     NSLog(@"支付宝 -- 支付成功");
     [self queryOrderStatus:self.orderID request:0];
+    [self vipBuySuceess];
 }
 
 - (void)alipayFaile:(NSInteger)status { //支付失败
     NSLog(@"支付宝 -- 支付失败");
+}
+
+- (void)vipBuySuceess {
+    if (self.vipBuySuccessHandle) {
+        self.vipBuySuccessHandle();
+    }
 }
 
 #pragma mark - UI

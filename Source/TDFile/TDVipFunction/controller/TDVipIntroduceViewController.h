@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TDVipIntroduceViewController : UIViewController
 
+@property (nonatomic,strong) NSString *urlStr;
+
 @end
 
 NS_ASSUME_NONNULL_END
