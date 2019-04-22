@@ -28,7 +28,7 @@ class TDVipExpiredView: UIView {
         self.addSubview(bgView)
         
         expiredButton.setTitle(Strings.renewVipMembership, for: .normal)
-        expiredButton.titleLabel?.font = UIFont(name: "PingFangSC-Regular", size: 16)
+        expiredButton.titleLabel?.font = UIFont(name: "PingFangSC-Regular", size: 15)
         expiredButton.backgroundColor = UIColor.init(hexString: "#06a5ff")
         expiredButton.layer.cornerRadius = 17.0
         bgView.addSubview(expiredButton)
@@ -41,7 +41,7 @@ class TDVipExpiredView: UIView {
             make.centerX.equalTo(bgView.snp.centerX)
             make.centerY.equalTo(bgView.snp.centerY)
             make.height.equalTo(34.0)
-            make.width.equalTo(179.0)
+            make.width.equalTo(228.0)
         }
     }
 }

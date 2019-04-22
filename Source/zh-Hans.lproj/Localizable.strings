@@ -435,7 +435,7 @@
 /* Error message when user is not enrolled to any course and course discovery is also disabled.*/
 "ENROLLMENT_LIST.NO_ENROLLMENT" = "您还没有加入任何课程。";
 /* Prompt indicating user needs to enter an email address */
-"ENTER_EMAIL"="请输入您的用户名或邮箱并重试。";
+"ENTER_EMAIL"="请输入您的账号并重试。";
 /* Prompt indicating user needs to enter a password */
 "ENTER_PASSWORD"="请输入您的密码重试。";
 /* Text used when the post is visible to everyone */
@@ -485,7 +485,7 @@
 /* Overlay error shown when logging in with an invalid email address */
 "INVALID_EMAIL_MESSAGE"="请确保您的邮箱格式正确，并重试。";
 /* Overlay error shown when logging in with an invalid username or password */
-"INVALID_USERNAME_PASSWORD"="请确保输入正确的用户名/邮箱与密码，再重试。";
+"INVALID_USERNAME_PASSWORD"="请确保输入正确的账号与密码，再重试。";
 /* Alert dialog text asking whether it's okay to download large videos */
 "LARGE_DOWNLOAD_MESSAGE"="所选中视频大于1GB。是否要下载这些视频 ？";
 /* Alert dialog title when asking whether it's okay to download large videos */
@@ -497,7 +497,7 @@
 /* Prompt leading user to sign in screen */
 "LOGIN_SPLASH_SIGN_IN"="已有账号？登录";
 /* Button title to log out the current user */
-"LOGOUT"="退出";
+"LOGOUT"="退出登录";
 /* Option to sort discussion post list by most activity */
 "MOST_ACTIVITY"="最热活动";
 /* Option to sort discussion post list by most votes */
@@ -759,7 +759,7 @@
 /* Placeholder title for course content with no title */
 "UNTITLED"="无标题";
 /* Title text for login field */
-"USERNAME_TITLE_TEXT" = "用户名或邮箱";
+"USERNAME_TITLE_TEXT" = "邮箱或手机号";
 /*Error message when operation failed with unknow error*/
 "UNKNOWN_ERROR" = "您的操作无法完成。";
 /* Screen title showing a user's account */
@@ -979,3 +979,41 @@
 "VIDEO_SPEED" = "播放速度";
 /* 月均99.84元，畅享在线MBA体系化学习！Enjoy MBA-like curriculum online with only ¥99.84/month! */
 "MBA_ONLINE_PRICE" = "月均99.84元，畅享在线MBA体系化学习！";
+
+/*原密码     Old Password*/
+"OLD_PASSWORD" = "原密码";
+/*新密码     New Password*/
+"NEW_PASSWORD" = "新密码";
+/*重新输入新密码    Confirm Password*/
+"CONFIRM_PASSWORD" = "重新输入新密码";
+/*密码至少6个字符  Password must be at least 6 characters.*/
+"LEAST_SIX_CHARACTER" = "密码至少6个字符";
+/*密码修改成功      Password modified successfully.*/
+"PASSWORD_MODIFIED" = "密码修改成功";
+/*新密码不统一      New passwords do not match.*/
+"NEW_PASSWORD_NOMATCH" = "新密码不统一";
+/*原密码不正确      Old password is incorrect.*/
+"OLDPASSWORD_INCORRECT" = "原密码不正确";
+/*密码重置失败      Password reset failed.*/
+"PASSWORD_RESET_FAILED" = "密码重置失败";
+/*手机号          Phone Number*/
+"PHONE_NUMBER" = "手机号";
+/*重置密码    Password Reset*/
+"PASSWORD_RESET_TITLE" = "重置密码";
+/*会员资格    Membership*/
+"MEMBERSHIP" = "会员资格";
+/*未购买      Not Purchased*/
+"NO_PURCHASED" = "未购买";
+/*{number}天 {number} Day(s)*/
+"VIP_DAYS##{other}" = "{number}天";
+/*已过期      Expired*/
+"EXPIRED_TEXT" = "已过期";
+/*未绑定      Not Linked*/
+"NO_LINKED" = "未绑定";
+/*哈佛学习营\n有效期至：{date}  Harvard Learning Camp\nDate of Expiry:{date}*/
+"HARVARD_LEARN_CAMP" = "哈佛学习营\n有效期至：{date}";
+/*哈佛学习营  Harvard Learning Camp*/
+"HARVARD_LEARN_CAMP_TITLE" = "哈佛学习营";
+/*新密码和邮箱或用户名太相似 New password is too similar to the email address or the username.*/
+"NEW_PASSWORD_SIMILAR" = "新密码和邮箱或用户名太相似";
+

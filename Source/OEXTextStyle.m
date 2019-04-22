@@ -19,7 +19,6 @@
 
 @interface OEXTextStyle ()
 
-@property (assign, nonatomic) NSTextAlignment alignment;
 @property (strong, nonatomic) UIColor* color;
 @property (assign, nonatomic) OEXLetterSpacing letterSpacing;
 @property (assign, nonatomic) NSLineBreakMode lineBreakMode;

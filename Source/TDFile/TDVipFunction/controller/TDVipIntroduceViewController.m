@@ -145,6 +145,7 @@
 
 #pragma mark - UI
 - (void)setViewConstraint {
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, TDWidth, TDHeight)];
     self.webView.navigationDelegate = self;
@@ -175,7 +176,7 @@
 }
 
 - (void)loadRequestWebView {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/vip?device=ios",ELITEU_URL]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ELITEU_URL,self.urlStr]];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 

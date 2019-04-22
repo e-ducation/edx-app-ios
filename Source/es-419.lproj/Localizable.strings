@@ -1001,3 +1001,42 @@
 "VIDEO_SPEED" = "Video Speed";
 /* 月均99.84元，畅享在线MBA体系化学习！Enjoy MBA-like curriculum online with only ¥99.84/month! */
 "MBA_ONLINE_PRICE" = "Enjoy MBA-like curriculum online with only ¥99.84/month!";
+
+/*原密码     Old Password*/
+"OLD_PASSWORD" = "Old Password";
+/*新密码     New Password*/
+"NEW_PASSWORD" = "New Password";
+/*重新输入新密码    Confirm Password*/
+"CONFIRM_PASSWORD" = "Confirm Password";
+/*密码至少6个字符  Password must be at least 6 characters.*/
+"LEAST_SIX_CHARACTER" = "Password must be at least 6 characters.";
+/*密码修改成功      Password modified successfully.*/
+"PASSWORD_MODIFIED" = "Password modified successfully.";
+/*新密码不统一      New passwords do not match.*/
+"NEW_PASSWORD_NOMATCH" = "New passwords do not match.";
+/*原密码不正确      Old password is incorrect.*/
+"OLDPASSWORD_INCORRECT" = "Old password is incorrect.";
+/*密码重置失败      Password reset failed.*/
+"PASSWORD_RESET_FAILED" = "Password reset failed.";
+/*手机号          Phone Number*/
+"PHONE_NUMBER" = "Phone Number";
+/*重置密码    Password Reset*/
+"PASSWORD_RESET_TITLE" = "Password Reset";
+/*会员资格    Membership*/
+"MEMBERSHIP" = "Membership";
+/*未购买      Not Purchased*/
+"NO_PURCHASED" = "Not Purchased";
+/* {number}天 {number} Day */
+"VIP_DAYS##{one}" = "{number} Day";
+/* {number}天 {number} Days */
+"VIP_DAYS##{other}" = "{number} Days";
+/*已过期      Expired*/
+"EXPIRED_TEXT" = "Expired";
+/*未绑定      Not Linked*/
+"NO_LINKED" = "Not Linked";
+/*哈佛学习营\n有效期至：{date}  Harvard Learning Camp\nDate of Expiry: {date}*/
+"HARVARD_LEARN_CAMP" = "Harvard Learning Camp\nDate of Expiry: {date}";
+/*哈佛学习营  Harvard Learning Camp*/
+"HARVARD_LEARN_CAMP_TITLE" = "Harvard Learning Camp";
+/*新密码和邮箱或用户名太相似 New password is too similar to the email address or the username.*/
+"NEW_PASSWORD_SIMILAR" = "New password is too similar to the email address or the username.";

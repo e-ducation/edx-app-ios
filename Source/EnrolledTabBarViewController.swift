@@ -106,7 +106,9 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
                     additionalTabBarItems.append(item)
                 }
             case .Vip:
-                item = TabBarItem(title: option.title(), viewController: TDVipIntroduceViewController(), icon: Icon.BankHouse, detailText: Strings.Dashboard.courseCourseDetail)
+                let vipVc = TDVipIntroduceViewController()
+                vipVc.urlStr = "/vip?device=ios"
+                item = TabBarItem(title: option.title(), viewController: vipVc, icon: Icon.BankHouse, detailText: Strings.Dashboard.courseCourseDetail)
                 tabBarItems.append(item)
             }
         }

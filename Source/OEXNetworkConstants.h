@@ -47,5 +47,6 @@
 #define APP_PURCHASE_VERIFY_URL @"/api/v1/mobile/vip/pay/apple/receipt_verify/" //App Store内购验证
 #define APP_BINDPHONE_CODE_URL @"/api/user/v1/accounts/send_code_binding_phone/" //发送验证码
 #define APP_BINGPHONE_URL @"/api/user/v1/accounts/binding_phone/" //绑定手机
+#define APP_PASSWORD_RESET @"/api/user/v1/accounts/elite_password_reset/" //重置密码
 
 #endif

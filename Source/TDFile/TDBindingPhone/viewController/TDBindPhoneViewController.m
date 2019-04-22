@@ -39,7 +39,7 @@
 - (void)showLoading:(NSString *)status {
     [SVProgressHUD showWithStatus:status];
     SVProgressHUD.defaultMaskType = SVProgressHUDMaskTypeBlack;
-    SVProgressHUD.defaultStyle = SVProgressHUDAnimationTypeNative;
+    SVProgressHUD.defaultStyle = SVProgressHUDStyleDark;
 }
 
 #pragma mark - request

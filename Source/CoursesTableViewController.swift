@@ -37,15 +37,15 @@ class CourseCardCell : UITableViewCell {
         courseView.applyBorderStyle(style: courseCardBorderStyle)
         
         contentView.backgroundColor = OEXStyles.shared().neutralXLight()
-        
         selectionStyle = .none
-    
+
+        vipExpiredView.applyBorderStyle(style: courseCardBorderStyle)
         vipExpiredView.expiredButton.oex_addAction({ [weak self] _ in
             self?.showVipVC()
             }, for: .touchUpInside)
         addSubview(vipExpiredView)
         vipExpiredView.snp.makeConstraints { (make) in
-            make.leading.trailing.top.bottom.equalTo(self)
+            make.leading.trailing.top.bottom.equalTo(courseView)
         }
     }
     
@@ -140,8 +140,7 @@ class CoursesTableViewController: UITableViewController {
         }
         cell.course = course
         
-        if fromEnroll {
-            //VIP权利加入 + VIP过期 + 没取得证书
+        if fromEnroll { //VIP权利加入 + VIP过期 + 没取得证书
             if !course.is_normal_enroll && !course.is_vip && !course.has_cert {
                 cell.vipExpiredView.isHidden = false
             }

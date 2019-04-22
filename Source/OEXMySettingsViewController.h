@@ -10,6 +10,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OEXMySettingsViewController : UIViewController
 
+@property (nonatomic,strong) void(^logoutHandle)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

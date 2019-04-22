@@ -122,7 +122,7 @@ public class AuthenticatedWebViewController: UIViewController, WKNavigationDeleg
     
     private var state = State.CreatingSession
     
-    private var contentRequest : NSURLRequest? = nil
+    var contentRequest : NSURLRequest? = nil
     var currentUrl: NSURL? {
         return contentRequest?.url as NSURL?
     }

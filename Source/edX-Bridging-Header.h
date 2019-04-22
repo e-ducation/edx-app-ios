@@ -77,5 +77,7 @@
 #import "TDVipAlertView.h"
 #import "TDBindPhoneViewController.h"
 #import "UIView+Toast.h"
+#import "NSDictionary+OEXEncoding.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #import "ListenableObject.h"
