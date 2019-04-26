@@ -611,8 +611,18 @@
 		A4427CC321C2143E00891501 /* TDVipRecomendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4427CC221C2143E00891501 /* TDVipRecomendView.swift */; };
 		A44433C821BFA07500123C2E /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = A44433C721BFA07400123C2E /* UIView+Toast.m */; };
 		A44433D221BFDA9500123C2E /* TDVipAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44433D121BFDA9500123C2E /* TDVipAlertView.m */; };
+		A458F26322656A0B004962A9 /* TDProfessorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458F26222656A0B004962A9 /* TDProfessorViewController.swift */; };
+		A458F26522656B56004962A9 /* TDProfessorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458F26422656B56004962A9 /* TDProfessorCell.swift */; };
+		A458F26922657737004962A9 /* TDArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458F26822657737004962A9 /* TDArticleCell.swift */; };
+		A458F26B22657A4C004962A9 /* TDArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458F26A22657A4C004962A9 /* TDArticleViewController.swift */; };
+		A458F29E2265A8DF004962A9 /* TDArticlePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458F29D2265A8DF004962A9 /* TDArticlePageViewController.swift */; };
+		A458F2A42265A945004962A9 /* TDCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = A458F2A22265A945004962A9 /* TDCategoryView.m */; };
+		A458F2A72265A950004962A9 /* TDSegmentedPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A458F2A62265A950004962A9 /* TDSegmentedPageViewController.m */; };
+		A458F2A92265BFD6004962A9 /* TDMainSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458F2A82265BFD5004962A9 /* TDMainSiteViewController.swift */; };
 		A467A9AA21B7C05700C990C6 /* weChatParamsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A467A9A721B7C05600C990C6 /* weChatParamsItem.m */; };
 		A467A9AF21B7C0A300C990C6 /* Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = A467A9AE21B7C0A200C990C6 /* Encryption.m */; };
+		A46CEC082268176E0015FCBB /* TDProfessorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46CEC072268176E0015FCBB /* TDProfessorModel.swift */; };
+		A46CEC0A22682ED80015FCBB /* TDWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46CEC0922682ED80015FCBB /* TDWebViewController.swift */; };
 		A491BF6D21C0DDC50066E57D /* TDVipExpiredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A491BF6C21C0DDC50066E57D /* TDVipExpiredView.swift */; };
 		A49EE99321BA1C9E00EDCCC3 /* APOrderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A49EE98D21BA1C9D00EDCCC3 /* APOrderInfo.m */; };
 		A49EE99421BA1C9E00EDCCC3 /* TDAliPayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A49EE99021BA1C9D00EDCCC3 /* TDAliPayModel.m */; };
@@ -621,6 +631,20 @@
 		A49EEA4221BA225400EDCCC3 /* APRSASigner.m in Sources */ = {isa = PBXBuildFile; fileRef = A49EE9F221BA225400EDCCC3 /* APRSASigner.m */; };
 		A49EEA4321BA225400EDCCC3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A49EE9F321BA225400EDCCC3 /* libssl.a */; };
 		A49EEA4621BA241D00EDCCC3 /* TDAlipayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A49EEA4521BA241D00EDCCC3 /* TDAlipayManager.m */; };
+		A4D4BC542266F8D0003ABC8F /* TDRecommendCoureseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D4BC532266F8D0003ABC8F /* TDRecommendCoureseCell.swift */; };
+		A4D4BC5622671846003ABC8F /* TDCategoryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D4BC5522671846003ABC8F /* TDCategoryItemCell.swift */; };
+		A4D4BC5B22672997003ABC8F /* CellFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D4BC5822672996003ABC8F /* CellFlowLayout.swift */; };
+		A4D4BC5C22672997003ABC8F /* CycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D4BC5922672996003ABC8F /* CycleCell.swift */; };
+		A4D4BC5D22672997003ABC8F /* CycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D4BC5A22672996003ABC8F /* CycleView.swift */; };
+		A4ED580E2266BC7500B0FA28 /* TDRecommendImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED58062266BC7400B0FA28 /* TDRecommendImageCell.swift */; };
+		A4ED580F2266BC7500B0FA28 /* TDCourseCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED58072266BC7400B0FA28 /* TDCourseCategoryCell.swift */; };
+		A4ED58102266BC7500B0FA28 /* TDBeingVipCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED58082266BC7400B0FA28 /* TDBeingVipCell.swift */; };
+		A4ED58112266BC7500B0FA28 /* TDMainProfessorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED58092266BC7400B0FA28 /* TDMainProfessorCell.swift */; };
+		A4ED58122266BC7500B0FA28 /* TDTurnCampCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED580A2266BC7400B0FA28 /* TDTurnCampCell.swift */; };
+		A4ED58132266BC7500B0FA28 /* TDRecommendArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED580B2266BC7400B0FA28 /* TDRecommendArticleCell.swift */; };
+		A4ED58142266BC7500B0FA28 /* TDFindSuiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED580C2266BC7400B0FA28 /* TDFindSuiteCell.swift */; };
+		A4ED58162266BC9E00B0FA28 /* TDMainSiteHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED58152266BC9E00B0FA28 /* TDMainSiteHeaderView.swift */; };
+		A4ED58182266C3CB00B0FA28 /* TDMainSiteFooterReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ED58172266C3CB00B0FA28 /* TDMainSiteFooterReusableView.swift */; };
 		A4FA40D321B0E2B50089CEBA /* TDWeixinAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FA40C521B0E2B40089CEBA /* TDWeixinAuthProvider.m */; };
 		A4FA40D421B0E2B50089CEBA /* TDSinaWBAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FA40C621B0E2B40089CEBA /* TDSinaWBAuthProvider.m */; };
 		A4FA40D521B0E2B50089CEBA /* TDQQAuthProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FA40CA21B0E2B40089CEBA /* TDQQAuthProvider.m */; };
@@ -1655,10 +1679,22 @@
 		A44433C721BFA07400123C2E /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		A44433D021BFDA9500123C2E /* TDVipAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipAlertView.h; sourceTree = "<group>"; };
 		A44433D121BFDA9500123C2E /* TDVipAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipAlertView.m; sourceTree = "<group>"; };
+		A458F26222656A0B004962A9 /* TDProfessorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDProfessorViewController.swift; sourceTree = "<group>"; };
+		A458F26422656B56004962A9 /* TDProfessorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDProfessorCell.swift; sourceTree = "<group>"; };
+		A458F26822657737004962A9 /* TDArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDArticleCell.swift; sourceTree = "<group>"; };
+		A458F26A22657A4C004962A9 /* TDArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDArticleViewController.swift; sourceTree = "<group>"; };
+		A458F29D2265A8DF004962A9 /* TDArticlePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDArticlePageViewController.swift; sourceTree = "<group>"; };
+		A458F2A22265A945004962A9 /* TDCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCategoryView.m; sourceTree = "<group>"; };
+		A458F2A32265A945004962A9 /* TDCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCategoryView.h; sourceTree = "<group>"; };
+		A458F2A52265A94F004962A9 /* TDSegmentedPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDSegmentedPageViewController.h; sourceTree = "<group>"; };
+		A458F2A62265A950004962A9 /* TDSegmentedPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDSegmentedPageViewController.m; sourceTree = "<group>"; };
+		A458F2A82265BFD5004962A9 /* TDMainSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDMainSiteViewController.swift; sourceTree = "<group>"; };
 		A467A9A721B7C05600C990C6 /* weChatParamsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = weChatParamsItem.m; sourceTree = "<group>"; };
 		A467A9A921B7C05700C990C6 /* weChatParamsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weChatParamsItem.h; sourceTree = "<group>"; };
 		A467A9AD21B7C0A200C990C6 /* Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encryption.h; sourceTree = "<group>"; };
 		A467A9AE21B7C0A200C990C6 /* Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Encryption.m; sourceTree = "<group>"; };
+		A46CEC072268176E0015FCBB /* TDProfessorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDProfessorModel.swift; sourceTree = "<group>"; };
+		A46CEC0922682ED80015FCBB /* TDWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDWebViewController.swift; sourceTree = "<group>"; };
 		A491BF6C21C0DDC50066E57D /* TDVipExpiredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDVipExpiredView.swift; sourceTree = "<group>"; };
 		A49EE98D21BA1C9D00EDCCC3 /* APOrderInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APOrderInfo.m; sourceTree = "<group>"; };
 		A49EE98E21BA1C9D00EDCCC3 /* APOrderInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APOrderInfo.h; sourceTree = "<group>"; };
@@ -1747,6 +1783,20 @@
 		A49EEA3F21BA225400EDCCC3 /* lhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lhash.h; sourceTree = "<group>"; };
 		A49EEA4421BA241D00EDCCC3 /* TDAlipayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDAlipayManager.h; sourceTree = "<group>"; };
 		A49EEA4521BA241D00EDCCC3 /* TDAlipayManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDAlipayManager.m; sourceTree = "<group>"; };
+		A4D4BC532266F8D0003ABC8F /* TDRecommendCoureseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDRecommendCoureseCell.swift; sourceTree = "<group>"; };
+		A4D4BC5522671846003ABC8F /* TDCategoryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDCategoryItemCell.swift; sourceTree = "<group>"; };
+		A4D4BC5822672996003ABC8F /* CellFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellFlowLayout.swift; sourceTree = "<group>"; };
+		A4D4BC5922672996003ABC8F /* CycleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleCell.swift; sourceTree = "<group>"; };
+		A4D4BC5A22672996003ABC8F /* CycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleView.swift; sourceTree = "<group>"; };
+		A4ED58062266BC7400B0FA28 /* TDRecommendImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDRecommendImageCell.swift; sourceTree = "<group>"; };
+		A4ED58072266BC7400B0FA28 /* TDCourseCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCourseCategoryCell.swift; sourceTree = "<group>"; };
+		A4ED58082266BC7400B0FA28 /* TDBeingVipCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDBeingVipCell.swift; sourceTree = "<group>"; };
+		A4ED58092266BC7400B0FA28 /* TDMainProfessorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDMainProfessorCell.swift; sourceTree = "<group>"; };
+		A4ED580A2266BC7400B0FA28 /* TDTurnCampCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDTurnCampCell.swift; sourceTree = "<group>"; };
+		A4ED580B2266BC7400B0FA28 /* TDRecommendArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDRecommendArticleCell.swift; sourceTree = "<group>"; };
+		A4ED580C2266BC7400B0FA28 /* TDFindSuiteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDFindSuiteCell.swift; sourceTree = "<group>"; };
+		A4ED58152266BC9E00B0FA28 /* TDMainSiteHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDMainSiteHeaderView.swift; sourceTree = "<group>"; };
+		A4ED58172266C3CB00B0FA28 /* TDMainSiteFooterReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDMainSiteFooterReusableView.swift; sourceTree = "<group>"; };
 		A4FA40BA21B0CFA20089CEBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = "zh-Hans"; path = "zh-Hans.lproj/subjects.json"; sourceTree = "<group>"; };
 		A4FA40BB21B0CFA20089CEBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/MobileAppEula.htm"; sourceTree = "<group>"; };
 		A4FA40BC21B0CFA30089CEBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/PrivacyPolicy.htm"; sourceTree = "<group>"; };
@@ -3399,6 +3449,8 @@
 			isa = PBXGroup;
 			children = (
 				A423E0BD21B12B800093FBD3 /* TDPchHeader.h */,
+				A4D4BC5722672996003ABC8F /* CycleView */,
+				A458F29F2265A91B004962A9 /* TDPageViewController */,
 				A44433C521BFA07400123C2E /* TDToast */,
 				A467A9AC21B7C0A200C990C6 /* TDMd5Tool */,
 				A423E0B921B11F1D0093FBD3 /* TDHexColor */,
@@ -3460,6 +3512,146 @@
 				A44433C721BFA07400123C2E /* UIView+Toast.m */,
 			);
 			path = TDToast;
+			sourceTree = "<group>";
+		};
+		A458F255226569D9004962A9 /* TDMainSite */ = {
+			isa = PBXGroup;
+			children = (
+				A458F256226569D9004962A9 /* TDArticle */,
+				A458F25A226569D9004962A9 /* TDProfessor */,
+				A458F25E226569D9004962A9 /* TDMainSite */,
+			);
+			path = TDMainSite;
+			sourceTree = "<group>";
+		};
+		A458F256226569D9004962A9 /* TDArticle */ = {
+			isa = PBXGroup;
+			children = (
+				A458F259226569D9004962A9 /* viewController */,
+				A458F257226569D9004962A9 /* model */,
+				A458F258226569D9004962A9 /* view */,
+			);
+			path = TDArticle;
+			sourceTree = "<group>";
+		};
+		A458F257226569D9004962A9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		A458F258226569D9004962A9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				A458F26822657737004962A9 /* TDArticleCell.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		A458F259226569D9004962A9 /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				A458F29D2265A8DF004962A9 /* TDArticlePageViewController.swift */,
+				A458F26A22657A4C004962A9 /* TDArticleViewController.swift */,
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		A458F25A226569D9004962A9 /* TDProfessor */ = {
+			isa = PBXGroup;
+			children = (
+				A458F25D226569D9004962A9 /* viewController */,
+				A458F25B226569D9004962A9 /* model */,
+				A458F25C226569D9004962A9 /* view */,
+			);
+			path = TDProfessor;
+			sourceTree = "<group>";
+		};
+		A458F25B226569D9004962A9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				A46CEC072268176E0015FCBB /* TDProfessorModel.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		A458F25C226569D9004962A9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				A458F26422656B56004962A9 /* TDProfessorCell.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		A458F25D226569D9004962A9 /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				A458F26222656A0B004962A9 /* TDProfessorViewController.swift */,
+				A46CEC0922682ED80015FCBB /* TDWebViewController.swift */,
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		A458F25E226569D9004962A9 /* TDMainSite */ = {
+			isa = PBXGroup;
+			children = (
+				A458F261226569D9004962A9 /* viewController */,
+				A458F25F226569D9004962A9 /* model */,
+				A458F260226569D9004962A9 /* view */,
+			);
+			path = TDMainSite;
+			sourceTree = "<group>";
+		};
+		A458F25F226569D9004962A9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		A458F260226569D9004962A9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				A4ED58052266BC7400B0FA28 /* cell */,
+				A4ED580D2266BC7500B0FA28 /* reuseView */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		A458F261226569D9004962A9 /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				A458F2A82265BFD5004962A9 /* TDMainSiteViewController.swift */,
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		A458F29F2265A91B004962A9 /* TDPageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A458F2A02265A91B004962A9 /* controller */,
+				A458F2A12265A91B004962A9 /* view */,
+			);
+			path = TDPageViewController;
+			sourceTree = "<group>";
+		};
+		A458F2A02265A91B004962A9 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				A458F2A52265A94F004962A9 /* TDSegmentedPageViewController.h */,
+				A458F2A62265A950004962A9 /* TDSegmentedPageViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		A458F2A12265A91B004962A9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				A458F2A32265A945004962A9 /* TDCategoryView.h */,
+				A458F2A22265A945004962A9 /* TDCategoryView.m */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		A467A9A321B7BFA900C990C6 /* TDPayManager */ = {
@@ -3609,9 +3801,45 @@
 			path = openssl;
 			sourceTree = "<group>";
 		};
+		A4D4BC5722672996003ABC8F /* CycleView */ = {
+			isa = PBXGroup;
+			children = (
+				A4D4BC5822672996003ABC8F /* CellFlowLayout.swift */,
+				A4D4BC5922672996003ABC8F /* CycleCell.swift */,
+				A4D4BC5A22672996003ABC8F /* CycleView.swift */,
+			);
+			path = CycleView;
+			sourceTree = "<group>";
+		};
+		A4ED58052266BC7400B0FA28 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				A4ED580A2266BC7400B0FA28 /* TDTurnCampCell.swift */,
+				A4ED58072266BC7400B0FA28 /* TDCourseCategoryCell.swift */,
+				A4D4BC5522671846003ABC8F /* TDCategoryItemCell.swift */,
+				A4ED580C2266BC7400B0FA28 /* TDFindSuiteCell.swift */,
+				A4D4BC532266F8D0003ABC8F /* TDRecommendCoureseCell.swift */,
+				A4ED58092266BC7400B0FA28 /* TDMainProfessorCell.swift */,
+				A4ED58062266BC7400B0FA28 /* TDRecommendImageCell.swift */,
+				A4ED580B2266BC7400B0FA28 /* TDRecommendArticleCell.swift */,
+				A4ED58082266BC7400B0FA28 /* TDBeingVipCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		A4ED580D2266BC7500B0FA28 /* reuseView */ = {
+			isa = PBXGroup;
+			children = (
+				A4ED58152266BC9E00B0FA28 /* TDMainSiteHeaderView.swift */,
+				A4ED58172266C3CB00B0FA28 /* TDMainSiteFooterReusableView.swift */,
+			);
+			path = reuseView;
+			sourceTree = "<group>";
+		};
 		A4FA40C321B0E2B40089CEBA /* TDFile */ = {
 			isa = PBXGroup;
 			children = (
+				A458F255226569D9004962A9 /* TDMainSite */,
 				A413A09C224DD5B3008739E3 /* TDResetPassword */,
 				A43E631721C92D6F002286BF /* TDBindingPhone */,
 				A4FA40C421B0E2B40089CEBA /* TDAuthenProvider */,
@@ -4896,6 +5124,7 @@
 				"${PODS_ROOT}/DateTools/DateTools/DateTools.bundle",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 				"${PODS_ROOT}/Weibo_SDK/libWeiboSDK/WeiboSDK.bundle",
 			);
@@ -4905,6 +5134,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
 			);
@@ -4924,6 +5154,7 @@
 				"${PODS_ROOT}/DateTools/DateTools/DateTools.bundle",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 				"${PODS_ROOT}/Weibo_SDK/libWeiboSDK/WeiboSDK.bundle",
 			);
@@ -4933,6 +5164,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
 			);
@@ -5116,7 +5348,9 @@
 				1A6E86241BB9C6500039A216 /* OEXStyles+Profile.swift in Sources */,
 				193B504519459C2F0038E11C /* OEXCustomButton.m in Sources */,
 				1A2CCDAB1BDE6F6500D03022 /* OEXAnalytics+Profiles.swift in Sources */,
+				A458F2A42265A945004962A9 /* TDCategoryView.m in Sources */,
 				A49EEA4221BA225400EDCCC3 /* APRSASigner.m in Sources */,
+				A4ED58182266C3CB00B0FA28 /* TDMainSiteFooterReusableView.swift in Sources */,
 				B4B6D6001A949EFC000F44E8 /* OEXRegistrationDescription.m in Sources */,
 				5DEA47D71B62F64300831EC9 /* DiscussionObjectModel.swift in Sources */,
 				A410851D21BE0D680053F18A /* TDVipPackageModel.m in Sources */,
@@ -5135,11 +5369,13 @@
 				9EC6E1001BDE40E100729704 /* OEXCourse+Swift.swift in Sources */,
 				7706AAC11BCFEEBF00728432 /* NSAttributedString+Formatting.swift in Sources */,
 				778D53351B3D96E900441A98 /* ListCursor.swift in Sources */,
+				A4D4BC5622671846003ABC8F /* TDCategoryItemCell.swift in Sources */,
 				B7CCC735209B16B100A66923 /* ConstraintView+Extensions.swift in Sources */,
 				E0C6EF971BFF4B9900B315E3 /* UIButton+TintColor.swift in Sources */,
 				B4B6D62A1A949F1B000F44E8 /* OEXRegistrationFieldSelectController.m in Sources */,
 				A467A9AA21B7C05700C990C6 /* weChatParamsItem.m in Sources */,
 				B4B6D5E51A9490E9000F44E8 /* OEXLoginSplashViewController.m in Sources */,
+				A458F26522656B56004962A9 /* TDProfessorCell.swift in Sources */,
 				778F177C1C0D12780099BF93 /* CourseCatalogAPI.swift in Sources */,
 				B7CCC73B209B16B100A66923 /* LayoutConstraint.swift in Sources */,
 				B4B285E21A9A497A00DD603A /* OEXSegmentConfig.m in Sources */,
@@ -5148,6 +5384,7 @@
 				191A002B19405E1B004F7902 /* OEXCourse.m in Sources */,
 				2240FD561FF266E4001D6589 /* TabBarItem.swift in Sources */,
 				E0A2461F1D5DA12A0066C766 /* AppStoreConfig.swift in Sources */,
+				A4ED58142266BC7500B0FA28 /* TDFindSuiteCell.swift in Sources */,
 				7778F0981ABB1A6C00B4CDA0 /* NSError+OEXKnownErrors.m in Sources */,
 				224F1F532067B4E0009B3639 /* CustomSlider.swift in Sources */,
 				223972E11FE92BB500B2BBEC /* EnrolledTabBarViewController.swift in Sources */,
@@ -5166,6 +5403,7 @@
 				7765025F1C7CEBC5007384E7 /* SingleChildContainingViewController.swift in Sources */,
 				7C2DD54F1D4A7901006148E0 /* UserPreference.swift in Sources */,
 				1A3AFFE51BD56370002846F3 /* CropViewController.swift in Sources */,
+				A4ED58112266BC7500B0FA28 /* TDMainProfessorCell.swift in Sources */,
 				7731813B1B6C1442000CC050 /* SeparatorInsetable.swift in Sources */,
 				B4B285DC1A9A490400DD603A /* OEXFacebookConfig.m in Sources */,
 				9C9B7F6C1A8CC68400A857B2 /* OEXFindCoursesViewController.m in Sources */,
@@ -5189,6 +5427,7 @@
 				1A9A1E481B8F3BB8005AE336 /* OEXCheckBox.swift in Sources */,
 				A4FA40D621B0E2B50089CEBA /* TDWechatManager.m in Sources */,
 				46CECC3C1B041D270073C63A /* AdditionalTableViewCell.swift in Sources */,
+				A4ED580E2266BC7500B0FA28 /* TDRecommendImageCell.swift in Sources */,
 				778F177A1C0D125A0099BF93 /* CoursesTableViewController.swift in Sources */,
 				77ADF4AF1AC1F80E00AC8955 /* OEXGoogleAuthProvider.m in Sources */,
 				1A7CEA331BABA8C70043A58C /* ProfileImageView.swift in Sources */,
@@ -5214,6 +5453,7 @@
 				B4B285ED1A9B429200DD603A /* OEXNetworkUtility.m in Sources */,
 				BE0D454A192DD4F800D720D6 /* OEXNetworkInterface.m in Sources */,
 				B419295E1A8A3F1900448AD5 /* OEXNetworkManager.m in Sources */,
+				A458F2A92265BFD6004962A9 /* TDMainSiteViewController.swift in Sources */,
 				E0A2461D1D5CA6950066C766 /* LogoutApi.swift in Sources */,
 				E02E59EF1F0E231000060AE0 /* VersionParser.swift in Sources */,
 				770A27961A6995DF00DFC6FF /* NSArray+OEXFunctional.m in Sources */,
@@ -5232,6 +5472,7 @@
 				A49EE99421BA1C9E00EDCCC3 /* TDAliPayModel.m in Sources */,
 				19BB622A1A9B28F1007DBF47 /* OEXRegistrationFieldWrapperView.m in Sources */,
 				9E1081081B8B7EEC00888746 /* PaginatedFeed.swift in Sources */,
+				A458F29E2265A8DF004962A9 /* TDArticlePageViewController.swift in Sources */,
 				B7CCC720209B16B100A66923 /* ConstraintMakerPriortizable.swift in Sources */,
 				B4B6D6061A949EFC000F44E8 /* OEXRegistrationErrorMessage.m in Sources */,
 				80056C9A1B0CDE1A0004D85C /* DiscussionResponsesViewController.swift in Sources */,
@@ -5241,12 +5482,14 @@
 				227386A7204EBF26007AA396 /* VideoPlayerControls.swift in Sources */,
 				1AAD95F61CEA222500BBF70C /* StartupViewController.swift in Sources */,
 				B7CCC737209B16B100A66923 /* Constraint.swift in Sources */,
+				A4ED58102266BC7500B0FA28 /* TDBeingVipCell.swift in Sources */,
 				1A5501A21BBA323700D5F9DD /* ProfileBanner.swift in Sources */,
 				B7CCC738209B16B100A66923 /* Debugging.swift in Sources */,
 				A49EEA4121BA225400EDCCC3 /* openssl_wrapper.m in Sources */,
 				77C6BBCA1CB4BC6F0026C37B /* AccomplishmentsView.swift in Sources */,
 				B7CCC72F209B16B100A66923 /* ConstraintConstantTarget.swift in Sources */,
 				A49EEA4621BA241D00EDCCC3 /* TDAlipayManager.m in Sources */,
+				A4ED58122266BC7500B0FA28 /* TDTurnCampCell.swift in Sources */,
 				77509D981BE1916600B10CD3 /* UserProfileManager.swift in Sources */,
 				77E209851AF158190071316D /* CourseOutline.swift in Sources */,
 				1A8172531C3C21DE007262AA /* TwitterConfig.swift in Sources */,
@@ -5258,6 +5501,7 @@
 				E01F45671E03D04100B9D7DC /* FirebaseAnalyticsTracker.swift in Sources */,
 				A4FA40D521B0E2B50089CEBA /* TDQQAuthProvider.m in Sources */,
 				B7CCC724209B16B100A66923 /* ConstraintInsets.swift in Sources */,
+				A46CEC0A22682ED80015FCBB /* TDWebViewController.swift in Sources */,
 				B7CCC72A209B16B100A66923 /* ConstraintConfig.swift in Sources */,
 				A43E631F21C92D70002286BF /* TDBindPhoneView.m in Sources */,
 				B7CCC72B209B16B100A66923 /* UILayoutSupport+Extensions.swift in Sources */,
@@ -5265,6 +5509,7 @@
 				1A3671F51BB03C7A00704032 /* OEXRearTableViewController.swift in Sources */,
 				77DCD23D1C2B434200CAEBB5 /* UIViewController+Overlay.swift in Sources */,
 				B760E554200DD6E800ECACAB /* CourseVideosHeaderView.swift in Sources */,
+				A458F26B22657A4C004962A9 /* TDArticleViewController.swift in Sources */,
 				198826E81952FE39005D4D8A /* OEXOpenInBrowserViewController.m in Sources */,
 				E02F65691E8B94CC000D1C4E /* TZStackViewAlignment.swift in Sources */,
 				B7CCC725209B16B100A66923 /* ConstraintMakerFinalizable.swift in Sources */,
@@ -5286,6 +5531,7 @@
 				778C72F11B17C30000FC3F68 /* Dictionary+Functional.swift in Sources */,
 				E0FF457920FDD24400109662 /* VideoCompletionApi.swift in Sources */,
 				69F5FACB1E28B0AD00F6ACC6 /* VideoTranscriptTableViewCell.swift in Sources */,
+				A4ED580F2266BC7500B0FA28 /* TDCourseCategoryCell.swift in Sources */,
 				699FF8501E559E6B00AD98A5 /* OEXInterface+AppReview.swift in Sources */,
 				773A04781AF2D5DE0076532C /* CourseOutlineViewController.swift in Sources */,
 				B70BD00620B57B93005F0D19 /* SubjectCollectionViewCell.swift in Sources */,
@@ -5367,8 +5613,10 @@
 				77EA92261BB4590A00EC625A /* DownloadsAccessoryView.swift in Sources */,
 				3F92D6E620B19C9B00A69806 /* AgreementURLsConfig.swift in Sources */,
 				77ADF4A61AC1B35000AC8955 /* OEXExternalAuthProviderButton.m in Sources */,
+				A4D4BC5B22672997003ABC8F /* CellFlowLayout.swift in Sources */,
 				77C182AA1CD2E46900AE1474 /* TablePaginationManipulator.swift in Sources */,
 				0B1212221B4F089A002EE96C /* OEXCoursewareAccess.m in Sources */,
+				A458F26322656A0B004962A9 /* TDProfessorViewController.swift in Sources */,
 				77DCD2391C2B13AA00CAEBB5 /* EnrolledCoursesFooterView.swift in Sources */,
 				A423E0B121B113300093FBD3 /* TDVipPackageViewController.m in Sources */,
 				B78B233F20908C3D00F8D976 /* AgreementTextView.swift in Sources */,
@@ -5436,6 +5684,7 @@
 				A410852021BE11E20053F18A /* TDVipMessageModel.m in Sources */,
 				B4132C10195AAFBE00F50B46 /* OEXAuthentication.m in Sources */,
 				E0B4F3621EBB133000D42C11 /* WhatsNewContentController.swift in Sources */,
+				A458F2A72265A950004962A9 /* TDSegmentedPageViewController.m in Sources */,
 				775EB3AE1B1FF1AD009526A8 /* ButtonStyle.swift in Sources */,
 				7772BE731AF2FECC0081CA7A /* CourseOutlineHeaderCell.swift in Sources */,
 				A4FA40D421B0E2B50089CEBA /* TDSinaWBAuthProvider.m in Sources */,
@@ -5449,6 +5698,7 @@
 				B7CCC731209B16B100A66923 /* ConstraintMakerEditable.swift in Sources */,
 				77509D941BE1710200B10CD3 /* TZStackView.swift in Sources */,
 				B78823A81FC6F69900F9CD61 /* RegistrationFieldController.swift in Sources */,
+				A4ED58132266BC7500B0FA28 /* TDRecommendArticleCell.swift in Sources */,
 				77FFA2BE1AC3031900B4D69B /* OEXUsingExternalAuthHeadingView.m in Sources */,
 				775DF41A1AFAB04300F96B2F /* CourseDataManager.swift in Sources */,
 				223DD6BB1F9F5A4B004A21B9 /* CourseDashboardViewController.swift in Sources */,
@@ -5469,6 +5719,8 @@
 				A423E0C021B135660093FBD3 /* TDVipPackageHeaderView.m in Sources */,
 				B7CCC728209B16B100A66923 /* ConstraintPriority.swift in Sources */,
 				77AF07751CB311B200A42704 /* UserProfileView.swift in Sources */,
+				A4ED58162266BC9E00B0FA28 /* TDMainSiteHeaderView.swift in Sources */,
+				A458F26922657737004962A9 /* TDArticleCell.swift in Sources */,
 				77236EEB1C21C32E006AC1A4 /* PaginationController.swift in Sources */,
 				1AFEB1B31BBD52C7004C471D /* JSONFormBuilderTextEditor.swift in Sources */,
 				B4B6D6391A95042B000F44E8 /* OEXCheckBoxView.m in Sources */,
@@ -5516,6 +5768,7 @@
 				B7A09BD520F88FBC00A6C249 /* ProgramsViewController.swift in Sources */,
 				B7C5DB3A20B75BFB00D80AD2 /* ViewAllSubjectsCollectionViewCell.swift in Sources */,
 				2255C94E2111BADC005F7C8C /* ProgramConfig.swift in Sources */,
+				A4D4BC5C22672997003ABC8F /* CycleCell.swift in Sources */,
 				778B61061B06BD2100489532 /* NSNotificationCenter+SafeSwift.swift in Sources */,
 				B4B6D6011A949EFC000F44E8 /* OEXRegistrationError.m in Sources */,
 				1904A14D1A1386C2006A5524 /* edXDB.xcdatamodel in Sources */,
@@ -5524,12 +5777,15 @@
 				77EC889E1AB787630050F9CF /* OEXAnalyticsData.m in Sources */,
 				7772BE961AF9587E0081CA7A /* CourseContentPageViewController.swift in Sources */,
 				9EDB10B61B0C742C00C760C6 /* CourseOutlineItemView.swift in Sources */,
+				A46CEC082268176E0015FCBB /* TDProfessorModel.swift in Sources */,
 				2271C54821634AC8001EA1E6 /* DeepLink.swift in Sources */,
 				1A5501A01BBA316900D5F9DD /* UserProfileEditViewController.swift in Sources */,
 				A4FF604721B5158B00AC8EA1 /* TDPayView.m in Sources */,
+				A4D4BC5D22672997003ABC8F /* CycleView.swift in Sources */,
 				A423E0B421B1134F0093FBD3 /* TDVipPackageView.m in Sources */,
 				B4B6C80D1A9C7AEA004F0FAF /* OEXPlaceholderTextView.m in Sources */,
 				77E648781C91330D00B6740D /* Result+Conveniences.swift in Sources */,
+				A4D4BC542266F8D0003ABC8F /* TDRecommendCoureseCell.swift in Sources */,
 				9EF21A9E1B4697CA000048F8 /* CourseLastAccessedController.swift in Sources */,
 				698EE6E91E38A53600DF4FEA /* RatingView.swift in Sources */,
 				694D34A01D75BDF80047F3F4 /* UIAlertController+OEXBlockActions.swift in Sources */,

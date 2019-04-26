@@ -25,6 +25,8 @@ pod 'WechatOpenSDK'
 pod 'AlipaySDK-iOS'
 pod 'AFNetworking'
 pod 'SVProgressHUD'
+pod 'MJRefresh'
+pod 'SDWebImage'
 
 target 'edXTests' do
     pod 'FBSnapshotTestCase/Core', '= 2.0.1'
