@@ -76,7 +76,8 @@ extension TDFindSuiteCell : UICollectionViewDelegate,UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 192, height: 136)
+        let screenWidth = UIScreen.main.bounds.size.width
+        return CGSize(width: (screenWidth-24)*0.55, height: (screenWidth-24)*0.55*0.63+15)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

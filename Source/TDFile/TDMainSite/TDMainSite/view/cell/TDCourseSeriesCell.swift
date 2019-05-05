@@ -44,12 +44,14 @@ class TDCourseSeriesCell: UICollectionViewCell {
             make.left.right.bottom.top.equalTo(self.contentView)
         }
         
+        let screenWidth = UIScreen.main.bounds.size.width
         courseImage.snp.makeConstraints { (make) in
             make.top.equalTo(bgView).offset(0)
             make.left.right.equalTo(bgView)
-            make.height.equalTo(94)
+            make.height.equalTo((screenWidth-24)*0.55*0.49)
         }
         
+        titleLabel.backgroundColor = UIColor.white
         titleLabel.snp.makeConstraints { (make) in
             make.left.right.equalTo(bgView)
             make.top.equalTo(courseImage.snp.bottom).offset(8)

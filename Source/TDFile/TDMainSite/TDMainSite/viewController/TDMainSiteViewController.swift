@@ -8,6 +8,22 @@
 
 import UIKit
 
+enum MainSiteCellKey: String {
+    case Banner = "TDMainSiteBannerCell"
+    case CourseCategory = "TDCourseCategoryCell"
+    case CourseSeries = "TDFindSuiteCell"
+    case RecommendCourse = "TDRecommendCoureseCell"
+    case Professor = "TDMainProfessorCell"
+    case RecommendImg = "TDRecommendImageCell"
+    case RecommendArticle = "TDRecommendArticleCell"
+    case BeingVip = "TDBeingVipCell"
+}
+
+enum MainSiteReuseViewKey: String {
+    case Header = "TDMainSiteHeaderView"
+    case Footer = "TDMainSiteFooterReusableView"
+}
+
 class TDMainSiteViewController: UIViewController {
     
     private let loadController = LoadStateViewController()
@@ -25,17 +41,17 @@ class TDMainSiteViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = UIColor.white
         
-        collectionView.register(TDMainSiteBannerCell.self, forCellWithReuseIdentifier: "TDMainSiteBannerCell")
-        collectionView.register(TDCourseCategoryCell.self, forCellWithReuseIdentifier: "TDCourseCategoryCell")
-        collectionView.register(TDFindSuiteCell.self, forCellWithReuseIdentifier: "TDFindSuiteCell")
-        collectionView.register(TDRecommendCoureseCell.self, forCellWithReuseIdentifier: "TDRecommendCoureseCell")
-        collectionView.register(TDMainProfessorCell.self, forCellWithReuseIdentifier: "TDMainProfessorCell")
-        collectionView.register(TDRecommendImageCell.self, forCellWithReuseIdentifier: "TDRecommendImageCell")
-        collectionView.register(TDRecommendArticleCell.self, forCellWithReuseIdentifier: "TDRecommendArticleCell")
-        collectionView.register(TDBeingVipCell.self, forCellWithReuseIdentifier: "TDBeingVipCell")
+        collectionView.register(TDMainSiteBannerCell.self, forCellWithReuseIdentifier: MainSiteCellKey.Banner.rawValue)
+        collectionView.register(TDCourseCategoryCell.self, forCellWithReuseIdentifier: MainSiteCellKey.CourseCategory.rawValue)
+        collectionView.register(TDFindSuiteCell.self, forCellWithReuseIdentifier: MainSiteCellKey.CourseSeries.rawValue)
+        collectionView.register(TDRecommendCoureseCell.self, forCellWithReuseIdentifier: MainSiteCellKey.RecommendCourse.rawValue)
+        collectionView.register(TDMainProfessorCell.self, forCellWithReuseIdentifier: MainSiteCellKey.Professor.rawValue)
+        collectionView.register(TDRecommendImageCell.self, forCellWithReuseIdentifier: MainSiteCellKey.RecommendImg.rawValue)
+        collectionView.register(TDRecommendArticleCell.self, forCellWithReuseIdentifier: MainSiteCellKey.RecommendArticle.rawValue)
+        collectionView.register(TDBeingVipCell.self, forCellWithReuseIdentifier: MainSiteCellKey.BeingVip.rawValue)
         
-        collectionView.register(TDMainSiteHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TDMainSiteHeaderView")
-        collectionView.register(TDMainSiteFooterReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "TDMainSiteFooterReusableView")
+        collectionView.register(TDMainSiteHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainSiteReuseViewKey.Header.rawValue)
+        collectionView.register(TDMainSiteFooterReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: MainSiteReuseViewKey.Footer.rawValue)
         
         return collectionView
     }()
@@ -76,7 +92,8 @@ class TDMainSiteViewController: UIViewController {
             self.collectionView.reloadData()
             
             if isFirst {
-               self.loadController.state = .Loaded
+                self.loadController.state = .Loaded
+                self.loadController.view.isHidden = true
             }
             else {
                 self.collectionView.mj_header.endRefreshing()
@@ -84,11 +101,21 @@ class TDMainSiteViewController: UIViewController {
             
         }) { (task, error) in
             if isFirst {
-                self.loadController.state = LoadState.failed(error: error as NSError)
-            } else {
+                self.showError(error: error as NSError)
+            }
+            else {
+                self.view.makeToast(Strings.internetError, duration: 0.8, position: CSToastPositionCenter)
                 self.collectionView.mj_header.endRefreshing()
             }
         }
+    }
+    
+    public func showError(error : NSError?, icon : Icon? = nil, message : String? = nil) {
+        let buttonInfo = MessageButtonInfo(title: Strings.reload) {[weak self] in
+            self?.loadController.state = .Initial
+            self?.getMainSiteData(isFirst: true)
+        }
+        loadController.state = LoadState.failed(error: error, icon: icon, message: message, buttonInfo: buttonInfo)
     }
     
     //MARK: UI
@@ -149,41 +176,41 @@ extension TDMainSiteViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            let cell : TDMainSiteBannerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TDMainSiteBannerCell", for: indexPath) as! TDMainSiteBannerCell
+            let cell : TDMainSiteBannerCell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSiteCellKey.Banner.rawValue, for: indexPath) as! TDMainSiteBannerCell
             cell.delegate = self
             cell.dealwithBannerData(bannerArray: mainSiteModel?.bannerArray, loodTime: mainSiteModel?.loop_time)
             return cell
         case 1:
-            let cell : TDCourseCategoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TDCourseCategoryCell", for: indexPath) as! TDCourseCategoryCell
+            let cell : TDCourseCategoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSiteCellKey.CourseCategory.rawValue, for: indexPath) as! TDCourseCategoryCell
             cell.delegate = self
             cell.setDataArray(array: mainSiteModel?.categoryArray)
             return cell
         case 2:
-            let cell : TDFindSuiteCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TDFindSuiteCell", for: indexPath) as! TDFindSuiteCell
+            let cell : TDFindSuiteCell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSiteCellKey.CourseSeries.rawValue, for: indexPath) as! TDFindSuiteCell
             cell.delegate = self
             cell.setDataArray(array: mainSiteModel?.seriesArray)
             return cell
         case 3:
             let model = mainSiteModel?.courseArray[indexPath.row]
-            let cell : TDRecommendCoureseCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TDRecommendCoureseCell", for: indexPath) as! TDRecommendCoureseCell
+            let cell : TDRecommendCoureseCell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSiteCellKey.RecommendCourse.rawValue, for: indexPath) as! TDRecommendCoureseCell
             cell.model = model
             return cell
             
         case 4:
             let model = mainSiteModel?.professorArray[indexPath.row]
-            let cell : TDMainProfessorCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TDMainProfessorCell", for: indexPath) as! TDMainProfessorCell
+            let cell : TDMainProfessorCell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSiteCellKey.Professor.rawValue, for: indexPath) as! TDMainProfessorCell
             cell.model = model
             return cell
         case 5:
-            let cell : TDRecommendImageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TDRecommendImageCell", for: indexPath) as! TDRecommendImageCell
+            let cell : TDRecommendImageCell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSiteCellKey.RecommendImg.rawValue, for: indexPath) as! TDRecommendImageCell
             cell.model = mainSiteModel?.storyImgArray[indexPath.row]
             return cell
         case 6:
-            let cell : TDRecommendArticleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TDRecommendArticleCell", for: indexPath) as! TDRecommendArticleCell
+            let cell : TDRecommendArticleCell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSiteCellKey.RecommendArticle.rawValue, for: indexPath) as! TDRecommendArticleCell
             cell.model = mainSiteModel?.storyArray[indexPath.row]
             return cell
         default:
-            let cell : TDBeingVipCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TDBeingVipCell", for: indexPath) as! TDBeingVipCell
+            let cell : TDBeingVipCell = collectionView.dequeueReusableCell(withReuseIdentifier: MainSiteCellKey.BeingVip.rawValue, for: indexPath) as! TDBeingVipCell
             cell.imageUrl = mainSiteModel?.vipImageUrl
             return cell
         }
@@ -224,21 +251,33 @@ extension TDMainSiteViewController: UICollectionViewDataSource, UICollectionView
         case 0:
             return CGSize(width: screenWidth, height: (screenWidth-24)*0.47+24)
         case 1:
-            return CGSize(width: screenWidth, height: 115)
+            return CGSize(width: screenWidth, height: 112)
         case 2:
-            return CGSize(width: screenWidth, height: 143)
+            return CGSize(width: screenWidth, height: (screenWidth-24)*0.55*0.63+22)
         case 3:
             let width = (screenWidth-32)/2
             return CGSize(width: width, height: width * 0.56 + 32)
         case 4:
             return CGSize(width: screenWidth , height: 85)
         case 5:
-            return CGSize(width: screenWidth , height: (screenWidth-24)*0.45 + (screenWidth-32)/2*0.58 + 78)
+            let model = mainSiteModel?.storyImgArray[indexPath.row]
+            let height = heightForLabel(model: model)
+            return CGSize(width: screenWidth , height: (screenWidth-24)*0.45 + (screenWidth-32)/2*0.58 + 39 + height)
         case 6:
             return CGSize(width: screenWidth, height: 113)
         default:
             return CGSize(width: screenWidth, height: (screenWidth-24)*0.37 + 36)
         }
+    }
+    
+    func heightForLabel(model: TDMainSiteStoryModel?) -> CGFloat {
+        let screenWidth = UIScreen.main.bounds.size.width
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth - 24, height: 0))
+        label.font = UIFont(name: "PingFang-SC-Medium", size: 15.0)
+        label.numberOfLines = 2
+        label.text = model?.story_title
+        label.sizeToFit()
+        return label.bounds.size.height
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -251,7 +290,7 @@ extension TDMainSiteViewController: UICollectionViewDataSource, UICollectionView
                 return UICollectionReusableView()
             }
             
-            let headerView: TDMainSiteHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TDMainSiteHeaderView", for: indexPath) as! TDMainSiteHeaderView
+            let headerView: TDMainSiteHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainSiteReuseViewKey.Header.rawValue, for: indexPath) as! TDMainSiteHeaderView
             
             var titleStr = ""
             var moreTitle = ""
@@ -286,7 +325,7 @@ extension TDMainSiteViewController: UICollectionViewDataSource, UICollectionView
             return headerView
         }
         else {
-            let footerView: TDMainSiteFooterReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "TDMainSiteFooterReusableView", for: indexPath) as! TDMainSiteFooterReusableView
+            let footerView: TDMainSiteFooterReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: MainSiteReuseViewKey.Footer.rawValue, for: indexPath) as! TDMainSiteFooterReusableView
             return footerView
         }
     }
@@ -297,7 +336,7 @@ extension TDMainSiteViewController: UICollectionViewDataSource, UICollectionView
             return CGSize.zero
         default:
             let screenWidth = UIScreen.main.bounds.size.width
-            return CGSize(width: screenWidth, height: 48)
+            return CGSize(width: screenWidth, height: 62)
         }
     }
     
@@ -341,24 +380,37 @@ extension TDMainSiteViewController: UICollectionViewDataSource, UICollectionView
             selectDetail(didSelct: model?.story_link)
         }
         else if section == 7 {
-            let vipVc = TDVipIntroduceViewController()
-            vipVc.urlStr = "/vip?device=ios"
-            self.navigationController?.pushViewController(vipVc, animated: true)
+           gotoVipIntroduce()
         }
     }
     
     func selectDetail(didSelct htmlStr: String?) {
         if let urlStr = htmlStr, urlStr.count > 0 {
-            let webVC = TDDetailWebViewController(detailStr: urlStr)
-            webVC.blockHandle = { [weak self] in
-                let articleVc = TDArticlePageViewController()
-                self?.navigationController?.pushViewController(articleVc, animated: false)
+            if let host = OEXConfig.shared().apiHostURL()?.absoluteString,
+                urlStr == host + "/vip" {
+                gotoVipIntroduce()
             }
-            self.navigationController?.pushViewController(webVC, animated: true)
+            else {
+                let webVC = TDDetailWebViewController(detailStr: urlStr)
+                webVC.blockHandle = { [weak self] in
+                    let articleVc = TDArticlePageViewController()
+                    self?.navigationController?.pushViewController(articleVc, animated: false)
+                }
+                self.navigationController?.pushViewController(webVC, animated: true)
+            }
         }
         else {
             print("链接为空")
         }
+    }
+    
+    func gotoVipIntroduce() {
+        let vipVc = TDVipIntroduceViewController()
+        vipVc.urlStr = "/vip?device=ios"
+        vipVc.gotoCategoryHandle = { [weak self] in
+            self?.environment.router?.showCourseCatalog(fromController: self)
+        }
+        self.navigationController?.pushViewController(vipVc, animated: true)
     }
     
     func recommendChoseCourse(course: TDMainSiteCourseModel?) {

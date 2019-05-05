@@ -97,7 +97,7 @@ class TDRecommendImageCell: UICollectionViewCell {
         }
         
         titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(leftImage.snp.bottom).offset(8)
+            make.top.equalTo(leftImage.snp.bottom).offset(3)
             make.left.equalTo(topImage)
             make.right.equalTo(topImage)
             make.bottom.equalTo(bgView).offset(-6)
