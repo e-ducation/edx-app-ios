@@ -16,8 +16,6 @@ class TDPasswordResetViewController: UIViewController, UITextFieldDelegate {
     var handinButton = SpinnerButton()
     var warmLabel = UILabel()
     
-    public var block: (([String: Any]) -> ())?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,8 +84,6 @@ class TDPasswordResetViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func handinButtonAction() {
-        block!(["key": 666])
-        
         viewResignFirstResponder()
         
         if newView.inputTextFeld.text != repeatView.inputTextFeld.text  {

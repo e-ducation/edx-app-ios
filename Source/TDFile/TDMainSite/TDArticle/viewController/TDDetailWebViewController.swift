@@ -51,7 +51,6 @@ class TDDetailWebViewController: UIViewController {
         webView.uiDelegate = self
         webView.navigationDelegate = self
         webView.scrollView.bounces = false
-        webView.scrollView.delegate = self
         view.addSubview(webView)
         webView.snp.makeConstraints { (make) in
             make.left.right.top.bottom.equalTo(view)
@@ -62,7 +61,7 @@ class TDDetailWebViewController: UIViewController {
     
 }
 
-extension TDDetailWebViewController: WKUIDelegate, WKNavigationDelegate,UIScrollViewDelegate {
+extension TDDetailWebViewController: WKUIDelegate, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         loadController.state = .Initial
@@ -70,7 +69,10 @@ extension TDDetailWebViewController: WKUIDelegate, WKNavigationDelegate,UIScroll
     }
     
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-//        loadController.state = .Loaded
+        //禁止缩放
+        let javascript = "var meta = document.createElement('meta');meta.setAttribute('name', 'viewport');meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');document.getElementsByTagName('head')[0].appendChild(meta);"
+        webView.evaluateJavaScript(javascript, completionHandler: nil)
+
         print("开始返回")
     }
     
@@ -118,9 +120,5 @@ extension TDDetailWebViewController: WKUIDelegate, WKNavigationDelegate,UIScroll
                 print("backForward")
             } 
         }
-    }
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return nil
     }
 }
