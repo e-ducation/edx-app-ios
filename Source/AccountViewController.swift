@@ -250,6 +250,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             let username = self?.environment.session.currentUser?.username ?? ""
             UserDefaults.standard.setValue("", forKey: "bindPhone_alertView_\(username)")
+            UserDefaults.standard.setValue("", forKey: "hmm_days_\(username)")
             self?.environment.router?.logout()
         })
     }

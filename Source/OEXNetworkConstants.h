@@ -48,5 +48,9 @@
 #define APP_BINDPHONE_CODE_URL @"/api/user/v1/accounts/send_code_binding_phone/" //发送验证码
 #define APP_BINGPHONE_URL @"/api/user/v1/accounts/binding_phone/" //绑定手机
 #define APP_PASSWORD_RESET @"/api/user/v1/accounts/elite_password_reset/" //重置密码
+#define App_MAIN_SITE_URL @"/api/v2/pages/find/" //主站接口
+#define APP_ARTICLE_TAGS_URL @"/api/v2/tags/"//文章标签
+#define APP_ARTICLE_LIST_URL @"/api/v2/app/"//文章列表
+#define APP_PROFESSOR_LIST_URL @"/api/v1/professors/"//教授列表
 
 #endif
