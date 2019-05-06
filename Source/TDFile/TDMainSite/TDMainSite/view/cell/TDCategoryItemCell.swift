@@ -41,8 +41,8 @@ class TDCategoryItemCell: UICollectionViewCell {
         
         self.layer.shadowRadius = 5.0
         self.layer.shadowOpacity = 0.3
-        self.layer.shadowOffset = CGSize(width: 2, height: 4)
-        self.layer.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 3)
+        self.layer.shadowColor = UIColor.black.withAlphaComponent(0.15).cgColor
         
         bgView.backgroundColor = UIColor.white
         self.contentView.addSubview(bgView)
@@ -69,9 +69,7 @@ class TDCategoryItemCell: UICollectionViewCell {
         
         categoryImage.snp.makeConstraints { (make) in
             make.centerX.equalTo(bgView)
-            make.left.greaterThanOrEqualTo(bgView.snp.left).offset(3)
-            make.top.greaterThanOrEqualTo(bgView.snp.top).offset(3)
-            make.right.lessThanOrEqualTo(bgView.snp.right).offset(-3)
+            make.size.equalTo(CGSize(width: 44, height: 44))
             make.bottom.lessThanOrEqualTo(titleLabel.snp.top).offset(-3)
         }
     }
