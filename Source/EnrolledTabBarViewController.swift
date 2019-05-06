@@ -9,8 +9,8 @@
 import UIKit
 
 private enum TabBarOptions: Int {
-    case Course, Program, Vip, CourseCatalog, Debug
-    static let options = [Course, Program, Vip, CourseCatalog, Debug,]
+    case Course, Program, MainSite, CourseCatalog, Debug
+    static let options = [Course, Program, MainSite, CourseCatalog, Debug]
     
     func title(config: OEXConfig? = nil) -> String {
         switch self {
@@ -22,7 +22,7 @@ private enum TabBarOptions: Int {
             return config?.discovery.course.type == .native ? Strings.findCourses : Strings.discover
         case .Debug:
             return Strings.debug
-        case .Vip:
+        case .MainSite:
             return Strings.elitemba
         }
     }
@@ -75,11 +75,11 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
     }
     
     override var shouldAutorotate: Bool {
-        return true
+        return false
     }
-    
+
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .allButUpsideDown
+        return .portrait
     }
     
     private func prepareTabViewData() {
@@ -105,10 +105,9 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
                     item = TabBarItem(title: option.title(), viewController: DebugMenuViewController(environment: environment), icon: Icon.Discovery, detailText: Strings.Dashboard.courseCourseDetail)
                     additionalTabBarItems.append(item)
                 }
-            case .Vip:
-                let vipVc = TDVipIntroduceViewController()
-                vipVc.urlStr = "/vip?device=ios"
-                item = TabBarItem(title: option.title(), viewController: vipVc, icon: Icon.BankHouse, detailText: Strings.Dashboard.courseCourseDetail)
+            case .MainSite:
+                let mainSiteVc = TDMainSiteViewController(environment: environment)
+                item = TabBarItem(title: option.title(), viewController: mainSiteVc, icon: Icon.BankHouse, detailText: Strings.Dashboard.courseCourseDetail)
                 tabBarItems.append(item)
             }
         }

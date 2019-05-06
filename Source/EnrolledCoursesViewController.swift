@@ -287,16 +287,78 @@ extension EnrolledCoursesViewController {
         }
     }
     
+    
+    
+    func hmmDaysAlerWillShow() -> Bool {
+        
+        guard let profile = environment.dataManager.userProfileManager.feedForCurrentUser().output.value else {
+            return false
+        }
+        
+        let username = profile.username ?? ""
+        var showAlert : Bool = false
+        let day: Int = profile.hmm_remaining_days ?? 0
+        
+        let value : String = UserDefaults.standard.string(forKey: "hmm_days_\(username)") ?? ""
+        if (value.isEmpty) {
+            
+            if day > 0 && day <= 7 {
+                showAlert = true
+                hmmDaysAlertView(type: 2)
+            }
+            else if day > 7 && day <= 30 {
+                showAlert = true
+                hmmDaysAlertView(type: 1)
+            }
+            else {
+                showAlert = false
+            }
+        }
+        else {//不为空
+            
+            if day > 0 && day <= 7 && Int(value) != 2 {
+                showAlert = true
+                hmmDaysAlertView(type: 2)
+            }
+            else if day > 7 && day < 30 && Int(value) != 1 {
+                showAlert = true
+                hmmDaysAlertView(type: 1)
+            }
+            else {
+                showAlert = false
+            }
+            
+        }
+        return showAlert
+    }
+    
+    func hmmDaysAlertView(type: Int) {
+        let message = type == 1 ? Strings.harvardMoth : Strings.harvardSevendDay
+        let alertController = UIAlertController(title: Strings.systemReminder, message: message, preferredStyle: .alert)
+        
+        let sureAction = UIAlertAction(title: Strings.iKnow, style: .default) { [weak self](action) in
+            let username = self?.environment.session.currentUser?.username ?? ""
+            UserDefaults.standard.setValue("\(type)", forKey: "hmm_days_\(username)")
+        }
+        alertController.addAction(sureAction)
+        self.navigationController?.present(alertController, animated: true, completion: nil)
+    }
+    
     func showBindphoneAlertView() {
         
         guard let profile = environment.dataManager.userProfileManager.feedForCurrentUser().output.value else {
             return
         }
-        if !(profile.phone?.isEmpty)! {
+        
+        if hmmDaysAlerWillShow() { //如果提示商学院
             return
         }
-
-        if !judgeBindPhoneShow() {
+        
+        guard profile.phone?.isEmpty == true else {//空的时候
+            return
+        }
+        
+        if phoneBindAlerDidShow() {//已提示过绑定手机
             return
         }
         
@@ -316,23 +378,20 @@ extension EnrolledCoursesViewController {
         self.navigationController?.present(alertController, animated: true, completion: nil)
     }
     
-    func judgeBindPhoneShow() -> Bool { //是否在同一天
+    func phoneBindAlerDidShow() -> Bool {
 
         let username = self.environment.session.currentUser?.username ?? ""
-        var showAlert : Bool = false
+        var showAlert : Bool = true
         let formater = DateFormatter.init()
         formater.dateFormat = "yyyy-MM-dd"
 
         let currentdate = Date.init()
         let nowDay : String = formater.string(from: currentdate)
-        var agoDay : String? = UserDefaults.standard.string(forKey: "bindPhone_alertView_\(username)") ?? ""
-
-        if (agoDay?.isEmpty)! {
-            agoDay = ""
-        }
-        if agoDay != nowDay {
+        let agoDay : String? = UserDefaults.standard.string(forKey: "bindPhone_alertView_\(username)") ?? ""
+        
+        if agoDay != nowDay {//不同一天
             UserDefaults.standard.setValue(nowDay, forKey: "bindPhone_alertView_\(username)")
-            showAlert = true
+            showAlert = false
         }
         return showAlert
     }

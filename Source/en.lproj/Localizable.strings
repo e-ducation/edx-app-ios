@@ -1036,9 +1036,15 @@
 "EXPIRED_TEXT" = "Expired";
 /*未绑定      Not Linked*/
 "NO_LINKED" = "Not Linked";
-/*哈佛学习营\n有效期至：{date}  Harvard Learning Camp\nDate of Expiry: {date}*/
-"HARVARD_LEARN_CAMP" = "Harvard Learning Camp\nDate of Expiry: {date}";
-/*哈佛学习营  Harvard Learning Camp*/
-"HARVARD_LEARN_CAMP_TITLE" = "Harvard Learning Camp";
+/*哈佛管理导师\n有效期至：{date}  Harvard Managementor\nExpiry: {date}*/
+"HARVARD_LEARN_CAMP" = "Harvard Managementor\nExpiry: {date}";
+/*哈佛管理导师  Harvard Managementor*/
+"HARVARD_LEARN_CAMP_TITLE" = "Harvard Managementor";
 /*新密码和邮箱或用户名太相似 New password is too similar to the email address or the username.*/
 "NEW_PASSWORD_SIMILAR" = "New password is too similar to the email address or the username.";
+/* 您加入的哈佛管理导师，不到一个月就结束了，抓紧时间学习吧！ Harvard ManageMentor will be ended in less than a month. Go and study!*/
+"HARVARD_MOTH" = "Harvard ManageMentor will be ended in less than a month. Go and study!";
+/*您加入的哈佛管理导师，即将结束，抓紧时间学习吧！Harvard ManageMentor will be ended soon. Go and study! */
+"HArVARD_SEVEND_DAY" = "Harvard ManageMentor will be ended soon. Go and study!";
+/* 知道了 OK */
+"I_KNOW" = "OK";

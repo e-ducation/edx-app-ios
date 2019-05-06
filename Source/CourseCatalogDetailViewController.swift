@@ -225,7 +225,7 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .allButUpsideDown
+        return .portrait
     }
     
     func showVipViewcontroller() {

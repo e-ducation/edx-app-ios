@@ -151,8 +151,6 @@ NSString* NSStringForOEXStartType(OEXStartType type) {
         self.is_subscribe_pay = [[info objectForKey:@"is_subscribe_pay"] boolValue];
         self.can_free_enroll = [[info objectForKey:@"can_free_enroll"] boolValue];
         self.recommended_package = [info objectForKey:@"recommended_package"];
-        
-        NSLog(@"课程 -- %@",info);
     }
     return self;
 }
