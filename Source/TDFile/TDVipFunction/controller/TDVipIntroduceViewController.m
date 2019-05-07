@@ -27,29 +27,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = [Strings elitemba];
+    self.navigationItem.title = [Strings membership];
     [self setViewConstraint];
     
     self.loadController = [[LoadStateViewController alloc] init];
     [self.loadController setupInControllerWithController:self contentView:self.webView];
 }
-
-#pragma mark - WKUIDelegate
-////在JS端调用alert函数时，会触发此代理方法。JS端调用alert时所传的数据可以通过message拿到。在原生得到结果后，需要回调JS，是通过completionHandler回调。
-//- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
-//    NSLog(@"在js中调用alert函数时，会调用该方法。 %@",message);
-//    completionHandler();
-//}
-////JS端调用confirm函数时，会触发此方法，通过message可以拿到JS端所传的数据，在iOS端显示原生alert得到YES/NO后，通过completionHandler回调给JS端
-//- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler {
-//    NSLog(@"在js中调用confirm函数时，会调用该方法 %@",message);
-//    completionHandler(YES);
-//}
-////JS端调用prompt函数时，会触发此方法,要求输入一段文本,在原生输入得到文本内容后，通过completionHandler回调给JS
-//- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler {
-//    NSLog(@"在js中调用prompt函数时，会调用该方法 %@ -- %@",prompt,defaultText);
-//    completionHandler(defaultText);
-//}
 
 #pragma mark - WKNavigationDelegate
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
@@ -70,6 +53,7 @@
     [self.loadController loadViewStateWithStatus:2 error:error];
     self.shareButton.hidden = YES;
 }
+
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     NSLog(@"内容加载错误");
     [self.loadController loadViewStateWithStatus:2 error:error];
@@ -79,14 +63,6 @@
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView {
     NSLog(@"当webView的web内容进程被终止时调用。(iOS 9.0之后)");
     [self.webView reload];
-}
-
-//在收到响应开始加载后，决定是否跳转
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(nonnull WKNavigationResponse *)navigationResponse decisionHandler:(nonnull void (^)(WKNavigationResponsePolicy))decisionHandler {
-    
-//    NSString *url = navigationResponse.response.URL.absoluteString;
-//     NSLog(@"响应链接 --->> %@",url);
-    decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
 //在请求开始加载之前调用，决定是否跳转
@@ -124,20 +100,19 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [UIView animateWithDuration:0.5 animations:^{
-        self.shareButton.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        self.shareButton.hidden = YES;
-    }];
+    self.shareButton.hidden = YES;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    [UIView animateWithDuration:0.5 animations:^{
-        self.shareButton.alpha = 1.0;
-    } completion:^(BOOL finished) {
+    if (!decelerate) {
         self.shareButton.hidden = NO;
-    }];
+    }
 }
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    self.shareButton.hidden = NO;
+}
+
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return nil;
@@ -152,8 +127,8 @@
     self.webView.UIDelegate = self;
     self.webView.scrollView.delegate = self;
     self.webView.scrollView.showsHorizontalScrollIndicator = NO;
-    self.webView.backgroundColor = [UIColor whiteColor];
     [self.webView.scrollView setBounces:NO];
+    self.webView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.webView];
     
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -177,7 +152,8 @@
 
 - (void)loadRequestWebView {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",ELITEU_URL,self.urlStr]];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:request];
 }
 
 #pragma mark - LoadStateViewReloadSupport
@@ -206,11 +182,15 @@
 - (void)gotoVipPackgeVC:(NSString *)vipID {//vip列表
     TDVipPackageViewController *packageVC = [[TDVipPackageViewController alloc] init];
     packageVC.vipID = vipID;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationController pushViewController:packageVC animated:YES];
 }
 
 - (void)gotoFindCourse { //发现课程
-    [[OEXRouter sharedRouter] showCourseCatalogFromController:self bottomBar:nil searchQuery:nil];
+    [self.navigationController popViewControllerAnimated:NO];
+    if (self.gotoCategoryHandle) {
+        self.gotoCategoryHandle();
+    }
 }
 
 @end

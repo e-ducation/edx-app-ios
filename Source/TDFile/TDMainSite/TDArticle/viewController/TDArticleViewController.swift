@@ -39,6 +39,12 @@ class TDArticleViewController: UIViewController {
         loadController.setupInController(controller: self, contentView: tableview)
         loadController.state = .Initial
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         gatArticleData(isRefresh: true)
     }
     

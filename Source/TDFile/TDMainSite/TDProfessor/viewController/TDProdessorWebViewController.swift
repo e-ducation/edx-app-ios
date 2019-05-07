@@ -14,18 +14,10 @@ class TDProdessorWebViewController: UIViewController {
     var detailID: String
     
     lazy var webView: WKWebView = {
-//        let jscript = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width,initial-scale=1.0'); document.getElementsByTagName('head')[0].appendChild(meta);"
-//        let script = WKUserScript(source: jscript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-//        let controller = WKUserContentController()
-//        controller.addUserScript(script)
-//        var config = WKWebViewConfiguration()
-//        config.userContentController = controller
-
         let webView = WKWebView(frame: CGRect.zero)
         webView.sizeToFit()
         webView.uiDelegate = self
         webView.navigationDelegate = self
-        webView.scrollView.delegate = self
         webView.scrollView.bounces = false
         return webView
     }()
@@ -96,7 +88,7 @@ class TDProdessorWebViewController: UIViewController {
 
 }
 
-extension TDProdessorWebViewController: WKNavigationDelegate, WKUIDelegate, UIScrollViewDelegate  {
+extension TDProdessorWebViewController: WKNavigationDelegate, WKUIDelegate  {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         loadController.state = .Initial
@@ -110,7 +102,9 @@ extension TDProdessorWebViewController: WKNavigationDelegate, WKUIDelegate, UISc
         loadController.state = LoadState.failed(error: error as NSError)
     }
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return nil
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        //禁止缩放
+        let javascript = "var meta = document.createElement('meta');meta.setAttribute('name', 'viewport');meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');document.getElementsByTagName('head')[0].appendChild(meta);"
+        webView.evaluateJavaScript(javascript, completionHandler: nil)
     }
 }
