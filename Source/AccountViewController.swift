@@ -166,7 +166,9 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         switch indexPath.section {
         case 0:
+            guard let currentUserName = environment.session.currentUser?.username else { break }
             let vipPackageVc = TDVipPackageViewController()
+            vipPackageVc.username = currentUserName
             vipPackageVc.vipBuySuccessHandle = { [weak self] in
                 self?.reloadProfileChange(type: 0)
             }

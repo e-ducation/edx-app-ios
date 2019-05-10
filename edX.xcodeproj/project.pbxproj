@@ -604,6 +604,8 @@
 		A423E0B721B11C580093FBD3 /* TDVipPackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0B621B11C580093FBD3 /* TDVipPackageCell.m */; };
 		A423E0BC21B11F6E0093FBD3 /* UIColor+TDHexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0BB21B11F6E0093FBD3 /* UIColor+TDHexColor.m */; };
 		A423E0C021B135660093FBD3 /* TDVipPackageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0BF21B135660093FBD3 /* TDVipPackageHeaderView.m */; };
+		A430DAC12283D7AE0039BF60 /* TDPurchaseSqliteOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A430DABF2283D7AE0039BF60 /* TDPurchaseSqliteOperation.m */; };
+		A430DAC322840C8D0039BF60 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A430DAC222840C8D0039BF60 /* libsqlite3.0.tbd */; };
 		A436C69321C49B30003E7CEB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A436C69221C49B30003E7CEB /* StoreKit.framework */; };
 		A436C69921C4B0A4003E7CEB /* PurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A436C69721C4B0A4003E7CEB /* PurchaseManager.m */; };
 		A436C69A21C4B0A4003E7CEB /* PurchaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A436C69821C4B0A4003E7CEB /* PurchaseModel.m */; };
@@ -1670,6 +1672,9 @@
 		A423E0BD21B12B800093FBD3 /* TDPchHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDPchHeader.h; sourceTree = "<group>"; };
 		A423E0BE21B135650093FBD3 /* TDVipPackageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipPackageHeaderView.h; sourceTree = "<group>"; };
 		A423E0BF21B135660093FBD3 /* TDVipPackageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipPackageHeaderView.m; sourceTree = "<group>"; };
+		A430DABF2283D7AE0039BF60 /* TDPurchaseSqliteOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDPurchaseSqliteOperation.m; sourceTree = "<group>"; };
+		A430DAC02283D7AE0039BF60 /* TDPurchaseSqliteOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDPurchaseSqliteOperation.h; sourceTree = "<group>"; };
+		A430DAC222840C8D0039BF60 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		A436C69221C49B30003E7CEB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A436C69521C4B0A4003E7CEB /* PurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseManager.h; sourceTree = "<group>"; };
 		A436C69621C4B0A4003E7CEB /* PurchaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseModel.h; sourceTree = "<group>"; };
@@ -2173,6 +2178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A430DAC322840C8D0039BF60 /* libsqlite3.0.tbd in Frameworks */,
 				A436C69321C49B30003E7CEB /* StoreKit.framework in Frameworks */,
 				A49EEA4321BA225400EDCCC3 /* libssl.a in Frameworks */,
 				776F39291B4EF4CD00ED11E3 /* WebKit.framework in Frameworks */,
@@ -3482,6 +3488,8 @@
 				A436C69721C4B0A4003E7CEB /* PurchaseManager.m */,
 				A436C69621C4B0A4003E7CEB /* PurchaseModel.h */,
 				A436C69821C4B0A4003E7CEB /* PurchaseModel.m */,
+				A430DAC02283D7AE0039BF60 /* TDPurchaseSqliteOperation.h */,
+				A430DABF2283D7AE0039BF60 /* TDPurchaseSqliteOperation.m */,
 			);
 			path = TDPurchaseManager;
 			sourceTree = "<group>";
@@ -4318,6 +4326,7 @@
 		BECB7B0D1924C0C3009C77F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A430DAC222840C8D0039BF60 /* libsqlite3.0.tbd */,
 				A436C69221C49B30003E7CEB /* StoreKit.framework */,
 				776F39281B4EF4CD00ED11E3 /* WebKit.framework */,
 				805329111B0EA2DC0093B177 /* QuartzCore.framework */,
@@ -5380,6 +5389,7 @@
 				F22A0ABB1CE60D5E00D50DFF /* NetworkManager+Authenticators.swift in Sources */,
 				E0702D392211947100D3544D /* Typealiases.swift in Sources */,
 				9EC6E1001BDE40E100729704 /* OEXCourse+Swift.swift in Sources */,
+				A430DAC12283D7AE0039BF60 /* TDPurchaseSqliteOperation.m in Sources */,
 				7706AAC11BCFEEBF00728432 /* NSAttributedString+Formatting.swift in Sources */,
 				778D53351B3D96E900441A98 /* ListCursor.swift in Sources */,
 				A4D4BC5622671846003ABC8F /* TDCategoryItemCell.swift in Sources */,

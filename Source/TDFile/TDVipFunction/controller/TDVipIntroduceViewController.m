@@ -182,6 +182,7 @@
 - (void)gotoVipPackgeVC:(NSString *)vipID {//vip列表
     TDVipPackageViewController *packageVC = [[TDVipPackageViewController alloc] init];
     packageVC.vipID = vipID;
+    packageVC.username = self.username;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationController pushViewController:packageVC animated:YES];
 }

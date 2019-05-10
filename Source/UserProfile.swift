@@ -77,7 +77,7 @@ public class UserProfile {
         hmm_remaining_days = json[ProfileFields.HmmRemainingDays].int
         hmm_expiry_date = json[ProfileFields.HmmExpiryDate].string
         hmm_entry_url = json[ProfileFields.HmmEntryUrl].string
-        print("个人信息：\(json)")
+//        print("个人信息：\(json)")
     }
     
     internal init(username : String, bio : String? = nil, parentalConsent : Bool? = false, countryCode : String? = nil, accountPrivacy : ProfilePrivacy? = nil, phone: String? = nil, vip_status: Int? = 1, vip_remain_days: Int? = 0, hmm_remaining_days: Int? = 0, hmm_expiry_date: String? = "", hmm_entry_url: String? = "") {

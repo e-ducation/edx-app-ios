@@ -405,7 +405,10 @@ extension TDMainSiteViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func gotoVipIntroduce() {
+        let username = self.environment.session.currentUser?.username ?? ""
+        
         let vipVc = TDVipIntroduceViewController()
+        vipVc.username = username;
         vipVc.urlStr = "/vip?device=ios"
         vipVc.gotoCategoryHandle = { [weak self] in
             self?.environment.router?.showCourseCatalog(fromController: self)

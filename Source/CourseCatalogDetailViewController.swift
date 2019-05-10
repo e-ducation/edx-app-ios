@@ -229,11 +229,12 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
     }
     
     func showVipViewcontroller() {
-        guard (environment.session.currentUser?.username) != nil else {
+        guard let currentUsername = environment.session.currentUser?.username else {
             self.view.makeToast(Strings.loginFirst, duration: 0.8, position: CSToastPositionCenter)
             return
         }
         let vipVC = TDVipPackageViewController()
+        vipVC.username = currentUsername
         self.navigationController?.pushViewController(vipVC, animated: true)
     }
 }

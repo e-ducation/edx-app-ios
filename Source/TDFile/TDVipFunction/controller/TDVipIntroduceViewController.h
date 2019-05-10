@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TDVipIntroduceViewController : UIViewController
 
+@property (nonatomic,strong) NSString *username;
 @property (nonatomic,strong) NSString *urlStr;
 @property (nonatomic,copy) void(^gotoCategoryHandle)(void);
 
