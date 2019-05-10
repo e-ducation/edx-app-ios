@@ -27,6 +27,7 @@ pod 'AFNetworking'
 pod 'SVProgressHUD'
 pod 'MJRefresh'
 pod 'SDWebImage'
+pod 'FMDB'
 
 target 'edXTests' do
     pod 'FBSnapshotTestCase/Core', '= 2.0.1'
