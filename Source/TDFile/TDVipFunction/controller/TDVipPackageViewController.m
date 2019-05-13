@@ -34,7 +34,6 @@
 
 @property (nonatomic,strong) PurchaseManager *purchaseManager;//内购工具类
 @property (nonatomic,strong) PurchaseModel *purchaseModel;
-@property (nonatomic,assign) BOOL isPurchassing; //正在进行内购
 
 @end
 
@@ -53,7 +52,6 @@
     self.navigationItem.title = Strings.membership;
     [self setViewConstraint];
     [self getVipData];
-    [self purchaseAction];
     
     self.loadController = [[LoadStateViewController alloc] init];
     [self.loadController setupInControllerWithController:self contentView:self.packageView];
@@ -62,21 +60,21 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [SVProgressHUD dismiss];
 }
 
 - (void)purchaseAction { //内购初始化
-    self.isPurchassing = NO;
     
     self.purchaseModel = [[PurchaseModel alloc] init];
-    
     self.purchaseManager = [[PurchaseManager alloc] init];
+    self.purchaseManager.username = self.username;
     self.purchaseManager.delegate = self;
-    WS(weakSelf);
-    [self.purchaseManager showPurchaseComplete:^(BOOL approveSucess) {
-        weakSelf.packageView.approveSucess = approveSucess;
-//        weakSelf.packageView.approveSucess = YES;
-    }];
+    
+    self.packageView.approveSucess = NO;
+//    WS(weakSelf);
+//    [self.purchaseManager showPurchaseComplete:^(BOOL approveSucess) {
+//        weakSelf.packageView.approveSucess = approveSucess;
+////        weakSelf.packageView.approveSucess = YES;
+//    }];
 }
 
 #pragma mark - data
@@ -108,6 +106,9 @@
                 [self.vipArray addObject:vipModel];
             }
             self.packageView.vipArray = self.vipArray;
+            
+            //有数据了才有内购
+            [self purchaseAction];
         }
         
         [self.loadController loadViewStateWithStatus:1 error:nil];
@@ -204,9 +205,9 @@
 }
 
 //创建内购订单
-- (void)createINPurchaseOrder:(NSString *)packageId completion:(void(^)(void))completion {
+- (void)createINPurchaseOrder:(NSString *)packageId statusStr:(NSString *)statusStr completion:(void(^)(void))completion {
     
-    [self showLoading:[Strings payingNow]];
+    [self showLoading:statusStr];
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     [dict setValue:packageId forKey:@"package_id"];
@@ -360,13 +361,15 @@
     [alipayManager sumbmitAliPay:orderString];
 }
 
-- (void)appApproveProgress:(TDVipPackageModel *)model { //调起内购
+- (void)appApproveProgress:(TDVipPackageModel *)model { //内购
     
     WS(weakSelf);
-    [self createINPurchaseOrder:[model.id stringValue] completion:^{
-        weakSelf.purchaseModel.trader_num = weakSelf.orderID;
+    [self createINPurchaseOrder:[model.id stringValue] statusStr:@"发起支付..." completion:^{
+        weakSelf.purchaseModel.order_id = weakSelf.orderID;
         weakSelf.purchaseModel.total_fee = model.price;
         weakSelf.purchaseModel.package_id = [model.id stringValue];
+        weakSelf.purchaseManager.model = weakSelf.purchaseModel;
+        
         [weakSelf appInPurchaseAction:model.price];
     }];
 }
@@ -391,7 +394,6 @@
             payType = IAP_198;
             break;
     }
-    self.isPurchassing = YES;
     [self.purchaseManager reqToUpMoneyFromApple:payType];
 }
 
@@ -401,34 +403,68 @@
     SVProgressHUD.defaultStyle = SVProgressHUDAnimationTypeNative;
 }
 
-
 #pragma mark - TDPurchaseDelegate
-- (void)updatedTAppApproveransactions:(int)state receiveStr:(NSString *)receiveStr {
-    NSLog(@"更新内购交易 -->> %@",receiveStr);
+- (void)updatedTransactionReceiveStr:(NSString *)receiveStr {
+    NSLog(@"开始验证票据 -->> %@",receiveStr);
+    [self showLoading:[Strings payingNow]];
+    self.purchaseModel.apple_receipt = receiveStr;
+    [self verrifiedAppStoreReceipt];
+}
+
+- (void)updatedLostOrderVertified:(PurchaseModel *)model {
+    NSLog(@"掉单验证票据 -->> %@",model.apple_receipt);
+    [self showLoading:[Strings payingNow]];
+    self.purchaseModel = model;
+    [self verrifiedAppStoreReceipt];
+}
+
+- (void)newOrderPrice:(int)price transactionReceiveStr:(NSString *)receiveStr {
     
-    if (state == SKPaymentTransactionStatePurchased) {//成功
-        self.purchaseModel.apple_receipt = receiveStr;
-        WS(weakSelf);
-        [self.purchaseManager verificationAction:self.purchaseModel completion:^(BOOL isSuccess) {
-            if (isSuccess) {
-                [weakSelf getVipData];
-                [SVProgressHUD dismiss];
+    if (self.vipArray.count > 0) {
+        TDVipPackageModel *vipModel;
+        for (TDVipPackageModel *model in self.vipArray) {
+            if ([model.price intValue] == price) {
+                vipModel = model;
             }
-            else {
-                [SVProgressHUD dismiss];
-                [weakSelf.view makeToast:[Strings paymentFalied] duration:0.8 position:CSToastPositionCenter];
-            }
-        }];
+        }
         
-        //TODO:保存订单信息和receipt在本地，做丢单处理
+        if (vipModel != nil) {
+            WS(weakSelf);
+            [self createINPurchaseOrder:[vipModel.id stringValue] statusStr:@"正在恢复订单..." completion:^{
+                weakSelf.purchaseModel.order_id = weakSelf.orderID;
+                weakSelf.purchaseModel.total_fee = vipModel.price;
+                weakSelf.purchaseModel.package_id = [vipModel.id stringValue];
+                weakSelf.purchaseModel.apple_receipt = receiveStr;
+                weakSelf.purchaseManager.model = weakSelf.purchaseModel;
+                
+                [self verrifiedAppStoreReceipt];
+            }];
+        }
     }
-    else if (state == SKPaymentTransactionStatePurchasing) {
-        
-    }
-    else if (state == SKPaymentTransactionStateFailed) {
-        self.isPurchassing = NO;
-        [SVProgressHUD dismiss];
-    }
+}
+
+- (void)transactionPaymentFailed {
+    [self deleteOrderData];
+}
+
+- (void)verrifiedAppStoreReceipt {
+    
+    WS(weakSelf);
+    [self.purchaseManager verificationAction:self.purchaseModel completion:^(BOOL isSuccess) {
+        [self deleteOrderData];
+        if (isSuccess) {
+            [weakSelf getVipData];
+            [weakSelf vipBuySuceess];
+        }
+        else {
+            [weakSelf.view makeToast:@"更新数据失败，请联系客服" duration:1.08 position:CSToastPositionCenter];
+        }
+    }];
+}
+
+- (void)deleteOrderData {
+    [SVProgressHUD dismiss];
+    [self.purchaseManager deleteAllIAPOrderData];//删除订单信息
 }
 
 #pragma mark - TDWXDelegate

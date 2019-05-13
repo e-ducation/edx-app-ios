@@ -220,7 +220,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
             hideSnackBar()
         }
     }
-    
+    //MARK: CoursesTableViewControllerDelegate
     func coursesTableChoseCourse(course: OEXCourse) {
         if let course_id = course.course_id {
             self.environment.router?.showCourseWithID(courseID: course_id, fromController: self, animated: true)
@@ -231,7 +231,10 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
     }
     
     func clickExpiredButton() {
+        let username = self.environment.session.currentUser?.username ?? ""
+        
         let packageVC = TDVipPackageViewController()
+        packageVC.username = username
         packageVC.vipBuySuccessHandle = { [weak self] in
             self?.enrollmentFeed.refresh()
         }
