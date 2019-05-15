@@ -39,8 +39,6 @@
 #define SIGN_UP_URL @"/user_api/v1/account/registration/"
 
 #define VIP_INFO_URL @"/api/v1/mobile/vip/package/vip_info"//会员VIP信息和套餐列表
-#define VIP_CTEATE_ALIPAY_ORDER @"/api/v1/mobile/vip/pay/alipay/paying/" //创建VIP支付宝订单
-#define VIP_CTEATE_WECHAT_ORDER @"/api/v1/mobile/vip/pay/wechat/paying/" //创建VIP微信订单
 #define VIP_ORDER_STATUS_URL @"/api/v1/vip/order/" //VIP订单状态
 #define APP_APPROVE_STATUS_URL @"/api/mobile/v0.5/app_version/last/"//App是否审核中
 #define VIP_CTEATE_INPURCHASE_ORDER @"/api/v1/mobile/vip/pay/apple/inapp_purchase/"//创建VIP内购订单

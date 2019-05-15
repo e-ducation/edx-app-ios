@@ -39,8 +39,7 @@
 #import "TDWeiboManeger.h"
 #import "TDWechatManager.h"
 #import "TDQQManager.h"
-#import <WXApi.h>
-#import "TDAlipayManager.h"
+#import "WXApi.h"
 
 @interface OEXAppDelegate () <UIApplicationDelegate>
 
@@ -121,10 +120,6 @@
         handled = [[GIDSignIn sharedInstance] handleURL:url
                                    sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                                           annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
-    }
-    
-    if ([url.host isEqualToString:@"safepay"]) { //支付宝
-        [[TDAlipayManager shareManager] processOrderWithPaymentResult:url];
     }
     
     handled = [self handleUrl:url handle:handled];

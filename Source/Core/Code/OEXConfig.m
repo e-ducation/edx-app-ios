@@ -30,7 +30,6 @@ static NSString* const TDQQSecret = @"QQ_Secret";
 static NSString* const TDWBAPPKey = @"SINA_APPKEY";
 static NSString* const TDWBSecret = @"SINA_Secret";
 static NSString* const TDWBRedirectUrl = @"SINA_RedirectURL";
-static NSString* const TDALIPAYAPPID = @"ALIPAY_APPID";
 
 static OEXConfig* sSharedConfig;
 
@@ -158,10 +157,6 @@ static OEXConfig* sSharedConfig;
 
 - (NSString *)sinaTRedirectUrl {
     return [self stringForKey:TDWBRedirectUrl];
-}
-
-- (NSString *)alipayAPPID {
-    return [self stringForKey:TDALIPAYAPPID];
 }
 
 #pragma mark - Debug

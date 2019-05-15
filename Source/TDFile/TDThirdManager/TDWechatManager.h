@@ -7,14 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "weChatParamsItem.h"
 
 @protocol TDWXDelegate <NSObject>
 
 @optional
 - (void)thirdLoginSuccess:(NSDictionary *)response; //登录成功
-- (void)weixinPaySuccessHandle;
-- (void)weixinPayFailed:(NSInteger)status;
 
 @end
 
@@ -33,6 +30,5 @@ typedef void (^TDWechatUserinfo)(NSDictionary *userProfile,NSError *error);
 - (BOOL)handleOpenURL:(NSURL *)url; //处理微信通过URL启动App时传递的数据
 -(void)getWXUserInfoForToken:(NSString *)access_token openid:(NSString *)openid completion:(TDWechatUserinfo)completion;//获取用户信息
 
-- (void)submitPostWechatPay:(weChatParamsItem *)weChatItem; //微信支付
 
 @end
