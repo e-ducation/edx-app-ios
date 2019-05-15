@@ -14,13 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol TDVipPayDelegate <NSObject>
 /**
- 支付
-
- @param type 支付方式：0 微信，1 支付宝
- @param vipID vip对应id
- */
-- (void)gotoPayByType:(NSInteger)type vipID:(NSString *)vipID;
-/**
  调起内购
  */
 - (void)appApproveProgress:(TDVipPackageModel *)model;
@@ -36,10 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) TDVipMessageModel *messageModel;
 @property (nonatomic,strong) NSArray <TDVipPackageModel *> *vipArray;
 
-@property (nonatomic,assign) BOOL approveSucess;//App审核通过
-@property (nonatomic,strong) UINavigationController *navigationController;
-
-- (void)vipPaySheetViewDisapear;//收回支付页面
 
 @end
 

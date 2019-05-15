@@ -66,8 +66,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString *)sinaSecret;
 - (nullable NSString *)sinaTRedirectUrl;
 
-- (NSString *)alipayAPPID;
-
 /** Feature flag for the debug menu */
 - (BOOL)shouldShowDebug;
 

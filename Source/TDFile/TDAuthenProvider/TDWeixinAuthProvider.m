@@ -29,7 +29,6 @@
 - (UIButton *)freshAuthButton {
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
     [button setImage:[UIImage imageNamed:@"weixin_logo"] forState:UIControlStateNormal];
-//    button.backgroundColor = [self weixinColor];
     return button;
 }
 

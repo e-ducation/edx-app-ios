@@ -9,14 +9,10 @@
 #import "TDVipPackageView.h"
 #import "TDVipPackageCell.h"
 #import "TDVipPackageHeaderView.h"
-#import "TDPaySheetView.h"
 
 @interface TDVipPackageView () <UITableViewDataSource>
 
 @property (nonatomic,strong) TDVipPackageHeaderView *packageHeaderView;
-@property (nonatomic,strong) TDPaySheetView *sheetView;
-
-@property (nonatomic,assign) NSInteger payType;
 
 @end
 
@@ -25,7 +21,6 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.payType = 0;
         [self setViewConstraint];
     }
     return self;
@@ -66,45 +61,7 @@
     self.vipID = [model.id stringValue];
     [self.tableView reloadData];
     
-    if (self.approveSucess) {//审核成功，弹出支付sheet
-        self.payType = 0;
-        
-        UIView *view = self.navigationController.view;
-        self.sheetView = [[TDPaySheetView alloc] init];
-        [self.sheetView showSheetAnimation:[model.price floatValue]];
-        [view addSubview:self.sheetView];
-        
-        [self.sheetView.payButton addTarget:self action:@selector(payButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.sheetView.wechatView.selectButton addTarget:self action:@selector(wechatButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.sheetView.aliPayView.selectButton addTarget:self action:@selector(alipayButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.sheetView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.bottom.mas_equalTo(view);
-        }];
-    }
-    else {
-        [self.delegate appApproveProgress:model];
-    }
-}
-
-- (void)payButtonAction:(UIButton *)sender { //支付
-    self.sheetView.payButton.showProgress = YES;
-    [self.delegate gotoPayByType:self.payType vipID:self.vipID];
-}
-
-- (void)wechatButtonAction:(UIButton *)sender { //微信
-    self.payType = 0;
-    [self.sheetView selectPayStyle:0];
-}
-
-- (void)alipayButtonAction:(UIButton *)sender { //支付宝
-    self.payType = 1;
-    [self.sheetView selectPayStyle:1];
-}
-
-- (void)vipPaySheetViewDisapear { //收回支付页面
-    self.sheetView.payButton.showProgress = NO;
-    [self.sheetView sheetDisapear];
+    [self.delegate appApproveProgress:model];
 }
 
 #pragma mark - UI
