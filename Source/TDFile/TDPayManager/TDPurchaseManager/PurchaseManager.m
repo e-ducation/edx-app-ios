@@ -24,6 +24,9 @@
 @interface PurchaseManager ()
 
 @property (nonatomic,strong) TDPurchaseSqliteOperation *sqliteOperation;
+@property (nonatomic,strong) NSString *transactionID;
+@property (nonatomic,assign) BOOL hadRestoreOrder;
+@property (nonatomic,strong) SKPaymentTransaction *restoreTransaction;
 
 @end
 
@@ -58,25 +61,12 @@
 - (BOOL)querySqliteExistPayOrder {//查
     NSArray *orderArray = [self.sqliteOperation querySqliteAllData];
     if (orderArray.count > 0) {
-        self.model = orderArray.firstObject;
+        NSLog(@"查本地数组%@",orderArray);
+        self.model = orderArray.lastObject;
         return YES;
     }
     return NO;
 }
-
-//- (BOOL)queryOrderExistTransactionId:(NSString *)transactionID {//查全部
-//    NSArray *orderArray = [self.sqliteOperation querySqliteAllData];
-//    if (orderArray.count > 0 && transactionID.length > 0) {
-//        for (PurchaseModel *model in orderArray) {
-//            NSLog(@"数据库订单数据 -- %@: %@",model.order_id,model.transaction_id);
-//            if ([model.transaction_id isEqualToString:transactionID]) {
-//                self.model = model;
-//                return YES;
-//            }
-//        }
-//    }
-//    return NO;
-//}
 
 - (void)showPurchaseComplete:(void(^)(BOOL approveSucess))completion {//App是否审核通过
     
@@ -181,18 +171,25 @@
     }
     else {//不允许内购
         [SVProgressHUD dismiss];
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[Strings systemReminder] message:[Strings noInPurchase] preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:[Strings close] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        }];
-        
-        [alertController addAction:action];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+        [self remindAlert:[Strings noInPurchase]];
     }
+}
+
+- (void)remindAlert:(NSString *)title {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[Strings systemReminder] message:title preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:[Strings close] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    
+    [alertController addAction:action];
+    [self.viewController presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)RequestProductData { //初始化内购产品
     NSLog(@"---------请求对应的产品信息------------");
-    [SVProgressHUD setStatus:@"正在连接App Store..."];
+    self.transactionID = @"";//初始化置空
+    self.hadRestoreOrder = NO;
+    self.restoreTransaction = nil;
+    [SVProgressHUD setStatus:[Strings connectAppStore]];
     NSArray *product = nil;
     switch (buyType) {
         case IAP_198:
@@ -262,16 +259,20 @@
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error{
     NSLog(@"-------弹出错误信息----------");
     [SVProgressHUD dismiss];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[Strings systemReminder] message:[Strings purchaseFailed] preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:[Strings ok] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [alertController addAction:action];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+    [self remindAlert:[Strings purchaseFailed]];
 }
 
 - (void)requestDidFinish:(SKRequest *)request {
     NSLog(@"----------反馈信息结束--------------");
+    
+    if (self.hadRestoreOrder == YES) {
+        NSString *receiveStr = [self getAppStoreReceipt];
+        NSLog(@"---请求---票据 %@",receiveStr);
+        if (receiveStr.length > 0 && self.restoreTransaction != nil) {
+            [self hasReceiptRestoreTransaction:self.restoreTransaction receipt:receiveStr];
+            [[SKPaymentQueue defaultQueue] finishTransaction:self.restoreTransaction];
+        }
+    }
 }
 
 
@@ -280,18 +281,30 @@
     NSLog(@"-----updatedTransactions-------- %@",transactions);
     
     for (SKPaymentTransaction *transaction in transactions) {
+        NSLog(@"----内购交易：%ld , 产品：%@ - %@",(long)transaction.transactionState,transaction.payment.productIdentifier,transaction.transactionIdentifier);
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchased:{ //交易完成
-                
-                //App Store验证：获取票据
-                NSURL *receiveUrl = [[NSBundle mainBundle] appStoreReceiptURL];
-                NSData *receiveData = [NSData dataWithContentsOfURL:receiveUrl];
-                NSString *receiveStr = [receiveData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+
+                NSString *receiveStr = [self getAppStoreReceipt];
                 if (receiveStr.length == 0) { //TODO: 刷新票据
+                    [SVProgressHUD dismiss];
+                    NSLog(@"-----票据空--------");
+                    [self haveNoReceiptShowAlert:transaction];
                     return;
                 }
                 
+                NSLog(@"交易前 ----- %@",transaction.transactionIdentifier);
+                if (self.transactionID.length > 0) {
+                    NSLog(@"同一个掉单苹果返回第二次交易----- %@ == %@",transaction.transactionIdentifier,self.transactionID);
+                    // 移除队列中已成功的订单
+                    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                    return;
+                }
+                
+                self.transactionID = transaction.transactionIdentifier;
+                
                 if (self.model) {//正常流程
+                    NSLog(@"内购正常流程 ----- ");
                     [self updateOrderStatusForModel:self.model];//更新数据库
                     [self.delegate updatedTransactionReceiveStr:receiveStr];
                 }
@@ -300,29 +313,15 @@
                     if (isExist ) {
                         self.model.apple_receipt = receiveStr;
                         self.model.transaction_id = transaction.transactionIdentifier;
+                        NSLog(@"掉单数据库恢复处理 ----- ");
                         [self.delegate updatedLostOrderVertified:self.model];
                     }
                     else {
-                        if (transaction.payment.productIdentifier.length > 0) {
-                            int price = 198;
-                            NSString *productId = transaction.payment.productIdentifier;
-                            if ([productId isEqualToString:ProductID_IAP_198]) {
-                                price = 198;
-                            }
-                            else if ([productId isEqualToString:ProductID_IAP_488]) {
-                                price = 488;
-                            }
-                            else if ([productId isEqualToString:ProductID_IAP_898]) {
-                                price = 898;
-                            }
-                            else {
-                                price = 1198;
-                            }
-                            [self.delegate newOrderPrice:price transactionReceiveStr:receiveStr];
-                        }
+                        [self hasReceiptRestoreTransaction:transaction receipt:receiveStr];
                     }
                 }
-                [self completeTransaction:transaction];
+                // 移除队列中已成功的订单
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 NSLog(@"-----交易完成 --------");
                 
             } break;
@@ -342,11 +341,65 @@
                     [self insertNewOrderData:self.model];//数据库增加一条订单信息
                 }
                 NSLog(@"-----商品添加进列表 --------");
+                
+                
                 break;
             default:
                 NSLog(@"----- 交易在队列中，但商品状态不确定 --------");//比如交易过程中退出App，并卸载重装
                 break;
         }
+    }
+}
+
+- (void)haveNoReceiptShowAlert:(SKPaymentTransaction *)transaction {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[Strings systemReminder] message:@"内购需要刷新票据，以恢复未完成的订单" preferredStyle:UIAlertControllerStyleAlert];
+    WS(weakSelf);
+    UIAlertAction *action = [UIAlertAction actionWithTitle:[Strings ok] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        weakSelf.restoreTransaction = transaction;
+        [weakSelf refreshReceipt];
+        weakSelf.hadRestoreOrder = YES;
+    }];
+    
+    [alertController addAction:action];
+    [self.viewController presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)refreshReceipt {//刷新票据
+    SKReceiptRefreshRequest *request = [[SKReceiptRefreshRequest alloc] init];
+    request.delegate = self;
+    [request start];
+}
+
+- (NSString *)getAppStoreReceipt {//本地票据
+    //App Store验证：获取票据
+    NSURL *receiveUrl = [[NSBundle mainBundle] appStoreReceiptURL];
+    NSData *receiveData = [NSData dataWithContentsOfURL:receiveUrl];
+    NSString *receiveStr = [receiveData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+    
+    NSLog(@"-----票据--------%@",receiveUrl.absoluteString);
+    
+    return receiveStr;
+}
+
+- (void)hasReceiptRestoreTransaction:(SKPaymentTransaction *)transaction receipt:(NSString *)receiveStr {
+    
+    if (transaction.payment.productIdentifier.length > 0) {
+        int price = 198;
+        NSString *productId = transaction.payment.productIdentifier;
+        if ([productId isEqualToString:ProductID_IAP_198]) {
+            price = 198;
+        }
+        else if ([productId isEqualToString:ProductID_IAP_488]) {
+            price = 488;
+        }
+        else if ([productId isEqualToString:ProductID_IAP_898]) {
+            price = 898;
+        }
+        else {
+            price = 1198;
+        }
+        NSLog(@"掉单恢复处理 ----- ");
+        [self.delegate newOrderPrice:price transactionReceiveStr:receiveStr];
     }
 }
 
@@ -361,12 +414,6 @@
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray<SKDownload *> *)downloads {
     NSLog(@"---updatedDownloads--");
-}
-
-- (void)completeTransaction:(SKPaymentTransaction *)transaction {
-    NSLog(@"-----completeTransaction--------");
-    // 移除队列中已成功的订单
-    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 
 //处理失败

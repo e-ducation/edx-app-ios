@@ -39,6 +39,7 @@ typedef NS_ENUM(NSInteger,IAP) {
 @property (nonatomic,weak,nullable) id <TDPurchaseDelegate>delegate;
 @property (nonatomic,strong) NSString *username;
 @property (nonatomic,strong) PurchaseModel *model;
+@property (nonatomic,strong) UIViewController *viewController;
 
 - (void)showPurchaseComplete:(void(^)(BOOL approveSucess))completion;//App是否审核通过
 - (void)verificationAction:(PurchaseModel *)purchaseModel completion:(void(^)(BOOL isSuccess))completion;//App Store验证

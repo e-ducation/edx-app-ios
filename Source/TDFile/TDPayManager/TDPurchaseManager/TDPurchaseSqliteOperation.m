@@ -8,10 +8,7 @@
 
 #import "TDPurchaseSqliteOperation.h"
 
-//#define table_name @""
-
 @implementation TDPurchaseSqliteOperation
-
 
 #pragma mark - 创建数据库
 - (void)createSqliteForUser:(NSString *)username { //初始化FMDatabase

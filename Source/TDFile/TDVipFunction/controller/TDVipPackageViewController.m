@@ -289,8 +289,8 @@
     [self.purchaseManager verificationAction:self.purchaseModel completion:^(BOOL isSuccess) {
         [self deleteOrderData];
         if (isSuccess) {
-            [weakSelf getVipData:NO];
             [weakSelf vipBuySuceess];
+            [weakSelf getVipData:NO];
         }
         else {
             [weakSelf.view makeToast:[Strings paymentFailedPurchase] duration:1.08 position:CSToastPositionCenter];
