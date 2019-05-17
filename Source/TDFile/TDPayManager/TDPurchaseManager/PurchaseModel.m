@@ -17,6 +17,7 @@
     [dic setValue:[NSString stringWithFormat:@"%@",self.total_fee] forKey:@"total_fee"];
     [dic setValue:[NSString stringWithFormat:@"%@",self.package_id] forKey:@"package_id"];
     [dic setValue:[NSString stringWithFormat:@"%@",self.apple_receipt] forKey:@"receipt"];
+    NSLog(@"验证内购：%@",dic);
     
     return dic;
 }

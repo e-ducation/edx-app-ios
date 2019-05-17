@@ -850,8 +850,6 @@
 /* Alert dialog button title to confirm an action */
 "YES"="Yes";
 
-/* 请先安装微信或者选择其他支付方式 Please install Wechat or choose other payment methods. */
-"INSTALL_WECHAT"="Please install Wechat or choose other payment methods.";
 /* 加载中... Loading… */
 "LOADING_TEXT"="Loading…";
 /* 恭喜您已经成功加入英荔商学院VIP Congratulations! You’ve become an EliteMBA VIP. */
@@ -896,10 +894,6 @@
 "CHOOSE_PAYMENT_METHOD"="Choose payment method";
 /* 学费: Payment: */
 "PAYMENT_NUM"="Payment:";
-/* 微信支付 WeChat */
-"WECHAT_PAY_STYLE"="WeChat";
-/* 支付宝支付  Alipay */
-"ALIPAY_STYLE"="Alipay";
 /* 正在支付... Paying now... */
 "PAYING_NOW"="Paying now...";
 /* 支付失败 Payment Failed */
@@ -912,8 +906,6 @@
 "PAYMENT_SUCCESS"="Payment Succeed";
 /* 正在处理... Processing... */
 "PROCESSING_TEXT"="Processing...";
-/* 不支持微信支付 Does not support WeChat */
-"NO_SUPPORT_WECHAT"="Does not support WeChat";
 /* 授权失败 Authorization Failed */
 "AUTHORIZATION_FAILED"="Authorization Failed";
 /* 系统提示 System Reminder */
@@ -1036,10 +1028,10 @@
 "EXPIRED_TEXT" = "Expired";
 /*未绑定      Not Linked*/
 "NO_LINKED" = "Not Linked";
-/*哈佛管理导师\n有效期至：{date}  Harvard Managementor\nExpiry: {date}*/
-"HARVARD_LEARN_CAMP" = "Harvard Managementor\nExpiry: {date}";
-/*哈佛管理导师  Harvard Managementor*/
-"HARVARD_LEARN_CAMP_TITLE" = "Harvard Managementor";
+/*哈佛管理导师\n有效期至：{date}  Harvard ManageMentor\nExpiry: {date}*/
+"HARVARD_LEARN_CAMP" = "Harvard ManageMentor\nExpiry: {date}";
+/*哈佛管理导师  Harvard ManageMentor*/
+"HARVARD_LEARN_CAMP_TITLE" = "Harvard ManageMentor";
 /*新密码和邮箱或用户名太相似 New password is too similar to the email address or the username.*/
 "NEW_PASSWORD_SIMILAR" = "New password is too similar to the email address or the username.";
 /* 您加入的哈佛管理导师，不到一个月就结束了，抓紧时间学习吧！ Harvard ManageMentor will be ended in less than a month. Go and study!*/
@@ -1048,3 +1040,13 @@
 "HArVARD_SEVEND_DAY" = "Harvard ManageMentor will be ended soon. Go and study!";
 /* 知道了 OK */
 "I_KNOW" = "OK";
+/* 正在连接App Store... Going to App Store... */
+"CONNECT_APP_STORE" = "Going to App Store...";
+/* 正在刷新数据... Refreshing... */
+"REFRESHING_DATA" = "Refreshing...";
+/* 开始支付... Paying... */
+"PAYING_IAP" = "Paying...";
+/* 正在恢复未完成的订单... Recovering pending order... */
+"RECOVERING_ORDER" = "Recovering pending order...";
+/* 支付失败，请重新购买 Payment failed, please repurchase */
+"PAYMENT_FAILED_PURCHASE" = "Payment failed, please repurchase";

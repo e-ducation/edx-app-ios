@@ -825,9 +825,6 @@
 /* Alert dialog button title to confirm an action */
 "YES"="是";
 
-
-/* 请先安装微信或者选择其他支付方式 Please install Wechat or choose other payment methods. */
-"INSTALL_WECHAT"="请先安装微信或者选择其他支付方式";
 /* 加载中... Loading… */
 "LOADING_TEXT"="加载中...";
 /* 恭喜您已经成功加入英荔商学院VIP Congratulations! You’ve become an EliteMBA VIP. */
@@ -872,10 +869,6 @@
 "CHOOSE_PAYMENT_METHOD"="选择支付方式";
 /* 学费: Payment: */
 "PAYMENT_NUM"="学费:";
-/* 微信支付 WeChat */
-"WECHAT_PAY_STYLE"="微信支付";
-/* 支付宝支付  Alipay */
-"ALIPAY_STYLE"="支付宝支付";
 /* 正在支付... Paying now... */
 "PAYING_NOW"="正在支付...";
 /* 支付失败 Payment Failed */
@@ -888,8 +881,6 @@
 "PAYMENT_SUCCESS"="支付成功";
 /* 正在处理... Processing... */
 "PROCESSING_TEXT"="正在处理...";
-/* 不支持微信支付 Does not support WeChat */
-"NO_SUPPORT_WECHAT"="不支持微信支付";
 /* 授权失败 Authorization Failed */
 "AUTHORIZATION_FAILED"="授权失败";
 /* 系统提示 System Reminder */
@@ -1010,9 +1001,9 @@
 "EXPIRED_TEXT" = "已过期";
 /*未绑定      Not Linked*/
 "NO_LINKED" = "未绑定";
-/*哈佛管理导师\n有效期至：{date}  Harvard Managementorp\nExpiry:{date}*/
+/*哈佛管理导师\n有效期至：{date}  Harvard ManageMentorp\nExpiry:{date}*/
 "HARVARD_LEARN_CAMP" = "哈佛管理导师\n有效期至：{date}";
-/*哈佛管理导师  Harvard Managementor*/
+/*哈佛管理导师  Harvard ManageMentor*/
 "HARVARD_LEARN_CAMP_TITLE" = "哈佛管理导师";
 /*新密码和邮箱或用户名太相似 New password is too similar to the email address or the username.*/
 "NEW_PASSWORD_SIMILAR" = "新密码和邮箱或用户名太相似";
@@ -1022,3 +1013,13 @@
 "HArVARD_SEVEND_DAY" = "您加入的哈佛管理导师，即将结束，抓紧时间学习吧！";
 /* 知道了 OK */
 "I_KNOW" = "知道了";
+/* 正在连接App Store... Going to App Store... */
+"CONNECT_APP_STORE" = "正在连接App Store...";
+/* 正在刷新数据... Refreshing... */
+"REFRESHING_DATA" = "正在刷新数据...";
+/* 开始支付... Paying... */
+"PAYING_IAP" = "开始支付...";
+/* 正在恢复未完成的订单... Recovering pending order... */
+"RECOVERING_ORDER" = "正在恢复未完成的订单...";
+/* 支付失败，请重新购买 Payment failed, please repurchase */
+"PAYMENT_FAILED_PURCHASE" = "支付失败，请重新购买";
