@@ -1048,3 +1048,5 @@
 "RECOVERING_ORDER" = "Recovering pending order...";
 /* 支付失败，请重新购买 Payment failed, please repurchase */
 "PAYMENT_FAILED_PURCHASE" = "Payment failed, please repurchase";
+/* 您存在尚未完成的订单，点击确定，以完成您的订单 You have an unfinished order. Click OK to complete your order. */
+"UNFINISH_PURCHASE" = "You have an unfinished order. Click OK to complete your order.";

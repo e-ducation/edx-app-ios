@@ -74,6 +74,7 @@
 #import "NSURL+OEXPathExtensions.h"
 #import "TDVipPackageViewController.h"
 #import "TDVipIntroduceViewController.h"
+#import "PurchaseManager.h"
 #import "UIColor+TDHexColor.h"
 #import "TDVipAlertView.h"
 #import "TDBindPhoneViewController.h"

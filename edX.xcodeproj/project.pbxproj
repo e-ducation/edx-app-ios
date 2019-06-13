@@ -4653,6 +4653,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				"es-419",
 				"zh-Hans",

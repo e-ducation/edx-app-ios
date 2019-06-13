@@ -62,6 +62,7 @@
 - (void)purchaseAction { //内购初始化
     
     self.purchaseModel = [[PurchaseModel alloc] init];
+    
     self.purchaseManager = [[PurchaseManager alloc] init];
     self.purchaseManager.username = self.username;
     self.purchaseManager.delegate = self;
