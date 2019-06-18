@@ -13,6 +13,7 @@ class TDDetailWebViewController: UIViewController {
     
     let webView = WKWebView(frame: CGRect.zero)
     var htmlStr: String
+    var approveSucess = true
     
     var blockHandle: (()->())?
     
@@ -33,6 +34,7 @@ class TDDetailWebViewController: UIViewController {
 
         self.title = "详情"
         setViewConstraint()
+        loadApprovesStatus()
         loadHtml()
     }
     
@@ -41,6 +43,8 @@ class TDDetailWebViewController: UIViewController {
             return
         }
         let request = URLRequest(url: url)
+        //网页中写入登录token
+//         request.setValue("Bearer iektLLcXi8ienz5GCG6BbZSsGD7u0l", forHTTPHeaderField: "Authorization")
         webView.load(request)
     }
     
@@ -57,6 +61,21 @@ class TDDetailWebViewController: UIViewController {
         }
         
         loadController.setupInController(controller: self, contentView: webView)
+    }
+    
+    func loadApprovesStatus() {
+        PurchaseManager.showPurchaseComplete { (approveSucess) in
+            self.approveSucess = approveSucess
+        }
+    }
+    
+    func loadCookie() {
+        let cookieStore = HTTPCookieStorage.shared
+        let array = cookieStore.cookies
+        for i in 0..<array!.count {
+            let cookie = array?[i]
+            print("打印 - \(String(describing: cookie))")
+        }
     }
     
 }
@@ -102,17 +121,18 @@ extension TDDetailWebViewController: WKUIDelegate, WKNavigationDelegate {
             else {
                 self.navigationController?.popViewController(animated: true)
             }
-            decisionHandler(WKNavigationActionPolicy.cancel)
+            decisionHandler(.cancel)
         }
         else if (urlStr?.contains(find: "device=ios"))! {
-            decisionHandler(WKNavigationActionPolicy.allow)
+            decisionHandler(.allow)
         }
         else {
             switch navigationAction.navigationType {
-                
             case .linkActivated,.formSubmitted,.formResubmitted :
-                if let webUrl = navigationAction.request.url, UIApplication.shared.canOpenURL(webUrl) {
-                    UIApplication.shared.openURL(webUrl)
+                if approveSucess == true {
+                    if let webUrl = navigationAction.request.url, UIApplication.shared.canOpenURL(webUrl) {
+                        UIApplication.shared.openURL(webUrl)
+                    }
                 }
                 decisionHandler(.cancel)
             case .backForward,.reload,.other:

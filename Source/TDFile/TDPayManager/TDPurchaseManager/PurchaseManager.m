@@ -68,7 +68,7 @@
     return NO;
 }
 
-- (void)showPurchaseComplete:(void(^)(BOOL approveSucess))completion {//App是否审核通过
++ (void)showPurchaseComplete:(void(^)(BOOL approveSucess))completion {//App是否审核通过
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -251,6 +251,7 @@
         NSLog(@"------ 空 -------");
         return;
     }
+    //将购买加入交易队列中
     SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:pro];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
     NSLog(@"---------发送购买请求------------");
@@ -352,7 +353,7 @@
 }
 
 - (void)haveNoReceiptShowAlert:(SKPaymentTransaction *)transaction {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[Strings systemReminder] message:@"内购需要刷新票据，以恢复未完成的订单" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[Strings systemReminder] message:[Strings unfinishPurchase] preferredStyle:UIAlertControllerStyleAlert];
     WS(weakSelf);
     UIAlertAction *action = [UIAlertAction actionWithTitle:[Strings ok] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         weakSelf.restoreTransaction = transaction;
