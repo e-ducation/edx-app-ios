@@ -61,8 +61,9 @@
     [self.bgButton setBackgroundImage:[UIImage imageNamed:@"vip_select"] forState:UIControlStateSelected];
     [self.bgView addSubview:self.bgButton];
     
+    NSString *imageStr = [[NSLocale currentLocale].languageCode isEqualToString:@"en"] ? @"vip_recomend_en" : @"vip_recomend";
     self.cornerImage = [[UIImageView alloc] init];
-    self.cornerImage.image = [UIImage imageNamed:@"vip_recomend"];
+    self.cornerImage.image = [UIImage imageNamed:imageStr];
     [self.bgView addSubview:self.cornerImage];
     
     self.nameLabel = [[UILabel alloc] init];

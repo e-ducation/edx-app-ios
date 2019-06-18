@@ -250,6 +250,7 @@ public class AuthenticatedWebViewController: UIViewController, WKNavigationDeleg
             for (key, value) in self.environment.session.authorizationHeaders {
                 exchangeRequest.addValue(value, forHTTPHeaderField: key)
             }
+            exchangeRequest.setValue("openedx-language-preference=\(NSLocale.current.languageCode ?? "zh")", forHTTPHeaderField: "Cookie")
             self.webController.loadURLRequest(request: exchangeRequest)
         }
     }

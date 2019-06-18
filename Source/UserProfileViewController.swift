@@ -156,7 +156,7 @@ class UserProfileViewController: OfflineSupportViewController, UserProfilePresen
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle(barStyle: .black)
+        return UIStatusBarStyle(barStyle: .default)
     }
 }
 
@@ -177,13 +177,13 @@ extension UINavigationBar {
     
     func applyUserProfileNavbarColorScheme() {
         // Profile has different navbar color scheme that's why we need to update nav bar color for profile
-        let neutralWhiteColor = OEXStyles.shared().neutralWhite()
-        let titleStyle = OEXTextStyle(weight: .semiBold, size: .xLarge, color : neutralWhiteColor)
-        apply(barTintColor: OEXStyles.shared().primaryBaseColor(), tintColor: neutralWhiteColor, titleStyle: titleStyle)
+//        let neutralWhiteColor = OEXStyles.shared().neutralWhite()
+//        let titleStyle = OEXTextStyle(weight: .semiBold, size: .xLarge, color : neutralWhiteColor)
+//        apply(barTintColor: OEXStyles.shared().primaryBaseColor(), tintColor: neutralWhiteColor, titleStyle: titleStyle)
     }
     
     func applyDefaultNavbarColorScheme() {
-        apply(barTintColor: OEXStyles.shared().navigationBarColor(), tintColor: OEXStyles.shared().navigationItemTintColor(), titleStyle: OEXStyles.shared().navigationTitleTextStyle)
+//        apply(barTintColor: OEXStyles.shared().navigationBarColor(), tintColor: OEXStyles.shared().navigationItemTintColor(), titleStyle: OEXStyles.shared().navigationTitleTextStyle)
     }
 }
 
