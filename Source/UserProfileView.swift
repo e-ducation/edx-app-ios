@@ -45,7 +45,7 @@ class UserProfileView : UIView, UIScrollViewDelegate {
     }
 
     private func setupViews() {
-        scrollView.backgroundColor = environment.styles.primaryBaseColor()
+        scrollView.backgroundColor = environment.styles.neutralWhiteT()
         scrollView.delegate = self
 
         avatarImage.borderWidth = 3.0
@@ -166,7 +166,7 @@ class UserProfileView : UIView, UIScrollViewDelegate {
             return
         }
         
-        let messageStyle = OEXTextStyle(weight: .light, size: .xSmall, color: environment.styles.primaryXLightColor())
+        let messageStyle = OEXTextStyle(weight: .light, size: .xSmall, color: environment.styles.primaryBaseColor())
         messageLabel.attributedText = messageStyle.attributedString(withText: message)
     }
 
@@ -190,8 +190,8 @@ class UserProfileView : UIView, UIScrollViewDelegate {
     }
 
     func populateFields(profile: UserProfile, editable : Bool, networkManager : NetworkManager) {
-        let usernameStyle = OEXTextStyle(weight : .normal, size: .xxLarge, color: environment.styles.neutralWhiteT())
-        let infoStyle = OEXTextStyle(weight: .light, size: .xSmall, color: environment.styles.primaryXLightColor())
+        let usernameStyle = OEXTextStyle(weight : .normal, size: .xxLarge, color: environment.styles.primaryBaseColor())
+        let infoStyle = OEXTextStyle(weight: .light, size: .xSmall, color: environment.styles.primaryBaseColor())
         let bioStyle = environment.styles.textAreaBodyStyle
         let messageStyle = OEXMutableTextStyle(weight: .bold, size: .large, color: environment.styles.neutralDark())
         messageStyle.alignment = .center

@@ -247,7 +247,8 @@ open class NetworkManager : NSObject {
                         mutableURLRequest.setValue(value, forHTTPHeaderField: header)
                     }
                 }
-                
+                //设置用户语言习惯
+                mutableURLRequest.setValue("openedx-language-preference=\(NSLocale.current.languageCode ?? "")", forHTTPHeaderField: "Cookie")
                 
                 // Now we encode the body
                 switch request.body {
