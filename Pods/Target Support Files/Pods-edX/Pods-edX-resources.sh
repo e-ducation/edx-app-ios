@@ -99,6 +99,7 @@ EOM
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/DateTools/DateTools/DateTools.bundle"
   install_resource "${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessagingDisplay-library/InAppMessagingDisplayResources.bundle"
   install_resource "${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle"
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
@@ -107,6 +108,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/DateTools/DateTools/DateTools.bundle"
   install_resource "${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessagingDisplay-library/InAppMessagingDisplayResources.bundle"
   install_resource "${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle"
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
@@ -115,6 +117,7 @@ fi
 if [[ "$CONFIGURATION" == "Profile" ]]; then
   install_resource "${PODS_ROOT}/DateTools/DateTools/DateTools.bundle"
   install_resource "${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessagingDisplay-library/InAppMessagingDisplayResources.bundle"
   install_resource "${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle"
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"

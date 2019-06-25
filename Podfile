@@ -1,24 +1,27 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
 
 source 'https://github.com/CocoaPods/Specs.git'
 
 project 'edX.xcodeproj'
 
 target 'edX' do
-
-pod 'Analytics', '~> 3.0.0'
-pod 'Segment-GoogleAnalytics', '~> 1.0.0'
+pod 'Analytics', '~> 3.6.10'
+pod 'Segment-GoogleAnalytics', '~> 1.2.0'
+pod 'Segment-Firebase', '=2.4.0'
 pod 'Crashlytics', '~> 3.10.1'
 pod 'DateTools', '~> 1.6.1'
 pod 'Fabric', '~> 1.7.6'
-pod 'GoogleSignIn', '~> 2.4'
-pod 'Masonry'
+pod 'GoogleSignIn', '~> 4.4.0'
+pod 'Masonry', '~> 1.1.0'
 pod 'NewRelicAgent', '~> 4.1'
 pod 'FBSDKCoreKit', '~> 4.31.1'
 pod 'FBSDKLoginKit', '~> 4.31.1'
 pod 'Smartling.i18n', '~> 1.0'
-pod 'Firebase/Core', '= 5.4.1'
+pod 'Firebase/Core', '= 5.20.2'
+pod 'Firebase/InAppMessagingDisplay'
+pod 'Firebase/Analytics'
+pod 'Firebase/Performance'
 pod 'Branch', '= 0.25.5'
 pod 'Weibo_SDK'
 pod 'AFNetworking'
@@ -28,8 +31,8 @@ pod 'SDWebImage'
 pod 'FMDB'
 
 target 'edXTests' do
-    pod 'FBSnapshotTestCase/Core', '= 2.0.1'
-    pod 'OCMock', '~> 3.1'
+    use_frameworks!
+    pod 'iOSSnapshotTestCase', '= 5.0.2'
     pod 'OHHTTPStubs', '~> 4.0'
 end
 
