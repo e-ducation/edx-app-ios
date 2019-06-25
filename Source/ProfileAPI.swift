@@ -43,7 +43,8 @@ public class ProfileAPI: NSObject {
         return networkManager.streamForRequest(request)
     }
 
-    class func profileUpdateRequest(profile: UserProfile) -> NetworkRequest<UserProfile> {
+    class func profileUpdateRequest(profile: UserProfile) -> NetworkRequest<UserProfile>? {
+
         let json = JSON(profile.updateDictionary as AnyObject)
         let request = NetworkRequest(method: HTTPMethod.PATCH,
             path: path(username: profile.username ?? ""),

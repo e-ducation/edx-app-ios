@@ -30,7 +30,8 @@ static CGFloat OEXExternalAuthButtonAspectRatio = 1.0;//3.4;
 
 @implementation OEXExternalAuthOptionsView
 
-- (id)initWithFrame:(CGRect)frame providers:(nonnull NSArray *)providers tapAction:(void(^)(id<OEXExternalAuthProvider>))tapAction {
+- (id)initWithFrame:(CGRect)frame providers:(nonnull NSArray *)providers accessibilityLabel:(NSString*)accessibilityLabel tapAction:(void(^)(id<OEXExternalAuthProvider>))tapAction {
+    
     self = [super initWithFrame:frame];
     if(self != nil) {
         

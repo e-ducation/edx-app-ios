@@ -50,23 +50,23 @@ class TDArticlePageViewController: UIViewController {
     }
     
     func setTagDate(tagArray: Array<Any>) {
-        
+
         var array: Array<Any> = ["最新", "最热"]
         var vcArray: Array<Any> = [TDArticleViewController(tagStr: "最新", delegate: self), TDArticleViewController(tagStr: "最热", delegate: self)]
         for i in 0..<tagArray.count {
-            
+
             let tagDic = tagArray[i] as? [String: Any]
             let tag: String = tagDic?["name"] as! String
             array.append(tag)
-            
+
             let ocVC = TDArticleViewController(tagStr: tag, delegate: self)
             vcArray.append(ocVC)
         }
-        
+
         segmentVC.pageViewControllers = (vcArray as! [UIViewController])
         segmentVC.categoryView.titles = array as? [String]
         segmentVC.categoryView.originalIndex = 0
-        
+
         self.addChild(segmentVC)
         self.view.addSubview(segmentVC.view)
         segmentVC.didMove(toParent: self)
