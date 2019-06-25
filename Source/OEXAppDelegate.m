@@ -7,6 +7,7 @@
 //
 
 @import edXCore;
+@import FirebaseAnalytics;
 #import <Crashlytics/Crashlytics.h>
 #import <Fabric/Fabric.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
@@ -14,12 +15,11 @@
 #import <NewRelicAgent/NewRelic.h>
 #import <Analytics/SEGAnalytics.h>
 #import <Branch/Branch.h>
-
+#import <Segment-GoogleAnalytics/SEGGoogleAnalyticsIntegrationFactory.h>
+#import <Segment-Firebase/SEGFirebaseIntegrationFactory.h>
 #import "OEXAppDelegate.h"
-
 #import "edX-Swift.h"
 #import "Logger+OEXObjC.h"
-
 #import "OEXAuthentication.h"
 #import "OEXConfig.h"
 #import "OEXDownloadManager.h"
@@ -219,21 +219,25 @@
 
     //SegmentIO
     OEXSegmentConfig* segmentIO = [config segmentConfig];
-    if(segmentIO.apiKey && segmentIO.isEnabled) {
-        [SEGAnalytics setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:segmentIO.apiKey]];
+    if(segmentIO.isEnabled) {
+        SEGAnalyticsConfiguration * configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:segmentIO.apiKey];
+        
+        //Segment to Google Analytics integration
+        [configuration use:[SEGGoogleAnalyticsIntegrationFactory instance]];
+        
+        if (config.firebaseConfig.requiredKeysAvailable) {
+            //Segment to Google Firebase integration
+            [configuration use:[SEGFirebaseIntegrationFactory instance]];
+        }
+        
+        [SEGAnalytics setupWithConfiguration:configuration];
     }
-    
     //Initialize Firebase
     // Make Sure the google app id is valid before configuring firebase, the app can produce crash.
     //Firebase do not get exception with invalid google app ID, https://github.com/firebase/firebase-ios-sdk/issues/1581
-    if (config.firebaseConfig.enabled) {
-        FIROptions *options = [[FIROptions alloc] initWithGoogleAppID:config.firebaseConfig.googleAppID GCMSenderID:config.firebaseConfig.gcmSenderID];
-        [options setAPIKey:config.firebaseConfig.apiKey];
-        [options setClientID:config.firebaseConfig.clientID];
-        [FIRApp configureWithOptions:options];
-        if (config.firebaseConfig.analyticsEnabled) {
-            [[FIRAnalyticsConfiguration sharedInstance] setAnalyticsCollectionEnabled:YES];
-        }
+    if (config.firebaseConfig.enabled && !segmentIO.isEnabled) {
+        [FIRApp configure];
+        [FIRAnalytics setAnalyticsCollectionEnabled:YES];
     }
 
     //NewRelic Initialization with edx key

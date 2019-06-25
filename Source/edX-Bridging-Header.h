@@ -4,7 +4,6 @@
 
 #import <Analytics/SEGAnalytics.h>
 #import <FirebaseCore/FirebaseCore.h>
-#import <FirebaseAnalytics/FirebaseAnalytics.h>
 
 #import "DACircularProgressView.h"
 #import <DateTools/NSDate+DateTools.h>
@@ -57,7 +56,6 @@
 #import "OEXVideoEncoding.h"
 #import "OEXVideoSummary.h"
 #import "OEXCourseInfoViewController.h"
-#import "OEXVideoPathEntry.h"
 
 #import "Reachability.h"
 #import "OEXLoginSplashViewController.h"
@@ -87,3 +85,5 @@
 #import <MJRefresh/MJRefresh.h>
 #import <UIImageView+WebCache.h>
 
+#import "ListenableObject.h"
+#import "OEXSegmentConfig.h"

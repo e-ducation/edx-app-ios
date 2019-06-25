@@ -8,23 +8,6 @@
 
 import Foundation
 
-extension OEXInterface {
-    @objc public func formatEnrollmentURL(with config : OEXConfig, url : NSMutableString) -> NSMutableString {
-        guard let username = OEXSession.shared()?.currentUser?.username else {
-            url.appendFormat("%@/%@%@", URL_USER_DETAILS, "test", URL_COURSE_ENROLLMENTS)
-            return url
-        }
-        
-        if let orgCode = config.organizationCode() {
-            url.appendFormat("%@/%@%@?org=%@", URL_USER_DETAILS, username, URL_COURSE_ENROLLMENTS, orgCode)
-        } else {
-            url.appendFormat("%@/%@%@", URL_USER_DETAILS, username, URL_COURSE_ENROLLMENTS)
-        }
-        
-        return url
-    }
-}
-
 extension OEXInterface : LastAccessedProvider {
     
     public func getLastAccessedSectionForCourseID(courseID : String) -> CourseLastAccessed? {
@@ -44,8 +27,8 @@ extension OEXInterface : LastAccessedProvider {
         // how we decide their order in the UI.
         // But once we switch to the new course structure endpoint, that will no longer be the case
         guard let courseVideos = courseVideos,
-            let videoOutline = course.video_outline,
-            let videos = courseVideos.object(forKey: videoOutline) as? [OEXHelperVideoDownload] else {
+            let courseID = course.course_id,
+            let videos = courseVideos.object(forKey: courseID) as? [OEXHelperVideoDownload] else {
             return []
         }
         

@@ -182,6 +182,11 @@ extension OEXRouter {
         }
     }
     
+    func showAnnouncment(from controller : UIViewController, courseID : String) {
+        let announcementViewController =  CourseAnnouncementsViewController(environment: environment, courseID: courseID)
+        controller.navigationController?.pushViewController(announcementViewController, animated: true)
+    }
+    
     private func popToRoot(controller: UIViewController) {
         controller.navigationController?.setToolbarHidden(true, animated: false)
         controller.navigationController?.popToRootViewController(animated: true)
@@ -233,6 +238,9 @@ extension OEXRouter {
         else if type == .programDiscoveryDetail {
             showProgramDetail(from: controller, with: pathID, bottomBar: bottomBar)
         }
+        else if type == .degreeDiscoveryDetail {
+            showProgramDetail(from: controller, with: pathID, bottomBar: bottomBar, type: .degree)
+        }
     }
 
     func showDiscussionResponsesFromViewController(controller: UIViewController, courseID : String, thread : DiscussionThread, isDiscussionBlackedOut: Bool) {
@@ -242,17 +250,30 @@ extension OEXRouter {
         responsesViewController.courseID = courseID
         responsesViewController.thread = thread
         responsesViewController.isDiscussionBlackedOut = isDiscussionBlackedOut
+        
         controller.navigationController?.pushViewController(responsesViewController, animated: true)
     }
     
-    func showDiscussionResponses(from controller: UIViewController, courseID: String, threadID: String, isDiscussionBlackedOut: Bool) {
+    func showDiscussionResponses(from controller: UIViewController, courseID: String, threadID: String, isDiscussionBlackedOut: Bool, completion: (()->Void)?) {
         let storyboard = UIStoryboard(name: "DiscussionResponses", bundle: nil)
         let responsesViewController = storyboard.instantiateInitialViewController() as! DiscussionResponsesViewController
         responsesViewController.environment = environment
         responsesViewController.courseID = courseID
         responsesViewController.threadID = threadID
         responsesViewController.isDiscussionBlackedOut = isDiscussionBlackedOut
-        controller.navigationController?.pushViewController(responsesViewController, animated: true)
+        controller.navigationController?.delegate = self
+        if let completion = completion {
+            controller.navigationController?.pushViewController(viewController: responsesViewController, completion: completion)
+        }
+    }
+    
+    func showDiscussionComments(from controller: UIViewController, courseID: String, commentID: String, threadID: String) {
+        let discussionCommentController = DiscussionCommentsViewController(environment: environment, courseID: courseID, commentID: commentID, threadID: threadID)
+        if let delegate = controller as? DiscussionCommentsViewControllerDelegate {
+            discussionCommentController.delegate = delegate
+        }
+        
+        controller.navigationController?.pushViewController(discussionCommentController, animated: true)
     }
     
     func showDiscussionCommentsFromViewController(controller: UIViewController, courseID : String, response : DiscussionComment, closed : Bool, thread: DiscussionThread, isDiscussionBlackedOut: Bool) {
@@ -406,8 +427,8 @@ extension OEXRouter {
         return nil
     }
     
-    func showProgramDetail(from controller: UIViewController, with pathId: String, bottomBar: UIView?) {
-        let programDetailViewController = ProgramsDiscoveryViewController(with: environment, pathId: pathId, bottomBar: bottomBar?.copy() as? UIView)
+    func showProgramDetail(from controller: UIViewController, with pathId: String, bottomBar: UIView?, type: ProgramDiscoveryScreen? = .program) {
+        let programDetailViewController = ProgramsDiscoveryViewController(with: environment, pathId: pathId, bottomBar: bottomBar?.copy() as? UIView, type: type)
         pushViewController(controller: programDetailViewController, fromController: controller)
     }
 
@@ -503,3 +524,8 @@ extension OEXRouter {
     }
 }
 
+extension OEXRouter: UINavigationControllerDelegate {
+    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        viewController.navigationController?.completionHandler()
+    }
+}

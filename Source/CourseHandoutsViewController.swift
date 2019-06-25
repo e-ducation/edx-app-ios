@@ -93,7 +93,7 @@ public class CourseHandoutsViewController: OfflineSupportViewController, UIWebVi
             let handoutStream = courseStream.transform {[weak self] enrollment in
                 return self?.streamForCourse(course: enrollment.course) ?? OEXStream<String>(error : NSError.oex_courseContentLoadError())
             }
-            self.handouts.backWithStream(handoutStream)
+            self.handouts.backWithStream((courseStream.value != nil) ? handoutStream : OEXStream<String>(error : NSError.oex_courseContentLoadError()))    
         }
     }
     

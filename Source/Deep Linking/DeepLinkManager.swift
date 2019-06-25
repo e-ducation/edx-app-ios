@@ -60,10 +60,18 @@ typealias DismissCompletion = () -> Void
             else if segmentType == SegmentOption.course.rawValue {
                 return .courseDiscovery
             }
+            else if segmentType == SegmentOption.degree.rawValue {
+                return .degreeDiscovery
+            }
         } else if controller is OEXFindCoursesViewController  {
             return .courseDiscovery
         } else if let programsDiscoveryViewController = controller as? ProgramsDiscoveryViewController {
-            return programsDiscoveryViewController.pathId == nil ? .programDiscovery : .programDiscoveryDetail
+            if programsDiscoveryViewController.viewType == .program {
+                return programsDiscoveryViewController.pathId == nil ? .programDiscovery : .programDiscoveryDetail
+            }
+            else if programsDiscoveryViewController.viewType == .degree {
+                return programsDiscoveryViewController.pathId == nil ? .degreeDiscovery : .degreeDiscoveryDetail
+            }
         } else if controller is ProgramsViewController {
             return .program
         } else if controller is DiscussionTopicsViewController {
@@ -104,9 +112,10 @@ typealias DismissCompletion = () -> Void
             }
             
             // Program discovery detail if already loaded
-            if let programDiscoveryViewController = topMostViewController as? ProgramsDiscoveryViewController,
-                let pathId = link.pathID {
-                programDiscoveryViewController.loadProgramDetails(with: pathId)
+            if let programDiscoveryViewController = topMostViewController as? ProgramsDiscoveryViewController, let pathId = link.pathID {
+                if pathId != programDiscoveryViewController.pathId {
+                    programDiscoveryViewController.loadProgramDetails(with: pathId)
+                }
             }
             
             return
@@ -148,6 +157,23 @@ typealias DismissCompletion = () -> Void
             guard environment?.config.discovery.course.isEnabled ?? false else { return }
             if let discoveryViewController = topMostViewController as? DiscoveryViewController {
                 discoveryViewController.switchSegment(with: link.type)
+                return
+            }
+            break
+        
+        case .degreeDiscovery:
+            guard environment?.config.discovery.degree.isEnabled ?? false else { return }
+            if let discoveryViewController = topMostViewController as? DiscoveryViewController {
+                discoveryViewController.switchSegment(with: link.type)
+                return
+            }
+            break
+            
+        case .degreeDiscoveryDetail:
+            guard environment?.config.discovery.degree.isEnabled ?? false, let pathId = link.pathID else { return }
+             if let discoveryViewController = topMostViewController as? DiscoveryViewController {
+                discoveryViewController.switchSegment(with: .degreeDiscoveryDetail)
+                environment?.router?.showDiscoveryDetail(from: discoveryViewController, type: .degreeDiscoveryDetail, pathID: pathId, bottomBar: discoveryViewController.bottomBar)
                 return
             }
             break
@@ -255,10 +281,8 @@ typealias DismissCompletion = () -> Void
             let topController = topMostViewController else { return }
         
         var isControllerAlreadyDisplayed : Bool {
-            if let topController = topMostViewController, let postController = topController as? PostsViewController, postController.topicID == link.topicID  {
-                return true
-            }
-            return false
+            guard let postController = topMostViewController as? PostsViewController else { return false }
+            return postController.topicID == link.topicID
         }
         
         func showDiscussionPosts() {
@@ -287,21 +311,19 @@ typealias DismissCompletion = () -> Void
         }
     }
     
-    private func showDiscussionResponses(with link: DeepLink) {
+    private func showDiscussionResponses(with link: DeepLink, completion: (() -> Void)? = nil) {
         guard let courseId = link.courseId,
             let threadID = link.threadID,
             let topController = topMostViewController else { return }
         
         var isControllerAlreadyDisplayed: Bool {
-            if let topController = topMostViewController, let discussionResponseController = topController as? DiscussionResponsesViewController, discussionResponseController.threadID == link.threadID {
-                return true
-            }
-            return false
+            guard let discussionResponseController = topMostViewController as? DiscussionResponsesViewController else { return false }
+            return discussionResponseController.threadID == link.threadID
         }
         
         func showResponses() {
             if let topController = topMostViewController {
-                environment?.router?.showDiscussionResponses(from: topController, courseID: courseId, threadID: threadID, isDiscussionBlackedOut: false)
+                environment?.router?.showDiscussionResponses(from: topController, courseID: courseId, threadID: threadID, isDiscussionBlackedOut: false, completion: completion)
             }
         }
         
@@ -320,10 +342,103 @@ typealias DismissCompletion = () -> Void
                 }
                 self?.showDiscussionTopic(with: link)
                 showResponses()
-                
             }
         }
     }
+    
+    private func showdiscussionComments(with link: DeepLink) {
+        
+        guard let courseID = link.courseId,
+            let commentID = link.commentID,
+            let threadID = link.threadID,
+            let topController = topMostViewController else { return }
+        
+        var isControllerAlreadyDisplayed: Bool {
+            guard let discussionCommentViewController = topMostViewController as? DiscussionCommentsViewController else { return false}
+            return discussionCommentViewController.commentID == commentID
+        }
+        
+        var isResponseControllerDisplayed: Bool {
+            guard let discussionResponseController = topMostViewController as? DiscussionResponsesViewController else { return false }
+            return discussionResponseController.threadID == link.threadID
+        }
+        
+        func showComment() {
+            if let topController = topMostViewController, let discussionResponseController = topController as? DiscussionResponsesViewController {
+                    environment?.router?.showDiscussionComments(from: discussionResponseController, courseID: courseID, commentID: commentID, threadID:threadID)
+                    discussionResponseController.navigationController?.delegate = nil
+            }
+        }
+        
+        if let discussionCommentController = topController as? DiscussionCommentsViewController, discussionCommentController.commentID != commentID {
+            discussionCommentController.navigationController?.popViewController(animated: true)
+            showComment()
+        }
+        else {
+             dismiss() { [weak self] in
+                guard !isControllerAlreadyDisplayed else { return }
+                if isResponseControllerDisplayed {
+                    showComment()
+                }
+                else {
+                    self?.showDiscussionResponses(with: link) {
+                        showComment()
+                    }
+                }
+            }
+        }
+    }
+    
+    private func showCourseHandout(with link: DeepLink) {
+        
+        var controllerAlreadyDisplayed: Bool {
+            if let topController = topMostViewController, let courseHandoutController = topController as? CourseHandoutsViewController, courseHandoutController.courseID == link.courseId {
+                return true
+            }
+            return false
+        }
+        
+        func showHandout() {
+            if let topController = topMostViewController {
+                environment?.router?.showHandoutsFromController(controller: topController, courseID: link.courseId ?? "")
+            }
+        }
+        
+        guard !controllerAlreadyDisplayed else { return }
+        
+         dismiss() { [weak self] in
+            if let topController = self?.topMostViewController {
+                self?.environment?.router?.showCourse(with: link, courseID: link.courseId ?? "", from: topController)
+            }
+            showHandout()
+        }
+    }
+    
+    private func showCourseAnnouncement(with link: DeepLink) {
+        
+        var controllerAlreadyDisplayed: Bool {
+            if let topController = topMostViewController, let courseAnnouncementsViewController = topController as? CourseAnnouncementsViewController, courseAnnouncementsViewController.courseID == link.courseId {
+                return true
+            }
+            return false
+        }
+        
+        func showAnnouncement() {
+            if let topController = topMostViewController {
+                environment?.router?.showAnnouncment(from: topController, courseID: link.courseId ?? "")
+            }
+        }
+        
+        guard !controllerAlreadyDisplayed else { return }
+        
+        dismiss() { [weak self] in
+            if let topController = self?.topMostViewController {
+                self?.environment?.router?.showCourse(with: link, courseID: link.courseId ?? "", from: topController)
+            }
+            showAnnouncement()
+        }
+    }
+    
     
     private func controllerAlreadyDisplayed(for type: DeepLinkType) -> Bool {
         guard let topViewController = topMostViewController else { return false }
@@ -341,7 +456,8 @@ typealias DismissCompletion = () -> Void
     }
     
     private func isDiscovery(type: DeepLinkType) -> Bool {
-        return (type == .courseDiscovery || type == .courseDetail || type == .programDiscovery || type == .programDiscoveryDetail)
+        return (type == .courseDiscovery || type == .courseDetail || type == .programDiscovery
+            || type == .programDiscoveryDetail || type == .degreeDiscovery || type == .degreeDiscoveryDetail)
     }
     
     private func navigateToDeepLink(with type: DeepLinkType, link: DeepLink) {
@@ -356,7 +472,7 @@ typealias DismissCompletion = () -> Void
         }
         
         switch type {
-        case .courseDashboard, .courseVideos, .discussions:
+        case .courseDashboard, .courseVideos, .discussions, .courseDates:
             showCourseDashboardViewController(with: link)
             break
         case .program:
@@ -379,7 +495,14 @@ typealias DismissCompletion = () -> Void
         case .discussionPost:
             showDiscussionResponses(with: link)
             break
-            
+        case .discussionComment:
+            showdiscussionComments(with: link)
+        case .courseHandout:
+            showCourseHandout(with: link)
+            break
+        case .courseAnnouncement:
+            showCourseAnnouncement(with: link)
+            break
         default:
             break
         }

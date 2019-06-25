@@ -11,7 +11,6 @@
 #import "OEXEnvironment.h"
 #import "OEXFabricConfig.h"
 #import <Analytics/SEGAnalytics.h>
-#import <Segment-GoogleAnalytics/SEGGoogleAnalyticsIntegrationFactory.h>
 #import "OEXAnalytics.h"
 #import "OEXConfig.h"
 #import "OEXInterface.h"
@@ -66,11 +65,10 @@
             OEXAnalytics* analytics = [[OEXAnalytics alloc] init];
             OEXSegmentConfig* segmentConfig = [env.config segmentConfig];
             if(segmentConfig.apiKey != nil && segmentConfig.isEnabled) {
-                [[SEGAnalyticsConfiguration configurationWithWriteKey:segmentConfig.apiKey] use:[SEGGoogleAnalyticsIntegrationFactory instance]];
                 [analytics addTracker:[[SegmentAnalyticsTracker alloc] init]];
             }
             
-            if (env.config.firebaseConfig.analyticsEnabled) {
+            if (env.config.firebaseConfig.analyticsEnabled && !segmentConfig.isEnabled) {
                 [analytics addTracker:[[FirebaseAnalyticsTracker alloc] init]];
             }
             

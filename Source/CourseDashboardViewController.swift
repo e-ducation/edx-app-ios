@@ -201,11 +201,24 @@ class CourseDashboardViewController: UITabBarController, UITabBarControllerDeleg
         switch type {
         case .courseDashboard:
             selectedIndex = tabBarViewControllerIndex(with: CourseOutlineViewController.self, courseOutlineMode: .full)
+            break
         case .courseVideos:
             selectedIndex = tabBarViewControllerIndex(with: CourseOutlineViewController.self, courseOutlineMode: .video)
             break
-        case .discussions, .discussionTopic, .discussionPost:
+        case .discussions, .discussionTopic, .discussionPost, .discussionComment:
             selectedIndex = tabBarViewControllerIndex(with: DiscussionTopicsViewController.self)
+            break
+        case .courseDates:
+            selectedIndex = tabBarViewControllerIndex(with: CourseDatesViewController.self)
+            break
+        case .courseHandout:
+            let index = tabBarViewControllerIndex(with: CourseHandoutsViewController.self)
+            selectedIndex = (index == 0) ? tabBarViewControllerIndex(with: AdditionalTabBarViewController.self) : index        
+            break
+        case .courseAnnouncement:
+            let index = tabBarViewControllerIndex(with: CourseAnnouncementsViewController.self)
+            selectedIndex = (index == 0) ? tabBarViewControllerIndex(with: AdditionalTabBarViewController.self) : index
+            break
         default:
             selectedIndex = 0
             break
