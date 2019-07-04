@@ -554,7 +554,6 @@
 		8F562F901A1F451600320DB3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F562F8F1A1F451600320DB3 /* CoreMotion.framework */; };
 		8F7F6DAD1A795AA60063B9D6 /* OEXSessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F6DAC1A795AA60063B9D6 /* OEXSessionTests.m */; };
 		8FE04B4D1A1E2637007F88B8 /* OEXFBSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FE04B4C1A1E2637007F88B8 /* OEXFBSocial.m */; };
-		91A44FE27A6874EFE4416CDC /* Pods_edX_edXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1389850E75A1D3646A89D40B /* Pods_edX_edXTests.framework */; };
 		9C9B7F6C1A8CC68400A857B2 /* OEXFindCoursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B7F641A8CC68400A857B2 /* OEXFindCoursesViewController.m */; };
 		9C9B7F6D1A8CC68400A857B2 /* OEXCourseInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B7F661A8CC68400A857B2 /* OEXCourseInfoViewController.m */; };
 		9C9B7F731A8CC80E00A857B2 /* OEXURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B7F721A8CC80E00A857B2 /* OEXURLSessionManager.m */; };
@@ -596,6 +595,7 @@
 		A410852021BE11E20053F18A /* TDVipMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A410851F21BE11E20053F18A /* TDVipMessageModel.m */; };
 		A413A09F224DEBF5008739E3 /* TDPasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A413A09E224DEBF5008739E3 /* TDPasswordResetViewController.swift */; };
 		A413A0A1224DECC5008739E3 /* TDPasswordResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A413A0A0224DECC5008739E3 /* TDPasswordResetView.swift */; };
+		A416523722C2179D008296C6 /* TDArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A416523622C2179D008296C6 /* TDArticleViewController.swift */; };
 		A423E0B121B113300093FBD3 /* TDVipPackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0B021B113300093FBD3 /* TDVipPackageViewController.m */; };
 		A423E0B421B1134F0093FBD3 /* TDVipPackageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0B321B1134F0093FBD3 /* TDVipPackageView.m */; };
 		A423E0B721B11C580093FBD3 /* TDVipPackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0B621B11C580093FBD3 /* TDVipPackageCell.m */; };
@@ -836,6 +836,7 @@
 		BECB7B301924C0C3009C77F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BECB7B121924C0C3009C77F1 /* UIKit.framework */; };
 		BECB7B691924EE11009C77F1 /* OEXLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BECB7B681924EE11009C77F1 /* OEXLoginViewController.m */; };
 		BEEEBF80196AAACF00EF2C35 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEEEBF82196AAACF00EF2C35 /* Localizable.strings */; };
+		D5B8B439A14CA4AE2FD7F9A2 /* Pods_edXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73702BC5142DA154FF25B9C4 /* Pods_edXTests.framework */; };
 		E00523431CF81D9800B7F5C3 /* DiscussionBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00523421CF81D9800B7F5C3 /* DiscussionBlockViewController.swift */; };
 		E00523451CFD768700B7F5C3 /* DiscussionBlockViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00523441CFD768700B7F5C3 /* DiscussionBlockViewControllerTests.swift */; };
 		E008D9061CCE150F007F3643 /* DiscussionResponsesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E008D9041CCE1506007F3643 /* DiscussionResponsesViewControllerTests.swift */; };
@@ -1123,6 +1124,7 @@
 		22F8A90F1F45EFAF0025E18A /* AccountViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountViewControllerTest.swift; path = ../Source/AccountViewControllerTest.swift; sourceTree = "<group>"; };
 		22F8A9131F4708A50025E18A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2E1C8A1AE7A5800C904E5B4A /* libPods-edX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-edX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		32C93DE62C7DF438148A82D8 /* Pods-edXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-edXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-edXTests/Pods-edXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3F92D6E320B1996800A69806 /* AgreementURLsConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AgreementURLsConfigTests.swift; path = Test/AgreementURLsConfigTests.swift; sourceTree = SOURCE_ROOT; };
 		3F92D6E520B19C9B00A69806 /* AgreementURLsConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgreementURLsConfig.swift; sourceTree = "<group>"; };
 		3FA697C65AFF31EE41F702BD /* Pods-edX-edXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-edX-edXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-edX-edXTests/Pods-edX-edXTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1246,6 +1248,7 @@
 		69F5FACA1E28B0AD00F6ACC6 /* VideoTranscriptTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTranscriptTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		69F998561E6FEB2400CDFA9C /* OEXAnalytics+AppReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OEXAnalytics+AppReview.swift"; sourceTree = "<group>"; };
 		6C5AB6D484316B1D809C5BC7 /* Pods-edX.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-edX.profile.xcconfig"; path = "Pods/Target Support Files/Pods-edX/Pods-edX.profile.xcconfig"; sourceTree = "<group>"; };
+		73702BC5142DA154FF25B9C4 /* Pods_edXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_edXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77000A351A76EF8C007D306C /* NSString+OEXValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OEXValidation.h"; sourceTree = "<group>"; };
 		77000A361A76EF8C007D306C /* NSString+OEXValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OEXValidation.m"; sourceTree = "<group>"; };
 		77000A381A76EFF2007D306C /* NSString+OEXValidationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OEXValidationTests.m"; sourceTree = "<group>"; };
@@ -1645,6 +1648,7 @@
 		A410851F21BE11E20053F18A /* TDVipMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipMessageModel.m; sourceTree = "<group>"; };
 		A413A09E224DEBF5008739E3 /* TDPasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDPasswordResetViewController.swift; sourceTree = "<group>"; };
 		A413A0A0224DECC5008739E3 /* TDPasswordResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDPasswordResetView.swift; sourceTree = "<group>"; };
+		A416523622C2179D008296C6 /* TDArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDArticleViewController.swift; sourceTree = "<group>"; };
 		A423E0AF21B113300093FBD3 /* TDVipPackageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipPackageViewController.h; sourceTree = "<group>"; };
 		A423E0B021B113300093FBD3 /* TDVipPackageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipPackageViewController.m; sourceTree = "<group>"; };
 		A423E0B221B1134F0093FBD3 /* TDVipPackageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipPackageView.h; sourceTree = "<group>"; };
@@ -1676,7 +1680,6 @@
 		A458F26222656A0B004962A9 /* TDProfessorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDProfessorViewController.swift; sourceTree = "<group>"; };
 		A458F26422656B56004962A9 /* TDProfessorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDProfessorCell.swift; sourceTree = "<group>"; };
 		A458F26822657737004962A9 /* TDArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDArticleCell.swift; sourceTree = "<group>"; };
-		A458F26A22657A4C004962A9 /* TDArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDArticleViewController.swift; sourceTree = "<group>"; };
 		A458F29D2265A8DF004962A9 /* TDArticlePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDArticlePageViewController.swift; sourceTree = "<group>"; };
 		A458F2A22265A945004962A9 /* TDCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCategoryView.m; sourceTree = "<group>"; };
 		A458F2A32265A945004962A9 /* TDCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCategoryView.h; sourceTree = "<group>"; };
@@ -2122,7 +2125,7 @@
 			files = (
 				BECB7B301924C0C3009C77F1 /* UIKit.framework in Frameworks */,
 				BECB7B2F1924C0C3009C77F1 /* Foundation.framework in Frameworks */,
-				91A44FE27A6874EFE4416CDC /* Pods_edX_edXTests.framework in Frameworks */,
+				D5B8B439A14CA4AE2FD7F9A2 /* Pods_edXTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2140,6 +2143,7 @@
 				3FA697C65AFF31EE41F702BD /* Pods-edX-edXTests.debug.xcconfig */,
 				1A92534100A4A2600875E95C /* Pods-edX-edXTests.release.xcconfig */,
 				0C021CA32F0198C690BD5686 /* Pods-edX-edXTests.profile.xcconfig */,
+				32C93DE62C7DF438148A82D8 /* Pods-edXTests.debug.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -3464,7 +3468,7 @@
 			isa = PBXGroup;
 			children = (
 				A458F29D2265A8DF004962A9 /* TDArticlePageViewController.swift */,
-				A458F26A22657A4C004962A9 /* TDArticleViewController.swift */,
+				A416523622C2179D008296C6 /* TDArticleViewController.swift */,
 				A4F8942B22695A9500E9CFCF /* TDDetailWebViewController.swift */,
 			);
 			path = viewController;
@@ -4136,6 +4140,7 @@
 				61E8D7FCCFA0751E2D510864 /* libPods-EndToEndTests.a */,
 				2E1C8A1AE7A5800C904E5B4A /* libPods-edX.a */,
 				1389850E75A1D3646A89D40B /* Pods_edX_edXTests.framework */,
+				73702BC5142DA154FF25B9C4 /* Pods_edXTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -4602,7 +4607,6 @@
 				BECB7B291924C0C3009C77F1 /* Frameworks */,
 				BECB7B2A1924C0C3009C77F1 /* Resources */,
 				F9A3F59C6DA487F859FE5E3F /* [CP] Embed Pods Frameworks */,
-				7CCCA51E4F704B863AEA6289 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4958,10 +4962,10 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-edX/Pods-edX-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-edX/Pods-edX-resources.sh",
 				"${PODS_ROOT}/DateTools/DateTools/DateTools.bundle",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessagingDisplay-library/InAppMessagingDisplayResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessagingDisplay/InAppMessagingDisplayResources.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
@@ -4979,7 +4983,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-edX/Pods-edX-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-edX/Pods-edX-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6E738C6FF0540B3310174F00 /* [CP] Check Pods Manifest.lock */ = {
@@ -4997,7 +5001,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-edX-edXTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-edXTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -5063,82 +5067,24 @@
 			shellPath = /bin/sh;
 			shellScript = "rm -f \"${BUILT_PRODUCTS_DIR}/Strings.swift\"\n\"${SRCROOT}/script/Localizations.swift\" \"${SRCROOT}/Source/en.lproj/Localizable.strings\" \"${BUILT_PRODUCTS_DIR}/Strings.swift\"\nchmod -w \"${BUILT_PRODUCTS_DIR}/Strings.swift\"\n";
 		};
-		7CCCA51E4F704B863AEA6289 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-edX-edXTests/Pods-edX-edXTests-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessagingDisplay-framework/InAppMessagingDisplayResources.bundle",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-				"${PODS_ROOT}/Weibo_SDK/libWeiboSDK/WeiboSDK.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InAppMessagingDisplayResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-edX-edXTests/Pods-edX-edXTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F9A3F59C6DA487F859FE5E3F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-edX-edXTests/Pods-edX-edXTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking-framework/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/Analytics-framework/Analytics.framework",
-				"${BUILT_PRODUCTS_DIR}/Bolts-framework/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/Branch-framework/Branch.framework",
-				"${BUILT_PRODUCTS_DIR}/DateTools-framework/DateTools.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit-framework/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit-framework/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FMDB-framework/FMDB.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-framework/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-framework/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities-framework/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh-framework/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry-framework/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf-framework/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage-framework/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD-framework/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/Smartling.i18n-framework/Smartling_i18n.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb-framework/nanopb.framework",
+				"${SRCROOT}/Pods/Target Support Files/Pods-edXTests/Pods-edXTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 				"${BUILT_PRODUCTS_DIR}/iOSSnapshotTestCase/FBSnapshotTestCase.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Analytics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTools.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Smartling_i18n.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-edX-edXTests/Pods-edX-edXTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-edXTests/Pods-edXTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -5619,6 +5565,7 @@
 				77FFA2CC1AC35CE800B4D69B /* OEXRegistrationStyles.m in Sources */,
 				77567B771AC9FC1400877A7B /* NSNotificationCenter+OEXSafeAccess.m in Sources */,
 				9E4E6C3F1B4BBB5C0034F7EB /* LastAccessedProvider.swift in Sources */,
+				A416523722C2179D008296C6 /* TDArticleViewController.swift in Sources */,
 				B4B6D5E91A9490FC000F44E8 /* OEXRegistrationViewController.m in Sources */,
 				77ADF4A31AC1AF9800AC8955 /* OEXFacebookAuthProvider.m in Sources */,
 				775434831AD7394D00635A40 /* OEXPushNotificationManager.m in Sources */,
@@ -6099,7 +6046,7 @@
 		};
 		776F39201B4D941900ED11E3 /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C021CA32F0198C690BD5686 /* Pods-edX-edXTests.profile.xcconfig */;
+			baseConfigurationReference = B24F090D3FFFF2360A244ABC /* Pods-edXTests.profile.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -6671,7 +6618,7 @@
 		};
 		BECB7B411924C0C3009C77F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FA697C65AFF31EE41F702BD /* Pods-edX-edXTests.debug.xcconfig */;
+			baseConfigurationReference = 32C93DE62C7DF438148A82D8 /* Pods-edXTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -6732,7 +6679,7 @@
 		};
 		BECB7B421924C0C3009C77F1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A92534100A4A2600875E95C /* Pods-edX-edXTests.release.xcconfig */;
+			baseConfigurationReference = 7D3165AE70E54588B5985739 /* Pods-edXTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;

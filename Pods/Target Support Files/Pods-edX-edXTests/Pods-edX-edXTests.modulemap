@@ -1,6 +1,0 @@
-framework module Pods_edX_edXTests {
-  umbrella header "Pods-edX-edXTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
