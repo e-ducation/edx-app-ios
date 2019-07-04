@@ -83,7 +83,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <AFNetworking/AFNetworking.h>
 #import <MJRefresh/MJRefresh.h>
-#import <UIImageView+WebCache.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #import "ListenableObject.h"
 #import "OEXSegmentConfig.h"
