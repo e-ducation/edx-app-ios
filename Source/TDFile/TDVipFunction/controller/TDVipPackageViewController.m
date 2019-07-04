@@ -86,6 +86,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSString *authent = [OEXAuthentication authHeaderForApiAccess];
     [manager.requestSerializer setValue:authent forHTTPHeaderField:@"Authorization"];
+    [manager.requestSerializer setValue:[NSString stringWithFormat:@"openedx-language-preference=%@",[NSLocale currentLocale].languageCode] forHTTPHeaderField:@"Cookie"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",ELITEU_URL,VIP_INFO_URL];
     [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

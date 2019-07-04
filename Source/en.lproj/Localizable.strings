@@ -686,7 +686,7 @@
 /* Discussion topics search placeholder */
 "SEARCH_ALL_POSTS"="Search all posts";
 /*Placeholder text for search course textfield*/
-"SEARCH_COURSES_PLACEHOLDER_TEXT"="Search course";
+"SEARCH_COURSES_PLACEHOLDER_TEXT"="Search Course";
 /*Placeholder text for search program textfield*/
 "SEARCH_PROGRAMS_PLACEHOLDER_TEXT"="Search program";
 /*Placeholder text for search degree textfield*/

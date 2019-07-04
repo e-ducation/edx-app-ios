@@ -274,8 +274,9 @@ extension EnrolledCoursesViewController {
         let hmmUrl: String = environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.hmm_entry_url ?? ""
         if let hostUrl = environment.config.apiHostURL() {
             let url = hostUrl.appendingPathComponent(hmmUrl)
-            let request = NSURLRequest(url: url)
-            webController.contentRequest = request
+            let request = NSMutableURLRequest(url: url)
+            request.setValue("openedx-language-preference=\(NSLocale.current.languageCode ?? "zh")", forHTTPHeaderField: "Cookie")
+            webController.loadRequest(request: request)
             self.navigationController?.pushViewController(webController, animated: true)
         }
     }

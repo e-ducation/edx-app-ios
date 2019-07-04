@@ -173,8 +173,6 @@
 "ALLOW"="允许";
 /* Filtering option to show all discussion posts */
 "ALL_POSTS"="所有帖子";
-/* Tab allowing the user to see all videos */
-"ALL_VIDEOS"="所有视频";
 /*Subtitle for bulk download view when in downloading state */
 "ALL_DOWNLOADING_VIDEOS_SUB_TITLE" = "剩余{remaining_videos_count}个视频";//，总共{remaining_videos_size}MB
 /*Title for bulk download view when in downloaded state */
@@ -356,8 +354,6 @@
 "COURSE_DUE_DATE"="{due_date}截止";
 /* Option to show all different types of course content. Constrasts with 'Show Videos Only'. */
 "COURSE_MODE_FULL"="显示全部课程";
-/* Option to show only video course content. Constrasts with 'Show All Course Content'. */
-"COURSE_MODE_VIDEO"="只显示视频";
 /* Label to describe the button that allows choosing between Video only mode and All Course Content mode */
 "COURSE_MODE_PICKER_DESCRIPTION" = "模式选择器";
 /* Text displayed when Can't find one of your courses is tapped on My Courses screen */
@@ -506,8 +502,6 @@
 "COURSES"="课程";
 /* Screen title showing a user's settings */
 "MY_SETTINGS"="我的设置";
-/* Time Label in My Videos section*/
-"MY_VIDEOS_TIME_LABEL" = "不适用";
 /* Marked as answer for endorsed responses */
 "MARKED_ANSWER" = "标记为答案";
 /* Overlay error shown when attempting an action without an internet connection */
@@ -530,10 +524,6 @@
 "NO_TRANSCRIPT" = "该视频字幕不可用。";
 /* Message shown when user attempts to download a video over cellular data, but has chosen to only allow video downloads over wifi */
 "NO_WIFI_MESSAGE" = "当前下载设置只允许在Wi-Fi环境下下载。\n请连接到一个Wi-Fi网络或者更改下载设置。";
-/* Message shown on videos screen when user has not downloaded any videos */
-"NO_VIDEOS_DOWNLOADED" = "您还未下载任何视频。";
-/* Text shown when examining part of a course in video only mode, but that part of the course has no videos. {mode_switcher} will be replaced with a name or icon for the mode switch button */
-"NO_VIDEOS_TRY_MODE_SWITCHER" = "此部分中没有视频。要查看其他部分内容，请选择上面的 {mode_switcher} 并切换到完全课程模式。";
 /* Text displayed when no results are found for following*/
 "NO_FOLLOWING_RESULTS" = "您还没有关注任何发帖。";
 /* Message shown when no results are found for all posts*/
@@ -550,8 +540,6 @@
 "OK"="确定";
 /* Button title allowing user to open current page in their web browser */
 "OPEN_IN_BROWSER"="使用Safari浏览器查看";
-/* Button title allowing user to open current page in their web browser */
-"OPEN_IN_BROWSER_TITLE"="只显示视频";
 /* Button label to bring up course finder */
 "OR_SIGN_IN_WITH"="或者通过以下方式登录";
 /* Login screen password field title text */
@@ -624,8 +612,6 @@
 "QUESTION"="问题";
 /* Option to sort discussion post list by recent activity */
 "RECENT_ACTIVITY" = "近期活动";
-/* Section title to display recently downloaded videos */
-"RECENT_VIDEOS"="近期视频";
 /* Label before Sort and Filter buttons on Posts Screen ( The Colon(:) is part of the string) */
 "REFINE" = "筛选：";
 /* Button title when responses are closed for a thread */
@@ -700,6 +686,8 @@
 "SIGN_IN_TEXT"="登录";
 /* Message shown while user waits for response to a sign in request */
 "SIGN_IN_BUTTON_TEXT_ON_SIGN_IN"="正在登录";
+/* Accessibility text prefix for  Facebook and Google Buttons*/
+"SIGN_IN_PROMPT"="Sign in with";
 /*Sign up screen title and button initiating sign up process on the main screen */
 "REGISTER_TEXT"="注册";
 /* Indicates a date in the near future */
@@ -770,17 +758,6 @@
 "VERSION_DISPLAY" = "版本 {number} {environment}";
 /* Error shown when video download fails */
 "VIDEO_CONTENT_NOT_AVAILABLE"="此视频暂时不可访问。请稍后再试。";
-/* Floating overlay text shown after deleting a video. {count} is a number of videos */
-/* Floating overlay text shown after deleting a video. {count} is a number of videos */
-"VIDEOS_DELETED##{other}" = "已删除{count}个视频";
-/* Floating overlay text shown after video download begins. {count} is a number of videos  */
-/* Floating overlay text shown after video download begins. {count} is a number of videos  */
-"VIDEOS_DOWNLOADING##{other}" = "正在下载{count}个视频";
-/* Message shown to indicate a number of already downloaded videos. {count} is a number of videos  */
-/* Message shown to indicate a number of already downloaded videos. {count} is a number of videos  */
-"VIDEOS_DOWNLOADED##{other}" = "已下载{count}个视频";
-/* Floating overlay text shown while videos download */
-"VIDEO_DOWNLOADS_IN_PROGRESS" = "下载中的视频";
 /* Message shown instead of a video when attempting to watch a video that is only availabe on the web */
 "VIDEO_ONLY_ON_WEB" = "此视频当前仅在网络上提供。点击此视频以在网络浏览器中进行观看。";
 /* Alert dialog content shown when user attempts to view a video that hasn't been synced  */

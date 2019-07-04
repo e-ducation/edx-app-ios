@@ -103,6 +103,8 @@
     
     NSString* authValue = [OEXAuthentication authHeaderForApiAccess];
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    [request setValue:[NSString stringWithFormat:@"openedx-language-preference=%@",[NSLocale currentLocale].languageCode] forHTTPHeaderField:@"Cookie"];
+    
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig];
     [[session dataTaskWithRequest:request completionHandler:^(NSData* data, NSURLResponse* response, NSError* error) {
         

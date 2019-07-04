@@ -686,7 +686,7 @@
 /* Discussion topics search placeholder */
 "SEARCH_ALL_POSTS"="Buscar en todas las publicaciones";
 /*Placeholder text for search courses textfield*/
-"SEARCH_COURSES_PLACEHOLDER_TEXT"="Search course";
+"SEARCH_COURSES_PLACEHOLDER_TEXT"="Search Course";
 /*Placeholder text for search programs textfield*/
 "SEARCH_PROGRAMS_PLACEHOLDER_TEXT"="Search program";
 /*Placeholder text for search degree textfield*/
