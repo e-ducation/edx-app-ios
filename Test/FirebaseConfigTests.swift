@@ -10,6 +10,11 @@ import Foundation
 
 @testable import edX
 
+let apiKey = "APebSdWSu456EDkUk0imSGqetnOznbZv22QRiq1"
+let clientID = "302611111829-s11900000000tdhcbj9876548888qur3.apps.googleusercontent.com"
+let googleAppID = "3:902600000000:ios:c00089xx00000266"
+let gcmSenderID = "303600005829"
+
 class FirebaseConfigTests: XCTestCase {
 
     func testNoFirebaseConfig() {
@@ -17,10 +22,6 @@ class FirebaseConfigTests: XCTestCase {
         XCTAssertFalse(config.firebaseConfig.enabled)
         XCTAssertFalse(config.firebaseConfig.analyticsEnabled)
         XCTAssertFalse(config.firebaseConfig.cloudMessagingEnabled)
-        XCTAssertEqual(config.firebaseConfig.apiKey, "")
-        XCTAssertEqual(config.firebaseConfig.clientID, "")
-        XCTAssertEqual(config.firebaseConfig.gcmSenderID, "")
-        XCTAssertEqual(config.firebaseConfig.googleAppID, "")
         
     }
 
@@ -29,37 +30,26 @@ class FirebaseConfigTests: XCTestCase {
         XCTAssertFalse(config.firebaseConfig.enabled)
         XCTAssertFalse(config.firebaseConfig.analyticsEnabled)
         XCTAssertFalse(config.firebaseConfig.cloudMessagingEnabled)
-        XCTAssertEqual(config.firebaseConfig.apiKey, "")
-        XCTAssertEqual(config.firebaseConfig.clientID, "")
-        XCTAssertEqual(config.firebaseConfig.gcmSenderID, "")
-        XCTAssertEqual(config.firebaseConfig.googleAppID, "")
     }
 
     func testFirebaseConfig() {
-        let GCM_SENDER_ID = "608417025925"
-        let API_KEY = "Zhk6QiW7EbQW0WxJ5mzzZV9hDN8xEo"
-        let CLIENT_ID = "6i9smf15pi4baevepjrsscmbht9bg2ah.apps.googleusercontent.com"
-        let GOOGLE_APP_ID = "608417025925:ios:c04089bb49270266"
         let configDictionary = [
             "FIREBASE" : [
                 "ENABLED": true,
                 "ANALYTICS_ENABLED": true,
                 "CLOUD_MESSAGING_ENABLED": true,
-                "GCM_SENDER_ID": GCM_SENDER_ID,
-                "API_KEY": API_KEY,
-                "CLIENT_ID": CLIENT_ID,
-                "GOOGLE_APP_ID": GOOGLE_APP_ID
+                "API_KEY" : apiKey,
+                "CLIENT_ID" : clientID,
+                "GOOGLE_APP_ID" : googleAppID,
+                "GCM_SENDER_ID" : gcmSenderID
             ]
         ]
 
         let config = OEXConfig(dictionary: configDictionary)
+        XCTAssertTrue(config.firebaseConfig.requiredKeysAvailable)
         XCTAssertTrue(config.firebaseConfig.enabled)
         XCTAssertTrue(config.firebaseConfig.analyticsEnabled)
         XCTAssertTrue(config.firebaseConfig.cloudMessagingEnabled)
-        XCTAssertEqual(config.firebaseConfig.apiKey, API_KEY)
-        XCTAssertEqual(config.firebaseConfig.clientID, CLIENT_ID)
-        XCTAssertEqual(config.firebaseConfig.gcmSenderID, GCM_SENDER_ID)
-        XCTAssertEqual(config.firebaseConfig.googleAppID, GOOGLE_APP_ID)
     }
 
     func testFirebaseDisableConfig() {
@@ -67,11 +57,16 @@ class FirebaseConfigTests: XCTestCase {
             "FIREBASE" : [
                 "ENABLED": false,
                 "ANALYTICS_ENABLED": true,
-                "CLOUD_MESSAGING_ENABLED": true
+                "CLOUD_MESSAGING_ENABLED": true,
+                "API_KEY" : apiKey,
+                "CLIENT_ID" : clientID,
+                "GOOGLE_APP_ID" : googleAppID,
+                "GCM_SENDER_ID" : gcmSenderID
             ]
         ]
 
         let config = OEXConfig(dictionary: configDictionary)
+        XCTAssertTrue(config.firebaseConfig.requiredKeysAvailable)
         XCTAssertFalse(config.firebaseConfig.enabled)
         XCTAssertFalse(config.firebaseConfig.analyticsEnabled)
         XCTAssertFalse(config.firebaseConfig.cloudMessagingEnabled)
@@ -82,10 +77,15 @@ class FirebaseConfigTests: XCTestCase {
             "FIREBASE" : [
                 "ENABLED": true,
                 "ANALYTICS_ENABLED": false,
+                "API_KEY" : apiKey,
+                "CLIENT_ID" : clientID,
+                "GOOGLE_APP_ID" : googleAppID,
+                "GCM_SENDER_ID" : gcmSenderID
             ]
         ]
 
         let config = OEXConfig(dictionary: configDictionary)
+        XCTAssertTrue(config.firebaseConfig.requiredKeysAvailable)
         XCTAssertTrue(config.firebaseConfig.enabled)
         XCTAssertFalse(config.firebaseConfig.analyticsEnabled)
         XCTAssertFalse(config.firebaseConfig.cloudMessagingEnabled)
@@ -95,13 +95,182 @@ class FirebaseConfigTests: XCTestCase {
         let configDictionary = [
             "FIREBASE" : [
                 "ENABLED": true,
-                "CLOUD_MESSAGING_ENABLED": true,
+                "ANALYTICS_ENABLED": true,
+                "CLOUD_MESSAGING_ENABLED": false,
+                "API_KEY" : apiKey,
+                "CLIENT_ID" : clientID,
+                "GOOGLE_APP_ID" : googleAppID,
+                "GCM_SENDER_ID" : gcmSenderID
             ]
         ]
 
         let config = OEXConfig(dictionary: configDictionary)
+        XCTAssertTrue(config.firebaseConfig.requiredKeysAvailable)
         XCTAssertTrue(config.firebaseConfig.enabled)
-        XCTAssertFalse(config.firebaseConfig.analyticsEnabled)
+        XCTAssertTrue(config.firebaseConfig.analyticsEnabled)
+        XCTAssertFalse(config.firebaseConfig.cloudMessagingEnabled)
+    }
+    
+    func testFirebaseAPIKey() {
+        let configDictionary = [
+            "FIREBASE" : [
+                "ENABLED": true,
+                "ANALYTICS_ENABLED": true,
+                "CLOUD_MESSAGING_ENABLED": true,
+                "API_KEY" : apiKey,
+                "CLIENT_ID" : clientID,
+                "GOOGLE_APP_ID" : googleAppID,
+                "GCM_SENDER_ID" : gcmSenderID
+            ]
+        ]
+        
+        let config = OEXConfig(dictionary: configDictionary)
+        XCTAssertTrue(config.firebaseConfig.requiredKeysAvailable)
+        XCTAssertTrue(config.firebaseConfig.enabled)
+        XCTAssertTrue(config.firebaseConfig.analyticsEnabled)
         XCTAssertTrue(config.firebaseConfig.cloudMessagingEnabled)
+        XCTAssertEqual(config.firebaseConfig.apiKey, apiKey)
+    }
+    
+    func testFirebaseClientID() {
+        let configDictionary = [
+            "FIREBASE" : [
+                "ENABLED": true,
+                "ANALYTICS_ENABLED": true,
+                "CLOUD_MESSAGING_ENABLED": true,
+                "API_KEY" : apiKey,
+                "CLIENT_ID" : clientID,
+                "GOOGLE_APP_ID" : googleAppID,
+                "GCM_SENDER_ID" : gcmSenderID
+            ]
+        ]
+        
+        let config = OEXConfig(dictionary: configDictionary)
+        XCTAssertTrue(config.firebaseConfig.requiredKeysAvailable)
+        XCTAssertTrue(config.firebaseConfig.enabled)
+        XCTAssertTrue(config.firebaseConfig.analyticsEnabled)
+        XCTAssertTrue(config.firebaseConfig.cloudMessagingEnabled)
+        XCTAssertEqual(config.firebaseConfig.cliendID, clientID)
+    }
+    
+    func testFirebaseGoogleAppID() {
+        let configDictionary = [
+            "FIREBASE" : [
+                "ENABLED": true,
+                "ANALYTICS_ENABLED": true,
+                "CLOUD_MESSAGING_ENABLED": true,
+                "API_KEY" : apiKey,
+                "CLIENT_ID" : clientID,
+                "GOOGLE_APP_ID" : googleAppID,
+                "GCM_SENDER_ID" : gcmSenderID
+            ]
+        ]
+        
+        let config = OEXConfig(dictionary: configDictionary)
+        XCTAssertTrue(config.firebaseConfig.requiredKeysAvailable)
+        XCTAssertTrue(config.firebaseConfig.enabled)
+        XCTAssertTrue(config.firebaseConfig.analyticsEnabled)
+        XCTAssertTrue(config.firebaseConfig.cloudMessagingEnabled)
+        XCTAssertEqual(config.firebaseConfig.googleAppID, googleAppID)
+    }
+    
+    func testFirebaseGCMSenderID() {
+        let configDictionary = [
+            "FIREBASE" : [
+                "ENABLED": true,
+                "ANALYTICS_ENABLED": true,
+                "CLOUD_MESSAGING_ENABLED": true,
+                "API_KEY" : apiKey,
+                "CLIENT_ID" : clientID,
+                "GOOGLE_APP_ID" : googleAppID,
+                "GCM_SENDER_ID" : gcmSenderID
+            ]
+        ]
+        
+        let config = OEXConfig(dictionary: configDictionary)
+        XCTAssertTrue(config.firebaseConfig.requiredKeysAvailable)
+        XCTAssertTrue(config.firebaseConfig.enabled)
+        XCTAssertTrue(config.firebaseConfig.analyticsEnabled)
+        XCTAssertTrue(config.firebaseConfig.cloudMessagingEnabled)
+        XCTAssertEqual(config.firebaseConfig.gcmSenderID, gcmSenderID)
+    }
+    
+    func testFirebaseRequiredKeysAvailable() {
+        let configDictionary = [
+            "FIREBASE" : [
+                "ENABLED": true,
+                "ANALYTICS_ENABLED": true,
+                "CLOUD_MESSAGING_ENABLED": true,
+                "API_KEY" : apiKey,
+                "CLIENT_ID" : clientID,
+                "GOOGLE_APP_ID" : googleAppID,
+                "GCM_SENDER_ID" : gcmSenderID
+            ]
+        ]
+        
+        let config = OEXConfig(dictionary: configDictionary)
+        XCTAssertTrue(config.firebaseConfig.requiredKeysAvailable)
+        XCTAssertTrue(config.firebaseConfig.enabled)
+        XCTAssertTrue(config.firebaseConfig.analyticsEnabled)
+        XCTAssertTrue(config.firebaseConfig.cloudMessagingEnabled)
+    }
+    
+    func testFirebaseRequiredKeysNotAvailable() {
+        let configDictionary = [
+            "FIREBASE" : [
+                "ENABLED": true,
+                "ANALYTICS_ENABLED": false,
+                "CLOUD_MESSAGING_ENABLED": false,
+            ]
+        ]
+        
+        let config = OEXConfig(dictionary: configDictionary)
+        XCTAssertFalse(config.firebaseConfig.requiredKeysAvailable)
+        XCTAssertFalse(config.firebaseConfig.enabled)
+        XCTAssertFalse(config.firebaseConfig.analyticsEnabled)
+        XCTAssertFalse(config.firebaseConfig.cloudMessagingEnabled)
+    }
+    
+    func testFirebaseRequiredKeyMissing() {
+        let configDictionary = [
+            "FIREBASE" : [
+                "ENABLED": true,
+                "ANALYTICS_ENABLED": false,
+                "CLOUD_MESSAGING_ENABLED": true,
+                "CLIENT_ID" : clientID,
+                "GOOGLE_APP_ID" : googleAppID,
+                "GCM_SENDER_ID" : gcmSenderID
+            ]
+        ]
+        
+        let config = OEXConfig(dictionary: configDictionary)
+        XCTAssertFalse(config.firebaseConfig.requiredKeysAvailable)
+        XCTAssertFalse(config.firebaseConfig.enabled)
+        XCTAssertFalse(config.firebaseConfig.analyticsEnabled)
+        XCTAssertFalse(config.firebaseConfig.cloudMessagingEnabled)
+    }
+    
+    func testFirebaseDisableIfSegmentEnable() {
+        let configDictionary = [
+            "FIREBASE" : [
+                "ENABLED": true,
+                "ANALYTICS_ENABLED": false,
+                "CLOUD_MESSAGING_ENABLED": true,
+                "API_KEY" : apiKey,
+                "CLIENT_ID" : clientID,
+                "GOOGLE_APP_ID" : googleAppID,
+                "GCM_SENDER_ID" : gcmSenderID
+            ],
+            
+            "SEGMENT_IO": [
+                "ENABLED": true,
+                "SEGMENT_IO_WRITE_KEY": "p910192UHD101010nY0000001Kb00GFcz'"
+            ]
+        ]
+        
+        let config = OEXConfig(dictionary: configDictionary)
+        let firebaseEnable = config.firebaseConfig.enabled && !(config.segmentConfig?.isEnabled ?? false)
+        XCTAssertTrue(config.segmentConfig?.isEnabled ?? false)
+        XCTAssertFalse(firebaseEnable)
     }
 }

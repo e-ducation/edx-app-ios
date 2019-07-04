@@ -24,7 +24,7 @@ class CourseContentPageViewControllerTests: SnapshotTestCase {
         outline = CourseOutlineTestDataFactory.freshCourseOutline(course.course_id!)
         let interface = OEXInterface.shared()
         interface.t_setCourseEnrollments([UserCourseEnrollment(course: course)])
-        interface.t_setCourseVideos([course.video_outline!: OEXVideoSummaryTestDataFactory.localCourseVideos(CourseOutlineTestDataFactory.knownLocalVideoID)])
+        interface.t_setCourseVideos([course.course_id!: OEXVideoSummaryTestDataFactory.localCourseVideos(CourseOutlineTestDataFactory.knownLocalVideoID)])
         environment = TestRouterEnvironment(config: OEXConfig(dictionary:["TAB_LAYOUTS_ENABLED": true]), interface: interface)
         environment.mockCourseDataManager.querier = CourseOutlineQuerier(courseID: course.course_id!, interface: interface, outline: outline)
         router = OEXRouter(environment: environment)
@@ -145,24 +145,17 @@ class CourseContentPageViewControllerTests: SnapshotTestCase {
         let childIDs = outline.blocks[outline.root]!.children
         XCTAssertTrue(childIDs.count > 2, "Need at least three children for this test")
         let childID = childIDs.first
-
+        
         loadAndVerifyControllerWithInitialChild(childID, parentID: outline.root) { (coursID, controller) -> ((XCTestExpectation) -> Void)? in
             return { expectation -> Void in
-                DispatchQueue.main.async {
-                    self.environment.eventTracker.eventStream.listenOnce(self) {_ in
-                        let events = self.environment.eventTracker.events.compactMap { return $0.asScreen }
-
-                        if events.count < 2 {
-                            return
-                        }
-
-                        let event = events.first!
-                        XCTAssertNotNil(event)
-                        XCTAssertEqual(event.screenName, OEXAnalyticsScreenUnitDetail)
-                        XCTAssertEqual(event.courseID, self.outline.root)
-                        XCTAssertEqual(event.value, self.outline.blocks[self.outline.root]?.internalName)
-                        expectation.fulfill()
-                    }
+                self.environment.eventTracker.eventStream.listenOnce(self) {_ in
+                    let events = self.environment.eventTracker.events.compactMap { return $0.asScreen }
+                    let event = events.first!
+                    XCTAssertNotNil(event)
+                    XCTAssertEqual(event.screenName, OEXAnalyticsScreenUnitDetail)
+                    XCTAssertEqual(event.courseID, self.outline.root)
+                    XCTAssertEqual(event.value, self.outline.blocks[self.outline.root]?.internalName)
+                    expectation.fulfill()
                 }
             }
         }

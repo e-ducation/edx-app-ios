@@ -15,8 +15,8 @@ pod 'Fabric', '~> 1.7.6'
 pod 'GoogleSignIn', '~> 4.4.0'
 pod 'Masonry', '~> 1.1.0'
 pod 'NewRelicAgent', '~> 4.1'
-pod 'FBSDKCoreKit', '~> 4.31.1'
-pod 'FBSDKLoginKit', '~> 4.31.1'
+pod 'FBSDKCoreKit', '~> 4.42.0'
+pod 'FBSDKLoginKit', '~> 4.42.0'
 pod 'Smartling.i18n', '~> 1.0'
 pod 'Firebase/Core', '= 5.20.2'
 pod 'Firebase/InAppMessagingDisplay'
@@ -30,18 +30,22 @@ pod 'MJRefresh'
 pod 'SDWebImage'
 pod 'FMDB'
 
+end
+
 target 'edXTests' do
     use_frameworks!
     pod 'iOSSnapshotTestCase', '= 5.0.2'
     pod 'OHHTTPStubs', '~> 4.0'
 end
 
-end
-
 post_install do |installer|
     installer.pods_project.targets.each do |target|
+        for i in 0..target.headers_build_phase.files.length - 1
+            build_file = target.headers_build_phase.files[i]
+            build_file.settings = { 'ATTRIBUTES' => ['Public']}
+        end
         target.build_configurations.each do |config|
             config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = "YES"
         end
     end
-end 
+end
