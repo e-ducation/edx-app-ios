@@ -65,18 +65,21 @@ class TDMainSiteCourseModel: NSObject {
         case Link = "link"
         case Title = "title"
         case Image = "image"
+        case PageUrl = "publicity_page_url"
     }
     
     let descript: String?
     let link: String?
     let title: String?
     let image: String?
+    let pageUrl: String?
     
     init(dic: Dictionary<String, Any>) {
         descript = dic[MainSiteCourseKeys.Description] as? String
         link = dic[MainSiteCourseKeys.Link] as? String
         title = dic[MainSiteCourseKeys.Title] as? String
-
+        pageUrl = dic[MainSiteCourseKeys.PageUrl] as? String
+        
         if let host = OEXConfig.shared().apiHostURL()?.absoluteString,
             let imagelink = dic[MainSiteCourseKeys.Image] as? String {
             image = host + imagelink
@@ -234,7 +237,7 @@ class TDMainSiteModel: NSObject {
                         let valueDic = dic[MainSiteKeys.Value] as! Dictionary<String, Any>
                         courseTitle = valueDic[MainSiteKeys.Title] as? String
                         
-                        let array = valueDic[MainSiteKeys.Courses] as! Array<Dictionary<String, String>>
+                        let array = valueDic[MainSiteKeys.Courses] as! Array<Dictionary<String, Any>>
                         if array.count > 0 {
                             for bannerDic in array {
                                 let bannerModel = TDMainSiteCourseModel(dic: bannerDic)

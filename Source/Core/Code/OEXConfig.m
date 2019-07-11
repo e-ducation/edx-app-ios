@@ -30,6 +30,7 @@ static NSString* const TDQQSecret = @"QQ_Secret";
 static NSString* const TDWBAPPKey = @"SINA_APPKEY";
 static NSString* const TDWBSecret = @"SINA_Secret";
 static NSString* const TDWBRedirectUrl = @"SINA_RedirectURL";
+static NSString* const TDUMAPPKey = @"UM_APPKEY";
 
 static OEXConfig* sSharedConfig;
 
@@ -157,6 +158,10 @@ static OEXConfig* sSharedConfig;
 
 - (NSString *)sinaTRedirectUrl {
     return [self stringForKey:TDWBRedirectUrl];
+}
+
+- (NSString *)umAppkey {
+    return [self stringForKey:TDUMAPPKey];
 }
 
 #pragma mark - Debug

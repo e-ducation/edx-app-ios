@@ -52,9 +52,12 @@
     NSString *body = [dic oex_stringByUsingFormEncoding];
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     [sessionConfig setHTTPAdditionalHeaders:[sessionConfig defaultHTTPHeaders]];
+    
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ELITEU_URL, APP_BINDPHONE_CODE_URL]]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [request setValue:[NSString stringWithFormat:@"openedx-language-preference=%@",[NSLocale currentLocale].languageCode] forHTTPHeaderField:@"Cookie"];
     
     NSString* authValue = [OEXAuthentication authHeaderForApiAccess];
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];

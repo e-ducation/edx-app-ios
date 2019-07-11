@@ -60,6 +60,7 @@
 #import "Reachability.h"
 #import "OEXLoginSplashViewController.h"
 #import "ListenableObject.h"
+#import "OEXSegmentConfig.h"
 
 #import "UIBarButtonItem+OEXBlockActions.h"
 #import "UIControl+OEXBlockActions.h"
@@ -85,5 +86,3 @@
 #import <MJRefresh/MJRefresh.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
-#import "ListenableObject.h"
-#import "OEXSegmentConfig.h"

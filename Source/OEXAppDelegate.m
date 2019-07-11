@@ -40,6 +40,8 @@
 #import "TDWechatManager.h"
 #import "TDQQManager.h"
 #import "WXApi.h"
+#import <UMCommon/UMCommon.h>
+#import <UMAnalytics/MobClick.h>
 
 @interface OEXAppDelegate () <UIApplicationDelegate>
 
@@ -89,6 +91,16 @@
     [TDWeiboManeger weiboRegister:YES];
     
     return YES;
+}
+
+- (void)configUmApp {//初始化友盟
+//    [UMConfigure setLogEnabled:YES];//发版本的时候，需要设置为No
+//    [MobClick setScenarioType:E_UM_NORMAL];//支持普通场景
+    NSString *appkey = [[OEXConfig sharedConfig] umAppkey];
+    [UMConfigure initWithAppkey:appkey channel:@"umeng"];
+    
+    //    NSString *deviceID =[UMConfigure deviceIDForIntegration];
+    //    NSLog(@"集成测试的deviceID:%@", deviceID);
 }
 
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
@@ -210,6 +222,8 @@
 
     OEXConfig* config = self.environment.config;
 
+    [self configUmApp];
+    
     //Logging
     [DebugMenuLogger setup];
 
