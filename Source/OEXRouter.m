@@ -23,7 +23,7 @@
 #import "OEXSession.h"
 #import "OEXDownloadViewController.h"
 #import "OEXCourse.h"
-
+#import <UMAnalytics/MobClick.h>
 
 static OEXRouter* sSharedRouter;
 
@@ -78,7 +78,7 @@ OEXRegistrationViewControllerDelegate
     if(currentUser == nil) {
         [self showSplash];
     } else {
-        [self showLoggedInContent];
+        [self showLoggedInContent:3];
     }
 }
 
@@ -108,11 +108,23 @@ OEXRegistrationViewControllerDelegate
     self.currentContentController = controller;
 }
 
-- (void)showLoggedInContent {
+- (void)showLoggedInContent:(NSInteger)type {
     [self removeCurrentContentController];
     
     OEXUserDetails* currentUser = self.environment.session.currentUser;
     [self.environment.analytics identifyUser:currentUser];
+    
+    switch (type) {
+        case 0://登录
+            [MobClick event:@"__login" attributes:@{@"userid": currentUser.username}];
+            break;
+        case 1://统计注册
+            [MobClick event:@"__register" attributes:@{@"userid": currentUser.username}];
+            break;
+        default:
+            break;
+    }
+    NSLog(@"登录成功 -->>> %@",currentUser.username);
     [self showEnrolledTabBarView];
 }
 
@@ -182,7 +194,7 @@ OEXRegistrationViewControllerDelegate
 #pragma Delegate Implementations
 
 - (void)registrationViewControllerDidRegister:(OEXRegistrationViewController *)controller completion:(void (^)(void))completion {
-    [self showLoggedInContent];
+    [self showLoggedInContent:1];
     [controller dismissViewControllerAnimated:YES completion:completion];
     if (self.registrationCompletion) {
         self.registrationCompletion();
@@ -191,7 +203,7 @@ OEXRegistrationViewControllerDelegate
 }
 
 - (void)loginViewControllerDidLogin:(OEXLoginViewController *)loginController {
-    [self showLoggedInContent];
+    [self showLoggedInContent:0];
     [loginController dismissViewControllerAnimated:YES completion:nil];
 }
 

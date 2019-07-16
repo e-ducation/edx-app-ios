@@ -590,7 +590,16 @@
 		9EEB85A71BD6564E000F3E9E /* PressableCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEB85A61BD6564E000F3E9E /* PressableCustomButton.swift */; };
 		9EEFFD651B300E87002A88B0 /* OEXInterface+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEFFD641B300E87002A88B0 /* OEXInterface+Swift.swift */; };
 		9EF21A9E1B4697CA000048F8 /* CourseLastAccessedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF21A9D1B4697CA000048F8 /* CourseLastAccessedController.swift */; };
+		A40004C922CDCFD8001B491E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A40004C822CDCFD7001B491E /* libz.tbd */; };
+		A40004CB22CDCFF6001B491E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A40004CA22CDCFF5001B491E /* libsqlite3.tbd */; };
+		A40004CE22CDE18E001B491E /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A40004CD22CDE18E001B491E /* UMCommon.framework */; };
+		A40004D422CDE1CD001B491E /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A40004CF22CDE1CC001B491E /* UMAnalytics.framework */; };
+		A40004D522CDE1CD001B491E /* UMCommonLog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A40004D022CDE1CC001B491E /* UMCommonLog.bundle */; };
+		A40004D622CDE1CD001B491E /* UMCommonLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A40004D122CDE1CC001B491E /* UMCommonLog.framework */; };
+		A40004D722CDE1CD001B491E /* SecurityEnvSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A40004D222CDE1CC001B491E /* SecurityEnvSDK.framework */; };
+		A40004D822CDE1CD001B491E /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A40004D322CDE1CD001B491E /* UTDID.framework */; };
 		A40658702269732B003FC916 /* TDMainSiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A406586F2269732B003FC916 /* TDMainSiteModel.swift */; };
+		A40932F422D5DE3D00F7ACBF /* TDCoursePageWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40932F322D5DE3D00F7ACBF /* TDCoursePageWebViewController.swift */; };
 		A410851D21BE0D680053F18A /* TDVipPackageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A410851C21BE0D680053F18A /* TDVipPackageModel.m */; };
 		A410852021BE11E20053F18A /* TDVipMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A410851F21BE11E20053F18A /* TDVipMessageModel.m */; };
 		A413A09F224DEBF5008739E3 /* TDPasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A413A09E224DEBF5008739E3 /* TDPasswordResetViewController.swift */; };
@@ -1641,7 +1650,16 @@
 		9EEB85A61BD6564E000F3E9E /* PressableCustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PressableCustomButton.swift; sourceTree = "<group>"; };
 		9EEFFD641B300E87002A88B0 /* OEXInterface+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OEXInterface+Swift.swift"; sourceTree = "<group>"; };
 		9EF21A9D1B4697CA000048F8 /* CourseLastAccessedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseLastAccessedController.swift; sourceTree = "<group>"; };
+		A40004C822CDCFD7001B491E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A40004CA22CDCFF5001B491E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		A40004CD22CDE18E001B491E /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
+		A40004CF22CDE1CC001B491E /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
+		A40004D022CDE1CC001B491E /* UMCommonLog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMCommonLog.bundle; sourceTree = "<group>"; };
+		A40004D122CDE1CC001B491E /* UMCommonLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommonLog.framework; sourceTree = "<group>"; };
+		A40004D222CDE1CC001B491E /* SecurityEnvSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SecurityEnvSDK.framework; sourceTree = "<group>"; };
+		A40004D322CDE1CD001B491E /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTDID.framework; sourceTree = "<group>"; };
 		A406586F2269732B003FC916 /* TDMainSiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDMainSiteModel.swift; sourceTree = "<group>"; };
+		A40932F322D5DE3D00F7ACBF /* TDCoursePageWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDCoursePageWebViewController.swift; sourceTree = "<group>"; };
 		A410851B21BE0D680053F18A /* TDVipPackageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipPackageModel.h; sourceTree = "<group>"; };
 		A410851C21BE0D680053F18A /* TDVipPackageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipPackageModel.m; sourceTree = "<group>"; };
 		A410851E21BE11E20053F18A /* TDVipMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipMessageModel.h; sourceTree = "<group>"; };
@@ -2090,15 +2108,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE0EE289192B78CF00F9FF98 /* SystemConfiguration.framework in Frameworks */,
+				A40004CE22CDE18E001B491E /* UMCommon.framework in Frameworks */,
+				BE0EE287192B78C400F9FF98 /* CoreTelephony.framework in Frameworks */,
+				A40004CB22CDCFF6001B491E /* libsqlite3.tbd in Frameworks */,
+				A40004C922CDCFD8001B491E /* libz.tbd in Frameworks */,
 				BECB7B111924C0C3009C77F1 /* CoreGraphics.framework in Frameworks */,
 				A45EB7F722891BAF002E942E /* CFNetwork.framework in Frameworks */,
 				A45EB80322891D89002E942E /* libWeChatSDK.a in Frameworks */,
-				BE0EE287192B78C400F9FF98 /* CoreTelephony.framework in Frameworks */,
 				A45EB7F522891B95002E942E /* Security.framework in Frameworks */,
 				A45EB7F322891B88002E942E /* libc++.tbd in Frameworks */,
-				BE0EE289192B78CF00F9FF98 /* SystemConfiguration.framework in Frameworks */,
 				A430DAC322840C8D0039BF60 /* libsqlite3.0.tbd in Frameworks */,
+				A40004D822CDE1CD001B491E /* UTDID.framework in Frameworks */,
 				A436C69321C49B30003E7CEB /* StoreKit.framework in Frameworks */,
+				A40004D622CDE1CD001B491E /* UMCommonLog.framework in Frameworks */,
 				776F39291B4EF4CD00ED11E3 /* WebKit.framework in Frameworks */,
 				A4FA40D721B0E2B50089CEBA /* TencentOpenAPI.framework in Frameworks */,
 				805329121B0EA2DC0093B177 /* QuartzCore.framework in Frameworks */,
@@ -2109,7 +2132,9 @@
 				B4A24D0D19EE8A6600CE5010 /* CoreMedia.framework in Frameworks */,
 				77ACA1CB1A323C2500039AD1 /* Fabric.framework in Frameworks */,
 				BE8163F61954244E00F9A2C5 /* MessageUI.framework in Frameworks */,
+				A40004D722CDE1CD001B491E /* SecurityEnvSDK.framework in Frameworks */,
 				E02661732269A821002721B7 /* libOCMock.a in Frameworks */,
+				A40004D422CDE1CD001B491E /* UMAnalytics.framework in Frameworks */,
 				BE0EE28B192B78DA00F9FF98 /* libz.dylib in Frameworks */,
 				77ACA1CA1A323C2500039AD1 /* Crashlytics.framework in Frameworks */,
 				BECB7B131924C0C3009C77F1 /* UIKit.framework in Frameworks */,
@@ -3291,6 +3316,27 @@
 			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
+		A40004CC22CDE18E001B491E /* UMAPP */ = {
+			isa = PBXGroup;
+			children = (
+				A40004D222CDE1CC001B491E /* SecurityEnvSDK.framework */,
+				A40004CF22CDE1CC001B491E /* UMAnalytics.framework */,
+				A40004D022CDE1CC001B491E /* UMCommonLog.bundle */,
+				A40004D122CDE1CC001B491E /* UMCommonLog.framework */,
+				A40004D322CDE1CD001B491E /* UTDID.framework */,
+				A40004CD22CDE18E001B491E /* UMCommon.framework */,
+			);
+			path = UMAPP;
+			sourceTree = "<group>";
+		};
+		A40932F222D5DE2100F7ACBF /* TDCoursePageWeb */ = {
+			isa = PBXGroup;
+			children = (
+				A40932F322D5DE3D00F7ACBF /* TDCoursePageWebViewController.swift */,
+			);
+			path = TDCoursePageWeb;
+			sourceTree = "<group>";
+		};
 		A413A09C224DD5B3008739E3 /* TDResetPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -3361,6 +3407,7 @@
 			isa = PBXGroup;
 			children = (
 				A423E0BD21B12B800093FBD3 /* TDPchHeader.h */,
+				A40004CC22CDE18E001B491E /* UMAPP */,
 				A4D4BC5722672996003ABC8F /* CycleView */,
 				A458F29F2265A91B004962A9 /* TDPageViewController */,
 				A44433C521BFA07400123C2E /* TDToast */,
@@ -3431,6 +3478,7 @@
 		A458F255226569D9004962A9 /* TDMainSite */ = {
 			isa = PBXGroup;
 			children = (
+				A40932F222D5DE2100F7ACBF /* TDCoursePageWeb */,
 				A458F25E226569D9004962A9 /* TDMainSite */,
 				A458F256226569D9004962A9 /* TDArticle */,
 				A458F25A226569D9004962A9 /* TDProfessor */,
@@ -4117,6 +4165,8 @@
 		BECB7B0D1924C0C3009C77F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A40004CA22CDCFF5001B491E /* libsqlite3.tbd */,
+				A40004C822CDCFD7001B491E /* libz.tbd */,
 				A45EB7F622891BAF002E942E /* CFNetwork.framework */,
 				A45EB7F422891B94002E942E /* Security.framework */,
 				A45EB7F222891B88002E942E /* libc++.tbd */,
@@ -4766,6 +4816,7 @@
 				69ECC61D1D50D1170030CF87 /* bt_logout_default.png in Resources */,
 				B71AA19720CEF64D00700C5E /* economics-finance@3x.png in Resources */,
 				22DACEEE20E270A2007AD5D5 /* test-movie.mp4 in Resources */,
+				A40004D522CDE1CD001B491E /* UMCommonLog.bundle in Resources */,
 				69ECC6501D50D1170030CF87 /* Default@2x.png in Resources */,
 				B71AA19C20CEF64D00700C5E /* law@3x.png in Resources */,
 				69ECC6341D50D1170030CF87 /* ic_next_deactive.png in Resources */,
@@ -5486,6 +5537,7 @@
 				770C514D1B1685F5009B9696 /* AuthenticatedWebViewController.swift in Sources */,
 				A436C69A21C4B0A4003E7CEB /* PurchaseModel.m in Sources */,
 				E0D159911EB87658005E2A76 /* WhatsNewViewController.swift in Sources */,
+				A40932F422D5DE3D00F7ACBF /* TDCoursePageWebViewController.swift in Sources */,
 				9C9B7F6D1A8CC68400A857B2 /* OEXCourseInfoViewController.m in Sources */,
 				A467A9AF21B7C0A300C990C6 /* Encryption.m in Sources */,
 				199B9B6F1935C72900081A09 /* DACircularProgressView.m in Sources */,
@@ -5987,6 +6039,8 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Libraries/",
 					"$(PROJECT_DIR)/Source/TDFile/TDThirdManager",
+					"$(PROJECT_DIR)/Source/TDFile/TDToolLibrary/UMCommon",
+					"$(PROJECT_DIR)/Source/TDFile/TDToolLibrary/UMAPP",
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -6021,6 +6075,7 @@
 					"\"${PODS_ROOT}/Headers/Public/Smartling.i18n\"",
 					"\"${PODS_ROOT}/Headers/Public/WechatOpenSDK\"",
 					"\"${PODS_ROOT}/Headers/Public/Weibo_SDK\"",
+					"\"${PODS_ROOT}/Source/TDFile/TDToolLibrary/UMAP\"",
 				);
 				INFOPLIST_FILE = "Source/edX-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -6483,6 +6538,8 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Libraries/",
 					"$(PROJECT_DIR)/Source/TDFile/TDThirdManager",
+					"$(PROJECT_DIR)/Source/TDFile/TDToolLibrary/UMCommon",
+					"$(PROJECT_DIR)/Source/TDFile/TDToolLibrary/UMAPP",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Source/edX-Prefix.pch";
@@ -6516,6 +6573,7 @@
 					"\"${PODS_ROOT}/Headers/Public/Smartling.i18n\"",
 					"\"${PODS_ROOT}/Headers/Public/WechatOpenSDK\"",
 					"\"${PODS_ROOT}/Headers/Public/Weibo_SDK\"",
+					"\"${PODS_ROOT}/Source/TDFile/TDToolLibrary/UMAP\"",
 				);
 				INFOPLIST_FILE = "Source/edX-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -6559,6 +6617,8 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Libraries/",
 					"$(PROJECT_DIR)/Source/TDFile/TDThirdManager",
+					"$(PROJECT_DIR)/Source/TDFile/TDToolLibrary/UMCommon",
+					"$(PROJECT_DIR)/Source/TDFile/TDToolLibrary/UMAPP",
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -6593,6 +6653,7 @@
 					"\"${PODS_ROOT}/Headers/Public/Smartling.i18n\"",
 					"\"${PODS_ROOT}/Headers/Public/WechatOpenSDK\"",
 					"\"${PODS_ROOT}/Headers/Public/Weibo_SDK\"",
+					"\"${PODS_ROOT}/Source/TDFile/TDToolLibrary/UMAP\"",
 				);
 				INFOPLIST_FILE = "Source/edX-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

@@ -19,6 +19,8 @@
 #import "NSDictionary+OEXEncoding.h"
 #import "edX-Swift.h"
 
+#import <UMAnalytics/MobClick.h>
+
 @interface TDVipPackageViewController () <UITableViewDelegate,TDVipPayDelegate,TDPurchaseDelegate>
 
 @property (nonatomic,strong) LoadStateViewController *loadController;
@@ -57,6 +59,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [MobClick beginLogPageView:NSStringFromClass(self.class)];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [MobClick endLogPageView:NSStringFromClass(self.class)];
 }
 
 - (void)purchaseAction { //内购初始化
@@ -90,7 +100,7 @@
     
     NSString *url = [NSString stringWithFormat:@"%@%@",ELITEU_URL,VIP_INFO_URL];
     [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"VIP数据：%@",responseObject);
+//        NSLog(@"VIP数据：%@",responseObject);
         NSDictionary *responseDic = (NSDictionary *)responseObject;
         
         if ([[responseDic allKeys] containsObject:@"extra"]) {

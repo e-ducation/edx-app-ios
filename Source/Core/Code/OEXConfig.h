@@ -66,6 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString *)sinaSecret;
 - (nullable NSString *)sinaTRedirectUrl;
 
+- (nullable NSString *)umAppkey;
+
 /** Feature flag for the debug menu */
 - (BOOL)shouldShowDebug;
 

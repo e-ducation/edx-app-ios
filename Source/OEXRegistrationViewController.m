@@ -34,6 +34,7 @@
 #import "TDWechatManager.h"
 #import "TDWeiboManeger.h"
 #import "TDQQManager.h"
+#import <UMAnalytics/MobClick.h>
 
 NSString* const OEXExternalRegistrationWithExistingAccountNotification = @"OEXExternalRegistrationWithExistingAccountNotification";
 
@@ -225,6 +226,14 @@ NSString* const OEXExternalRegistrationWithExistingAccountNotification = @"OEXEx
                                                  name:UIKeyboardWillChangeFrameNotification object:nil];
     //Analytics Screen record
     [self.environment.analytics trackScreenWithName:OEXAnalyticsScreenRegister];
+    
+    [MobClick beginLogPageView:NSStringFromClass(self.class)];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [MobClick endLogPageView:NSStringFromClass(self.class)];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
