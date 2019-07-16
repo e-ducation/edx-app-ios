@@ -275,6 +275,13 @@ public class AuthenticatedWebViewController: UIViewController, WKNavigationDeleg
             loadOAuthRefreshRequest()
         }
         else {
+            if let url = request.url {
+                let mutableRequst = NSMutableURLRequest(url: url)
+                mutableRequst.setValue("openedx-language-preference=\(NSLocale.current.languageCode ?? "zh")", forHTTPHeaderField: "Cookie")
+                webController.loadURLRequest(request: mutableRequst)
+                return;
+            }
+            
             webController.loadURLRequest(request: request)
         }
     }
