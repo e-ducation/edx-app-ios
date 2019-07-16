@@ -51,7 +51,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
             make.edges.equalTo(safeEdges)
         }
         tableController.delegate = self
-        
+
         refreshController.setupInScrollView(scrollView: self.tableController.tableView)
         refreshController.delegate = self
         

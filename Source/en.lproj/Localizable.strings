@@ -1026,4 +1026,5 @@
 "PAYMENT_FAILED_PURCHASE" = "Payment failed, please repurchase";
 /* 您存在尚未完成的订单，点击确定，以完成您的订单 You have an unfinished order. Click OK to complete your order. */
 "UNFINISH_PURCHASE" = "You have an unfinished order. Click OK to complete your order.";
-
+/* 热门推荐 Top Recommends*/
+"TOP_RECOMMOND" = "Top Recommends";

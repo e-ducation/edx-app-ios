@@ -422,8 +422,8 @@ extension TDMainSiteViewController: UICollectionViewDataSource, UICollectionView
             return
         }
         
-        if let pageUrl = course?.pageUrl, pageUrl.count > 0, let courseTitle = course?.title {
-            let webVC = TDCoursePageWebViewController(environment: self.environment, detailStr: pageUrl, titleStr: courseTitle, courseID: courseID)
+        if let pageUrl = course?.pageUrl, pageUrl.count > 0 {
+            let webVC = TDCoursePageWebViewController(environment: self.environment, detailStr: pageUrl, titleStr: Strings.topRecommond, courseID: courseID)
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             self.navigationController?.pushViewController(webVC, animated: true)
             return
