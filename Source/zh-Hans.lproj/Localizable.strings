@@ -870,8 +870,8 @@
 "ELITEMBA_VIP"="英荔商学院";
 /* 免费学习 learn your course for free*/
 "LEARN_COURSE_FREE"="免费学习";
-/* 订阅期满请及时续费 Renew Your VIP Membership */
-"RENEW_VIP_MEMBERSHIP"="订阅期满请及时续费";
+/* 订阅期满 Renew Your VIP Membership */
+"RENEW_VIP_MEMBERSHIP"="订阅期满";
 /* 订阅会员课程 Subscribe VIP */
 "SUBSCRIBE_VIP"="订阅会员课程";
 /* 查看详情 Details */

@@ -10,12 +10,12 @@ import Foundation
 
 var isActionTakenOnUpgradeSnackBar: Bool = false
 
-class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTableViewControllerDelegate, PullRefreshControllerDelegate, LoadStateViewReloadSupport,InterfaceOrientationOverriding {
+class EnrolledCoursesViewController : OfflineSupportViewController, TDStrudyTableViewControllerDelegate, PullRefreshControllerDelegate, LoadStateViewReloadSupport,InterfaceOrientationOverriding {
     
     typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & ReachabilityProvider & OEXRouterProvider & OEXSessionProvider & OEXStylesProvider & ReachabilityProvider
     
     private let environment : Environment
-    private let tableController : CoursesTableViewController
+    private let tableController : TDStrudyTableViewController
     private let loadController = LoadStateViewController()
     private let refreshController = PullRefreshController()
     private let insetsController = ContentInsetsController()
@@ -23,7 +23,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
     private let userPreferencesFeed: Feed<UserPreference?>
     private let footer = EnrolledCoursesFooterView()
     init(environment: Environment) {
-        self.tableController = CoursesTableViewController(environment: environment, context: .EnrollmentList)
+        self.tableController = TDStrudyTableViewController(environment: environment, context: .EnrollmentList)
         self.enrollmentFeed = environment.dataManager.enrollmentManager.feed
         self.userPreferencesFeed = environment.dataManager.userPreferenceManager.feed
         self.environment = environment
@@ -45,7 +45,6 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         addChild(tableController)
         tableController.didMove(toParent: self)
         self.loadController.setupInController(controller: self, contentView: tableController.view)
-        tableController.fromEnroll = true
         self.view.addSubview(tableController.view)
         tableController.view.snp.makeConstraints { make in
             make.edges.equalTo(safeEdges)
@@ -69,7 +68,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         
         setupProfileListener()
         setupListener()
-        setupFooter()
+//        setupFooter()
         setupObservers()
         addFindCoursesButton()
     }
@@ -149,25 +148,25 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         }
     }
     
-    private func setupFooter() {
-        if isCourseDiscoveryEnabled {
-            footer.findCoursesAction = {[weak self] in
-                let day: Int = self?.environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.hmm_remaining_days ?? 0
-                if day  > 0 {//哈佛学习营
-                   self?.authenWebView()
-                }
-                else {
-                    self?.environment.router?.showCourseCatalog(fromController: self, bottomBar: nil)
-                }
-            }
-            
-            footer.sizeToFit()
-            self.tableController.tableView.tableFooterView = footer
-        }
-        else {
-            tableController.tableView.tableFooterView = UIView()
-        }
-    }
+//    private func setupFooter() {
+//        if isCourseDiscoveryEnabled {
+//            footer.findCoursesAction = {[weak self] in
+//                let day: Int = self?.environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.hmm_remaining_days ?? 0
+//                if day  > 0 {//哈佛学习营
+//                   self?.authenWebView()
+//                }
+//                else {
+//                    self?.environment.router?.showCourseCatalog(fromController: self, bottomBar: nil)
+//                }
+//            }
+//
+//            footer.sizeToFit()
+//            self.tableController.tableView.tableFooterView = footer
+//        }
+//        else {
+//            tableController.tableView.tableFooterView = UIView()
+//        }
+//    }
     
     private func enrollmentsEmptyState() {
         if !isCourseDiscoveryEnabled {
@@ -220,7 +219,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
             hideSnackBar()
         }
     }
-    //MARK: CoursesTableViewControllerDelegate
+    //MARK: TDStrudyTableViewControllerDelegate
     func coursesTableChoseCourse(course: OEXCourse) {
         if let course_id = course.course_id {
             self.environment.router?.showCourseWithID(courseID: course_id, fromController: self, animated: true)
@@ -283,14 +282,16 @@ extension EnrolledCoursesViewController {
     func setupProfileListener() {
         let feed = environment.dataManager.userProfileManager.feedForCurrentUser()
         feed.output.listen(self) { (result) in
-            let day: Int = feed.output.value?.hmm_remaining_days ?? 0
             let date: String = feed.output.value?.hmm_expiry_date ?? ""
-            self.footer.refreshFooterText(days: day, date: date)
-            self.tableController.tableView.autolayoutFooter()
+            
+//            let day: Int = feed.output.value?.hmm_remaining_days ?? 0
+//            self.footer.refreshFooterText(days: day, date: date)
+//            self.tableController.tableView.autolayoutFooter()
+            
+            self.tableController.dateStr = date
+            self.tableController.tableView.reloadData()
         }
     }
-    
-    
     
     func hmmDaysAlerWillShow() -> Bool {
         
