@@ -892,8 +892,8 @@
 "ELITEMBA_VIP"="EliteMBA";
 /* 免费学习 learn your course for free*/
 "LEARN_COURSE_FREE"="learn your course for free";
-/* 订阅期满请及时续费 Renew Your VIP Membership */
-"RENEW_VIP_MEMBERSHIP"="Renew Your VIP Membership";
+/* 订阅期满 Renew Your VIP Membership */
+"RENEW_VIP_MEMBERSHIP"="Renew VIP";
 /* 订阅会员课程 Subscribe VIP */
 "SUBSCRIBE_VIP"="Subscribe VIP";
 /* 查看详情 Details */

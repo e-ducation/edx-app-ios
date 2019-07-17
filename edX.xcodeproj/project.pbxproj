@@ -602,6 +602,7 @@
 		A40932F422D5DE3D00F7ACBF /* TDCoursePageWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40932F322D5DE3D00F7ACBF /* TDCoursePageWebViewController.swift */; };
 		A410851D21BE0D680053F18A /* TDVipPackageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A410851C21BE0D680053F18A /* TDVipPackageModel.m */; };
 		A410852021BE11E20053F18A /* TDVipMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A410851F21BE11E20053F18A /* TDVipMessageModel.m */; };
+		A410BBD122DD79E0005108F9 /* TDStrudyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410BBD022DD79E0005108F9 /* TDStrudyTableViewController.swift */; };
 		A413A09F224DEBF5008739E3 /* TDPasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A413A09E224DEBF5008739E3 /* TDPasswordResetViewController.swift */; };
 		A413A0A1224DECC5008739E3 /* TDPasswordResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A413A0A0224DECC5008739E3 /* TDPasswordResetView.swift */; };
 		A416523722C2179D008296C6 /* TDArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A416523622C2179D008296C6 /* TDArticleViewController.swift */; };
@@ -610,6 +611,7 @@
 		A423E0B721B11C580093FBD3 /* TDVipPackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0B621B11C580093FBD3 /* TDVipPackageCell.m */; };
 		A423E0BC21B11F6E0093FBD3 /* UIColor+TDHexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0BB21B11F6E0093FBD3 /* UIColor+TDHexColor.m */; };
 		A423E0C021B135660093FBD3 /* TDVipPackageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0BF21B135660093FBD3 /* TDVipPackageHeaderView.m */; };
+		A42C643E22DEC81C009A70D5 /* TDHavardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C643D22DEC81C009A70D5 /* TDHavardCell.swift */; };
 		A430DAC12283D7AE0039BF60 /* TDPurchaseSqliteOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A430DABF2283D7AE0039BF60 /* TDPurchaseSqliteOperation.m */; };
 		A430DAC322840C8D0039BF60 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A430DAC222840C8D0039BF60 /* libsqlite3.0.tbd */; };
 		A436C69321C49B30003E7CEB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A436C69221C49B30003E7CEB /* StoreKit.framework */; };
@@ -1664,6 +1666,7 @@
 		A410851C21BE0D680053F18A /* TDVipPackageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipPackageModel.m; sourceTree = "<group>"; };
 		A410851E21BE11E20053F18A /* TDVipMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipMessageModel.h; sourceTree = "<group>"; };
 		A410851F21BE11E20053F18A /* TDVipMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipMessageModel.m; sourceTree = "<group>"; };
+		A410BBD022DD79E0005108F9 /* TDStrudyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDStrudyTableViewController.swift; sourceTree = "<group>"; };
 		A413A09E224DEBF5008739E3 /* TDPasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDPasswordResetViewController.swift; sourceTree = "<group>"; };
 		A413A0A0224DECC5008739E3 /* TDPasswordResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDPasswordResetView.swift; sourceTree = "<group>"; };
 		A416523622C2179D008296C6 /* TDArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDArticleViewController.swift; sourceTree = "<group>"; };
@@ -1678,6 +1681,7 @@
 		A423E0BD21B12B800093FBD3 /* TDPchHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDPchHeader.h; sourceTree = "<group>"; };
 		A423E0BE21B135650093FBD3 /* TDVipPackageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipPackageHeaderView.h; sourceTree = "<group>"; };
 		A423E0BF21B135660093FBD3 /* TDVipPackageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipPackageHeaderView.m; sourceTree = "<group>"; };
+		A42C643D22DEC81C009A70D5 /* TDHavardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDHavardCell.swift; sourceTree = "<group>"; };
 		A430DABF2283D7AE0039BF60 /* TDPurchaseSqliteOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDPurchaseSqliteOperation.m; sourceTree = "<group>"; };
 		A430DAC02283D7AE0039BF60 /* TDPurchaseSqliteOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDPurchaseSqliteOperation.h; sourceTree = "<group>"; };
 		A430DAC222840C8D0039BF60 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -3337,6 +3341,39 @@
 			path = TDCoursePageWeb;
 			sourceTree = "<group>";
 		};
+		A410BBCC22DD79A7005108F9 /* TDEnrollCourse */ = {
+			isa = PBXGroup;
+			children = (
+				A410BBCD22DD79A7005108F9 /* controller */,
+				A410BBCE22DD79A7005108F9 /* model */,
+				A410BBCF22DD79A7005108F9 /* view */,
+			);
+			path = TDEnrollCourse;
+			sourceTree = "<group>";
+		};
+		A410BBCD22DD79A7005108F9 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				A410BBD022DD79E0005108F9 /* TDStrudyTableViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		A410BBCE22DD79A7005108F9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		A410BBCF22DD79A7005108F9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				A42C643D22DEC81C009A70D5 /* TDHavardCell.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		A413A09C224DD5B3008739E3 /* TDResetPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -3695,6 +3732,7 @@
 		A4FA40C321B0E2B40089CEBA /* TDFile */ = {
 			isa = PBXGroup;
 			children = (
+				A410BBCC22DD79A7005108F9 /* TDEnrollCourse */,
 				A458F255226569D9004962A9 /* TDMainSite */,
 				A413A09C224DD5B3008739E3 /* TDResetPassword */,
 				A43E631721C92D6F002286BF /* TDBindingPhone */,
@@ -5266,6 +5304,7 @@
 				773A04801AF2E6DA0076532C /* CourseOutlineTableSource.swift in Sources */,
 				B70BD00920B57E8F005F0D19 /* OEXCourseDetailTableViewCell.m in Sources */,
 				191A002B19405E1B004F7902 /* OEXCourse.m in Sources */,
+				A42C643E22DEC81C009A70D5 /* TDHavardCell.swift in Sources */,
 				2240FD561FF266E4001D6589 /* TabBarItem.swift in Sources */,
 				E0A2461F1D5DA12A0066C766 /* AppStoreConfig.swift in Sources */,
 				A4ED58142266BC7500B0FA28 /* TDFindSuiteCell.swift in Sources */,
@@ -5419,6 +5458,7 @@
 				777DE71A1C1656ED0068E280 /* CourseCatalogDetailView.swift in Sources */,
 				775EB3AC1B1FC37C009526A8 /* SpinnerView.swift in Sources */,
 				A44433C821BFA07500123C2E /* UIView+Toast.m in Sources */,
+				A410BBD122DD79E0005108F9 /* TDStrudyTableViewController.swift in Sources */,
 				B760E5562010DD6800ECACAB /* BulkDownloadHelper.swift in Sources */,
 				8FE04B4D1A1E2637007F88B8 /* OEXFBSocial.m in Sources */,
 				9EDB10B41B0C732300C760C6 /* CourseGenericBlockTableViewCell.swift in Sources */,
