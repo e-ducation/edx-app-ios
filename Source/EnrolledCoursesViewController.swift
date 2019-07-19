@@ -240,6 +240,16 @@ class EnrolledCoursesViewController : OfflineSupportViewController, TDStrudyTabl
         self.navigationController?.pushViewController(packageVC, animated: true)
     }
     
+    func havardCourseEnter() {
+        let day: Int = self.environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.hmm_remaining_days ?? 0
+        if day  > 0 {//哈佛学习营
+            self.authenWebView()
+        }
+        else {
+            self.environment.router?.showCourseCatalog(fromController: self, bottomBar: nil)
+        }
+    }
+    
     private func showWhatsNewIfNeeded() {
         if WhatsNewViewController.canShowWhatsNew(environment: environment as? RouterEnvironment) {
             environment.router?.showWhatsNew(fromController: self)

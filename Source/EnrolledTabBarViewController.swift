@@ -10,7 +10,7 @@ import UIKit
 
 private enum TabBarOptions: Int {
     case Course, Program, MainSite, CourseCatalog, Debug
-    static let options = [Course, Program, MainSite, CourseCatalog, Debug]
+    static let options = [MainSite, Course, Program, CourseCatalog, Debug]
     
     func title(config: OEXConfig? = nil) -> String {
         switch self {
@@ -95,9 +95,10 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
                 item = TabBarItem(title: option.title(), viewController: ProgramsViewController(environment: environment, programsURL: programsURL), icon: Icon.Clone, detailText: Strings.Dashboard.courseCourseDetail)
                 tabBarItems.append(item)
             case .CourseCatalog:
-                guard let router = environment.router,
-                    let discoveryController = router.discoveryViewController() else { break }
-                item = TabBarItem(title: option.title(config: environment.config), viewController: discoveryController, icon: Icon.Discovery, detailText: Strings.Dashboard.courseCourseDetail)
+//                guard let router = environment.router,
+//                    let discoveryController = router.discoveryViewController() else { break }
+//                item = TabBarItem(title: option.title(config: environment.config), viewController: discoveryController, icon: Icon.Discovery, detailText: Strings.Dashboard.courseCourseDetail)
+                item = TabBarItem(title: option.title(config: environment.config), viewController: TDFindCoursePageViewController(environment: environment), icon: Icon.Discovery, detailText: Strings.Dashboard.courseCourseDetail)
                 tabBarItems.append(item)
                 EnrolledTabBarViewController.courseCatalogIndex = tabBarItems.count - 1
             case .Debug:

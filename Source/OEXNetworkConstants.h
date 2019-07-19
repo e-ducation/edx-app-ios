@@ -50,5 +50,7 @@
 #define APP_ARTICLE_TAGS_URL @"/api/v2/tags/"//文章标签
 #define APP_ARTICLE_LIST_URL @"/api/v2/app/"//文章列表
 #define APP_PROFESSOR_LIST_URL @"/api/v1/professors/"//教授列表
+#define APP_COURSE_TYPE_LIST_URL @"/elitemba/api/v1/course_types/"//课程标签
+#define APP_COURSE_SEACH__URL @"/elitemba/api/v1/courses_search/"//搜索课程
 
 #endif
