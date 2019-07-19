@@ -78,6 +78,7 @@ OEXStartType OEXStartTypeForString(NSString* type);
 @property (readonly, nonatomic, assign) BOOL is_subscribe_pay; //VIP付费课程？ false 免费，true 付费
 @property (readonly, nonatomic, assign) BOOL can_free_enroll; //可以免费加入(不是VIP情况下)
 @property (readonly, nonatomic, strong) NSDictionary *recommended_package; //推荐VIP
+@property (readonly, nonatomic, strong) NSString *professor_name;//教授名字
 
 
 @end

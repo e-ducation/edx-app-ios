@@ -139,7 +139,7 @@ class TDStudyCourseCell : UITableViewCell {
         }
         
         timeLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(courseImage.snp_right).offset(5)
+            make.left.equalTo(courseImage.snp_right).offset(8)
             make.bottom.equalTo(courseImage)
             make.size.equalTo(CGSize(width: 108, height: 18))
         }
@@ -175,7 +175,8 @@ class TDStudyCourseCell : UITableViewCell {
 
 @objc protocol TDStrudyTableViewControllerDelegate {
     func coursesTableChoseCourse(course : OEXCourse)
-    @objc optional func clickExpiredButton()
+    func clickExpiredButton()
+    func havardCourseEnter()
 }
 
 class TDStrudyTableViewController: UITableViewController {
@@ -253,14 +254,7 @@ class TDStrudyTableViewController: UITableViewController {
 //            cell.accessibilityLabel = cell.courseView.updateAcessibilityLabel()
 //        }
         cell.accessibilityHint = Strings.accessibilityShowsCourseContent
-//        cell.courseView.tapAction = {[weak self] card in
-//            self?.delegate?.coursesTableChoseCourse(course: course)
-//        }
-        
-//        cell.clickAction = { [weak self] in//VIP
-//            self?.delegate?.clickExpiredButton?()
-//        }
-//
+
 //        switch context {
 //        case .CourseCatalog:
 //            CourseCardViewModel.onCourseCatalog(course: course, wrapTitle: true).apply(card: cell.courseView, networkManager: self.environment.networkManager)
@@ -283,11 +277,15 @@ class TDStrudyTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let course = self.courses[indexPath.row]
+        if indexPath.section == 0 {
+            self.delegate?.havardCourseEnter()
+            return;
+        }
         
+        let course = self.courses[indexPath.row]
         //VIP权利加入 + VIP过期 + 没取得证书
         if course.is_normal_enroll == false && course.is_vip == false && course.has_cert == false {
-            self.delegate?.clickExpiredButton?()
+            self.delegate?.clickExpiredButton()
         }
         else {
             self.delegate?.coursesTableChoseCourse(course: course)

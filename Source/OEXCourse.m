@@ -94,6 +94,7 @@ NSString* NSStringForOEXStartType(OEXStartType type) {
 @property (nonatomic, assign) BOOL is_subscribe_pay;
 @property (nonatomic, assign) BOOL can_free_enroll;
 @property (nonatomic, strong) NSDictionary *recommended_package;
+@property (nonatomic, strong) NSString *professor_name;
 
 @end
 
@@ -149,6 +150,7 @@ NSString* NSStringForOEXStartType(OEXStartType type) {
         self.is_subscribe_pay = [[info objectForKey:@"is_subscribe_pay"] boolValue];
         self.can_free_enroll = [[info objectForKey:@"can_free_enroll"] boolValue];
         self.recommended_package = [info objectForKey:@"recommended_package"];
+        self.professor_name = [info objectForKey:@"professor_name"];
     }
     return self;
 }

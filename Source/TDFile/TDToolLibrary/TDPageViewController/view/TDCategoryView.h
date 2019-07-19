@@ -17,13 +17,16 @@
 @property (nonatomic, strong, readonly) UICollectionView *collectionView;
 @property (nonatomic, strong, readonly) UIView *underline;
 @property (nonatomic, strong, readonly) UIView *separator;
-@property (nonatomic, strong) UIFont *titleNomalFont;
-@property (nonatomic, strong) UIFont *titleSelectedFont;
-@property (nonatomic, strong) UIColor *titleNormalColor;
-@property (nonatomic, strong) UIColor *titleSelectedColor;
-@property (nonatomic) NSInteger originalIndex;
-@property (nonatomic, readonly) NSInteger selectedIndex;
-@property (nonatomic, copy) NSArray<NSString *> *titles;
+
+@property (nonatomic, strong) UIFont *titleNomalFont; //普通字体大小
+@property (nonatomic, strong) UIFont *titleSelectedFont;//选中的字体大小
+@property (nonatomic, strong) UIColor *titleNormalColor;//普通字体颜色
+@property (nonatomic, strong) UIColor *titleSelectedColor;//选中的字体颜色
+@property (nonatomic) NSInteger originalIndex;//初始选中
+@property (nonatomic, readonly) NSInteger selectedIndex; //选中
+
+@property (nonatomic, copy) NSArray<NSString *> *titles;//标题
+
 @property (nonatomic) CGFloat height;
 @property (nonatomic) CGFloat cellSpacing;
 @property (nonatomic) CGFloat leftAndRightMargin; // default = cellSpacing

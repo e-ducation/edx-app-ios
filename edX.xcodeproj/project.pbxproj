@@ -612,6 +612,11 @@
 		A423E0BC21B11F6E0093FBD3 /* UIColor+TDHexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0BB21B11F6E0093FBD3 /* UIColor+TDHexColor.m */; };
 		A423E0C021B135660093FBD3 /* TDVipPackageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A423E0BF21B135660093FBD3 /* TDVipPackageHeaderView.m */; };
 		A42C643E22DEC81C009A70D5 /* TDHavardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C643D22DEC81C009A70D5 /* TDHavardCell.swift */; };
+		A42C644622DF0454009A70D5 /* TDFindCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C644522DF0454009A70D5 /* TDFindCourseViewController.swift */; };
+		A42C644822DF1B0A009A70D5 /* TDFindCoursePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C644722DF1B0A009A70D5 /* TDFindCoursePageViewController.swift */; };
+		A42C644A22DF1E37009A70D5 /* TDCourseTageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C644922DF1E37009A70D5 /* TDCourseTageModel.swift */; };
+		A42C644C22DF28C9009A70D5 /* TDFindCourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C644B22DF28C9009A70D5 /* TDFindCourseModel.swift */; };
+		A42C644E22DF2FC9009A70D5 /* TDFindCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C644D22DF2FC9009A70D5 /* TDFindCourseCell.swift */; };
 		A430DAC12283D7AE0039BF60 /* TDPurchaseSqliteOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A430DABF2283D7AE0039BF60 /* TDPurchaseSqliteOperation.m */; };
 		A430DAC322840C8D0039BF60 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A430DAC222840C8D0039BF60 /* libsqlite3.0.tbd */; };
 		A436C69321C49B30003E7CEB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A436C69221C49B30003E7CEB /* StoreKit.framework */; };
@@ -622,6 +627,7 @@
 		A4427CC321C2143E00891501 /* TDVipRecomendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4427CC221C2143E00891501 /* TDVipRecomendView.swift */; };
 		A44433C821BFA07500123C2E /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = A44433C721BFA07400123C2E /* UIView+Toast.m */; };
 		A44433D221BFDA9500123C2E /* TDVipAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44433D121BFDA9500123C2E /* TDVipAlertView.m */; };
+		A44D6ABB22E1612C00028ECE /* TDSearchCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44D6ABA22E1612C00028ECE /* TDSearchCourseView.swift */; };
 		A458F26322656A0B004962A9 /* TDProfessorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458F26222656A0B004962A9 /* TDProfessorViewController.swift */; };
 		A458F26522656B56004962A9 /* TDProfessorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458F26422656B56004962A9 /* TDProfessorCell.swift */; };
 		A458F26922657737004962A9 /* TDArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458F26822657737004962A9 /* TDArticleCell.swift */; };
@@ -1682,6 +1688,11 @@
 		A423E0BE21B135650093FBD3 /* TDVipPackageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipPackageHeaderView.h; sourceTree = "<group>"; };
 		A423E0BF21B135660093FBD3 /* TDVipPackageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipPackageHeaderView.m; sourceTree = "<group>"; };
 		A42C643D22DEC81C009A70D5 /* TDHavardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDHavardCell.swift; sourceTree = "<group>"; };
+		A42C644522DF0454009A70D5 /* TDFindCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDFindCourseViewController.swift; sourceTree = "<group>"; };
+		A42C644722DF1B0A009A70D5 /* TDFindCoursePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDFindCoursePageViewController.swift; sourceTree = "<group>"; };
+		A42C644922DF1E37009A70D5 /* TDCourseTageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDCourseTageModel.swift; sourceTree = "<group>"; };
+		A42C644B22DF28C9009A70D5 /* TDFindCourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDFindCourseModel.swift; sourceTree = "<group>"; };
+		A42C644D22DF2FC9009A70D5 /* TDFindCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDFindCourseCell.swift; sourceTree = "<group>"; };
 		A430DABF2283D7AE0039BF60 /* TDPurchaseSqliteOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDPurchaseSqliteOperation.m; sourceTree = "<group>"; };
 		A430DAC02283D7AE0039BF60 /* TDPurchaseSqliteOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDPurchaseSqliteOperation.h; sourceTree = "<group>"; };
 		A430DAC222840C8D0039BF60 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -1699,6 +1710,7 @@
 		A44433C721BFA07400123C2E /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		A44433D021BFDA9500123C2E /* TDVipAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipAlertView.h; sourceTree = "<group>"; };
 		A44433D121BFDA9500123C2E /* TDVipAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDVipAlertView.m; sourceTree = "<group>"; };
+		A44D6ABA22E1612C00028ECE /* TDSearchCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSearchCourseView.swift; sourceTree = "<group>"; };
 		A458F26222656A0B004962A9 /* TDProfessorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDProfessorViewController.swift; sourceTree = "<group>"; };
 		A458F26422656B56004962A9 /* TDProfessorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDProfessorCell.swift; sourceTree = "<group>"; };
 		A458F26822657737004962A9 /* TDArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDArticleCell.swift; sourceTree = "<group>"; };
@@ -3463,6 +3475,43 @@
 			path = TDHexColor;
 			sourceTree = "<group>";
 		};
+		A42C644122DF0327009A70D5 /* TDFindCourse */ = {
+			isa = PBXGroup;
+			children = (
+				A42C644222DF0327009A70D5 /* controller */,
+				A42C644322DF0327009A70D5 /* model */,
+				A42C644422DF0327009A70D5 /* view */,
+			);
+			path = TDFindCourse;
+			sourceTree = "<group>";
+		};
+		A42C644222DF0327009A70D5 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				A42C644722DF1B0A009A70D5 /* TDFindCoursePageViewController.swift */,
+				A42C644522DF0454009A70D5 /* TDFindCourseViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		A42C644322DF0327009A70D5 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				A42C644922DF1E37009A70D5 /* TDCourseTageModel.swift */,
+				A42C644B22DF28C9009A70D5 /* TDFindCourseModel.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		A42C644422DF0327009A70D5 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				A42C644D22DF2FC9009A70D5 /* TDFindCourseCell.swift */,
+				A44D6ABA22E1612C00028ECE /* TDSearchCourseView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		A436C69421C4B0A4003E7CEB /* TDPurchaseManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -3732,6 +3781,7 @@
 		A4FA40C321B0E2B40089CEBA /* TDFile */ = {
 			isa = PBXGroup;
 			children = (
+				A42C644122DF0327009A70D5 /* TDFindCourse */,
 				A410BBCC22DD79A7005108F9 /* TDEnrollCourse */,
 				A458F255226569D9004962A9 /* TDMainSite */,
 				A413A09C224DD5B3008739E3 /* TDResetPassword */,
@@ -5265,6 +5315,7 @@
 			files = (
 				77E6486E1C912DA200B6740D /* NetworkManager+StandardInterceptors.swift in Sources */,
 				7742F8DD1C3C979D009E555A /* DiscoveryConfig.swift in Sources */,
+				A44D6ABB22E1612C00028ECE /* TDSearchCourseView.swift in Sources */,
 				9E71B73F1B1D9DBD009C81E2 /* OEXStyles+Swift.swift in Sources */,
 				1AB539FC1C0396770065501F /* OEXAnayltics+Certificates.swift in Sources */,
 				1A6E86241BB9C6500039A216 /* OEXStyles+Profile.swift in Sources */,
@@ -5309,6 +5360,7 @@
 				E0A2461F1D5DA12A0066C766 /* AppStoreConfig.swift in Sources */,
 				A4ED58142266BC7500B0FA28 /* TDFindSuiteCell.swift in Sources */,
 				7778F0981ABB1A6C00B4CDA0 /* NSError+OEXKnownErrors.m in Sources */,
+				A42C644622DF0454009A70D5 /* TDFindCourseViewController.swift in Sources */,
 				224F1F532067B4E0009B3639 /* CustomSlider.swift in Sources */,
 				223972E11FE92BB500B2BBEC /* EnrolledTabBarViewController.swift in Sources */,
 				B4B6D6041A949EFC000F44E8 /* OEXRegistrationRestriction.m in Sources */,
@@ -5544,6 +5596,7 @@
 				77ADF4A91AC1B57800AC8955 /* UIImage+OEXColors.m in Sources */,
 				69F998571E6FEB2400CDFA9C /* OEXAnalytics+AppReview.swift in Sources */,
 				77D7FD261B04ED45002ACA8C /* Icon.swift in Sources */,
+				A42C644C22DF28C9009A70D5 /* TDFindCourseModel.swift in Sources */,
 				770A27931A69933D00DFC6FF /* NSArray+OEXSafeAccess.m in Sources */,
 				77503E8C1B278B9A00C47229 /* RegistrationFieldSelectView.swift in Sources */,
 				B7CCC736209B16B100A66923 /* ConstraintItem.swift in Sources */,
@@ -5564,6 +5617,7 @@
 				1913DD3D194B267000573977 /* OEXDownloadViewController.m in Sources */,
 				B78823AC1FC709BD00F9CD61 /* String+Validation.swift in Sources */,
 				2271C54A21634E40001EA1E6 /* DeepLinkManager.swift in Sources */,
+				A42C644822DF1B0A009A70D5 /* TDFindCoursePageViewController.swift in Sources */,
 				7764597F1A096339008404CC /* NSString+OEXEncoding.m in Sources */,
 				77BC3E691AE0091400E51529 /* OEXPushNotificationProcessor.m in Sources */,
 				775E5A811BE1C88A0046B26B /* LiveObjectCache.swift in Sources */,
@@ -5603,9 +5657,11 @@
 				A410852021BE11E20053F18A /* TDVipMessageModel.m in Sources */,
 				B4132C10195AAFBE00F50B46 /* OEXAuthentication.m in Sources */,
 				E0B4F3621EBB133000D42C11 /* WhatsNewContentController.swift in Sources */,
+				A42C644E22DF2FC9009A70D5 /* TDFindCourseCell.swift in Sources */,
 				A458F2A72265A950004962A9 /* TDSegmentedPageViewController.m in Sources */,
 				775EB3AE1B1FF1AD009526A8 /* ButtonStyle.swift in Sources */,
 				7772BE731AF2FECC0081CA7A /* CourseOutlineHeaderCell.swift in Sources */,
+				A42C644A22DF1E37009A70D5 /* TDCourseTageModel.swift in Sources */,
 				A4FA40D421B0E2B50089CEBA /* TDSinaWBAuthProvider.m in Sources */,
 				1A5501A41BBAB8BD00D5F9DD /* JSONFormBuilder.swift in Sources */,
 				9ED03B951B204CDF0081A19A /* CourseSectionTableViewCell.swift in Sources */,

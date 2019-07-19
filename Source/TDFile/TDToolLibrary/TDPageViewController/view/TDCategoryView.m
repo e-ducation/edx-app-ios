@@ -31,8 +31,8 @@
         self.line.backgroundColor = [UIColor colorWithHexString:@"#0f80bf"];
         [self.contentView addSubview:self.line];
         [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.contentView).offset(6);
-            make.right.mas_equalTo(self.contentView).offset(-6);
+            make.centerX.mas_equalTo(self.contentView);
+            make.width.mas_equalTo(12);
             make.bottom.mas_equalTo(self.contentView).offset(-6);
             make.height.mas_equalTo(2);
         }];
