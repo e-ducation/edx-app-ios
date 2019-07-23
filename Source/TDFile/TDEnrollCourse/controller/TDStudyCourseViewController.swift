@@ -1,29 +1,27 @@
 //
-//  EnrolledCoursesViewController.swift
+//  TDStudyCourseViewController.swift
 //  edX
 //
-//  Created by Akiva Leffert on 12/21/15.
-//  Copyright © 2015 edX. All rights reserved.
+//  Created by Elite Edu on 2019/7/23.
+//  Copyright © 2019 edX. All rights reserved.
 //
 
 import Foundation
 
-var isActionTakenOnUpgradeSnackBar: Bool = false
+//var isActionTakenOnUpgradeSnackBar: Bool = false
 
-class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTableViewControllerDelegate, PullRefreshControllerDelegate, LoadStateViewReloadSupport,InterfaceOrientationOverriding,UIGestureRecognizerDelegate {
+class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableViewControllerDelegate, LoadStateViewReloadSupport,InterfaceOrientationOverriding,UIGestureRecognizerDelegate {
     
     typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & ReachabilityProvider & OEXRouterProvider & OEXSessionProvider & OEXStylesProvider & ReachabilityProvider
     
     private let environment : Environment
-    private let tableController : CoursesTableViewController
+    private let tableController : TDStrudyTableViewController
     private let loadController = LoadStateViewController()
-    private let refreshController = PullRefreshController()
-    private let insetsController = ContentInsetsController()
     fileprivate let enrollmentFeed: Feed<[UserCourseEnrollment]?>
     private let userPreferencesFeed: Feed<UserPreference?>
     private let footer = EnrolledCoursesFooterView()
     init(environment: Environment) {
-        self.tableController = CoursesTableViewController(environment: environment, context: .EnrollmentList)
+        self.tableController = TDStrudyTableViewController(environment: environment, context: .EnrollmentList)
         self.enrollmentFeed = environment.dataManager.enrollmentManager.feed
         self.userPreferencesFeed = environment.dataManager.userPreferenceManager.feed
         self.environment = environment
@@ -32,43 +30,37 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         self.navigationItem.title = Strings.courses
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.view.accessibilityIdentifier = "enrolled-courses-screen"
-
+        
         addChild(tableController)
         tableController.didMove(toParent: self)
         self.loadController.setupInController(controller: self, contentView: tableController.view)
         self.view.addSubview(tableController.view)
+        
         tableController.view.snp.makeConstraints { make in
             make.edges.equalTo(safeEdges)
         }
         tableController.delegate = self
-
-        refreshController.setupInScrollView(scrollView: self.tableController.tableView)
-        refreshController.delegate = self
         
-        insetsController.setupInController(owner: self, scrollView: tableController.tableView)
-        insetsController.addSource(source: self.refreshController)
-
-        // We visually separate each course card so we also need a little padding
-        // at the bottom to match
-        insetsController.addSource(
-            source: ConstantInsetsSource(insets: UIEdgeInsets(top: 0, left: 0, bottom: StandardVerticalMargin, right: 0), affectsScrollIndicators: false)
-        )
+        let header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(refreshData))
+        header?.lastUpdatedTimeLabel.isHidden = true
+        header?.stateLabel.isHidden = true
+        tableController.tableView.mj_header = header
         
         self.enrollmentFeed.refresh()
         self.userPreferencesFeed.refresh()
         
         setupProfileListener()
         setupListener()
-        setupFooter()
+        //        setupFooter()
         setupObservers()
         addFindCoursesButton()
     }
@@ -76,13 +68,13 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
     override func viewWillAppear(_ animated: Bool) {
         environment.analytics.trackScreen(withName: OEXAnalyticsScreenMyCourses)
         showVersionUpgradeSnackBarIfNecessary()
-
+        
         super.viewWillAppear(animated)
         hideSnackBarForFullScreenError()
         showWhatsNewIfNeeded()
         showBindphoneAlertView()
         
-//        enrollmentFeed.refresh()
+        //        enrollmentFeed.refresh()
         
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -108,7 +100,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
     private var isCourseDiscoveryEnabled: Bool {
         return environment.config.discovery.course.isEnabled
     }
-
+    
     private func addFindCoursesButton() {
         if environment.config.discovery.course.isEnabled {
             let findcoursesButton = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
@@ -124,13 +116,13 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
     private func setupListener() {
         enrollmentFeed.output.listen(self) {[weak self] result in
             if !(self?.enrollmentFeed.output.active ?? false) {
-                self?.refreshController.endRefreshing()
+                self?.tableController.tableView.mj_header.endRefreshing()
             }
             
             switch result {
             case let Result.success(enrollments):
                 if let enrollments = enrollments {
-                    self?.tableController.courses = enrollments.compactMap { $0.course } 
+                    self?.tableController.courses = enrollments.compactMap { $0.course }
                     self?.tableController.tableView.reloadData()
                     self?.loadController.state = .Loaded
                     if enrollments.count <= 0 {
@@ -156,25 +148,25 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         }
     }
     
-    private func setupFooter() {
-        if isCourseDiscoveryEnabled {
-            footer.findCoursesAction = {[weak self] in
-                let day: Int = self?.environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.hmm_remaining_days ?? 0
-                if day  > 0 {//哈佛学习营
-                   self?.authenWebView()
-                }
-                else {
-                    self?.environment.router?.showCourseCatalog(fromController: self, bottomBar: nil)
-                }
-            }
-
-            footer.sizeToFit()
-            self.tableController.tableView.tableFooterView = footer
-        }
-        else {
-            tableController.tableView.tableFooterView = UIView()
-        }
-    }
+    //    private func setupFooter() {
+    //        if isCourseDiscoveryEnabled {
+    //            footer.findCoursesAction = {[weak self] in
+    //                let day: Int = self?.environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.hmm_remaining_days ?? 0
+    //                if day  > 0 {//哈佛学习营
+    //                   self?.authenWebView()
+    //                }
+    //                else {
+    //                    self?.environment.router?.showCourseCatalog(fromController: self, bottomBar: nil)
+    //                }
+    //            }
+    //
+    //            footer.sizeToFit()
+    //            self.tableController.tableView.tableFooterView = footer
+    //        }
+    //        else {
+    //            tableController.tableView.tableFooterView = UIView()
+    //        }
+    //    }
     
     private func enrollmentsEmptyState() {
         if !isCourseDiscoveryEnabled {
@@ -208,14 +200,14 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
     
     private func showVersionUpgradeSnackBarIfNecessary() {
         if let _ = VersionUpgradeInfoController.sharedController.latestVersion {
-            var infoString = Strings.VersionUpgrade.newVersionAvailable
-            if let _ = VersionUpgradeInfoController.sharedController.lastSupportedDateString {
-                infoString = Strings.VersionUpgrade.deprecatedMessage
-            }
+//            var infoString = Strings.VersionUpgrade.newVersionAvailable
+//            if let _ = VersionUpgradeInfoController.sharedController.lastSupportedDateString {
+//                infoString = Strings.VersionUpgrade.deprecatedMessage
+//            }
             
-            if !isActionTakenOnUpgradeSnackBar {
-                showVersionUpgradeSnackBar(string: infoString)
-            }
+//            if !isActionTakenOnUpgradeSnackBar {
+//                showVersionUpgradeSnackBar(string: infoString)
+//            }
         }
         else {
             hideSnackBar()
@@ -227,7 +219,7 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
             hideSnackBar()
         }
     }
-    //MARK: CoursesTableViewControllerDelegate
+    //MARK: TDStrudyTableViewControllerDelegate
     func coursesTableChoseCourse(course: OEXCourse) {
         if let course_id = course.course_id {
             self.environment.router?.showCourseWithID(courseID: course_id, fromController: self, animated: true)
@@ -273,20 +265,19 @@ class EnrolledCoursesViewController : OfflineSupportViewController, CoursesTable
         tableController.tableView.autolayoutFooter()
     }
     
-    //MARK:- PullRefreshControllerDelegate method
-    func refreshControllerActivated(controller: PullRefreshController) {
+    @objc func refreshData() {
         self.enrollmentFeed.refresh()
         self.userPreferencesFeed.refresh()
     }
     
-    //MARK:- LoadStateViewReloadSupport method 
+    //MARK:- LoadStateViewReloadSupport method
     func loadStateViewReload() {
         refreshIfNecessary()
     }
     
 }
 
-extension EnrolledCoursesViewController {
+extension TDStudyCourseViewController {
     
     func authenWebView() {
         let webController = AuthenticatedWebViewController(environment: environment)
@@ -300,15 +291,18 @@ extension EnrolledCoursesViewController {
             self.navigationController?.pushViewController(webController, animated: true)
         }
     }
-
+    
     func setupProfileListener() {
         let feed = environment.dataManager.userProfileManager.feedForCurrentUser()
         feed.output.listen(self) { (result) in
             let date: String = feed.output.value?.hmm_expiry_date ?? ""
             
-            let day: Int = feed.output.value?.hmm_remaining_days ?? 0
-            self.footer.refreshFooterText(days: day, date: date)
-            self.tableController.tableView.autolayoutFooter()
+            //            let day: Int = feed.output.value?.hmm_remaining_days ?? 0
+            //            self.footer.refreshFooterText(days: day, date: date)
+            //            self.tableController.tableView.autolayoutFooter()
+            
+            self.tableController.dateStr = date
+            self.tableController.tableView.reloadData()
         }
     }
     
@@ -402,12 +396,12 @@ extension EnrolledCoursesViewController {
     }
     
     func phoneBindAlerDidShow() -> Bool {
-
+        
         let username = self.environment.session.currentUser?.username ?? ""
         var showAlert : Bool = true
         let formater = DateFormatter.init()
         formater.dateFormat = "yyyy-MM-dd"
-
+        
         let currentdate = Date.init()
         let nowDay : String = formater.string(from: currentdate)
         let agoDay : String? = UserDefaults.standard.string(forKey: "bindPhone_alertView_\(username)") ?? ""
@@ -418,7 +412,7 @@ extension EnrolledCoursesViewController {
         }
         return showAlert
     }
-
+    
     private func reloadProfileChange() {
         let feed = environment.dataManager.userProfileManager.feedForCurrentUser()
         feed.refresh()
@@ -434,7 +428,7 @@ extension EnrolledCoursesViewController {
 }
 
 // For testing use only
-extension EnrolledCoursesViewController {
+extension TDStudyCourseViewController {
     var t_loaded: OEXStream<()> {
         return self.enrollmentFeed.output.map {_ in
             return ()

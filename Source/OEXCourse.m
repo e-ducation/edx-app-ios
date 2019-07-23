@@ -95,6 +95,7 @@ NSString* NSStringForOEXStartType(OEXStartType type) {
 @property (nonatomic, assign) BOOL can_free_enroll;
 @property (nonatomic, strong) NSDictionary *recommended_package;
 @property (nonatomic, strong) NSString *professor_name;
+@property (nonatomic, strong) NSDictionary *progress;
 
 @end
 
@@ -151,6 +152,8 @@ NSString* NSStringForOEXStartType(OEXStartType type) {
         self.can_free_enroll = [[info objectForKey:@"can_free_enroll"] boolValue];
         self.recommended_package = [info objectForKey:@"recommended_package"];
         self.professor_name = [info objectForKey:@"professor_name"];
+        self.progress = [info objectForKey:@"progress"];
+        NSLog(@"进度 --->>>  %@",[info objectForKey:@"progress"]);
     }
     return self;
 }

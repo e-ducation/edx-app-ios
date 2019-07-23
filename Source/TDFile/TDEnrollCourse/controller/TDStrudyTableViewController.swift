@@ -56,11 +56,20 @@ class TDStudyCourseCell : UITableViewCell {
     var course : OEXCourse? {
         didSet {
             courseTitle.text = course?.name
-            
             if let imageUrl = course?.courseImageURL, let hostUrl = OEXConfig.shared().apiHostURL()?.absoluteString {
                 let url = hostUrl + imageUrl
                 courseImage.sd_setImage(with: URL(string:url), placeholderImage: UIImage(named: "main_recomend_6"))
             }
+            if let dic = course?.progress {
+                let grade: Float = dic["total_grade"] as? Float ?? 0.0
+                progressView.progress = grade
+                progressLabel.text = String(format: "%.0f%%", grade*100)
+                
+                if let isPass = dic["is_pass"] as? Bool {
+                    progressView.tintColor = UIColor(hexString: isPass ? "#8cc34a" : "#4788c7")
+                }
+            }
+            
             
             //VIP权利加入 + VIP过期 + 没取得证书
             if course!.is_normal_enroll == false && course!.is_vip == false && course!.has_cert == false {
@@ -101,11 +110,13 @@ class TDStudyCourseCell : UITableViewCell {
         progressLabel.font = UIFont(name: "PingFangSC-Regular", size: 12)
         
         progressView.progress = 0.5
+        progressView.tintColor = UIColor(hexString: "#4788c7")
+        progressView.trackTintColor = UIColor(hexString: "#d8d8d8")
         
         courseImage.image = UIImage(named: "main_recomend_6")
-        courseTitle.text = "国际商法：美国商业法律制度环境文案文案文案文案文案美国商业法律制度环境文案文案文案文案文案文案美国商业法律制度环境文案文案文案文案文案文案"
-        timeLabel.text = "最近：2019-06-14"
-        progressLabel.text = "88%"
+        courseTitle.text = "课程名称"
+        timeLabel.text = ""
+        progressLabel.text = "0%"
         
         
         contentView.addSubview(shadowView)
@@ -174,9 +185,10 @@ class TDStudyCourseCell : UITableViewCell {
 }
 
 @objc protocol TDStrudyTableViewControllerDelegate {
-    func coursesTableChoseCourse(course : OEXCourse)
-    func clickExpiredButton()
-    func havardCourseEnter()
+    func coursesTableChoseCourse(course : OEXCourse)//选择课程
+    func clickExpiredButton() //vip重置
+    func havardCourseEnter() //哈商
+    func gotoFindCourse() //去选课
 }
 
 class TDStrudyTableViewController: UITableViewController {
@@ -211,6 +223,7 @@ class TDStrudyTableViewController: UITableViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.showsVerticalScrollIndicator = false
         self.tableView.separatorStyle = .none
         self.tableView.backgroundColor = UIColor.white
         self.tableView.accessibilityIdentifier = "courses-table-view"
@@ -223,6 +236,7 @@ class TDStrudyTableViewController: UITableViewController {
 //        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(TDStudyCourseCell.self, forCellReuseIdentifier: TDStudyCourseCell.cellIdentifier)
         tableView.register(TDHavardCell.self, forCellReuseIdentifier: TDHavardCell.cellIdentifier)
+        tableView.register(TDStudyNonCell.self, forCellReuseIdentifier: TDStudyNonCell.cellIdentifier)
         
         self.insetsController.addSource(
             source: ConstantInsetsSource(insets: UIEdgeInsets(top: 0, left: 0, bottom: StandardVerticalMargin, right: 0), affectsScrollIndicators: false)
@@ -234,7 +248,7 @@ class TDStrudyTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == 0 || self.courses.count == 0  {
             return 1
         }
         return self.courses.count
@@ -248,19 +262,18 @@ class TDStrudyTableViewController: UITableViewController {
             return cell
         }
         
+        if self.courses.count == 0  {
+            let cell = tableView.dequeueReusableCell(withIdentifier: TDStudyNonCell.cellIdentifier, for: indexPath as IndexPath) as! TDStudyNonCell
+            cell.messageStr = "学习列表暂未有课程，快去添加课程吧~"
+            cell.iconStr = "course_non_image"
+            cell.findButton.oex_addAction({ [weak self] (action) in
+                self?.delegate?.gotoFindCourse()
+            }, for: .touchUpInside)
+            return cell
+        }
+        
         let course = self.courses[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: TDStudyCourseCell.cellIdentifier, for: indexPath as IndexPath) as! TDStudyCourseCell
-//        DispatchQueue.main.async {
-//            cell.accessibilityLabel = cell.courseView.updateAcessibilityLabel()
-//        }
-        cell.accessibilityHint = Strings.accessibilityShowsCourseContent
-
-//        switch context {
-//        case .CourseCatalog:
-//            CourseCardViewModel.onCourseCatalog(course: course, wrapTitle: true).apply(card: cell.courseView, networkManager: self.environment.networkManager)
-//        case .EnrollmentList:
-//            CourseCardViewModel.onHome(course: course).apply(card: cell.courseView, networkManager: self.environment.networkManager)
-//        }
         cell.course = course
         
         return cell
@@ -271,6 +284,10 @@ class TDStrudyTableViewController: UITableViewController {
         if indexPath.section == 0 {
             return 160
         }
+        
+        if self.courses.count == 0  {
+            return 325
+        }
         return 102
     }
     
@@ -279,6 +296,10 @@ class TDStrudyTableViewController: UITableViewController {
         
         if indexPath.section == 0 {
             self.delegate?.havardCourseEnter()
+            return;
+        }
+        
+        if self.courses.count == 0  {
             return;
         }
         

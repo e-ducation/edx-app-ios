@@ -9,8 +9,8 @@
 import UIKit
 
 private enum TabBarOptions: Int {
-    case Course, Program, MainSite, CourseCatalog, Debug
-    static let options = [MainSite, Course, Program, CourseCatalog, Debug]
+    case Course, Program, MainSite, CourseCatalog, AccountCenter, Debug
+    static let options = [MainSite, Course, Program, CourseCatalog, AccountCenter, Debug]
     
     func title(config: OEXConfig? = nil) -> String {
         switch self {
@@ -24,11 +24,13 @@ private enum TabBarOptions: Int {
             return Strings.debug
         case .MainSite:
             return Strings.elitemba
+        case .AccountCenter:
+            return "我的"
         }
     }
 }
 
-class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelegate, InterfaceOrientationOverriding {
+class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelegate, InterfaceOrientationOverriding,UIGestureRecognizerDelegate {
 
     typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & OEXRouterProvider & OEXInterfaceProvider & ReachabilityProvider & OEXSessionProvider & OEXStylesProvider
     
@@ -62,16 +64,17 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
         super.viewDidLoad()
         navigationItem.title = screenTitle
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        addAccountButton()
-        addProfileButton()
+//        addAccountButton()
+//        addProfileButton()
+    
         setupProfileLoader()
-        prepareTabViewData()
+        prepareTabBarView()
+//        prepareTabViewData()
         delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override var shouldAutorotate: Bool {
@@ -80,6 +83,45 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
+    }
+    
+    private func prepareTabBarView() {
+        for option in TabBarOptions.options {
+            switch option {
+            case .Course:
+                let courseVc = TDStudyCourseViewController(environment: environment)
+                createChildVC(childViewController: courseVc, title: "学习", imageStr: "study")
+            case .Program:
+                guard environment.config.programConfig.enabled, let programsURL = environment.config.programConfig.programURL else { break }
+                createChildVC(childViewController: ProgramsViewController(environment: environment, programsURL: programsURL), title: option.title(), imageStr: "mainsite")
+                
+            case .CourseCatalog:
+                let findCourseVc = TDFindCoursePageViewController(environment: environment)
+                createChildVC(childViewController: findCourseVc, title: "课程", imageStr: "course")
+            case .Debug:
+                if environment.config.shouldShowDebug() {
+                    createChildVC(childViewController: DebugMenuViewController(environment: environment), title: option.title(), imageStr: "mainsite")
+                }
+            case .MainSite:
+                let mainsiteVC = TDMainSiteViewController(environment: environment)
+                createChildVC(childViewController: mainsiteVC, title: "首页", imageStr: "mainsite")
+            case .AccountCenter:
+                let accountVc = AccountViewController(phoneStr: "13222222222", environment: environment)
+                createChildVC(childViewController: accountVc, title: "我的", imageStr: "me")
+            }
+        }
+    }
+    
+    func createChildVC(childViewController: UIViewController, title: String, imageStr: String) {
+        childViewController.tabBarItem.title = title
+        childViewController.tabBarItem.image = UIImage(named: imageStr+"_normal")
+        childViewController.tabBarItem.selectedImage = UIImage(named: imageStr+"_selecte")
+        
+        childViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(hexString: "#aab2bd")], for: .normal)
+        childViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(hexString: "#4788c7")], for: .selected)
+        
+        let navigationVc = ForwardingNavigationController(rootViewController: childViewController)
+        self.addChild(navigationVc)
     }
     
     private func prepareTabViewData() {
@@ -108,6 +150,10 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
                 }
             case .MainSite:
                 let mainSiteVc = TDMainSiteViewController(environment: environment)
+                item = TabBarItem(title: option.title(), viewController: mainSiteVc, icon: Icon.BankHouse, detailText: Strings.Dashboard.courseCourseDetail)
+                tabBarItems.append(item)
+            case .AccountCenter:
+                let mainSiteVc = AccountViewController(phoneStr: "13222222222", environment: environment)
                 item = TabBarItem(title: option.title(), viewController: mainSiteVc, icon: Icon.BankHouse, detailText: Strings.Dashboard.courseCourseDetail)
                 tabBarItems.append(item)
             }

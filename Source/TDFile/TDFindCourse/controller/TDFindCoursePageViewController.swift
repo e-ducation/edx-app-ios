@@ -19,6 +19,8 @@ class TDFindCoursePageViewController: UIViewController {//,UIGestureRecognizerDe
     init(environment : Environment) {
         self.environment = environment
         super.init(nibName: nil, bundle: nil)
+        
+        setSearchNav()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,25 +31,8 @@ class TDFindCoursePageViewController: UIViewController {//,UIGestureRecognizerDe
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.white
-        
-        configView()
         loadTagData()
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        navigationController?.setNavigationBarHidden(true, animated: true)
-//
-//        navigationController?.interactivePopGestureRecognizer?.delegate = self
-//        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        navigationController?.setNavigationBarHidden(false, animated: true)
-//    }
     
     func loadTagData() {
         
@@ -104,22 +89,28 @@ class TDFindCoursePageViewController: UIViewController {//,UIGestureRecognizerDe
         self.view.addSubview(segmentVC.view)
         
         segmentVC.didMove(toParent: self)
+        
         segmentVC.view.snp.makeConstraints { (make) in
-            make.top.equalTo(searchView.snp.bottom)
-            make.left.right.bottom.equalTo(self.view)
+//            make.top.equalTo(searchView.snp.bottom)
+            make.left.right.top.bottom.equalTo(self.view)
         }
     }
     
-    func configView() {
-//        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        self.view.addSubview(searchView)
-        searchView.snp.makeConstraints { (make) in
-//            make.top.equalTo(self.view).offset(statusBarHeight)
-            make.left.right.top.equalTo(self.view)
-            make.height.equalTo(48)
-        }
+    func setSearchNav() {
+        
+        searchView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width-16, height: 44)
+        searchView.searchButton.oex_addAction({[weak self] (action) in
+            self?.gotoSearchCourseView()
+        }, for: .touchUpInside)
+        
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
+        titleView.addSubview(searchView)
+        self.navigationItem.titleView = titleView
     }
     
+    func gotoSearchCourseView() {
+        self.navigationController?.pushViewController(TDSearchCourseViewController(environment: self.environment), animated: true)
+    }
 }
 
 extension TDFindCoursePageViewController: TDFindCourseViewControllerDelegate {

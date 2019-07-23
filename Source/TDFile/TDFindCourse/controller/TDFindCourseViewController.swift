@@ -43,11 +43,11 @@ class TDFindCourseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        gatArticleData(isRefresh: true)
+        gatCourseData(isRefresh: true)
     }
     
     //MARK: 数据
-    func gatArticleData(isRefresh: Bool) {
+    func gatCourseData(isRefresh: Bool) {
         if isRefresh == true {
             self.tableview.mj_footer.resetNoMoreData()
         }
@@ -125,18 +125,21 @@ class TDFindCourseViewController: UIViewController {
         tableview.mj_header = header
         
         let footer = MJRefreshAutoNormalFooter.init(refreshingTarget: self, refreshingAction: #selector(loadMoreData))
-        footer?.stateLabel.isHidden = true
+        footer?.setTitle("", for: .refreshing)
+        footer?.setTitle("", for: .willRefresh)
+        footer?.setTitle("", for: .idle)
+        footer?.setTitle("", for: .pulling)
         tableview.mj_footer = footer
     }
     
     @objc func refreshData() {
         page = 1
-        gatArticleData(isRefresh: true)
+        gatCourseData(isRefresh: true)
         print("刷新")
     }
     
     @objc func loadMoreData() {
-        gatArticleData(isRefresh: false)
+        gatCourseData(isRefresh: false)
         print("加载更多")
     }
 }
