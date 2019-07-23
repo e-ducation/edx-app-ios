@@ -28,7 +28,6 @@ class TDSearchCourseView: UIView {
         bgView.backgroundColor = UIColor.white
         self.addSubview(bgView)
         
-        searchButton.setTitle(Strings.renewVipMembership, for: .normal)
         searchButton.titleLabel?.font = UIFont(name: "PingFangSC-Regular", size: 12)
         searchButton.backgroundColor = UIColor.init(hexString: "#f7f7f7")
         searchButton.layer.cornerRadius = 15.0

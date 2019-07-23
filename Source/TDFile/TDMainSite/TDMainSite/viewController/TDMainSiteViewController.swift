@@ -24,7 +24,7 @@ enum MainSiteReuseViewKey: String {
     case Footer = "TDMainSiteFooterReusableView"
 }
 
-class TDMainSiteViewController: UIViewController {
+class TDMainSiteViewController: UIViewController,UIGestureRecognizerDelegate {
     
     private let loadController = LoadStateViewController()
     
@@ -74,6 +74,18 @@ class TDMainSiteViewController: UIViewController {
         self.title = Strings.elitemba
         setViewConstraint()
         getMainSiteData(isFirst: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        
+        //设置statusbar地变颜色
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        statusBar.backgroundColor = .white
     }
     
     func getMainSiteData(isFirst: Bool) {

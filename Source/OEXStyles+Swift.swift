@@ -42,7 +42,7 @@ extension OEXStyles {
     @objc public func applyGlobalAppearance() {
         //Probably want to set the tintColor of UIWindow but it didn't seem necessary right now
         
-        UINavigationBar.appearance().barTintColor = navigationBarColor()
+        UINavigationBar.appearance().barTintColor = .white//navigationBarColor()
         UINavigationBar.appearance().barStyle = UIBarStyle.black
         UINavigationBar.appearance().tintColor = navigationItemTintColor()
         UINavigationBar.appearance().titleTextAttributes = navigationTitleTextStyle.attributes.attributedKeyDictionary()
