@@ -124,7 +124,7 @@ OEXRegistrationViewControllerDelegate
         default:
             break;
     }
-    NSLog(@"登录成功 -->>> %@",currentUser.username);
+//    NSLog(@"登录成功 -->>> %@",currentUser.username);
     [self showEnrolledTabBarView];
 }
 

@@ -19,7 +19,6 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
     private let loadController = LoadStateViewController()
     fileprivate let enrollmentFeed: Feed<[UserCourseEnrollment]?>
     private let userPreferencesFeed: Feed<UserPreference?>
-    private let footer = EnrolledCoursesFooterView()
     init(environment: Environment) {
         self.tableController = TDStrudyTableViewController(environment: environment, context: .EnrollmentList)
         self.enrollmentFeed = environment.dataManager.enrollmentManager.feed
@@ -60,7 +59,6 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
         
         setupProfileListener()
         setupListener()
-        //        setupFooter()
         setupObservers()
         addFindCoursesButton()
     }
@@ -147,26 +145,6 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
             }
         }
     }
-    
-    //    private func setupFooter() {
-    //        if isCourseDiscoveryEnabled {
-    //            footer.findCoursesAction = {[weak self] in
-    //                let day: Int = self?.environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.hmm_remaining_days ?? 0
-    //                if day  > 0 {//哈佛学习营
-    //                   self?.authenWebView()
-    //                }
-    //                else {
-    //                    self?.environment.router?.showCourseCatalog(fromController: self, bottomBar: nil)
-    //                }
-    //            }
-    //
-    //            footer.sizeToFit()
-    //            self.tableController.tableView.tableFooterView = footer
-    //        }
-    //        else {
-    //            tableController.tableView.tableFooterView = UIView()
-    //        }
-    //    }
     
     private func enrollmentsEmptyState() {
         if !isCourseDiscoveryEnabled {
@@ -260,11 +238,6 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableController.tableView.autolayoutFooter()
-    }
-    
     @objc func refreshData() {
         self.enrollmentFeed.refresh()
         self.userPreferencesFeed.refresh()
@@ -296,11 +269,9 @@ extension TDStudyCourseViewController {
         let feed = environment.dataManager.userProfileManager.feedForCurrentUser()
         feed.output.listen(self) { (result) in
             let date: String = feed.output.value?.hmm_expiry_date ?? ""
+            let day: Int = feed.output.value?.hmm_remaining_days ?? 0
             
-            //            let day: Int = feed.output.value?.hmm_remaining_days ?? 0
-            //            self.footer.refreshFooterText(days: day, date: date)
-            //            self.tableController.tableView.autolayoutFooter()
-            
+            self.tableController.days = day
             self.tableController.dateStr = date
             self.tableController.tableView.reloadData()
         }

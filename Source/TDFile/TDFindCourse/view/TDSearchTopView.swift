@@ -8,19 +8,45 @@
 
 import UIKit
 
+protocol TDSearchTopViewDelegate: class {
+    func clickCancelButton()
+    func clickDeleteButton()
+    func inputTextFieldValueChange(searchText: String)
+}
+
 class TDSearchTopView: UIView {
 
     let bgView = UIView()
     let inputTextField = UITextField()
     let cancelButton = UIButton()
     let deleteButton = UIButton()
-    let line = UILabel()
     
+    weak var delegate: TDSearchTopViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         configureViews()
+        buttonClickAction()
+    }
+    
+    func buttonClickAction() {
+        cancelButton.oex_addAction({ [weak self](_) in
+            self?.delegate?.clickCancelButton()
+            }, for: .touchUpInside)
+        
+        deleteButton.oex_addAction({ [weak self](_) in
+            self?.inputTextField.text = ""
+            self?.delegate?.clickDeleteButton()
+            }, for: .touchUpInside)
+        
+        inputTextField.oex_addAction({ [weak self](_) in
+            if self?.inputTextField.markedTextRange == nil { //确认输入内容后，为nil
+                self?.delegate?.inputTextFieldValueChange(searchText: self?.inputTextField.text ?? "")
+            }
+//            print("markedTextRange---->>> %@",self?.inputTextField.markedTextRange as Any)
+            self?.deleteButton.isHidden = self?.inputTextField.text?.count == 0
+        }, for: .editingChanged)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,7 +59,7 @@ class TDSearchTopView: UIView {
         self.addSubview(bgView)
         
         inputTextField.placeholder = "请输入"
-        inputTextField.font = UIFont(name: "PingFangSC-Regular", size: 18)
+        inputTextField.font = UIFont(name: "PingFangSC-Regular", size: 16)
         inputTextField.textColor = UIColor(hexString:"#2e313c")
         bgView.addSubview(inputTextField)
         
@@ -43,13 +69,11 @@ class TDSearchTopView: UIView {
         bgView.addSubview(cancelButton)
         
         deleteButton.setImage(UIImage(named: "close_circle"), for: .normal)
+        deleteButton.isHidden = true
         deleteButton.oex_addAction({ [weak self](action) in
             self?.inputTextField.text = ""
         }, for: .touchUpInside)
         bgView.addSubview(deleteButton)
-        
-        line.backgroundColor = UIColor(hexString: "#f5f5f5")
-        bgView.addSubview(line)
         
         bgView.snp.makeConstraints { (make) in
             make.left.right.top.bottom.equalTo(self)
@@ -58,25 +82,20 @@ class TDSearchTopView: UIView {
         cancelButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(bgView)
             make.right.equalTo(bgView).offset(-12)
-            make.size.equalTo(CGSize(width: 48, height: 39))
+            make.size.equalTo(CGSize(width: 39, height: 39))
         }
         
         deleteButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(bgView)
             make.right.equalTo(cancelButton.snp.left)
-            make.size.equalTo(CGSize(width: 48, height: 39))
+            make.size.equalTo(CGSize(width: 39, height: 39))
         }
         
         inputTextField.snp.makeConstraints { (make) in
-            make.left.equalTo(bgView).offset(12)
+            make.left.equalTo(bgView).offset(0)
             make.centerY.equalTo(bgView)
             make.right.equalTo(deleteButton.snp.left).offset(-3)
-            make.height.equalTo(39)
-        }
-        
-        line.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalTo(bgView)
-            make.height.equalTo(0.5)
+            make.height.equalTo(33)
         }
     }
 }

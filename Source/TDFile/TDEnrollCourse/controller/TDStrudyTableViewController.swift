@@ -206,6 +206,7 @@ class TDStrudyTableViewController: UITableViewController {
     weak var delegate : TDStrudyTableViewControllerDelegate?
     var courses : [OEXCourse] = []
     var dateStr: String = ""
+    var days: Int = 0
     let insetsController = ContentInsetsController()
     
     init(environment : Environment, context: Context) {
@@ -248,7 +249,11 @@ class TDStrudyTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 || self.courses.count == 0  {
+        if section == 0 {
+            return days > 0 ? 1 : 0
+        }
+        
+        if self.courses.count == 0 {
             return 1
         }
         return self.courses.count
