@@ -15,6 +15,7 @@ class TDSearchCourseViewController: UIViewController {
     
     let searchTopView = TDSearchTopView()
     let tableView = UITableView()
+    let line = UILabel()
     
     var searchStr: String = ""
     var dataArray = Array<OEXCourse>()
@@ -37,22 +38,13 @@ class TDSearchCourseViewController: UIViewController {
     }
     
     func setSearchNav() {
+        searchTopView.delegate = self
+        searchTopView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 18, height: 44)
         
-//        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 30))
-//        searchBar.placeholder = "请输入"
-//        searchBar.layer.cornerRadius = 15.0
-//        searchBar.layer.masksToBounds = true
-//        searchBar.showsCancelButton = true
-//        searchBar.barStyle = .default
-////        searchBar.delegate = self
-        
-        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 30))
-//        titleView.addSubview(searchBar)
-        
-        searchTopView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width-48, height: 30)
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
         titleView.addSubview(searchTopView)
         
-        self.navigationItem.hidesBackButton = true
+        self.navigationItem.hidesBackButton = true//隐藏返回按钮
         self.navigationItem.titleView?.sizeToFit()
         self.navigationItem.titleView = titleView
     }
@@ -68,10 +60,44 @@ class TDSearchCourseViewController: UIViewController {
         tableView.snp.makeConstraints { (make) in
             make.left.right.bottom.top.equalTo(view)
         }
+        
+        line.backgroundColor = UIColor(hexString: "#f5f5f5")
+        view.addSubview(line)
+        line.snp.makeConstraints { (make) in
+            make.top.left.right.equalTo(view)
+            make.height.equalTo(0.5)
+        }
+    }
+}
+
+extension TDSearchCourseViewController: TDSearchTopViewDelegate {
+
+    func inputTextFieldValueChange(searchText: String) {
+        searchStr = searchText
+        print("---->>>",searchStr)
+        if searchStr.count > 0 {
+            self.perform(#selector(getCourseData(text:)), with: searchStr, afterDelay: 0.7)
+        }
+        else {
+            nonDataReload()
+        }
+    }
+    
+    func clickCancelButton() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func clickDeleteButton() {
+        searchStr = ""
+        nonDataReload()
     }
     
     //MARK: 数据
-    func gatCourseData() {
+    @objc func getCourseData(text: String) {
+        //0.7秒后，输入没有变化，就访问
+        guard searchStr == text else {
+            return
+        }
         
         let dic = NSMutableDictionary()
         dic.setValue("\(0)", forKey: "page_index")
@@ -92,19 +118,33 @@ class TDSearchCourseViewController: UIViewController {
                 for dic in results {
                     let model = OEXCourse.init(dictionary: dic)
                     self.dataArray.append(model)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
+                    self.reloadTableView()
                 }
+            }
+            else {
+                self.reloadTableView()
             }
             
         }) { (task, error) in
-            
+            self.dataArray.removeAll()
+            self.reloadTableView()
         }
     }
+    
+    func reloadTableView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func nonDataReload() {
+        self.dataArray.removeAll()
+        tableView.reloadData()
+    }
+    
 }
 
-extension TDSearchCourseViewController: UITableViewDataSource, UITableViewDelegate {
+extension TDSearchCourseViewController: UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.dataArray.count == 0 && searchStr.count > 0 {
             return 1
@@ -150,12 +190,14 @@ extension TDSearchCourseViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func coursesTableChoseCourse(course: OEXCourse) {
-        if let course_id = course.course_id {
-            self.environment.router?.showCourseWithID(courseID: course_id, fromController: self, animated: true)
+        guard let courseID = course.course_id else {
+            return
         }
-        else {
-            preconditionFailure("course without a course id")
-        }
+        self.environment.router?.showCourseCatalogDetail(courseID: courseID, fromController:self)
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchTopView.endEditing(true)
     }
     
 }

@@ -83,7 +83,7 @@ static const CGFloat TDCategoryViewDefaultHeight = 41;
         
         _selectedIndex = self.originalIndex;
         _height = TDCategoryViewDefaultHeight;
-        _cellSpacing = 22;
+        _cellSpacing = 23;
         _leftAndRightMargin = _cellSpacing;
         
         self.backgroundColor = [UIColor whiteColor];
