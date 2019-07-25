@@ -251,13 +251,15 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        dismiss(animated: true, completion: { [weak self] in
 //
 //            let username = self?.environment.session.currentUser?.username ?? ""
-//            UserDefaults.standard.setValue("", forKey: "bindPhone_alertView_\(username)")
-//            UserDefaults.standard.setValue("", forKey: "hmm_days_\(username)")
+//            let bindKey = BIND_PHONE_ALERTVIEW + username
+//            UserDefaults.standard.setValue("", forKey: bindKey)
+//            UserDefaults.standard.setValue("", forKey: HARVARD_DAYS + username)
 //            self?.environment.router?.logout()
 //        })
         let username = self.environment.session.currentUser?.username ?? ""
-        UserDefaults.standard.setValue("", forKey: "bindPhone_alertView_\(username)")
-        UserDefaults.standard.setValue("", forKey: "hmm_days_\(username)")
+        let bindKey = BIND_PHONE_ALERTVIEW + username
+        UserDefaults.standard.setValue("", forKey: bindKey)
+        UserDefaults.standard.setValue("", forKey: HARVARD_DAYS + username)
         self.environment.router?.logout()
     }
     

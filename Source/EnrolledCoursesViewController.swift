@@ -322,7 +322,7 @@ extension EnrolledCoursesViewController {
         var showAlert : Bool = false
         let day: Int = profile.hmm_remaining_days ?? 0
         
-        let value : String = UserDefaults.standard.string(forKey: "hmm_days_\(username)") ?? ""
+        let value : String = UserDefaults.standard.string(forKey: HARVARD_DAYS + username) ?? ""
         if (value.isEmpty) {
             
             if day > 0 && day <= 7 {
@@ -359,9 +359,9 @@ extension EnrolledCoursesViewController {
         let message = type == 1 ? Strings.harvardMoth : Strings.harvardSevendDay
         let alertController = UIAlertController(title: Strings.systemReminder, message: message, preferredStyle: .alert)
         
-        let sureAction = UIAlertAction(title: Strings.iKnow, style: .default) { [weak self](action) in
+        let sureAction = UIAlertAction(title: Strings.goNow, style: .default) { [weak self](action) in
             let username = self?.environment.session.currentUser?.username ?? ""
-            UserDefaults.standard.setValue("\(type)", forKey: "hmm_days_\(username)")
+            UserDefaults.standard.setValue("\(type)", forKey: HARVARD_DAYS + username)
         }
         alertController.addAction(sureAction)
         self.navigationController?.present(alertController, animated: true, completion: nil)
@@ -408,12 +408,13 @@ extension EnrolledCoursesViewController {
         let formater = DateFormatter.init()
         formater.dateFormat = "yyyy-MM-dd"
 
+        let key = BIND_PHONE_ALERTVIEW + username
         let currentdate = Date.init()
         let nowDay : String = formater.string(from: currentdate)
-        let agoDay : String? = UserDefaults.standard.string(forKey: "bindPhone_alertView_\(username)") ?? ""
+        let agoDay : String? = UserDefaults.standard.string(forKey: key) ?? ""
         
         if agoDay != nowDay {//不同一天
-            UserDefaults.standard.setValue(nowDay, forKey: "bindPhone_alertView_\(username)")
+            UserDefaults.standard.setValue(nowDay, forKey: key)
             showAlert = false
         }
         return showAlert

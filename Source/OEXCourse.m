@@ -153,7 +153,6 @@ NSString* NSStringForOEXStartType(OEXStartType type) {
         self.recommended_package = [info objectForKey:@"recommended_package"];
         self.professor_name = [info objectForKey:@"professor_name"];
         self.progress = [info objectForKey:@"progress"];
-        NSLog(@"进度 --->>>  %@",[info objectForKey:@"progress"]);
     }
     return self;
 }

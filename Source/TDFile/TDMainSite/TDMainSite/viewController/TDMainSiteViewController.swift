@@ -25,7 +25,7 @@ enum MainSiteReuseViewKey: String {
 }
 
 class TDMainSiteViewController: UIViewController,UIGestureRecognizerDelegate {
-    
+    let userProfileManager : UserProfileManager
     private let loadController = LoadStateViewController()
     
     var mainSiteModel: TDMainSiteModel?
@@ -56,11 +56,13 @@ class TDMainSiteViewController: UIViewController,UIGestureRecognizerDelegate {
         return collectionView
     }()
     
-    typealias Environment = NetworkManagerProvider & OEXRouterProvider & OEXSessionProvider & OEXConfigProvider & OEXAnalyticsProvider
+//    ReachabilityProvider & OEXStylesProvider
+    typealias Environment = NetworkManagerProvider & OEXRouterProvider & OEXSessionProvider & OEXConfigProvider & OEXAnalyticsProvider & DataManagerProvider
     private let environment : Environment
     
     init(environment : Environment) {
         self.environment = environment
+        self.userProfileManager = environment.dataManager.userProfileManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -74,10 +76,13 @@ class TDMainSiteViewController: UIViewController,UIGestureRecognizerDelegate {
         self.title = Strings.elitemba
         setViewConstraint()
         getMainSiteData(isFirst: true)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        showBindphoneAlertView()
         
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -145,7 +150,6 @@ class TDMainSiteViewController: UIViewController,UIGestureRecognizerDelegate {
         
         let header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(refreshData))
         header?.lastUpdatedTimeLabel.isHidden = true
-        header?.stateLabel.isHidden = true
         collectionView.mj_header = header
     }
     
@@ -159,6 +163,135 @@ class TDMainSiteViewController: UIViewController,UIGestureRecognizerDelegate {
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
+    }
+}
+
+extension TDMainSiteViewController {
+    
+    func showBindphoneAlertView() {
+        
+        guard let profile = userProfileManager.feedForCurrentUser().output.value else {
+            return
+        }
+        
+        if hmmDaysAlerWillShow() { //如果提示商学院
+            return
+        }
+        
+        guard profile.phone?.isEmpty == true else {//空的时候
+            return
+        }
+        
+        if phoneBindAlerDidShow() {//已提示过绑定手机
+            return
+        }
+        
+        let alertController = UIAlertController(title: Strings.systemReminder, message: Strings.realnameRequirement, preferredStyle: .alert)
+        let sureAction = UIAlertAction(title: Strings.bindPhoneText, style: .default) { [weak self](action) in
+            let bindPhoneVc = TDBindPhoneViewController()
+            bindPhoneVc.bindingPhoneSuccess = { [weak self] in
+                self?.reloadProfileChange()
+            }
+            self?.navigationController?.pushViewController(bindPhoneVc, animated: true)
+        }
+        let cancelAction = UIAlertAction(title: Strings.nextTime, style: .destructive) { (action) in
+            
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(sureAction)
+        self.navigationController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    func hmmDaysAlerWillShow() -> Bool {
+        
+        guard let profile = userProfileManager.feedForCurrentUser().output.value else {
+            return false
+        }
+        
+        let username = profile.username ?? ""
+        var showAlert : Bool = false
+        let day: Int = profile.hmm_remaining_days ?? 0
+        
+        let value : String = UserDefaults.standard.string(forKey: HARVARD_DAYS + username) ?? ""
+        if (value.isEmpty) {
+            
+            if day > 0 && day <= 7 {
+                showAlert = true
+                hmmDaysAlertView(type: 2, days: day)
+            }
+            else if day > 7 && day <= 30 {
+                showAlert = true
+                hmmDaysAlertView(type: 1, days: day)
+            }
+            else {
+                showAlert = false
+            }
+        }
+        else {//不为空
+            
+            if day > 0 && day <= 7 && Int(value) != 2 {
+                showAlert = true
+                hmmDaysAlertView(type: 2, days: day)
+            }
+            else if day > 7 && day < 30 && Int(value) != 1 {
+                showAlert = true
+                hmmDaysAlertView(type: 1, days: day)
+            }
+            else {
+                showAlert = false
+            }
+            
+        }
+        return showAlert
+    }
+    
+    func phoneBindAlerDidShow() -> Bool {
+        
+        let username = self.environment.session.currentUser?.username ?? ""
+        var showAlert : Bool = true
+        let formater = DateFormatter.init()
+        formater.dateFormat = "yyyy-MM-dd"
+        
+        let key = BIND_PHONE_ALERTVIEW + username
+        let currentdate = Date.init()
+        let nowDay : String = formater.string(from: currentdate)
+        let agoDay : String? = UserDefaults.standard.string(forKey: key) ?? ""
+        
+        if agoDay != nowDay {//不同一天
+            UserDefaults.standard.setValue(nowDay, forKey: key)
+            showAlert = false
+        }
+        return showAlert
+    }
+    
+    private func reloadProfileChange() {
+        let feed = userProfileManager.feedForCurrentUser()
+        feed.refresh()
+        feed.output.listenOnce(self, fireIfAlreadyLoaded: false) { result in
+            if let newProf = result.value {
+                print("手机绑定成功- \(newProf.phone ?? "")")
+            }
+            else {
+                self.view.makeToast(Strings.Profile.unableToGet, duration: 0.8, position: CSToastPositionCenter)
+            }
+        }
+    }
+    
+    func hmmDaysAlertView(type: Int, days: Int) {
+        let message = Strings.harvardDaysRemind(day: "\(days)")
+        let alertController = UIAlertController(title: Strings.systemReminder, message: message, preferredStyle: .alert)
+        
+        let sureAction = UIAlertAction(title: Strings.goNow, style: .default) { [weak self](action) in
+            let username = self?.environment.session.currentUser?.username ?? ""
+            UserDefaults.standard.setValue("\(type)", forKey: HARVARD_DAYS + username)
+            
+            //TODO: 跳转到哈商学习页面
+            self?.tabBarController?.selectedIndex = 1
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: GOTO_HARVARD_DETAIL), object: nil)
+            
+        }
+        alertController.addAction(sureAction)
+        self.navigationController?.present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -478,3 +611,5 @@ extension TDMainSiteViewController: CourseCategoryDelegate, CourseSeriesDelegate
         selectDetail(didSelct: model?.link)
     }
 }
+
+

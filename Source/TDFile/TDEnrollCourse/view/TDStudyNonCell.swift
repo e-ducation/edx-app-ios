@@ -24,30 +24,19 @@ class TDStudyNonCell: UITableViewCell {
         setViewConstraint()
     }
     
-    var messageStr: String? {
-        didSet {
-            messageLabel.text = messageStr
+    func dataNonCell(message: String?, iconStr: String, isHiddenButton: Bool = false, buttonStr: String = "", colorString: String = "") {
+        if message != nil {
+            messageLabel.text = message
+        }
+        nonImageview.image = UIImage(named: iconStr)
+        findButton.isHidden = isHiddenButton
+        if isHiddenButton == false, buttonStr.count > 0 {
+            findButton.setTitle(buttonStr, for: .normal)
+        }
+        if colorString.count > 0 {
+            bgView.backgroundColor = UIColor(hexString: colorString)
         }
     }
-    
-    var iconStr: String? {
-        didSet {
-            nonImageview.image = UIImage(named: iconStr ?? "course_non_image")
-        }
-    }
-    
-    var hiddenButton: Bool? {
-        didSet {
-            findButton.isHidden = hiddenButton ?? false
-        }
-    }
-    
-    var buttonStr: String? {
-        didSet {
-            findButton.setTitle(buttonStr ?? "刷新", for: .normal)
-        }
-    }
-    
     
     func configView() {
         self.selectionStyle = .none

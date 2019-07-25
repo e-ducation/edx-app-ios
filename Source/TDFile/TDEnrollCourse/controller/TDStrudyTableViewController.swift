@@ -61,10 +61,12 @@ class TDStudyCourseCell : UITableViewCell {
                 courseImage.sd_setImage(with: URL(string:url), placeholderImage: UIImage(named: "main_recomend_6"))
             }
             if let dic = course?.progress {
-                let grade: Float = dic["total_grade"] as? Float ?? 0.0
-                progressView.progress = grade
-                progressLabel.text = String(format: "%.0f%%", grade*100)
                 
+                if let grade = dic["total_grade"] as? Double {
+                    progressView.progress = Float(grade)
+                    progressLabel.text = String(format: "%.0f%%", grade*100)
+                }
+            
                 if let isPass = dic["is_pass"] as? Bool {
                     progressView.tintColor = UIColor(hexString: isPass ? "#8cc34a" : "#4788c7")
                 }
@@ -109,7 +111,7 @@ class TDStudyCourseCell : UITableViewCell {
         progressLabel.textColor = UIColor.init(hexString: "#656d78")
         progressLabel.font = UIFont(name: "PingFangSC-Regular", size: 12)
         
-        progressView.progress = 0.5
+        progressView.progress = 0.0
         progressView.tintColor = UIColor(hexString: "#4788c7")
         progressView.trackTintColor = UIColor(hexString: "#d8d8d8")
         
@@ -155,19 +157,18 @@ class TDStudyCourseCell : UITableViewCell {
             make.size.equalTo(CGSize(width: 108, height: 18))
         }
         
-        progressLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(timeLabel.snp_right).offset(12)
-            make.bottom.equalTo(courseImage)
-            make.size.equalTo(CGSize(width: 28, height: 18))
-        }
-        
         progressView.snp.makeConstraints { (make) in
-            make.left.equalTo(progressLabel.snp_right)
             make.right.equalTo(bgView).offset(-9)
-            make.height.equalTo(4)
-            make.centerY.equalTo(progressLabel)
+            make.bottom.equalTo(courseImage).offset(-7)
+            make.size.equalTo(CGSize(width: 46, height: 4))
         }
         
+        progressLabel.snp.makeConstraints { (make) in
+            make.right.equalTo(progressView.snp_left).offset(-5)
+            make.centerY.equalTo(progressView)
+            make.height.equalTo(18)
+        }
+    
         courseTitle.snp.makeConstraints { (make) in
             make.left.equalTo(timeLabel)
             make.top.equalTo(courseImage)
@@ -269,8 +270,7 @@ class TDStrudyTableViewController: UITableViewController {
         
         if self.courses.count == 0  {
             let cell = tableView.dequeueReusableCell(withIdentifier: TDStudyNonCell.cellIdentifier, for: indexPath as IndexPath) as! TDStudyNonCell
-            cell.messageStr = "学习列表暂未有课程，快去添加课程吧~"
-            cell.iconStr = "course_non_image"
+            cell.dataNonCell(message: "学习列表暂未有课程，快去添加课程吧~", iconStr: "course_non_image", buttonStr: "添加课程")
             cell.findButton.oex_addAction({ [weak self] (action) in
                 self?.delegate?.gotoFindCourse()
             }, for: .touchUpInside)

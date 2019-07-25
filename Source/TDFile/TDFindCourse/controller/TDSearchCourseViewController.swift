@@ -155,10 +155,7 @@ extension TDSearchCourseViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if self.dataArray.count == 0 && searchStr.count > 0 {
             let cell = TDStudyNonCell(style: .default, reuseIdentifier: AccountViewCell.identifier)
-            cell.hiddenButton = true
-            cell.messageStr = "暂无搜索结果"
-            cell.iconStr = "search_non_course"
-            
+            cell.dataNonCell(message: "暂无搜索结果", iconStr: "search_non_course", isHiddenButton: true)
             return cell
         }
         
@@ -184,6 +181,10 @@ extension TDSearchCourseViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard self.dataArray.count > 0 else {
+            return
+        }
         
         let model = self.dataArray[indexPath.row]
         coursesTableChoseCourse(course: model)
