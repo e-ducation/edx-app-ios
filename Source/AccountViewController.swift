@@ -62,7 +62,6 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         tableView.backgroundColor = UIColor.init(hexString: "#f5f5f5")
-        tableView.separatorColor = UIColor(hexString: "#bfc1c9")
         tableView.separatorColor = UIColor(hexString: "#e6e9ed")
         tableView.register(AccountViewCell.self, forCellReuseIdentifier: AccountViewCell.identifier)
         let textStyle = OEXMutableTextStyle(weight: .normal, size: .base, color : OEXStyles.shared().neutralBase())

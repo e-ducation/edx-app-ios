@@ -622,6 +622,9 @@
 		A436C69321C49B30003E7CEB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A436C69221C49B30003E7CEB /* StoreKit.framework */; };
 		A436C69921C4B0A4003E7CEB /* PurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A436C69721C4B0A4003E7CEB /* PurchaseManager.m */; };
 		A436C69A21C4B0A4003E7CEB /* PurchaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A436C69821C4B0A4003E7CEB /* PurchaseModel.m */; };
+		A437902322E99117007C172E /* TDMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A437902222E99117007C172E /* TDMeViewController.swift */; };
+		A437902522E99482007C172E /* TDMeDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A437902422E99482007C172E /* TDMeDataCell.swift */; };
+		A437902822E9AB39007C172E /* TDVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A437902722E9AB39007C172E /* TDVCExtension.swift */; };
 		A43E631E21C92D70002286BF /* TDBindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E631A21C92D6F002286BF /* TDBindPhoneViewController.m */; };
 		A43E631F21C92D70002286BF /* TDBindPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E631C21C92D6F002286BF /* TDBindPhoneView.m */; };
 		A4427CC321C2143E00891501 /* TDVipRecomendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4427CC221C2143E00891501 /* TDVipRecomendView.swift */; };
@@ -1705,6 +1708,9 @@
 		A436C69621C4B0A4003E7CEB /* PurchaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseModel.h; sourceTree = "<group>"; };
 		A436C69721C4B0A4003E7CEB /* PurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseManager.m; sourceTree = "<group>"; };
 		A436C69821C4B0A4003E7CEB /* PurchaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseModel.m; sourceTree = "<group>"; };
+		A437902222E99117007C172E /* TDMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDMeViewController.swift; sourceTree = "<group>"; };
+		A437902422E99482007C172E /* TDMeDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDMeDataCell.swift; sourceTree = "<group>"; };
+		A437902722E9AB39007C172E /* TDVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TDVCExtension.swift; path = Source/TDFile/TDMeData/view/TDVCExtension.swift; sourceTree = SOURCE_ROOT; };
 		A43E631921C92D6F002286BF /* TDBindPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBindPhoneViewController.h; sourceTree = "<group>"; };
 		A43E631A21C92D6F002286BF /* TDBindPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBindPhoneViewController.m; sourceTree = "<group>"; };
 		A43E631C21C92D6F002286BF /* TDBindPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBindPhoneView.m; sourceTree = "<group>"; };
@@ -3466,6 +3472,7 @@
 			isa = PBXGroup;
 			children = (
 				A423E0BD21B12B800093FBD3 /* TDPchHeader.h */,
+				A437902622E9AA4A007C172E /* TDCategrory */,
 				A40004CC22CDE18E001B491E /* UMAPP */,
 				A4D4BC5722672996003ABC8F /* CycleView */,
 				A458F29F2265A91B004962A9 /* TDPageViewController */,
@@ -3535,6 +3542,47 @@
 				A430DABF2283D7AE0039BF60 /* TDPurchaseSqliteOperation.m */,
 			);
 			path = TDPurchaseManager;
+			sourceTree = "<group>";
+		};
+		A437901E22E990A9007C172E /* TDMeData */ = {
+			isa = PBXGroup;
+			children = (
+				A437901F22E990A9007C172E /* controller */,
+				A437902022E990A9007C172E /* model */,
+				A437902122E990A9007C172E /* view */,
+			);
+			path = TDMeData;
+			sourceTree = "<group>";
+		};
+		A437901F22E990A9007C172E /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				A437902222E99117007C172E /* TDMeViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		A437902022E990A9007C172E /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		A437902122E990A9007C172E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				A437902422E99482007C172E /* TDMeDataCell.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		A437902622E9AA4A007C172E /* TDCategrory */ = {
+			isa = PBXGroup;
+			children = (
+				A437902722E9AB39007C172E /* TDVCExtension.swift */,
+			);
+			path = TDCategrory;
 			sourceTree = "<group>";
 		};
 		A43E631721C92D6F002286BF /* TDBindingPhone */ = {
@@ -3793,6 +3841,7 @@
 		A4FA40C321B0E2B40089CEBA /* TDFile */ = {
 			isa = PBXGroup;
 			children = (
+				A437901E22E990A9007C172E /* TDMeData */,
 				A42C644122DF0327009A70D5 /* TDFindCourse */,
 				A410BBCC22DD79A7005108F9 /* TDEnrollCourse */,
 				A458F255226569D9004962A9 /* TDMainSite */,
@@ -5376,6 +5425,7 @@
 				A42C644622DF0454009A70D5 /* TDFindCourseViewController.swift in Sources */,
 				224F1F532067B4E0009B3639 /* CustomSlider.swift in Sources */,
 				223972E11FE92BB500B2BBEC /* EnrolledTabBarViewController.swift in Sources */,
+				A437902522E99482007C172E /* TDMeDataCell.swift in Sources */,
 				B4B6D6041A949EFC000F44E8 /* OEXRegistrationRestriction.m in Sources */,
 				77BFD86A1BB9E15B001D7BE5 /* Strings.swift in Sources */,
 				B4B285E81A9A662600DD603A /* OEXZeroRatingConfig.m in Sources */,
@@ -5668,6 +5718,7 @@
 				77092C731B421BD0004AA1A1 /* ContainerNavigationController.swift in Sources */,
 				B7CCC73C209B16B100A66923 /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				A410852021BE11E20053F18A /* TDVipMessageModel.m in Sources */,
+				A437902822E9AB39007C172E /* TDVCExtension.swift in Sources */,
 				B4132C10195AAFBE00F50B46 /* OEXAuthentication.m in Sources */,
 				E0B4F3621EBB133000D42C11 /* WhatsNewContentController.swift in Sources */,
 				A4A1558D22E1B6FB0006AA45 /* TDSearchCourseViewController.swift in Sources */,
@@ -5741,6 +5792,7 @@
 				A4A1558B22E1AAB90006AA45 /* TDStudyNonCell.swift in Sources */,
 				771273301BA8FAD2008BA397 /* OEXAnalytics+Swift.swift in Sources */,
 				B7CCC72E209B16B100A66923 /* ConstraintLayoutSupport.swift in Sources */,
+				A437902322E99117007C172E /* TDMeViewController.swift in Sources */,
 				2283C7532060EF8600A2E9BE /* MathUtilities.swift in Sources */,
 				77E6487F1C9133C600B6740D /* SessionUsernameProvider.swift in Sources */,
 				E03E6A171D38EB9000944AAA /* SnackbarViews.swift in Sources */,
