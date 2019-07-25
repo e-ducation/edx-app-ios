@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "defalit_person.png",
+      "filename" : "me_vip_membership.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "defalit_person@2x.png",
+      "filename" : "me_vip_membership@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "defalit_person@3x.png",
+      "filename" : "me_vip_membership@3x.png",
       "scale" : "3x"
     }
   ],

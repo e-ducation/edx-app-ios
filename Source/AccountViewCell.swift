@@ -15,7 +15,7 @@ class AccountViewCell: UITableViewCell {
     private var iconImage = UIImageView()
     private var messageLabel = UILabel()
 
-    private let titleStyle = OEXTextStyle(weight: .normal, size: .large, color : OEXStyles.shared().neutralBlack())
+    private let titleStyle = OEXTextStyle(weight: .normal, size: .large, color : UIColor(hexString: "#2e313c"))
     public var title : String? {
         didSet {
             titleLabel.attributedText = titleStyle.attributedString(withText: title)
@@ -48,19 +48,18 @@ class AccountViewCell: UITableViewCell {
 
         iconImage.snp.makeConstraints { (make) in
             make.centerY.equalTo(contentView)
-            make.leading.equalTo(contentView).offset(StandardHorizontalMargin)
+            make.left.equalTo(contentView).offset(16)
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView).offset(StandardVerticalMargin)
-            make.leading.equalTo(contentView).offset(StandardHorizontalMargin * 3)
-            make.trailing.equalTo(contentView)
-            make.bottom.equalTo(contentView).inset(StandardVerticalMargin)
+            make.centerY.equalTo(contentView)
+            make.left.equalTo(contentView).offset(53)
+            make.right.equalTo(contentView)
         }
 
         messageLabel.snp.makeConstraints { (make) in
             make.centerY.equalTo(contentView)
-            make.trailing.equalTo(contentView)
+            make.right.equalTo(contentView)
         }
     }
     

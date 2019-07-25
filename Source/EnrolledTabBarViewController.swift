@@ -30,7 +30,7 @@ private enum TabBarOptions: Int {
     }
 }
 
-class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelegate, InterfaceOrientationOverriding,UIGestureRecognizerDelegate {
+class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelegate, InterfaceOrientationOverriding {
 
     typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & OEXRouterProvider & OEXInterfaceProvider & ReachabilityProvider & OEXSessionProvider & OEXStylesProvider
     
@@ -108,7 +108,7 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
                 let mainsiteVC = TDMainSiteViewController(environment: environment)
                 createChildVC(childViewController: mainsiteVC, title: "首页", imageStr: "mainsite")
             case .AccountCenter:
-                let accountVc = AccountViewController(phoneStr: "13222222222", environment: environment)
+                let accountVc = TDMeViewController(environment: environment)
                 createChildVC(childViewController: accountVc, title: "我的", imageStr: "me")
             }
         }

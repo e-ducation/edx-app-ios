@@ -10,7 +10,7 @@ import Foundation
 
 //var isActionTakenOnUpgradeSnackBar: Bool = false
 
-class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableViewControllerDelegate, LoadStateViewReloadSupport,InterfaceOrientationOverriding,UIGestureRecognizerDelegate {
+class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableViewControllerDelegate, LoadStateViewReloadSupport,InterfaceOrientationOverriding {
     
     typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & ReachabilityProvider & OEXRouterProvider & OEXSessionProvider & OEXStylesProvider
     
@@ -86,13 +86,14 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
         
         //        enrollmentFeed.refresh()
         
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-        
-        //设置statusbar地变颜色
-        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-        statusBar.backgroundColor = .white
+        hideNavgationBar()
+//        navigationController?.setNavigationBarHidden(true, animated: true)
+//        navigationController?.interactivePopGestureRecognizer?.delegate = self
+//        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+//
+//        //设置statusbar地变颜色
+//        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+//        statusBar.backgroundColor = .white
       
     }
     
