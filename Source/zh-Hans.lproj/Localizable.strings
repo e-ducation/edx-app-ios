@@ -988,8 +988,10 @@
 "HARVARD_MOTH" = "您加入的哈佛管理导师，不到一个月就结束了，抓紧时间学习吧！";
 /*您加入的哈佛管理导师，即将结束，抓紧时间学习吧！Harvard ManageMentor will be ended soon. Go and study! */
 "HArVARD_SEVEND_DAY" = "您加入的哈佛管理导师，即将结束，抓紧时间学习吧！";
-/* 知道了 OK */
-"I_KNOW" = "知道了";
+/* 您加入的哈佛管理导师，学习期剩余{day}天，抓紧时间学习吧！You joined the Harvard management tutor, the rest of the study period {day} days, seize the time to learn! */
+"HArVARD_DAYS_REMIND" = "您加入的哈佛管理导师，学习期剩余{day}天，抓紧时间学习吧！";
+/* 知道了 Go Now! */
+"GO_NOW" = "现在就去！";
 /* 正在连接App Store... Going to App Store... */
 "CONNECT_APP_STORE" = "正在连接App Store...";
 /* 正在刷新数据... Refreshing... */

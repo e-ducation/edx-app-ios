@@ -31,7 +31,7 @@ class TDFindCoursePageViewController: UIViewController {//,UIGestureRecognizerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .red
+        self.view.backgroundColor = UIColor(hexString: "#f5f5f5")
         
         loadController.setupInController(controller: self, contentView: self.view)
         loadController.state = .Initial

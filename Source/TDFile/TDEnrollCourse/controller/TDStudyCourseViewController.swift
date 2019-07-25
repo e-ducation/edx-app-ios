@@ -12,7 +12,11 @@ import Foundation
 
 class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableViewControllerDelegate, LoadStateViewReloadSupport,InterfaceOrientationOverriding,UIGestureRecognizerDelegate {
     
-    typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & ReachabilityProvider & OEXRouterProvider & OEXSessionProvider & OEXStylesProvider & ReachabilityProvider
+    typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & ReachabilityProvider & OEXRouterProvider & OEXSessionProvider & OEXStylesProvider
+    
+    var courseID = ""
+    var showHarvard = false
+    let userProfileManager : UserProfileManager
     
     private let environment : Environment
     private let tableController : TDStrudyTableViewController
@@ -24,10 +28,20 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
         self.enrollmentFeed = environment.dataManager.enrollmentManager.feed
         self.userPreferencesFeed = environment.dataManager.userPreferenceManager.feed
         self.environment = environment
+        self.userProfileManager = environment.dataManager.userProfileManager
         
         super.init(env: environment)
         self.navigationItem.title = Strings.courses
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        
+        NotificationCenter.default.oex_addObserver(observer: self, name: GOTO_STUDYCORUSE_DASBORD) { (notification, observer, _) in
+            if let courseID = notification.object as? String {
+                self.courseID = courseID
+            }
+        }
+        NotificationCenter.default.oex_addObserver(observer: self, name: GOTO_HARVARD_DETAIL) { (notification, observer, _) in
+            self.showHarvard = true
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,7 +65,6 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
         
         let header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(refreshData))
         header?.lastUpdatedTimeLabel.isHidden = true
-        header?.stateLabel.isHidden = true
         tableController.tableView.mj_header = header
         
         self.enrollmentFeed.refresh()
@@ -70,7 +83,6 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
         super.viewWillAppear(animated)
         hideSnackBarForFullScreenError()
         showWhatsNewIfNeeded()
-        showBindphoneAlertView()
         
         //        enrollmentFeed.refresh()
         
@@ -81,6 +93,27 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
         //设置statusbar地变颜色
         guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
         statusBar.backgroundColor = .white
+      
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //从详情直接跳到课程
+        if courseID.count > 0 {
+            self.environment.router?.showCourseWithID(courseID: courseID, fromController: self, animated: false)
+            courseID = ""
+        }
+        
+        //跳入哈商
+        if showHarvard == true {
+            showHarvard = false
+            let day: Int = userProfileManager.feedForCurrentUser().output.value?.hmm_remaining_days ?? 0
+            if day > 0 {
+                self.havardCourseEnter()
+            }
+        }
+
     }
     
     override func reloadViewData() {
@@ -219,7 +252,7 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
     }
     
     func havardCourseEnter() {
-        let day: Int = self.environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.hmm_remaining_days ?? 0
+        let day: Int = userProfileManager.feedForCurrentUser().output.value?.hmm_remaining_days ?? 0
         if day  > 0 {//哈佛学习营
             self.authenWebView()
         }
@@ -255,8 +288,8 @@ extension TDStudyCourseViewController {
     func authenWebView() {
         let webController = AuthenticatedWebViewController(environment: environment)
         webController.title = Strings.harvardLearnCampTitle
-        
-        let hmmUrl: String = environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.hmm_entry_url ?? ""
+
+        let hmmUrl: String = userProfileManager.feedForCurrentUser().output.value?.hmm_entry_url ?? ""
         if let hostUrl = environment.config.apiHostURL() {
             let url = hostUrl.appendingPathComponent(hmmUrl)
             let request = NSMutableURLRequest(url: url)
@@ -264,136 +297,16 @@ extension TDStudyCourseViewController {
             self.navigationController?.pushViewController(webController, animated: true)
         }
     }
-    
+
     func setupProfileListener() {
-        let feed = environment.dataManager.userProfileManager.feedForCurrentUser()
+        let feed = userProfileManager.feedForCurrentUser()
         feed.output.listen(self) { (result) in
             let date: String = feed.output.value?.hmm_expiry_date ?? ""
             let day: Int = feed.output.value?.hmm_remaining_days ?? 0
-            
+
             self.tableController.days = day
             self.tableController.dateStr = date
             self.tableController.tableView.reloadData()
-        }
-    }
-    
-    func hmmDaysAlerWillShow() -> Bool {
-        
-        guard let profile = environment.dataManager.userProfileManager.feedForCurrentUser().output.value else {
-            return false
-        }
-        
-        let username = profile.username ?? ""
-        var showAlert : Bool = false
-        let day: Int = profile.hmm_remaining_days ?? 0
-        
-        let value : String = UserDefaults.standard.string(forKey: "hmm_days_\(username)") ?? ""
-        if (value.isEmpty) {
-            
-            if day > 0 && day <= 7 {
-                showAlert = true
-                hmmDaysAlertView(type: 2)
-            }
-            else if day > 7 && day <= 30 {
-                showAlert = true
-                hmmDaysAlertView(type: 1)
-            }
-            else {
-                showAlert = false
-            }
-        }
-        else {//不为空
-            
-            if day > 0 && day <= 7 && Int(value) != 2 {
-                showAlert = true
-                hmmDaysAlertView(type: 2)
-            }
-            else if day > 7 && day < 30 && Int(value) != 1 {
-                showAlert = true
-                hmmDaysAlertView(type: 1)
-            }
-            else {
-                showAlert = false
-            }
-            
-        }
-        return showAlert
-    }
-    
-    func hmmDaysAlertView(type: Int) {
-        let message = type == 1 ? Strings.harvardMoth : Strings.harvardSevendDay
-        let alertController = UIAlertController(title: Strings.systemReminder, message: message, preferredStyle: .alert)
-        
-        let sureAction = UIAlertAction(title: Strings.iKnow, style: .default) { [weak self](action) in
-            let username = self?.environment.session.currentUser?.username ?? ""
-            UserDefaults.standard.setValue("\(type)", forKey: "hmm_days_\(username)")
-        }
-        alertController.addAction(sureAction)
-        self.navigationController?.present(alertController, animated: true, completion: nil)
-    }
-    
-    func showBindphoneAlertView() {
-        
-        guard let profile = environment.dataManager.userProfileManager.feedForCurrentUser().output.value else {
-            return
-        }
-        
-        if hmmDaysAlerWillShow() { //如果提示商学院
-            return
-        }
-        
-        guard profile.phone?.isEmpty == true else {//空的时候
-            return
-        }
-        
-        if phoneBindAlerDidShow() {//已提示过绑定手机
-            return
-        }
-        
-        let alertController = UIAlertController(title: Strings.systemReminder, message: Strings.realnameRequirement, preferredStyle: .alert)
-        let sureAction = UIAlertAction(title: Strings.bindPhoneText, style: .default) { [weak self](action) in
-            let bindPhoneVc = TDBindPhoneViewController()
-            bindPhoneVc.bindingPhoneSuccess = { [weak self] in
-                self?.reloadProfileChange()
-            }
-            self?.navigationController?.pushViewController(bindPhoneVc, animated: true)
-        }
-        let cancelAction = UIAlertAction(title: Strings.nextTime, style: .destructive) { (action) in
-            
-        }
-        alertController.addAction(cancelAction)
-        alertController.addAction(sureAction)
-        self.navigationController?.present(alertController, animated: true, completion: nil)
-    }
-    
-    func phoneBindAlerDidShow() -> Bool {
-        
-        let username = self.environment.session.currentUser?.username ?? ""
-        var showAlert : Bool = true
-        let formater = DateFormatter.init()
-        formater.dateFormat = "yyyy-MM-dd"
-        
-        let currentdate = Date.init()
-        let nowDay : String = formater.string(from: currentdate)
-        let agoDay : String? = UserDefaults.standard.string(forKey: "bindPhone_alertView_\(username)") ?? ""
-        
-        if agoDay != nowDay {//不同一天
-            UserDefaults.standard.setValue(nowDay, forKey: "bindPhone_alertView_\(username)")
-            showAlert = false
-        }
-        return showAlert
-    }
-    
-    private func reloadProfileChange() {
-        let feed = environment.dataManager.userProfileManager.feedForCurrentUser()
-        feed.refresh()
-        feed.output.listenOnce(self, fireIfAlreadyLoaded: false) { result in
-            if let newProf = result.value {
-                print("手机绑定成功- \(newProf.phone ?? "")")
-            }
-            else {
-                self.view.makeToast(Strings.Profile.unableToGet, duration: 0.8, position: CSToastPositionCenter)
-            }
         }
     }
 }

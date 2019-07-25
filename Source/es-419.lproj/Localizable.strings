@@ -1010,8 +1010,10 @@
 "HARVARD_MOTH" = "Harvard ManageMentor will be ended in less than a month. Go and study!";
 /*您加入的哈佛管理导师，即将结束，抓紧时间学习吧！Harvard ManageMentor will be ended soon. Go and study! */
 "HArVARD_SEVEND_DAY" = "Harvard ManageMentor will be ended soon. Go and study!";
-/* 知道了 OK */
-"I_KNOW" = "OK";
+/* 您加入的哈佛管理导师，学习期剩余{day}天，抓紧时间学习吧！You joined the Harvard management tutor, the rest of the study period {day} days, seize the time to learn! */
+"HArVARD_DAYS_REMIND" = "You joined the Harvard management tutor, the rest of the study period {day} days, seize the time to learn!";
+/* 知道了 Go Now! */
+"GO_NOW" = "Go Now!";
 /* 正在连接App Store... Going to App Store... */
 "CONNECT_APP_STORE" = "Going to App Store...";
 /* 正在刷新数据... Refreshing... */

@@ -119,16 +119,12 @@ class TDFindCourseViewController: UIViewController {
             make.left.right.top.bottom.equalTo(self.view);
         }
         
-        let header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(refreshData))
+        let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(refreshData))
         header?.lastUpdatedTimeLabel.isHidden = true
-        header?.stateLabel.isHidden = true
         tableview.mj_header = header
         
         let footer = MJRefreshAutoNormalFooter.init(refreshingTarget: self, refreshingAction: #selector(loadMoreData))
-        footer?.setTitle("", for: .refreshing)
-        footer?.setTitle("", for: .willRefresh)
-        footer?.setTitle("", for: .idle)
-        footer?.setTitle("", for: .pulling)
+        footer?.setTitle("", for: .noMoreData)
         tableview.mj_footer = footer
     }
     
@@ -147,15 +143,20 @@ class TDFindCourseViewController: UIViewController {
 extension TDFindCourseViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: delegate
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.dataArray.count == 0 {
+            return 1
+        }
         return dataArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if self.dataArray.count == 0 {
+            let cell = TDStudyNonCell(style: .default, reuseIdentifier: AccountViewCell.identifier)
+            cell.dataNonCell(message: "暂无课程", iconStr: "data_non_image", isHiddenButton: true, colorString: "#f9f9f9")
+            return cell
+        }
+        
         let model = dataArray[indexPath.row]
         let cell = TDFindCourseCell.init(style: .default, reuseIdentifier: "TDArticleCell")
         cell.model = model
@@ -163,11 +164,18 @@ extension TDFindCourseViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if self.dataArray.count == 0 {
+            return 325
+        }
         return 123
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableview.deselectRow(at: indexPath, animated: true)
+  
+        guard self.dataArray.count > 0 else {
+            return
+        }
         
         let model = dataArray[indexPath.row]
         self.delegate?.coursesTableChoseCourse(course: model)

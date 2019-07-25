@@ -132,4 +132,9 @@ typedef NS_ENUM(NSUInteger, OEXVideoSpeed) {
 #define IS_IPHONE_6 ( [ [ UIScreen mainScreen ] bounds ].size.height == 667 )
 #define IS_IPHONE_6_PLUS ( [ [ UIScreen mainScreen ] bounds ].size.height == 736 )
 
+#define GOTO_STUDYCORUSE_DASBORD @"studyCourseDasbord"
+#define GOTO_HARVARD_DETAIL @"studyHarvardDetail"
+#define HARVARD_DAYS @"hmm_days_"
+#define BIND_PHONE_ALERTVIEW @"bindPhone_alertView_"
+
 #endif

@@ -68,8 +68,10 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
 //        addProfileButton()
     
         setupProfileLoader()
+        
         prepareTabBarView()
 //        prepareTabViewData()
+        
         delegate = self
     }
 
@@ -94,10 +96,10 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
             case .Program:
                 guard environment.config.programConfig.enabled, let programsURL = environment.config.programConfig.programURL else { break }
                 createChildVC(childViewController: ProgramsViewController(environment: environment, programsURL: programsURL), title: option.title(), imageStr: "mainsite")
-                
             case .CourseCatalog:
                 let findCourseVc = TDFindCoursePageViewController(environment: environment)
                 createChildVC(childViewController: findCourseVc, title: "课程", imageStr: "course")
+                EnrolledTabBarViewController.courseCatalogIndex = 2
             case .Debug:
                 if environment.config.shouldShowDebug() {
                     createChildVC(childViewController: DebugMenuViewController(environment: environment), title: option.title(), imageStr: "mainsite")
@@ -114,8 +116,8 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
     
     func createChildVC(childViewController: UIViewController, title: String, imageStr: String) {
         childViewController.tabBarItem.title = title
-        childViewController.tabBarItem.image = UIImage(named: imageStr+"_normal")
-        childViewController.tabBarItem.selectedImage = UIImage(named: imageStr+"_selecte")
+        childViewController.tabBarItem.image = UIImage(named: imageStr+"_normal")?.withRenderingMode(.alwaysOriginal)
+        childViewController.tabBarItem.selectedImage = UIImage(named: imageStr+"_selecte")?.withRenderingMode(.alwaysOriginal)
         
         childViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(hexString: "#aab2bd")], for: .normal)
         childViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(hexString: "#4788c7")], for: .selected)

@@ -114,15 +114,24 @@ extension OEXRouter {
         return controllerForBlockWithID(blockID: block.blockID, type: block.displayType, courseID: courseID)
     }
     
+    func showStudyCourses(fromController: UIViewController, animated: Bool = true, pushingCourseWithID courseID: String? = nil) {
+        fromController.tabBarController?.selectedIndex = 1
+        fromController.navigationController?.popToRootViewController(animated: false)
+        if let courseID = courseID {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: GOTO_STUDYCORUSE_DASBORD), object: courseID)
+        }
+    }
+    
     @objc(showMyCoursesAnimated:pushingCourseWithID:) func showMyCourses(animated: Bool = true, pushingCourseWithID courseID: String? = nil) {
         let controller = EnrolledTabBarViewController(environment: environment)
+        controller.selectedIndex = 1
         showContentStack(withRootController: controller, animated: animated)
         if let courseID = courseID {
             showCourseWithID(courseID: courseID, fromController: controller, animated: false)
         }
     }
 
-   @objc func showEnrolledTabBarView() {
+    @objc func showEnrolledTabBarView() {
         let controller = EnrolledTabBarViewController(environment: environment)
         showContentStack(withRootController: controller, animated: false)
     }

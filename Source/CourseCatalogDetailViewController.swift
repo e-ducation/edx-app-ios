@@ -29,7 +29,7 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
         self.courseID = courseID
         self.environment = environment
         super.init(nibName: nil, bundle: nil)
-        self.navigationItem.title = Strings.findCourses
+        self.navigationItem.title = "详情"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
     }
 
@@ -107,7 +107,8 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
     }
     
     private func showCourseScreen(message: String? = nil) {
-        self.environment.router?.showMyCourses(animated: true, pushingCourseWithID:courseID)
+//        self.environment.router?.showMyCourses(animated: true, pushingCourseWithID:courseID)
+        self.environment.router?.showStudyCourses(fromController: self, animated: true, pushingCourseWithID: courseID)
         
         if let message = message {
             

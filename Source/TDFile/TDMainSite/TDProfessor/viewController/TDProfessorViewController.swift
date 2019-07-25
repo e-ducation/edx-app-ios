@@ -101,13 +101,7 @@ class TDProfessorViewController: UIViewController {
         tableview.mj_header = header
         
         let footer = MJRefreshAutoNormalFooter.init(refreshingTarget: self, refreshingAction: #selector(loadMoreData))
-        footer?.setTitle("", for: .refreshing)
-        footer?.setTitle("", for: .willRefresh)
-        footer?.setTitle("", for: .idle)
-        footer?.setTitle("", for: .pulling)
-        footer?.setTitle("———— 这个是底线 ————", for: .noMoreData)
-        footer?.stateLabel.textColor = UIColor(hexString: "#ccd1d9")
-        footer?.stateLabel.font = UIFont(name: "PingFangSC-Medium", size: 12)
+        footer?.setTitle("", for: .noMoreData)
         tableview.mj_footer = footer
     }
     
