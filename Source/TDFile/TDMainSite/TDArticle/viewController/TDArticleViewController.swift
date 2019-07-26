@@ -126,6 +126,7 @@ class TDArticleViewController: UIViewController {
         tableview.backgroundColor = UIColor(hexString: "#f9f9f9")
         tableview.separatorColor = UIColor(hexString: "#f5f5f5")
         self.view.addSubview(self.tableview);
+        
         self.tableview.snp.makeConstraints { (make) in
             make.left.right.top.bottom.equalTo(self.view);
         }
