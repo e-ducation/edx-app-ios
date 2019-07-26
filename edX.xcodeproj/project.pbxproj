@@ -625,6 +625,7 @@
 		A437902322E99117007C172E /* TDMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A437902222E99117007C172E /* TDMeViewController.swift */; };
 		A437902522E99482007C172E /* TDMeDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A437902422E99482007C172E /* TDMeDataCell.swift */; };
 		A437902822E9AB39007C172E /* TDVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A437902722E9AB39007C172E /* TDVCExtension.swift */; };
+		A437902A22E9B169007C172E /* TDAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A437902922E9B169007C172E /* TDAccountViewController.swift */; };
 		A43E631E21C92D70002286BF /* TDBindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E631A21C92D6F002286BF /* TDBindPhoneViewController.m */; };
 		A43E631F21C92D70002286BF /* TDBindPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E631C21C92D6F002286BF /* TDBindPhoneView.m */; };
 		A4427CC321C2143E00891501 /* TDVipRecomendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4427CC221C2143E00891501 /* TDVipRecomendView.swift */; };
@@ -1711,6 +1712,7 @@
 		A437902222E99117007C172E /* TDMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDMeViewController.swift; sourceTree = "<group>"; };
 		A437902422E99482007C172E /* TDMeDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDMeDataCell.swift; sourceTree = "<group>"; };
 		A437902722E9AB39007C172E /* TDVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TDVCExtension.swift; path = Source/TDFile/TDMeData/view/TDVCExtension.swift; sourceTree = SOURCE_ROOT; };
+		A437902922E9B169007C172E /* TDAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDAccountViewController.swift; sourceTree = "<group>"; };
 		A43E631921C92D6F002286BF /* TDBindPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBindPhoneViewController.h; sourceTree = "<group>"; };
 		A43E631A21C92D6F002286BF /* TDBindPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBindPhoneViewController.m; sourceTree = "<group>"; };
 		A43E631C21C92D6F002286BF /* TDBindPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBindPhoneView.m; sourceTree = "<group>"; };
@@ -3558,6 +3560,7 @@
 			isa = PBXGroup;
 			children = (
 				A437902222E99117007C172E /* TDMeViewController.swift */,
+				A437902922E9B169007C172E /* TDAccountViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -5728,6 +5731,7 @@
 				7772BE731AF2FECC0081CA7A /* CourseOutlineHeaderCell.swift in Sources */,
 				A42C644A22DF1E37009A70D5 /* TDCourseTageModel.swift in Sources */,
 				A4FA40D421B0E2B50089CEBA /* TDSinaWBAuthProvider.m in Sources */,
+				A437902A22E9B169007C172E /* TDAccountViewController.swift in Sources */,
 				1A5501A41BBAB8BD00D5F9DD /* JSONFormBuilder.swift in Sources */,
 				9ED03B951B204CDF0081A19A /* CourseSectionTableViewCell.swift in Sources */,
 				77BECB041B0A5FDB00894276 /* ContentInsetsController.swift in Sources */,

@@ -32,8 +32,6 @@ class TDMeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = Strings.userAccount
-        
         configureViews()
     }
     
@@ -65,13 +63,21 @@ class TDMeViewController: UIViewController {
             if let newProf = result.value {
                 self.vipStatus = newProf.vip_status ?? 1
                 self.vipRemainDays = newProf.vip_remain_days ?? 0
-                
                 self.tableView.reloadData()
             }
             else {
                 self.view.makeToast(Strings.Profile.unableToGet, duration: 0.8, position: CSToastPositionCenter)
             }
         }
+    }
+    
+    private func logoutAction() {
+        OEXFileUtility.nukeUserPIIData()
+        let username = self.environment.session.currentUser?.username ?? ""
+        let bindKey = BIND_PHONE_ALERTVIEW + username
+        UserDefaults.standard.setValue("", forKey: bindKey)
+        UserDefaults.standard.setValue("", forKey: HARVARD_DAYS + username)
+        self.environment.router?.logout()
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,6 +119,7 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
                 case 0:
                     cell.imageStr = "me_vip_membership"
                     cell.title = "会员资格"
+                    cell.mesage = "未购买"
                 case 1:
                     cell.imageStr = "me_account_manager"
                     cell.title = "账号管理"
@@ -170,7 +177,44 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     
-        
+        if indexPath.section == 0 {
+        }
+        else {
+            if indexPath.section == 1 {
+                switch indexPath.row {
+                case 0:
+                    guard let currentUserName = environment.session.currentUser?.username else { break }
+                    let vipPackageVc = TDVipPackageViewController()
+                    vipPackageVc.username = currentUserName
+                    vipPackageVc.vipBuySuccessHandle = { [weak self] in
+                        self?.reloadProfileChange()
+                    }
+                    self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+                    self.navigationController?.pushViewController(vipPackageVc, animated: true)
+                case 1:
+                    let accountVc = TDAccountViewController(environment: environment)
+                    self.navigationController?.pushViewController(accountVc, animated: true)
+                default:
+                     print("扫码登录")
+                }
+            }
+            else if indexPath.section == 2 {
+//                switch indexPath.row {
+//                case 0:
+//                default:
+//                }
+            }
+            else {
+                switch indexPath.row {
+                case 0:
+                    print("关于我们")
+                default:
+                    environment.router?.showMySettings(controller: self,logoutHandle:{
+                        self.logoutAction()
+                    })
+                }
+            }
+        }
     }
 }
 
