@@ -178,6 +178,8 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     
         if indexPath.section == 0 {
+            let userVc = TDUserMsgViewController(environment: environment)
+            self.navigationController?.pushViewController(userVc, animated: true)
         }
         else {
             if indexPath.section == 1 {
@@ -199,15 +201,23 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
                 }
             }
             else if indexPath.section == 2 {
-//                switch indexPath.row {
-//                case 0:
-//                default:
-//                }
+                switch indexPath.row {
+                case 0:
+                    let feedbackVc = TDFeedbackViewController()
+                    self.navigationController?.pushViewController(feedbackVc, animated: true)
+                default:
+                    
+                    guard let url = OEXConfig.shared().appUpgradeConfig.iOSAppStoreURL() as URL?,
+                        UIApplication.shared.canOpenURL(url) else {
+                        return
+                    }
+                    UIApplication.shared.openURL(url)
+                }
             }
             else {
                 switch indexPath.row {
                 case 0:
-                    print("关于我们")
+                    self.navigationController?.pushViewController(TDAboutViewController(), animated: true)
                 default:
                     environment.router?.showMySettings(controller: self,logoutHandle:{
                         self.logoutAction()
