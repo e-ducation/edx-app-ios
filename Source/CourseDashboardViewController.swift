@@ -72,7 +72,7 @@ class CourseDashboardViewController: UITabBarController, UITabBarControllerDeleg
         if course.course_about != nil && environment.config.courseSharingEnabled {
             let shareImage = UIImage(named: "shareCourse.png")?.withRenderingMode(.alwaysTemplate)
             shareButton.setImage(shareImage, for: .normal)
-            shareButton.tintColor = environment.styles.primaryBaseColor()
+            shareButton.tintColor = .black
             shareButton.accessibilityLabel = Strings.Accessibility.shareACourse
             shareButton.oex_removeAllActions()
             shareButton.oex_addAction({[weak self] _ in

@@ -41,12 +41,15 @@ class TDSearchTopView: UIView {
             }, for: .touchUpInside)
         
         inputTextField.oex_addAction({ [weak self](_) in
-            if self?.inputTextField.markedTextRange == nil { //确认输入内容后，为nil
-                self?.delegate?.inputTextFieldValueChange(searchText: self?.inputTextField.text ?? "")
-            }
-//            print("markedTextRange---->>> %@",self?.inputTextField.markedTextRange as Any)
-            self?.deleteButton.isHidden = self?.inputTextField.text?.count == 0
+            self?.dealSearchText()
         }, for: .editingChanged)
+    }
+    
+    func dealSearchText() {
+        if self.inputTextField.markedTextRange == nil { //确认输入内容后，为nil
+            self.delegate?.inputTextFieldValueChange(searchText: self.inputTextField.text ?? "")
+        }
+        self.deleteButton.isHidden = self.inputTextField.text?.count == 0
     }
     
     required init?(coder aDecoder: NSCoder) {
