@@ -14,7 +14,7 @@ protocol TDFeedbackInputDelegate: class {
 
 class TDFeedbackInputCell: UITableViewCell {
 
-    static let MaxCount = 100
+    let maxCount = 100
     weak var delegate: TDFeedbackInputDelegate?
     
     let inputTextView = UITextView()
@@ -54,7 +54,7 @@ class TDFeedbackInputCell: UITableViewCell {
         
         numLabel.font = UIFont(name: "PingFangSC-Regular", size: 14)
         numLabel.textColor = UIColor(hexString: "#aab2bd")
-        numLabel.text = "0/\(TDFeedbackInputCell.MaxCount)"
+        numLabel.text = "0/\(maxCount)"
         contentView.addSubview(numLabel)
     }
     
@@ -81,7 +81,10 @@ extension TDFeedbackInputCell: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         if textView.markedTextRange == nil {
-            numLabel.text = "\(textView.text.count)/\(TDFeedbackInputCell.MaxCount)"
+            if textView.text.count >= maxCount {//复制粘贴字数处理
+                textView.text = String(textView.text.prefix(maxCount))
+            }
+            numLabel.text = "\(textView.text.count)/\(maxCount)"
         }
     }
     
@@ -94,7 +97,7 @@ extension TDFeedbackInputCell: UITextViewDelegate {
         if text == "" {//删除
             return true
         }
-        if range.location >= TDFeedbackInputCell.MaxCount {
+        if range.location >= maxCount {
             return false
         }
         return true

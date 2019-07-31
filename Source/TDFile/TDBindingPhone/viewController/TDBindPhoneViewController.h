@@ -10,6 +10,7 @@
 
 @interface TDBindPhoneViewController : UIViewController
 
+@property (nonatomic,strong) NSString *phoneStr;
 @property (nonatomic,strong) void(^bindingPhoneSuccess)(void);
 
 @end

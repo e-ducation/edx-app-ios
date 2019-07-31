@@ -16,4 +16,6 @@
 @property (nonatomic,strong) UITextField *phoneText;
 @property (nonatomic,strong) UITextField *codeText;
 
+@property (nonatomic,strong) UILabel *bindLabel;
+
 @end

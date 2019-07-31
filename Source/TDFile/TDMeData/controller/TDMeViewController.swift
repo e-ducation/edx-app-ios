@@ -14,14 +14,11 @@ class TDMeViewController: UIViewController {
     
     typealias Environment =  OEXAnalyticsProvider & OEXConfigProvider & OEXSessionProvider & OEXStylesProvider & OEXRouterProvider & DataManagerProvider & NetworkManagerProvider
     fileprivate let environment: Environment
-    
-    private var vipStatus: Int
-    private var vipRemainDays: Int
+    private var profile: UserProfile?
+    private var profileFeed: Feed<UserProfile>?
     
     init(environment: Environment) {
         self.environment = environment
-        self.vipStatus = environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.vip_status ?? 1
-        self.vipRemainDays = environment.dataManager.userProfileManager.feedForCurrentUser().output.value?.vip_remain_days ?? 0
         super.init(nibName: nil, bundle :nil)
     }
     
@@ -33,6 +30,7 @@ class TDMeViewController: UIViewController {
         super.viewDidLoad()
         
         configureViews()
+        setupProfileLoader()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,13 +54,27 @@ class TDMeViewController: UIViewController {
         }
     }
     
+    private func setupProfileLoader() {
+        guard environment.config.profilesEnabled else { return }
+        profileFeed = environment.dataManager.userProfileManager.feedForCurrentUser()
+        
+        profileFeed?.output.listen(self,  success: {[weak self] profile in
+            
+            self?.profile = profile
+            self?.tableView.reloadData()
+            
+            }, failure : { _ in
+                Logger.logError("Profiles", "Unable to fetch profile")
+        })
+        profileFeed?.refresh()
+    }
+    
     private func reloadProfileChange() {
         let feed = environment.dataManager.userProfileManager.feedForCurrentUser()
         feed.refresh()
         feed.output.listenOnce(self, fireIfAlreadyLoaded: false) { result in
             if let newProf = result.value {
-                self.vipStatus = newProf.vip_status ?? 1
-                self.vipRemainDays = newProf.vip_remain_days ?? 0
+                self.profile = newProf
                 self.tableView.reloadData()
             }
             else {
@@ -79,6 +91,7 @@ class TDMeViewController: UIViewController {
         UserDefaults.standard.setValue("", forKey: HARVARD_DAYS + username)
         self.environment.router?.logout()
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -108,6 +121,9 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = TDMeDataCell(style: .default, reuseIdentifier: TDMeDataCell.identifier)
             cell.accessoryType = .none
+            if let profile = self.profile {
+                cell.showProfileData(profile: profile, networkManager: environment.networkManager)
+            }
             return cell
         }
         else {
@@ -119,7 +135,14 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
                 case 0:
                     cell.imageStr = "me_vip_membership"
                     cell.title = "会员资格"
-                    cell.mesage = "未购买"
+                    switch self.profile?.vip_status {
+                    case 1:
+                        cell.mesage = Strings.noPurchased
+                    case 2:
+                        cell.mesage = Strings.vipDays(number: self.profile?.vip_remain_days ?? 0)
+                    default:
+                        cell.mesage = Strings.expiredText
+                    }
                 case 1:
                     cell.imageStr = "me_account_manager"
                     cell.title = "账号管理"
@@ -178,7 +201,10 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     
         if indexPath.section == 0 {
-            let userVc = TDUserMsgViewController(environment: environment)
+            guard let profile = profile else {
+                return
+            }
+            let userVc = TDUserMsgViewController(profile: profile, environment: environment)
             self.navigationController?.pushViewController(userVc, animated: true)
         }
         else {

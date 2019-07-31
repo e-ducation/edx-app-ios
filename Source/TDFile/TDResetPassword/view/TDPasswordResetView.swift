@@ -10,8 +10,8 @@ import UIKit
 
 class TDPasswordResetView: UIView {
 
-    let titleLabel = UILabel()
-    let inputTextFeld = LogistrationTextField()
+    let line = UILabel()
+    let inputTextFeld = UITextField()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,22 +26,23 @@ class TDPasswordResetView: UIView {
     func initView() {
         
         self.backgroundColor = UIColor.white
+        
         inputTextFeld.isSecureTextEntry = true
-        inputTextFeld.font = UIFont(name: "PingFangSC-Regular", size: 14)
-        self.addSubview(titleLabel)
+        inputTextFeld.font = UIFont(name: "PingFangSC-Regular", size: 16)
+        inputTextFeld.textColor = UIColor(hexString: "#2e313c")
         self.addSubview(inputTextFeld)
         
-        titleLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(32)
-            make.top.equalTo(self).offset(8)
-            make.height.equalTo(25)
+        line.backgroundColor = UIColor(hexString: "#eff2f6")
+        self.addSubview(line)
+        
+        line.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(self)
+            make.height.equalTo(1.0)
         }
         
         inputTextFeld.snp.makeConstraints { (make) in
-            make.left.equalTo(titleLabel)
-            make.right.equalTo(self).offset(-32)
-            make.top.equalTo(titleLabel.snp.bottom)
-            make.height.equalTo(41)
+            make.left.right.top.equalTo(self)
+            make.bottom.equalTo(line.snp.top)
         }
     }
 }

@@ -948,12 +948,12 @@
 /* 月均99.84元，畅享在线MBA体系化学习！Enjoy MBA-like curriculum online with only ¥99.84/month! */
 "MBA_ONLINE_PRICE" = "月均99.84元，畅享在线MBA体系化学习！";
 
-/*原密码     Old Password*/
-"OLD_PASSWORD" = "原密码";
+/*请输入旧密码     Old Password*/
+"OLD_PASSWORD" = "请输入旧密码";
 /*新密码     New Password*/
-"NEW_PASSWORD" = "新密码";
-/*重新输入新密码    Confirm Password*/
-"CONFIRM_PASSWORD" = "重新输入新密码";
+"NEW_PASSWORD" = "请输入新密码";
+/*再次确认新密码    Confirm Password*/
+"CONFIRM_PASSWORD" = "再次确认新密码";
 /*密码至少6个字符  Password must be at least 6 characters.*/
 "LEAST_SIX_CHARACTER" = "密码至少6个字符";
 /*密码修改成功      Password modified successfully.*/
