@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = [Strings bindCellphoneTitle];
+    self.navigationItem.title = @"";
     [self setViewConstraint];
 }
 
@@ -154,13 +154,11 @@
     self.phoneView.sendButton.userInteractionEnabled = NO;
     self.timeNum -= 1;
     [self.phoneView.sendButton setTitle:[NSString stringWithFormat:@"%ds",self.timeNum] forState:UIControlStateNormal];
-    self.phoneView.sendButton.backgroundColor = [UIColor colorWithHexString:@"#d3d3d3"];
     
     if (self.timeNum <= 0) {
         [self timerInvalidate];
         self.phoneView.sendButton.userInteractionEnabled = YES;
         [self.phoneView.sendButton setTitle:[Strings getVerification] forState:UIControlStateNormal];
-        self.phoneView.sendButton.backgroundColor = [UIColor colorWithHexString:@"#0692e1"];
     }
 }
 
@@ -278,12 +276,10 @@
 
 - (void)sendButtonUserEnable:(BOOL)enable {
     self.phoneView.sendButton.userInteractionEnabled = enable;
-    self.phoneView.sendButton.backgroundColor = [UIColor colorWithHexString:enable ? @"#0692e1" : @"#d3d3d3"];
     [self.phoneView.sendButton setTitle:[Strings getVerification] forState:UIControlStateNormal];
 }
 
 - (void)handinButtonUserEnable:(BOOL)enable {
-    
     self.phoneView.handinButton.userInteractionEnabled = enable;
     self.phoneView.handinButton.backgroundColor = [UIColor colorWithHexString:enable ? @"#0692e1" : @"#d3d3d3"];
 }
@@ -302,6 +298,10 @@
     [self.phoneView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.mas_equalTo(self.view);
     }];
+    
+    if (self.phoneStr.length > 0) {
+        self.phoneView.bindLabel.text = [NSString stringWithFormat:@"当前绑定的手机号：%@",self.phoneStr];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

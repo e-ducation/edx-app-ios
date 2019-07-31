@@ -114,6 +114,7 @@ extension TDAccountViewController: UITableViewDelegate,UITableViewDataSource {
             bindPhoneVC.bindingPhoneSuccess = { [weak self] in
                 self?.reloadProfileChange()
             }
+            bindPhoneVC.phoneStr = self.phoneStr
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             self.navigationController?.pushViewController(bindPhoneVC, animated: true)
         default:

@@ -968,11 +968,11 @@
 /* 月均99.84元，畅享在线MBA体系化学习！Enjoy MBA-like curriculum online with only ¥99.84/month! */
 "MBA_ONLINE_PRICE" = "Enjoy MBA-like curriculum online with only ¥99.84/month!";
 
-/*原密码     Old Password*/
+/*请输入旧密码     Old Password*/
 "OLD_PASSWORD" = "Old Password";
-/*新密码     New Password*/
+/*请输入新密码     New Password*/
 "NEW_PASSWORD" = "New Password";
-/*重新输入新密码    Confirm Password*/
+/*再次确认新密码    Confirm Password*/
 "CONFIRM_PASSWORD" = "Confirm Password";
 /*密码至少6个字符  Password must be at least 6 characters.*/
 "LEAST_SIX_CHARACTER" = "Password must be at least 6 characters.";

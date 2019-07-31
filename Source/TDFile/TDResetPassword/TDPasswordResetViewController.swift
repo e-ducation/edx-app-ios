@@ -14,12 +14,12 @@ class TDPasswordResetViewController: UIViewController, UITextFieldDelegate {
     var newView = TDPasswordResetView()
     var repeatView = TDPasswordResetView()
     var handinButton = SpinnerButton()
-    var warmLabel = UILabel()
+    var titleLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = Strings.passwordResetTitle
+        self.title = ""
         initView()
     }
     
@@ -187,59 +187,61 @@ class TDPasswordResetViewController: UIViewController, UITextFieldDelegate {
     //MARK: UI
     func initView() {
         view.backgroundColor = UIColor.white
+        
+        titleLabel.font = UIFont(name: "PingFang-SC-Medium", size: 22)
+        titleLabel.textColor = UIColor(hexString: "#2e313c")
+        titleLabel.text = Strings.passwordResetTitle
+        view.addSubview(titleLabel)
+        
         handinButton.backgroundColor = UIColor(hexString: "#d3d3d3")
         handinButton.layer.cornerRadius = 4.0
         handinButton.titleLabel?.font = UIFont(name: "PingFangSC-Regular", size: 16)
         handinButton.setTitle(Strings.submitText, for: .normal)
         handinButton.addTarget(self, action: #selector(handinButtonAction), for: .touchUpInside)
         handinButton.isUserInteractionEnabled = false
-        
-        let titleStyle = OEXTextStyle(weight: .normal, size: .base, color : OEXStyles.shared().neutralDark())
-        originView.titleLabel.attributedText = titleStyle.attributedString(withText: Strings.oldPassword)
-        newView.titleLabel.attributedText = titleStyle.attributedString(withText: Strings.newPassword)
-        repeatView.titleLabel.attributedText = titleStyle.attributedString(withText: Strings.confirmPassword)
-        
-        let warmStyle = OEXTextStyle(weight: .normal, size: .small, color : OEXStyles.shared().neutralDark())
-        warmLabel.attributedText = warmStyle.attributedString(withText: Strings.leastSixCharacter)
-        
-        originView.inputTextFeld.delegate = self
-        newView.inputTextFeld.delegate = self
-        repeatView.inputTextFeld.delegate = self
-        
-        view.addSubview(originView)
-        view.addSubview(newView)
-        view.addSubview(repeatView)
         view.addSubview(handinButton)
-        view.addSubview(warmLabel)
+        
+        originView.inputTextFeld.placeholder = Strings.oldPassword
+        originView.inputTextFeld.delegate = self
+        view.addSubview(originView)
+        
+        newView.inputTextFeld.placeholder = Strings.newPassword
+        newView.inputTextFeld.delegate = self
+        view.addSubview(newView)
+        
+        repeatView.inputTextFeld.placeholder = Strings.confirmPassword
+        repeatView.inputTextFeld.delegate = self
+        view.addSubview(repeatView)
+        
+        titleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(view)
+            make.top.equalTo(view).offset(25)
+            make.height.equalTo(33)
+        }
         
         originView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(self.view)
-            make.top.equalTo(view).offset(StandardHorizontalMargin)
-            make.height.equalTo(74.0)
+            make.left.equalTo(self.view).offset(28)
+            make.right.equalTo(self.view).offset(-18)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+            make.height.equalTo(44)
         }
         
         newView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(self.view)
-            make.top.equalTo(originView.snp.bottom)
-            make.height.equalTo(74.0)
+            make.left.right.equalTo(self.originView)
+            make.top.equalTo(originView.snp.bottom).offset(20)
+            make.height.equalTo(44)
         }
         
         repeatView.snp.makeConstraints { (make) in
-            make.left.right.equalTo(self.view)
-            make.top.equalTo(newView.snp.bottom)
-            make.height.equalTo(74.0)
+            make.left.right.equalTo(self.originView)
+            make.top.equalTo(newView.snp.bottom).offset(20)
+            make.height.equalTo(44)
         }
         
         handinButton.snp.makeConstraints { (make) in
-            make.left.equalTo(view).offset(32)
-            make.right.equalTo(view).offset((-32))
-            make.top.equalTo(repeatView.snp.bottom).offset(35)
-            make.height.equalTo(41)
-        }
-        
-        warmLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(view).offset(32)
-            make.top.equalTo(repeatView.snp.bottom).offset(5)
+            make.left.right.equalTo(self.originView)
+            make.top.equalTo(repeatView.snp.bottom).offset(33)
+            make.height.equalTo(46)
         }
     }
 

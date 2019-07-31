@@ -12,7 +12,7 @@ class TDMeDataCell: UITableViewCell {
     
     static let identifier = "TDMeDataCell"
     
-    private var headerImage = UIImageView()
+    private var headerImage = ProfileImageView()
     private var titleLabel = UILabel()
     private var messageLabel = UILabel()
     
@@ -23,12 +23,14 @@ class TDMeDataCell: UITableViewCell {
         setViewConstraint()
     }
     
+    func showProfileData(profile: UserProfile, networkManager: NetworkManager) {
+        headerImage.remoteImage = profile.image(networkManager: networkManager)
+        titleLabel.text = profile.username
+    }
+    
     func configView() {
         backgroundColor = UIColor.white
         
-        headerImage.layer.masksToBounds = true
-        headerImage.layer.cornerRadius = 28.0
-        headerImage.image = UIImage(named: "defalit_person")
         headerImage.contentMode = .scaleAspectFit
         contentView.addSubview(headerImage)
         

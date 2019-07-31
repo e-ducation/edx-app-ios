@@ -186,13 +186,13 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
         guard environment.config.profilesEnabled else { return }
         profileFeed = environment.dataManager.userProfileManager.feedForCurrentUser()
         
-        profileFeed?.output.listen(self,  success: {[weak self] profile in
-            if let weakSelf = self {
-                weakSelf.userProfileImageView.remoteImage = profile.image(networkManager: weakSelf.environment.networkManager)
-            }
-        }, failure : { _ in
-            Logger.logError("Profiles", "Unable to fetch profile")
-        })
+//        profileFeed?.output.listen(self,  success: {[weak self] profile in
+//            if let weakSelf = self {
+//                weakSelf.userProfileImageView.remoteImage = profile.image(networkManager: weakSelf.environment.networkManager)
+//            }
+//        }, failure : { _ in
+//            Logger.logError("Profiles", "Unable to fetch profile")
+//        })
         profileFeed?.refresh()
     }
 
