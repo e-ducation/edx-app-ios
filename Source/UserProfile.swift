@@ -28,6 +28,7 @@ public class UserProfile {
         case ParentalConsent = "requires_parental_consent"
         case AccountPrivacy = "account_privacy"
         case Phone = "phone"
+        case Gender = "gender"
         case VipStatus = "vip_status" //1：未购买，2：已购买未过期，3：购买过，但是过期了
         case VipRemainDays = "vip_remain_days"//剩余天数，正数就是还有多少天，负数就是过期了多少天
         case HmmRemainingDays = "hmm_remaining_days" //哈佛：剩余有效天数 int 大于0就是会员期内
@@ -46,6 +47,7 @@ public class UserProfile {
     let parentalConsent: Bool?
     var accountPrivacy: ProfilePrivacy?
     let phone: String?
+    var gender: String?
     let vip_status: Int?
     let vip_remain_days: Int?
     let hmm_remaining_days: Int?
@@ -72,6 +74,7 @@ public class UserProfile {
         parentalConsent = json[ProfileFields.ParentalConsent].bool
         accountPrivacy = ProfilePrivacy(rawValue: json[ProfileFields.AccountPrivacy].string ?? "")
         phone = json[ProfileFields.Phone].string
+        gender = json[ProfileFields.Gender].string
         vip_status = json[ProfileFields.VipStatus].int
         vip_remain_days = json[ProfileFields.VipRemainDays].int
         hmm_remaining_days = json[ProfileFields.HmmRemainingDays].int
@@ -80,7 +83,7 @@ public class UserProfile {
 //        print("个人信息：\(json)")
     }
     
-    internal init(username : String, bio : String? = nil, parentalConsent : Bool? = false, countryCode : String? = nil, accountPrivacy : ProfilePrivacy? = nil, phone: String? = nil, vip_status: Int? = 1, vip_remain_days: Int? = 0, hmm_remaining_days: Int? = 0, hmm_expiry_date: String? = "", hmm_entry_url: String? = "") {
+    internal init(username : String, bio : String? = nil, parentalConsent : Bool? = false, countryCode : String? = nil, accountPrivacy : ProfilePrivacy? = nil, phone: String? = nil, gender: String? = nil, vip_status: Int? = 1, vip_remain_days: Int? = 0, hmm_remaining_days: Int? = 0, hmm_expiry_date: String? = "", hmm_entry_url: String? = "") {
         self.accountPrivacy = accountPrivacy
         self.username = username
         self.hasProfileImage = false
@@ -89,6 +92,7 @@ public class UserProfile {
         self.bio = bio
         self.countryCode = countryCode
         self.phone = phone
+        self.gender = gender
         self.vip_status = vip_status
         self.vip_remain_days = vip_remain_days
         self.hmm_remaining_days = hmm_remaining_days

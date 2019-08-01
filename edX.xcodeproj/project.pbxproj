@@ -663,6 +663,7 @@
 		A4B8BB6D226EBFA200A99CAC /* TDBannerCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B8BB6C226EBFA200A99CAC /* TDBannerCycleView.swift */; };
 		A4B8BB6F226EC13900A99CAC /* TDBannerFlowlayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B8BB6E226EC13900A99CAC /* TDBannerFlowlayout.swift */; };
 		A4B8BB71226EC17E00A99CAC /* TDBannerCycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B8BB70226EC17E00A99CAC /* TDBannerCycleCell.swift */; };
+		A4B9233C22F276EF00987572 /* TDSelectSexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B9233B22F276EF00987572 /* TDSelectSexView.swift */; };
 		A4D4BC542266F8D0003ABC8F /* TDRecommendCoureseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D4BC532266F8D0003ABC8F /* TDRecommendCoureseCell.swift */; };
 		A4D4BC5622671846003ABC8F /* TDCategoryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D4BC5522671846003ABC8F /* TDCategoryItemCell.swift */; };
 		A4E06CAD22E6BF0F00AB2B9D /* TDStudyCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E06CAC22E6BF0F00AB2B9D /* TDStudyCourseViewController.swift */; };
@@ -1768,6 +1769,7 @@
 		A4B8BB6C226EBFA200A99CAC /* TDBannerCycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDBannerCycleView.swift; sourceTree = "<group>"; };
 		A4B8BB6E226EC13900A99CAC /* TDBannerFlowlayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDBannerFlowlayout.swift; sourceTree = "<group>"; };
 		A4B8BB70226EC17E00A99CAC /* TDBannerCycleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDBannerCycleCell.swift; sourceTree = "<group>"; };
+		A4B9233B22F276EF00987572 /* TDSelectSexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSelectSexView.swift; sourceTree = "<group>"; };
 		A4D4BC532266F8D0003ABC8F /* TDRecommendCoureseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDRecommendCoureseCell.swift; sourceTree = "<group>"; };
 		A4D4BC5522671846003ABC8F /* TDCategoryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDCategoryItemCell.swift; sourceTree = "<group>"; };
 		A4E06CAC22E6BF0F00AB2B9D /* TDStudyCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDStudyCourseViewController.swift; sourceTree = "<group>"; };
@@ -3600,6 +3602,7 @@
 				A4AF323922EE99AA000B40E8 /* TDFeedbackImageCell.swift */,
 				A4AF323B22EE99D8000B40E8 /* TDFeedbackContactCell.swift */,
 				A4AF323D22EFFCAE000B40E8 /* TDFeedbackImageItemCell.swift */,
+				A4B9233B22F276EF00987572 /* TDSelectSexView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -5460,6 +5463,7 @@
 				BD7C6C3E1DCA32370004D135 /* OEXFonts.swift in Sources */,
 				2231FF4D1F7A5F23002F3549 /* AnswerAnalyticsTracker.swift in Sources */,
 				E00523431CF81D9800B7F5C3 /* DiscussionBlockViewController.swift in Sources */,
+				A4B9233C22F276EF00987572 /* TDSelectSexView.swift in Sources */,
 				B70BD00720B57E89005F0D19 /* OEXTabBarItemsCell.m in Sources */,
 				E02F65681E8B94CC000D1C4E /* TZSpacerView.swift in Sources */,
 				5DD0FFCF1B1D225C00837121 /* DiscussionNewPostViewController.swift in Sources */,

@@ -14,6 +14,7 @@ class TDUserMsgViewController: UIViewController {
     let tableView = UITableView()
     let headerImage = ProfileImageView()
     let cameraButton = UIButton()
+    let pickerView = TDSelectSexView()
     
     var imagePicker: ProfilePictureTaker?
     var profile: UserProfile
@@ -54,6 +55,14 @@ class TDUserMsgViewController: UIViewController {
         tableView.snp.makeConstraints { (make) in
             make.left.right.top.bottom.equalTo(self.view);
         }
+        
+        pickerView.isHidden = true
+        pickerView.delegate = self
+        self.view.addSubview(pickerView)
+        
+        pickerView.snp.makeConstraints { (make) in
+            make.left.right.top.bottom.equalTo(self.view)
+        }
     }
     
     func configTableHeaderView() -> UIView {
@@ -62,8 +71,7 @@ class TDUserMsgViewController: UIViewController {
         
         cameraButton.setImage(UIImage(named: "camera_image"), for: .normal)
         cameraButton.oex_addAction({ [weak self](_) in
-            self?.imagePicker = ProfilePictureTaker(delegate: self!)
-            self?.imagePicker?.start(alreadyHasImage: self!.profile.hasProfileImage)
+            self?.changeUserHeaderImage()
         }, for: .touchUpInside)
         headerView.addSubview(cameraButton)
         
@@ -82,18 +90,13 @@ class TDUserMsgViewController: UIViewController {
         return headerView
     }
     
-    private func reloadProfileChange() {
-        let feed = environment.dataManager.userProfileManager.feedForCurrentUser()
-        feed.refresh()
-        feed.output.listenOnce(self, fireIfAlreadyLoaded: false) { result in
-            if let newProf = result.value {
-                self.phoneStr = newProf.phone ?? ""
-                self.tableView.reloadData()
-            }
-            else {
-                self.view.makeToast(Strings.Profile.unableToGet, duration: 0.8, position: CSToastPositionCenter)
-            }
+    func changeUserHeaderImage() {
+        guard profile.sharingLimitedProfile == false else {
+            self.view.makeToast("未满13岁不允许修改头像，仅显示默认头像。默认年龄为0岁，请注意修改。", duration: 0.8, position: CSToastPositionCenter)
+            return
         }
+        self.imagePicker = ProfilePictureTaker(delegate: self)
+        self.imagePicker?.start(alreadyHasImage: self.profile.hasProfileImage)
     }
 }
 
@@ -201,7 +204,19 @@ extension TDUserMsgViewController: UITableViewDelegate,UITableViewDataSource {
             cell?.detailTextLabel?.text = profile.username
         case 1:
             cell?.textLabel?.text = "性别"
-            cell?.detailTextLabel?.text = "请选择"
+            var str = "请选择"
+            if let gender = profile.gender {
+                if  gender == "m" {
+                    str = "男"
+                }
+                else if gender == "f" {
+                    str = "女"
+                }
+                else {
+                    str = "保密"
+                }
+            }
+            cell?.detailTextLabel?.text = str
         case 2:
             cell?.textLabel?.text = "出生年份"
             if let year = profile.birthYear {
@@ -230,7 +245,7 @@ extension TDUserMsgViewController: UITableViewDelegate,UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.row == 1 {
-            
+            showSexPicker()
         }
         else if indexPath.row == 2 {
             chooseYearVc()
@@ -239,7 +254,29 @@ extension TDUserMsgViewController: UITableViewDelegate,UITableViewDataSource {
             editeUserBio()
         }
     }
+}
+
+extension TDUserMsgViewController: TDSelectSexViewDelegate {
+    func showSexPicker() {
+        pickerView.isHidden = false
+        pickerView.showSheetViewAnimate(sex: self.profile.gender)
+    }
     
+    //MARK: TDSelectSexViewDelegate
+    func selectButtonClickSex(sex: String?) {
+        pickerView.isHidden = true
+        if profile.gender != sex {
+            self.profile.updateDictionary["gender"] = sex as AnyObject
+            self.profile.gender = sex
+            updateProfile()
+        }
+    }
+    
+    func cancelChooseUserSex() {
+        pickerView.isHidden = true
+    }
+    
+    //MARK: 个性签名
     func editeUserBio() {
         let textController = TDInputMsgViewController()
         textController.originText = profile.bio
@@ -249,7 +286,7 @@ extension TDUserMsgViewController: UITableViewDelegate,UITableViewDataSource {
             }
             self.profile.bio = value
             self.updateProfile()
-            print(value)
+            //            print(value)
         }
         self.navigationController?.pushViewController(textController, animated: true)
     }
@@ -262,7 +299,7 @@ extension TDUserMsgViewController: UITableViewDelegate,UITableViewDataSource {
         let titles = range.map { String($0)} .reversed()
         tableData = titles.map { ChooserDatum(value: $0, title: $0, attributedTitle: nil) }
         
-//        tableData.insert(ChooserDatum(value: "--", title: "保密", attributedTitle: nil), at: 0)
+        //        tableData.insert(ChooserDatum(value: "--", title: "保密", attributedTitle: nil), at: 0)
         
         var defaultRow = 0
         if let alreadySetValue = profile.birthYear.flatMap({ String($0) }) {
@@ -278,13 +315,8 @@ extension TDUserMsgViewController: UITableViewDelegate,UITableViewDataSource {
         selectionController.subInstructions = "此信息不会被公开显示"
         
         selectionController.doneChoosing = { value in
-//            if value != nil && value! == "--" {
-//                self.profileValue(value: nil)
-//            }
-//            else {
-                self.profileValue(value: value)
-//            }
-            print("---->>>",value, self.profile.birthYear)
+            self.profileValue(value: value)
+            //            print("---->>>",value, self.profile.birthYear)
         }
         self.navigationController?.pushViewController(selectionController, animated: true)
     }
@@ -305,6 +337,8 @@ extension TDUserMsgViewController: UITableViewDelegate,UITableViewDataSource {
                 if let newProf = result.value {
                     self?.profile = newProf
                     self?.tableView.reloadData()
+                    //13岁前无头像
+                    self?.headerImage.remoteImage = newProf.image(networkManager: (self?.environment.networkManager)!)
                 }
                 else {
                     let message = Strings.Profile.unableToSend
