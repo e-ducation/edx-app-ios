@@ -664,6 +664,8 @@
 		A4B8BB6F226EC13900A99CAC /* TDBannerFlowlayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B8BB6E226EC13900A99CAC /* TDBannerFlowlayout.swift */; };
 		A4B8BB71226EC17E00A99CAC /* TDBannerCycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B8BB70226EC17E00A99CAC /* TDBannerCycleCell.swift */; };
 		A4B9233C22F276EF00987572 /* TDSelectSexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B9233B22F276EF00987572 /* TDSelectSexView.swift */; };
+		A4B9233E22F2CECF00987572 /* TDScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B9233D22F2CECF00987572 /* TDScanQRViewController.swift */; };
+		A4B9234022F2CEFA00987572 /* TDScanQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B9233F22F2CEFA00987572 /* TDScanQRView.swift */; };
 		A4D4BC542266F8D0003ABC8F /* TDRecommendCoureseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D4BC532266F8D0003ABC8F /* TDRecommendCoureseCell.swift */; };
 		A4D4BC5622671846003ABC8F /* TDCategoryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D4BC5522671846003ABC8F /* TDCategoryItemCell.swift */; };
 		A4E06CAD22E6BF0F00AB2B9D /* TDStudyCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E06CAC22E6BF0F00AB2B9D /* TDStudyCourseViewController.swift */; };
@@ -1770,6 +1772,8 @@
 		A4B8BB6E226EC13900A99CAC /* TDBannerFlowlayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDBannerFlowlayout.swift; sourceTree = "<group>"; };
 		A4B8BB70226EC17E00A99CAC /* TDBannerCycleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDBannerCycleCell.swift; sourceTree = "<group>"; };
 		A4B9233B22F276EF00987572 /* TDSelectSexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSelectSexView.swift; sourceTree = "<group>"; };
+		A4B9233D22F2CECF00987572 /* TDScanQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDScanQRViewController.swift; sourceTree = "<group>"; };
+		A4B9233F22F2CEFA00987572 /* TDScanQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDScanQRView.swift; sourceTree = "<group>"; };
 		A4D4BC532266F8D0003ABC8F /* TDRecommendCoureseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDRecommendCoureseCell.swift; sourceTree = "<group>"; };
 		A4D4BC5522671846003ABC8F /* TDCategoryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDCategoryItemCell.swift; sourceTree = "<group>"; };
 		A4E06CAC22E6BF0F00AB2B9D /* TDStudyCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDStudyCourseViewController.swift; sourceTree = "<group>"; };
@@ -3583,6 +3587,7 @@
 				A43671D522EAD91D0083206B /* TDUserMsgViewController.swift */,
 				A43671D722EAE5290083206B /* TDInputMsgViewController.swift */,
 				A4AF322F22EE8CC9000B40E8 /* TDFeedbackViewController.swift */,
+				A4B9233D22F2CECF00987572 /* TDScanQRViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3603,6 +3608,7 @@
 				A4AF323B22EE99D8000B40E8 /* TDFeedbackContactCell.swift */,
 				A4AF323D22EFFCAE000B40E8 /* TDFeedbackImageItemCell.swift */,
 				A4B9233B22F276EF00987572 /* TDSelectSexView.swift */,
+				A4B9233F22F2CEFA00987572 /* TDScanQRView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -5495,6 +5501,7 @@
 				1A9A1E481B8F3BB8005AE336 /* OEXCheckBox.swift in Sources */,
 				A4FA40D621B0E2B50089CEBA /* TDWechatManager.m in Sources */,
 				46CECC3C1B041D270073C63A /* AdditionalTableViewCell.swift in Sources */,
+				A4B9233E22F2CECF00987572 /* TDScanQRViewController.swift in Sources */,
 				A4ED580E2266BC7500B0FA28 /* TDRecommendImageCell.swift in Sources */,
 				778F177A1C0D125A0099BF93 /* CoursesTableViewController.swift in Sources */,
 				77ADF4AF1AC1F80E00AC8955 /* OEXGoogleAuthProvider.m in Sources */,
@@ -5517,6 +5524,7 @@
 				77E647CE1C90CAB800B6740D /* NSAttributedString+OEXFormatting.m in Sources */,
 				E09B9D6B1D06C9700080BAE0 /* VersionUpgradeInfoController.swift in Sources */,
 				9E882B6A1BBA9825007347A2 /* DiscussionTopicCell.swift in Sources */,
+				A4B9234022F2CEFA00987572 /* TDScanQRView.swift in Sources */,
 				A46CEC0F226873920015FCBB /* TDArticleModel.swift in Sources */,
 				B7CCC72C209B16B100A66923 /* ConstraintView.swift in Sources */,
 				B4B285ED1A9B429200DD603A /* OEXNetworkUtility.m in Sources */,
