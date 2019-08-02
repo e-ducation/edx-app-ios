@@ -10,7 +10,7 @@ import UIKit
 
 class TDScanQRView: UIView {
     
-    let screenWidth = UIScreen.main.bounds.width*0.7
+    let qrWidth = UIScreen.main.bounds.width*0.7
     
     let topView = UIView()
     let bottomView = UIView()
@@ -25,8 +25,6 @@ class TDScanQRView: UIView {
         
         configView()
         setViewConstraint()
-        
-        print(lineImageView.bounds)
     }
     
     func startAnimation() {
@@ -34,7 +32,7 @@ class TDScanQRView: UIView {
         self.layoutIfNeeded()
         UIView.animate(withDuration: 2.0) {
             self.lineImageView.snp.updateConstraints { (make) in
-                make.top.equalTo(self.boxImageView).offset(self.screenWidth)
+                make.top.equalTo(self.boxImageView).offset(self.qrWidth)
                 make.left.equalTo(self.boxImageView).offset(5)
                 make.right.equalTo(self.boxImageView).offset(-5)
                 make.height.equalTo(2)
@@ -77,8 +75,9 @@ class TDScanQRView: UIView {
         
         boxImageView.snp.makeConstraints { (make) in
             make.centerX.equalTo(self)
-            make.centerY.equalTo(self).offset(-64)
-            make.size.equalTo(CGSize(width: screenWidth, height: screenWidth))
+//            make.centerY.equalTo(self).offset(-64)
+            make.top.equalTo(self).offset(120)
+            make.size.equalTo(CGSize(width: qrWidth, height: qrWidth))
         }
         
         topView.snp.makeConstraints { (make) in

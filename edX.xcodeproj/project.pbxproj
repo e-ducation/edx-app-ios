@@ -619,6 +619,8 @@
 		A42C644E22DF2FC9009A70D5 /* TDFindCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C644D22DF2FC9009A70D5 /* TDFindCourseCell.swift */; };
 		A430DAC12283D7AE0039BF60 /* TDPurchaseSqliteOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A430DABF2283D7AE0039BF60 /* TDPurchaseSqliteOperation.m */; };
 		A430DAC322840C8D0039BF60 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A430DAC222840C8D0039BF60 /* libsqlite3.0.tbd */; };
+		A432D32F22F40F40007B56E2 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = A432D32E22F40F40007B56E2 /* beep.wav */; };
+		A432D33122F42913007B56E2 /* TDAuthorConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432D33022F42913007B56E2 /* TDAuthorConfirmViewController.swift */; };
 		A43671D622EAD91D0083206B /* TDUserMsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43671D522EAD91D0083206B /* TDUserMsgViewController.swift */; };
 		A43671D822EAE5290083206B /* TDInputMsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43671D722EAE5290083206B /* TDInputMsgViewController.swift */; };
 		A436C69321C49B30003E7CEB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A436C69221C49B30003E7CEB /* StoreKit.framework */; };
@@ -1715,6 +1717,8 @@
 		A430DABF2283D7AE0039BF60 /* TDPurchaseSqliteOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDPurchaseSqliteOperation.m; sourceTree = "<group>"; };
 		A430DAC02283D7AE0039BF60 /* TDPurchaseSqliteOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDPurchaseSqliteOperation.h; sourceTree = "<group>"; };
 		A430DAC222840C8D0039BF60 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		A432D32E22F40F40007B56E2 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
+		A432D33022F42913007B56E2 /* TDAuthorConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDAuthorConfirmViewController.swift; sourceTree = "<group>"; };
 		A43671D522EAD91D0083206B /* TDUserMsgViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDUserMsgViewController.swift; sourceTree = "<group>"; };
 		A43671D722EAE5290083206B /* TDInputMsgViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDInputMsgViewController.swift; sourceTree = "<group>"; };
 		A436C69221C49B30003E7CEB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -3496,6 +3500,7 @@
 			isa = PBXGroup;
 			children = (
 				A423E0BD21B12B800093FBD3 /* TDPchHeader.h */,
+				A432D32E22F40F40007B56E2 /* beep.wav */,
 				A4AF323622EE996E000B40E8 /* TDExtension */,
 				A40004CC22CDE18E001B491E /* UMAPP */,
 				A4D4BC5722672996003ABC8F /* CycleView */,
@@ -3588,6 +3593,7 @@
 				A43671D722EAE5290083206B /* TDInputMsgViewController.swift */,
 				A4AF322F22EE8CC9000B40E8 /* TDFeedbackViewController.swift */,
 				A4B9233D22F2CECF00987572 /* TDScanQRViewController.swift */,
+				A432D33022F42913007B56E2 /* TDAuthorConfirmViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -5069,6 +5075,7 @@
 				BD7C6C401DCA329A0004D135 /* fonts.json in Resources */,
 				69ECC6021D50D1170030CF87 /* OpenSans-Italic.ttf in Resources */,
 				69ECC6481D50D1170030CF87 /* separator5.png in Resources */,
+				A432D32F22F40F40007B56E2 /* beep.wav in Resources */,
 				69ECC6141D50D1170030CF87 /* bt_blue2.png in Resources */,
 				B71AA1BD20CEF64D00700C5E /* data-science@2x.png in Resources */,
 				69ECC6321D50D1170030CF87 /* ic_download_arrow.png in Resources */,
@@ -5462,6 +5469,7 @@
 				224F1F532067B4E0009B3639 /* CustomSlider.swift in Sources */,
 				223972E11FE92BB500B2BBEC /* EnrolledTabBarViewController.swift in Sources */,
 				A437902522E99482007C172E /* TDMeDataCell.swift in Sources */,
+				A432D33122F42913007B56E2 /* TDAuthorConfirmViewController.swift in Sources */,
 				B4B6D6041A949EFC000F44E8 /* OEXRegistrationRestriction.m in Sources */,
 				77BFD86A1BB9E15B001D7BE5 /* Strings.swift in Sources */,
 				B4B285E81A9A662600DD603A /* OEXZeroRatingConfig.m in Sources */,
