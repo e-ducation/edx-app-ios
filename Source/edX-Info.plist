@@ -177,6 +177,8 @@
 	<string>so user can access photo librart</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>so you can select a profile image</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>so you can user Microphone</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>FontAwesome.ttf</string>
