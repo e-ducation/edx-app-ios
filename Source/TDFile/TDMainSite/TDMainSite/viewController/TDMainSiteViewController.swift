@@ -83,15 +83,8 @@ class TDMainSiteViewController: UIViewController {
         super.viewWillAppear(animated)
         
         showBindphoneAlertView()
-        
         hideNavgationBar()
-//        navigationController?.setNavigationBarHidden(true, animated: true)
-//        navigationController?.interactivePopGestureRecognizer?.delegate = self
-//        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-//
-//        //设置statusbar地变颜色
-//        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-//        statusBar.backgroundColor = .white
+
     }
     
     func getMainSiteData(isFirst: Bool) {

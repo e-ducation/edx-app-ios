@@ -31,10 +31,12 @@ class TDMeViewController: UIViewController {
         
         configureViews()
         setupProfileLoader()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         hideNavgationBar()
     }
     
@@ -92,6 +94,9 @@ class TDMeViewController: UIViewController {
         self.environment.router?.logout()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -211,19 +216,16 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
             if indexPath.section == 1 {
                 switch indexPath.row {
                 case 0:
-                    guard let currentUserName = environment.session.currentUser?.username else { break }
-                    let vipPackageVc = TDVipPackageViewController()
-                    vipPackageVc.username = currentUserName
-                    vipPackageVc.vipBuySuccessHandle = { [weak self] in
-                        self?.reloadProfileChange()
-                    }
-                    self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-                    self.navigationController?.pushViewController(vipPackageVc, animated: true)
+                    gotoVipVc()
                 case 1:
-                    let accountVc = TDAccountViewController(environment: environment)
-                    self.navigationController?.pushViewController(accountVc, animated: true)
+                    gotoAccountVc()
                 default:
-                     print("扫码登录")
+                    if profile?.isActive == true {
+                        self.navigationController?.pushViewController(TDScanQRViewController(), animated: true)
+                    }
+                    else {
+                      showAlertWarming()
+                    }
                 }
             }
             else if indexPath.section == 2 {
@@ -251,6 +253,33 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
                 }
             }
         }
+    }
+}
+
+extension TDMeViewController {
+    func gotoVipVc() {
+        guard let currentUserName = environment.session.currentUser?.username else { return }
+        let vipPackageVc = TDVipPackageViewController()
+        vipPackageVc.username = currentUserName
+        vipPackageVc.vipBuySuccessHandle = { [weak self] in
+            self?.reloadProfileChange()
+        }
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationController?.pushViewController(vipPackageVc, animated: true)
+    }
+    
+    func gotoAccountVc() {
+        let accountVc = TDAccountViewController(environment: environment)
+        self.navigationController?.pushViewController(accountVc, animated: true)
+    }
+    
+    func showAlertWarming() {
+        let alertController = UIAlertController(title: Strings.systemReminder, message: "请先查看激活邮件，激活该账号才可以使用扫码功能", preferredStyle: .alert)
+        let sureAction = UIAlertAction(title: Strings.ok, style: .default) { (_) in
+            
+        }
+        alertController.addAction(sureAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
