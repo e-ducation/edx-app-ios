@@ -232,6 +232,7 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
                 switch indexPath.row {
                 case 0:
                     let feedbackVc = TDFeedbackViewController()
+                    feedbackVc.username = profile?.username
                     self.navigationController?.pushViewController(feedbackVc, animated: true)
                 default:
                     
