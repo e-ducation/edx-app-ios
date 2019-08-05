@@ -95,7 +95,7 @@ class TDScanQRViewController: UIViewController {
         let screenWidth = UIScreen.main.bounds.width
         let qrWidth = screenWidth*0.7
         let gap = screenWidth*0.3
-        dataOutput.rectOfInterest = CGRect(x: 120/screenHeight, y: (gap/2)/screenWidth, width: qrWidth/screenHeight, height: 0.7)
+        dataOutput.rectOfInterest = CGRect(x: 208/screenHeight, y: (gap/2)/screenWidth, width: qrWidth/screenHeight, height: 0.7)
         
         // 5.添加预览图层
         self.scanQRView.layer.insertSublayer(previewLayer, at: 0)
@@ -140,6 +140,7 @@ class TDScanQRViewController: UIViewController {
     
     func gotoConfirmVc(urlStr: String) {
         let confirmVc = TDAuthorConfirmViewController()
+        confirmVc.authorUrl = urlStr
         confirmVc.popAction = { [weak self] in
             self?.navigationController?.popViewController(animated: false)
         }

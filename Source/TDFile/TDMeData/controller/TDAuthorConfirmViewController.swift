@@ -16,6 +16,7 @@ class TDAuthorConfirmViewController: UIViewController {
     let sureButton = UIButton()
     let cancelButton = UIButton()
     
+    var authorUrl: String?
     var popAction: (()->())?
     
     override func viewDidLoad() {
@@ -31,10 +32,41 @@ class TDAuthorConfirmViewController: UIViewController {
     }
     
     @objc func sureButtonAction() {
+        
+        guard let url = authorUrl, let host = OEXConfig.shared().apiHostURL()?.absoluteString else {
+            return
+        }
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        
+        let manager = AFHTTPSessionManager()
+        manager.requestSerializer = AFJSONRequestSerializer()
+        manager.requestSerializer.setValue(OEXAuthentication.authHeaderForApiAccess(), forHTTPHeaderField: "Authorization")
+        
+        let confirmUrl = host + url + "&confirm=true"
+        manager.get(confirmUrl, parameters: nil, progress: nil, success: { (task, response) in
+            print("扫码接口", response)
+            
+            let responseDic = response as! Dictionary<String, Any>
+            let code: Int = responseDic["code"] as! Int
+            self.popView(message: code == 200 ? "扫码登陆成功" : "扫码登陆失败")
+            
+        }) { (task, error) in
+            self.popView(message: "扫码登陆失败")
+        }
+    }
+    
+    func popView(message: String) {
+        SVProgressHUD.dismiss()
+        
         popAction?()
+        UIApplication.shared.keyWindow?.rootViewController?.view.makeToast("扫码登陆成功", duration: 1.03, position: CSToastPositionCenter)
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    //MARK: UI
     func configView() {
         self.view.backgroundColor = .white
         
@@ -73,14 +105,15 @@ class TDAuthorConfirmViewController: UIViewController {
             make.size.equalTo(CGSize(width: 33, height: 33))
         }
         
-        imageView.snp.makeConstraints { (make) in
+        let screenHeight = UIScreen.main.bounds.height
+        messageLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(dismissButton.snp.bottom).offset(screenHeight*0.3)
             make.centerX.equalTo(self.view)
-            make.top.equalTo(self.dismissButton.snp.bottom).offset(95)
         }
         
-        messageLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(imageView.snp.bottom).offset(18)
+        imageView.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)
+            make.bottom.equalTo(self.messageLabel.snp.top).offset(-18)
         }
         
         cancelButton.snp.makeConstraints { (make) in

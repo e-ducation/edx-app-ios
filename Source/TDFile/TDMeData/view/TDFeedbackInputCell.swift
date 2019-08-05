@@ -10,6 +10,7 @@ import UIKit
 
 protocol TDFeedbackInputDelegate: class {
     func feedbackInputText(inputText: String)
+    func feedbackInputDidChange(inputCount: Int)
 }
 
 class TDFeedbackInputCell: UITableViewCell {
@@ -85,6 +86,8 @@ extension TDFeedbackInputCell: UITextViewDelegate {
                 textView.text = String(textView.text.prefix(maxCount))
             }
             numLabel.text = "\(textView.text.count)/\(maxCount)"
+            
+            self.delegate?.feedbackInputDidChange(inputCount: textView.text.count)
         }
     }
     

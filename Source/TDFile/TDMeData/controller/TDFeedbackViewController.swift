@@ -13,6 +13,7 @@ class TDFeedbackViewController: UIViewController {
     let tableView = UITableView()
     let commitButton = UIButton()
     
+    var username: String?
     var textStr: String = ""
     var imageArray = Array<UIImage>()
     var contactStr: String = ""
@@ -38,9 +39,96 @@ class TDFeedbackViewController: UIViewController {
     
     @objc func commitButtonAction() {//提交
         self.tableView.endEditing(true)
-        
+        handinFeedback()
     }
     
+    func handinFeedback() {
+        
+        guard let name = username, let host = OEXConfig.shared().apiHostURL()?.absoluteString else {
+            return
+        }
+        
+        guard textStr.count > 0 else {
+            self.view.makeToast("请输入反馈内容", duration: 0.8, position: CSToastPositionCenter)
+            return
+        }
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+
+        let params = NSMutableDictionary()
+        params.setValue(name, forKey: "username")
+        params.setValue(textStr, forKey: "content")
+        
+        if contactStr.count > 0 {
+            params.setValue(contactStr, forKey: "contact")
+        }
+        
+//        if self.imageArray.count > 0 {
+//            var imageStr = ""
+//            for image in self.imageArray {
+//                if let data = UIImage.jpegData(image)(compressionQuality: 0.5) {
+//                        let dataStr = data.base64EncodedString(options: .lineLength64Characters)
+//                    let str = imageStr.count > 0 ? dataStr+"," : dataStr
+//                    imageStr.append(str)
+//                }
+//            }
+//            params.setValue(imageStr, forKey: "image_url")
+//        }
+        
+        let body: NSString = params.oex_stringByUsingFormEncoding() as NSString
+        let configuration : URLSessionConfiguration  = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = configuration.defaultHTTPHeaders() as? [AnyHashable : Any]
+        
+        let request : NSMutableURLRequest = NSMutableURLRequest(url:URL(string: host + "/user_feeback/")!)
+        request.httpMethod = "POST"
+        request.httpBody = body.data(using: String.Encoding.utf8.rawValue)
+        
+        let authValue = OEXAuthentication.authHeaderForApiAccess()
+        request.setValue(authValue, forHTTPHeaderField: "Authorization")
+        
+        let session: URLSession = URLSession(configuration: configuration)
+        let task : URLSessionDataTask = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+            }
+            
+            if error == nil {
+                let httpResp : HTTPURLResponse = response as! HTTPURLResponse
+                if httpResp.statusCode == 200 {
+                    do {
+                        let responDic = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as? [String : Any]
+                        print("提交反馈",responDic)
+                        
+                        let code : Int = responDic?["code"] as! Int
+                        if code == 200 {
+                            self.showToastView(toastStr: "提交成功")
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8 , execute:{
+                                self.navigationController?.popViewController(animated: true)
+                            })
+                        }
+                    }
+                    catch {
+                        
+                    }
+                }
+            }
+            else {
+                self.showToastView(toastStr: "提交失败")
+            }
+        }
+        task.resume()
+    }
+    
+    func showToastView(toastStr: String) {
+        DispatchQueue.main.sync {
+            self.view.makeToast(toastStr, duration: 0.8, position: CSToastPositionCenter)
+        }
+    }
+    
+    
+    //MARK: UI
     func configView() {
         view.backgroundColor = .white
         
@@ -59,7 +147,8 @@ class TDFeedbackViewController: UIViewController {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 110))
         footerView.backgroundColor = UIColor(hexString: "#f5f5f5")
         
-        commitButton.backgroundColor = UIColor(hexString: "#ccd1d9")//#4788c7
+        commitButton.backgroundColor = UIColor(hexString: "#ccd1d9")
+        commitButton.isUserInteractionEnabled = false
         commitButton.layer.masksToBounds = true
         commitButton.layer.cornerRadius = 4.0
         commitButton.setTitle(Strings.submitText, for: .normal)
@@ -142,9 +231,13 @@ extension TDFeedbackViewController: UITextFieldDelegate, TDFeedbackInputDelegate
         textStr = inputText
     }
     
+    func feedbackInputDidChange(inputCount: Int) {
+        commitButton.backgroundColor = UIColor(hexString: inputCount > 0 ? "#4788c7" : "#ccd1d9")
+        commitButton.isUserInteractionEnabled = inputCount > 0
+    }
+    
     //MARK: UITextFieldDelegate
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print("开始: textField")
         showKeyboardMove()
         return true
     }
