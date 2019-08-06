@@ -30,12 +30,12 @@ class TDFindCourseCell: UITableViewCell {
             courseTitle.text = model?.name
             courseImage.sd_setImage(with: URL(string: model?.courseImageURL ?? ""), placeholderImage: UIImage(named: "main_recomend_6"))
             if let professor = model?.professor_name {
-                professorLabel.text = "教授：" + professor
+                professorLabel.text = Strings.professorText + professor
             }
             
            
             if let isStarted = model?.isStartDateOld, isStarted == true {
-                timeLabel.text = "正在开课"
+                timeLabel.text = Strings.onCourse
             }
             else {
                 if let date = model?.start_display_info.date {
@@ -69,7 +69,7 @@ class TDFindCourseCell: UITableViewCell {
         courseImage.image = UIImage(named: "main_recomend_6")
         courseTitle.text = "国际商法：美国商业法律制度环境文案文案文案文案文案美国商业法律制度环境文案文案文案文案文案文案美国商业法律制度环境文案文案文案文案文案文案"
         timeLabel.text = "最近：2019-06-14"
-        professorLabel.text = "教授："
+        professorLabel.text = Strings.professorText
         
         contentView.addSubview(bgView)
         bgView.addSubview(courseImage)

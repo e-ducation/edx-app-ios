@@ -35,7 +35,7 @@ class TDUserMsgViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "个人信息"
+        title = Strings.presonalInfo
         configView()
         headerImage.remoteImage = profile.image(networkManager: environment.networkManager)
     }
@@ -92,7 +92,7 @@ class TDUserMsgViewController: UIViewController {
     
     func changeUserHeaderImage() {
         guard profile.sharingLimitedProfile == false else {
-            self.view.makeToast("未满13岁不允许修改头像，仅显示默认头像。默认年龄为0岁，请注意修改。", duration: 0.8, position: CSToastPositionCenter)
+            self.view.makeToast(Strings.yearChoose, duration: 0.8, position: CSToastPositionCenter)
             return
         }
         self.imagePicker = ProfilePictureTaker(delegate: self)
@@ -200,38 +200,38 @@ extension TDUserMsgViewController: UITableViewDelegate,UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            cell?.textLabel?.text = "用户名"
+            cell?.textLabel?.text = Strings.usernameText
             cell?.detailTextLabel?.text = profile.username
         case 1:
-            cell?.textLabel?.text = "性别"
-            var str = "请选择"
+            cell?.textLabel?.text = Strings.chooseSex
+            var str = Strings.selectText
             if let gender = profile.gender {
                 if  gender == "m" {
-                    str = "男"
+                    str = Strings.maleText
                 }
                 else if gender == "f" {
-                    str = "女"
+                    str = Strings.femaleText
                 }
                 else {
-                    str = "保密"
+                    str = Strings.noProvide
                 }
             }
             cell?.detailTextLabel?.text = str
         case 2:
-            cell?.textLabel?.text = "出生年份"
+            cell?.textLabel?.text = Strings.birthYear
             if let year = profile.birthYear {
                 cell?.detailTextLabel?.text = "\(year)"
             }
             else {
-                cell?.detailTextLabel?.text = "请选择"
+                cell?.detailTextLabel?.text = Strings.selectText
             }
         default:
-            cell?.textLabel?.text = "个性签名"
+            cell?.textLabel?.text = Strings.biographyText
             if let bio = profile.bio, bio.count > 0 {
-                cell?.detailTextLabel?.text = "查看详情"
+                cell?.detailTextLabel?.text = Strings.viewMode
             }
             else {
-                cell?.detailTextLabel?.text = "请填写"
+                cell?.detailTextLabel?.text = Strings.editText
             }
         }
         return cell!
@@ -310,9 +310,7 @@ extension TDUserMsgViewController: TDSelectSexViewDelegate {
         dataSource.selectedIndex = defaultRow
         
         selectionController.dataSource = dataSource
-        selectionController.title = "出生年份"
-        selectionController.instructions = "在分享您的完整资料之前，您必须填写您的出生年份。"
-        selectionController.subInstructions = "此信息不会被公开显示"
+        selectionController.title = Strings.birthYear
         
         selectionController.doneChoosing = { value in
             self.profileValue(value: value)

@@ -29,7 +29,7 @@ class TDAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "账号管理"
+        title = Strings.accountManager
         configView()
     }
     
@@ -83,10 +83,10 @@ extension TDAccountViewController: UITableViewDelegate,UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            cell?.textLabel?.text = "绑定手机"
-            cell?.detailTextLabel?.text = self.phoneStr.count > 0 ? self.phoneStr : "未绑定"
+            cell?.textLabel?.text = Strings.bindPhoneText
+            cell?.detailTextLabel?.text = self.phoneStr.count > 0 ? self.phoneStr : Strings.noLinked
         default:
-            cell?.textLabel?.text = "重置密码"
+            cell?.textLabel?.text = Strings.passwordResetText
         }
         return cell!
     }

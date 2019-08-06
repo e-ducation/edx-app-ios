@@ -884,7 +884,7 @@
 "GET_VERIFICATION"="获取验证码";
 /* 提交 Submit */
 "SUBMIT_TEXT"="提交";
-/* 绑定手机 Binding Your Cellphone */
+/* 绑定手机 Bind Mobile */
 "BIND_CELLPHONE_TITLE"="绑定手机";
 /* 发送验证码... Sending verification... */
 "SEND_VERIFICATE_CODE"="发送验证码...";
@@ -904,7 +904,7 @@
 "BOUND_CELLPHONE"="已绑定手机号：";
 /* 应国家法规对于账号实名的要求，请您在进行下一步操作前，先完成手机绑定。 In response to national regulations on the real-name requirement of the account, please complete the phone binding before proceeding. */
 "REALNAME_REQUIREMENT"="应国家法规对于账号实名的要求，请您在进行下一步操作前，先完成手机绑定。";
-/* 绑定手机 Bind Phone */
+/* 绑定手机 Bind mobile */
 "BIND_PHONE_TEXT"="绑定手机";
 /* 下次再说 No */
 "NEXT_TIME"="下次再说";
@@ -948,11 +948,11 @@
 /* 月均99.84元，畅享在线MBA体系化学习！Enjoy MBA-like curriculum online with only ¥99.84/month! */
 "MBA_ONLINE_PRICE" = "月均99.84元，畅享在线MBA体系化学习！";
 
-/*请输入旧密码     Old Password*/
+/*请输入旧密码     Enter old password*/
 "OLD_PASSWORD" = "请输入旧密码";
 /*新密码     New Password*/
 "NEW_PASSWORD" = "请输入新密码";
-/*再次确认新密码    Confirm Password*/
+/*再次确认新密码    Confirm new password*/
 "CONFIRM_PASSWORD" = "再次确认新密码";
 /*密码至少6个字符  Password must be at least 6 characters.*/
 "LEAST_SIX_CHARACTER" = "密码至少6个字符";
@@ -966,8 +966,8 @@
 "PASSWORD_RESET_FAILED" = "密码重置失败";
 /*手机号          Phone Number*/
 "PHONE_NUMBER" = "手机号";
-/*重置密码    Password Reset*/
-"PASSWORD_RESET_TITLE" = "重置密码";
+/*重置密码    Password reset*/
+"PASSWORD_RESET_TEXT" = "重置密码";
 /*会员资格    Membership*/
 "MEMBERSHIP" = "会员资格";
 /*未购买      Not Purchased*/
@@ -976,7 +976,7 @@
 "VIP_DAYS##{other}" = "{number}天";
 /*已过期      Expired*/
 "EXPIRED_TEXT" = "已过期";
-/*未绑定      Not Linked*/
+/*未绑定      Not Bound*/
 "NO_LINKED" = "未绑定";
 /*哈佛管理导师\n有效期至：{date}  Harvard ManageMentorp\nExpiry:{date}*/
 "HARVARD_LEARN_CAMP" = "哈佛管理导师\n有效期至：{date}";
@@ -1006,3 +1006,112 @@
 "UNFINISH_PURCHASE" = "您存在尚未完成的订单，点击确定，以完成您的订单";
 /* 热门推荐 Top Recommends*/
 "TOP_RECOMMOND" = "热门推荐";
+
+/*首页 Home*/
+"TAB_HOME" = "首页";
+/*课程 Course*/
+"TAB_COURSE" = "课程";
+/*学习 Study*/
+"TAB_STUDY" = "学习";
+/*我的 Mine*/
+"TAB_MINE" = "我的";
+/*教授：Professor: */
+"PROFESSOR_TEXT" = "教授：";
+/*正在开课 On Course*/
+"ON_COURSE" = "正在开课";
+/*请输入 Please enter*/
+"PLEASE_ENTER" = "请输入";
+/*暂无搜索结果 No result*/
+"NO_RESULT" = "暂无搜索结果";
+/*有效期至： Date of Expiry: */
+"DATE_OF_EXPIRY" = "有效期至：";
+/*学习列表暂未有课程，快去添加课程吧~ There is no course in the learning list. Go and add courses.*/
+"NO_ADD_COURSE" = "学习列表暂未有课程，快去添加课程吧~";
+/*暂无课程 No courses*/
+"NO_COURSES" = "暂无课程";
+/*添加课程 Add course*/
+"ADD_COURSES" = "添加课程";
+/*学习进度 Study progress*/
+"STUDY_PROGRESS" = "学习进度";
+/*搜索课程名称、导师名 Search for course name, professor name*/
+"SEAR_TEXT" = "搜索课程名称、导师名";
+/*编辑个人信息 Edit personal info >*/
+"EDITE_INFO" = "编辑个人信息 >";
+/*账号管理 Account Manager*/
+"ACCOUNT_MANAGER" = "账号管理";
+/*扫码登录 Scan to Login*/
+"SCAN_CODE" = "扫码登录";
+/*意见反馈 Feedback*/
+"FEEDBACK_TEXT" = "意见反馈";
+/*给我们好评 Rate for Us*/
+"RATE_US" = "给我们好评";
+/*换绑手机 Change Mobile*/
+"CHANGE_MOBILE" = "换绑手机";
+/*当前绑定的手机号： Current mobile: */
+"CURRENT_MOBILE" = "当前绑定的手机号：";
+/*用户名 Username*/
+"USERNAME_TEXT" = "用户名";
+/*请输入内容... Please enter*/
+"PLEASE_ENTER_TEXT" = "请输入内容...";
+/*查看详情 View more*/
+"VIEW_MODE" = "查看详情";
+/*男 Male*/
+"MALE_TEXT" = "男";
+/*女 Female*/
+"FEMALE_TEXT" = "女";
+/*其他/不想说 Not provide*/
+"NO_PROVIDE" = "其他/不想说";
+/*个人信息 Personal Info*/
+"PRESONAL_INFO" = "个人信息";
+/*未满13岁不允许修改头像，仅显示默认头像。默认年龄为0岁，请注意修改。Children under 13 years old are not allowed to edit avatar. The default age is 0 years old, please check. */
+"YEAR_CHOOSE" = "未满13岁不允许修改头像，仅显示默认头像。默认年龄为0岁，请注意修改。";
+/*请您详细描述需要反馈的问题和建议... Please describe your questions or advice in detail.*/
+"DESCRIBE_DETAIL" = "请您详细描述需要反馈的问题和建议...";
+/*手机号/QQ/邮箱 Mobile/QQ/Email*/
+"CONTACT_TEXT" = "手机号/QQ/邮箱";
+/*图片（选填，提供问题截图） Image (optional, screenshot is needed)*/
+"IMAGE_OPTIONS" = "图片（选填，提供问题截图）";
+/*提交反馈成功 Feedback submit successfully*/
+"FEEDBACK_SUCCESS" = "提交反馈成功";
+/*提交反馈失败 Feedback submit failed*/
+"FEEDBACK_FAILED" = "提交反馈失败";
+/*请将二维码对准至框内，即可自动扫描 Please put the QR code into the box for automatical scanning.*/
+"SCAN_QR" = "请将二维码对准至框内，即可自动扫描";
+/*英荔商学院网页登录确认 Web page login confirm*/
+"WEB_LOGIN" = "英荔商学院网页登录确认";
+/*确认登录 Confirm Login*/
+"CONFIRM_LOGIN" = "确认登录";
+/*取消登录 Cancel Login*/
+"CANCEL_CONFIRM" = "取消登录";
+/*请先查询激活邮件，激活该账户才可以使用扫码功能 Please check the activation email first to activate the account before scanning.*/
+"ACTIVE_EMAIL" = "请先查询激活邮件，激活该账户才可以使用扫码功能";
+/*扫码登录成功 Scan to login successfully*/
+"SCAN_SUCCESS" = "扫码登录成功";
+/*扫码登录失败 Scan to login failed*/
+"SCAN_FAILED" = "扫码登录失败";
+/*© 2019 广东英荔国际教育科技有限公司  版权所有\n粤ICP备13044168号-5 © 2019 Guangdong Elite International Education & Technology Co., Ltd. All Rights Reserved 粤ICP备13044168号-5*/
+"GUANGDONG_RIGHTS" = "© 2019 广东英荔国际教育科技有限公司  版权所有\n粤ICP备13044168号-5";
+/*性别 Gender*/
+"CHOOSE_SEX" = "性别";
+/*出生年份 Birth Year*/
+"BIRTH_YEAR" = "出生年份";
+/*个性签名 Biography*/
+"BIOGRAPHY_TEXT" = "个性签名";
+/*请选择 Select*/
+"SELECT_TEXT" = "请选择";
+/*请填写 Edit*/
+"EDIT_TEXT" = "请填写";
+/*版本更新 Updates*/
+"UPDATE_VERSION" = "版本更新";
+/*您安装的App已是英荔商学院最新的版本 This is the latest version of EliteMBA.*/
+"LATEST_VERSION" = "您安装的App已是英荔商学院最新的版本";
+/*去更新 Go to Update*/
+"TO_UPDATE" = "去更新";
+/*发现新版本  Found new version*/
+"NEW_VERSION" = "发现新版本";
+/*重新获取 Resend*/
+"RESEND_TEXT" = "重新获取";
+/*本地上传 Choose from Album*/
+"CHOOSE_ALBUM" = "本地上传";
+/* 详情 Details */
+"DETAILS_TITLE"="详情";

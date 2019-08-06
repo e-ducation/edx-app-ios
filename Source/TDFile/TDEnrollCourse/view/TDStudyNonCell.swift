@@ -49,7 +49,7 @@ class TDStudyNonCell: UITableViewCell {
         messageLabel.font = UIFont(name: "PingFangSC-Regular", size: 14)
         messageLabel.textColor = UIColor(hexString: "#aab2bd")
         messageLabel.textAlignment = .center
-        messageLabel.numberOfLines = 2
+        messageLabel.numberOfLines = 0
         
         
         findButton.setTitleColor(.white, for: .normal)
@@ -77,8 +77,8 @@ class TDStudyNonCell: UITableViewCell {
         }
         
         messageLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(bgView).offset(28)
-            make.right.equalTo(bgView).offset(-28)
+            make.left.equalTo(bgView).offset(50)
+            make.right.equalTo(bgView).offset(-50)
             make.bottom.equalTo(findButton.snp.top).offset(-11)
             make.height.equalTo(40)
         }

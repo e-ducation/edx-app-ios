@@ -65,7 +65,7 @@ class TDScanQRView: UIView {
         lineImageView.image = UIImage(named: "scan_line")
         boxImageView.addSubview(lineImageView)
         
-        messageLabel.text = "请将二维码对准至框内，即可自动扫描"
+        messageLabel.text = Strings.scanQr
         messageLabel.textColor = UIColor(hexString: "#ccd1d9")
         messageLabel.font = UIFont(name: "PingFangSC-Regular", size: 14)
         self.addSubview(messageLabel)

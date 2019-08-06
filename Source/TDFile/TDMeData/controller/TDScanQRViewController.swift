@@ -17,7 +17,7 @@ class TDScanQRViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "扫码登录"
+        self.title = Strings.scanCode
         self.view.backgroundColor = .black
         setViewConstraint()
         playAudioFile()

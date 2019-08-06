@@ -50,10 +50,10 @@ class TDAuthorConfirmViewController: UIViewController {
             
             let responseDic = response as! Dictionary<String, Any>
             let code: Int = responseDic["code"] as! Int
-            self.popView(message: code == 200 ? "扫码登陆成功" : "扫码登陆失败")
+            self.popView(message: code == 200 ? Strings.scanSuccess : Strings.scanFailed)
             
         }) { (task, error) in
-            self.popView(message: "扫码登陆失败")
+            self.popView(message: Strings.scanFailed)
         }
     }
     
@@ -61,7 +61,7 @@ class TDAuthorConfirmViewController: UIViewController {
         SVProgressHUD.dismiss()
         
         popAction?()
-        UIApplication.shared.keyWindow?.rootViewController?.view.makeToast("扫码登陆成功", duration: 1.03, position: CSToastPositionCenter)
+        UIApplication.shared.keyWindow?.rootViewController?.view.makeToast(message, duration: 1.03, position: CSToastPositionCenter)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -77,7 +77,7 @@ class TDAuthorConfirmViewController: UIViewController {
         imageView.image = UIImage(named: "author_image")
         view.addSubview(imageView)
         
-        messageLabel.text = "英荔商学院网页登陆确认"
+        messageLabel.text = Strings.webLogin
         messageLabel.font = UIFont(name: "PingFangSC-Regular", size: 16)
         messageLabel.textColor = UIColor(hexString: "#2e313c")
         view.addSubview(messageLabel)
@@ -85,13 +85,13 @@ class TDAuthorConfirmViewController: UIViewController {
         sureButton.backgroundColor = UIColor(hexString: "#4788c7")
         sureButton.layer.masksToBounds = true
         sureButton.layer.cornerRadius = 4.0
-        sureButton.setTitle("确认登陆", for: .normal)
+        sureButton.setTitle(Strings.confirmLogin, for: .normal)
         sureButton.titleLabel?.font = UIFont(name: "PingFangSC-Regular", size: 16)
         sureButton.setTitleColor(.white, for: .normal)
         sureButton.addTarget(self, action: #selector(sureButtonAction), for: .touchUpInside)
         view.addSubview(sureButton)
         
-        cancelButton.setTitle("取消登录", for: .normal)
+        cancelButton.setTitle(Strings.cancelConfirm, for: .normal)
         cancelButton.titleLabel?.font = UIFont(name: "PingFangSC-Regular", size: 14)
         cancelButton.setTitleColor(UIColor(hexString: "#aab2bd"), for: .normal)
         cancelButton.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)

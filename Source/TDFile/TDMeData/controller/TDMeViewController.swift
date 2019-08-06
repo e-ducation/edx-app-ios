@@ -139,7 +139,7 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
                 switch indexPath.row {
                 case 0:
                     cell.imageStr = "me_vip_membership"
-                    cell.title = "会员资格"
+                    cell.title = Strings.membership
                     switch self.profile?.vip_status {
                     case 1:
                         cell.mesage = Strings.noPurchased
@@ -150,10 +150,10 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
                     }
                 case 1:
                     cell.imageStr = "me_account_manager"
-                    cell.title = "账号管理"
+                    cell.title = Strings.accountManager
                 default:
                     cell.imageStr = "me_scan_login"
-                    cell.title = "扫码登录"
+                    cell.title = Strings.scanCode
                     
                 }
             }
@@ -161,20 +161,20 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
                 switch indexPath.row {
                 case 0:
                     cell.imageStr = "me_feekback"
-                    cell.title = "意见反馈"
+                    cell.title = Strings.feedbackText
                 default:
                     cell.imageStr = "me_good_apraise"
-                    cell.title = "给我们好评论"
+                    cell.title = Strings.rateUs
                 }
             }
             else {
                 switch indexPath.row {
                 case 0:
                     cell.imageStr = "me_about_use"
-                    cell.title = "关于我们"
+                    cell.title = Strings.abountUs
                 default:
                     cell.imageStr = "me_setting"
-                    cell.title = "设置"
+                    cell.title = Strings.settings
                 }
             }
             
@@ -275,7 +275,7 @@ extension TDMeViewController {
     }
     
     func showAlertWarming() {
-        let alertController = UIAlertController(title: Strings.systemReminder, message: "请先查看激活邮件，激活该账号才可以使用扫码功能", preferredStyle: .alert)
+        let alertController = UIAlertController(title: Strings.systemReminder, message: Strings.activeEmail, preferredStyle: .alert)
         let sureAction = UIAlertAction(title: Strings.ok, style: .default) { (_) in
             
         }

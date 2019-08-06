@@ -57,7 +57,7 @@ class TDAboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "关于我们"
+        title = Strings.abountUsTitle
         configView()
     }
     
@@ -67,9 +67,9 @@ class TDAboutViewController: UIViewController {
         
         copyRightLabel.font = UIFont(name: "PingFangSC-Regular", size: 12)
         copyRightLabel.textColor = UIColor(hexString: "#aab2bd")
-        copyRightLabel.numberOfLines = 2
+        copyRightLabel.numberOfLines = 3
         copyRightLabel.textAlignment = .center
-        copyRightLabel.text = "© 2019 广东英荔国际教育科技有限公司  版权所有\n粤ICP备13044168号-5"
+        copyRightLabel.text = Strings.guangdongRights
         self.view.addSubview(copyRightLabel)
         
         tableView.delegate = self
@@ -79,17 +79,17 @@ class TDAboutViewController: UIViewController {
         self.view.addSubview(tableView)
         
         copyRightLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.safeBottom).offset(-18)
-            make.left.equalTo(self.view).offset(8)
-            make.right.equalTo(self.view).offset(-8)
-            make.height.equalTo(39)
+            make.bottom.equalTo(self.safeBottom).offset(-11)
+            make.left.equalTo(self.view).offset(50)
+            make.right.equalTo(self.view).offset(-50)
+            make.height.equalTo(55)
         }
         
         tableView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view);
             make.left.equalTo(self.view).offset(12)
             make.right.equalTo(self.view).offset(-12)
-            make.bottom.equalTo(copyRightLabel.snp.top).offset(-12)
+            make.bottom.equalTo(copyRightLabel.snp.top).offset(-11)
         }
     }
     

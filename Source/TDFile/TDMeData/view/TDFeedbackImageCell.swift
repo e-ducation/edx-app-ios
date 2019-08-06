@@ -65,13 +65,14 @@ class TDFeedbackImageCell: UITableViewCell {
         
         contentView.addSubview(collectionView)
         
-        titleLabel.text = "图片（选填，提供问题截图）"
+        titleLabel.text = Strings.imageOptions
         numLabel.text = "0/4"
     }
     
     func setviewConstraint() {
         titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(contentView).offset(16)
+            make.right.equalTo(contentView).offset(-36)
             make.top.equalTo(contentView).offset(5)
             make.height.equalTo(44)
         }

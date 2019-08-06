@@ -16,7 +16,6 @@
 @property (nonatomic,strong) UIView *codeLine;
 @property (nonatomic,strong) UIButton *areaButton;
 @property (nonatomic,strong) UILabel *line;
-@property (nonatomic,strong) UILabel *titleLabel;
 
 @end
 
