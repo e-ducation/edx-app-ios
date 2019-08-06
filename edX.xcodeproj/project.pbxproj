@@ -632,6 +632,9 @@
 		A43E631E21C92D70002286BF /* TDBindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E631A21C92D6F002286BF /* TDBindPhoneViewController.m */; };
 		A43E631F21C92D70002286BF /* TDBindPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E631C21C92D6F002286BF /* TDBindPhoneView.m */; };
 		A4427CC321C2143E00891501 /* TDVipRecomendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4427CC221C2143E00891501 /* TDVipRecomendView.swift */; };
+		A44312AE22F8311600541254 /* OSSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A44312AA22F8311600541254 /* OSSConstants.m */; };
+		A44312AF22F8311600541254 /* OssService.m in Sources */ = {isa = PBXBuildFile; fileRef = A44312AB22F8311600541254 /* OssService.m */; };
+		A44312B122F8324D00541254 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A44312B022F8324D00541254 /* libresolv.tbd */; };
 		A44433C821BFA07500123C2E /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = A44433C721BFA07400123C2E /* UIView+Toast.m */; };
 		A44433D221BFDA9500123C2E /* TDVipAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44433D121BFDA9500123C2E /* TDVipAlertView.m */; };
 		A44D6ABB22E1612C00028ECE /* TDSearchCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44D6ABA22E1612C00028ECE /* TDSearchCourseView.swift */; };
@@ -1734,6 +1737,11 @@
 		A43E631C21C92D6F002286BF /* TDBindPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBindPhoneView.m; sourceTree = "<group>"; };
 		A43E631D21C92D6F002286BF /* TDBindPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBindPhoneView.h; sourceTree = "<group>"; };
 		A4427CC221C2143E00891501 /* TDVipRecomendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDVipRecomendView.swift; sourceTree = "<group>"; };
+		A44312AA22F8311600541254 /* OSSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSSConstants.m; sourceTree = "<group>"; };
+		A44312AB22F8311600541254 /* OssService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OssService.m; sourceTree = "<group>"; };
+		A44312AC22F8311600541254 /* OSSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSSConstants.h; sourceTree = "<group>"; };
+		A44312AD22F8311600541254 /* OssService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OssService.h; sourceTree = "<group>"; };
+		A44312B022F8324D00541254 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		A44433C621BFA07400123C2E /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		A44433C721BFA07400123C2E /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		A44433D021BFDA9500123C2E /* TDVipAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDVipAlertView.h; sourceTree = "<group>"; };
@@ -2167,8 +2175,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE0EE289192B78CF00F9FF98 /* SystemConfiguration.framework in Frameworks */,
-				A40004CE22CDE18E001B491E /* UMCommon.framework in Frameworks */,
 				BE0EE287192B78C400F9FF98 /* CoreTelephony.framework in Frameworks */,
+				A44312B122F8324D00541254 /* libresolv.tbd in Frameworks */,
+				A40004CE22CDE18E001B491E /* UMCommon.framework in Frameworks */,
 				A40004CB22CDCFF6001B491E /* libsqlite3.tbd in Frameworks */,
 				A40004C922CDCFD8001B491E /* libz.tbd in Frameworks */,
 				BECB7B111924C0C3009C77F1 /* CoreGraphics.framework in Frameworks */,
@@ -3501,6 +3510,7 @@
 			children = (
 				A423E0BD21B12B800093FBD3 /* TDPchHeader.h */,
 				A432D32E22F40F40007B56E2 /* beep.wav */,
+				A44312A922F8311600541254 /* TDAliyun */,
 				A4AF323622EE996E000B40E8 /* TDExtension */,
 				A40004CC22CDE18E001B491E /* UMAPP */,
 				A4D4BC5722672996003ABC8F /* CycleView */,
@@ -3644,6 +3654,17 @@
 				A43E631C21C92D6F002286BF /* TDBindPhoneView.m */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		A44312A922F8311600541254 /* TDAliyun */ = {
+			isa = PBXGroup;
+			children = (
+				A44312AD22F8311600541254 /* OssService.h */,
+				A44312AB22F8311600541254 /* OssService.m */,
+				A44312AC22F8311600541254 /* OSSConstants.h */,
+				A44312AA22F8311600541254 /* OSSConstants.m */,
+			);
+			path = TDAliyun;
 			sourceTree = "<group>";
 		};
 		A44433C521BFA07400123C2E /* TDToast */ = {
@@ -4356,6 +4377,7 @@
 		BECB7B0D1924C0C3009C77F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A44312B022F8324D00541254 /* libresolv.tbd */,
 				A40004CA22CDCFF5001B491E /* libsqlite3.tbd */,
 				A40004C822CDCFD7001B491E /* libz.tbd */,
 				A45EB7F622891BAF002E942E /* CFNetwork.framework */,
@@ -5710,6 +5732,7 @@
 				77ADF4A91AC1B57800AC8955 /* UIImage+OEXColors.m in Sources */,
 				69F998571E6FEB2400CDFA9C /* OEXAnalytics+AppReview.swift in Sources */,
 				77D7FD261B04ED45002ACA8C /* Icon.swift in Sources */,
+				A44312AF22F8311600541254 /* OssService.m in Sources */,
 				A42C644C22DF28C9009A70D5 /* TDFindCourseModel.swift in Sources */,
 				770A27931A69933D00DFC6FF /* NSArray+OEXSafeAccess.m in Sources */,
 				77503E8C1B278B9A00C47229 /* RegistrationFieldSelectView.swift in Sources */,
@@ -5764,6 +5787,7 @@
 				773181371B697644000CC050 /* DiscussionDataManager.swift in Sources */,
 				77AFD10B1C1A04C3001985FD /* UserAgentOverrideOverrideOperation.swift in Sources */,
 				77D5F43F1C1F1C8F0079E228 /* OEXCourse+TestData.swift in Sources */,
+				A44312AE22F8311600541254 /* OSSConstants.m in Sources */,
 				77ADF4AC1AC1F31200AC8955 /* OEXExternalAuthOptionsView.m in Sources */,
 				1A3F456C1BED00FB0077A40C /* IconButton.swift in Sources */,
 				7773D1A91B1E557D0037214B /* OEXVideoEncoding.m in Sources */,
