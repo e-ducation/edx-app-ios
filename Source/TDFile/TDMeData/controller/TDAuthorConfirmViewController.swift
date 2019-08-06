@@ -130,6 +130,4 @@ class TDAuthorConfirmViewController: UIViewController {
             make.height.equalTo(46)
         }
     }
-    
-
 }

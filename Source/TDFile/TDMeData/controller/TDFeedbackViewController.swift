@@ -12,16 +12,24 @@ class TDFeedbackViewController: UIViewController {
     
     let tableView = UITableView()
     let commitButton = UIButton()
+    var imagePicker: ProfilePictureTaker?
     
     var username: String?
+    
     var textStr: String = ""
-    var imageArray = Array<UIImage>()
     var contactStr: String = ""
+    var imageArray = Array<UIImage>()
     
     var gapHeigt: CGFloat = 0.0
     var duration = 0.0
     
-    var imagePicker: ProfilePictureTaker?
+    var putOssNum = 0
+    var contentArray = Array<String>()
+    lazy var service: OssService = {
+        let service = OssService()
+        service.delegate = self
+        return service
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +47,37 @@ class TDFeedbackViewController: UIViewController {
     
     @objc func commitButtonAction() {//提交
         self.tableView.endEditing(true)
-        handinFeedback()
+        
+        guard self.imageArray.count > 0 else {
+            handinFeedbackRequest(needHud: true)
+            return
+        }
+        
+        sendImageToOss()
     }
     
-    func handinFeedback() {
+    func sendImageToOss() { //图片上传oss
         
+        guard let name = username else {
+            return
+        }
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        
+        self.putOssNum = 0
+        self.contentArray.removeAll()
+        self.service.type = TDOssFileType.image
+        
+        for i in 0..<self.imageArray.count {
+            let image = self.imageArray[i]
+            let path = self.service.save(image, withName: "image\(i)")
+            let objectKey = self.service.dealDateFormatter(name, type: ".png")
+            self.service.asyncPutImage(objectKey, localFilePath: path, inturn: i+1, total: self.imageArray.count)
+        }
+    }
+    
+    func handinFeedbackRequest(needHud: Bool) {
         guard let name = username, let host = OEXConfig.shared().apiHostURL()?.absoluteString else {
             return
         }
@@ -53,9 +87,11 @@ class TDFeedbackViewController: UIViewController {
             return
         }
         
-        SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
-
+        if needHud {
+            SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        }
+        
         let params = NSMutableDictionary()
         params.setValue(name, forKey: "username")
         params.setValue(textStr, forKey: "content")
@@ -64,18 +100,11 @@ class TDFeedbackViewController: UIViewController {
             params.setValue(contactStr, forKey: "contact")
         }
         
-//        if self.imageArray.count > 0 {
-//            var imageStr = ""
-//            for image in self.imageArray {
-//                if let data = UIImage.jpegData(image)(compressionQuality: 0.5) {
-//                        let dataStr = data.base64EncodedString(options: .lineLength64Characters)
-//                    let str = imageStr.count > 0 ? dataStr+"," : dataStr
-//                    imageStr.append(str)
-//                }
-//            }
-//            params.setValue(imageStr, forKey: "image_url")
-//        }
-        
+        if self.contentArray.count > 0 {
+            let imageStr = self.contentArray.joined(separator: ",")
+            params.setValue(imageStr, forKey: "image_url")
+        }
+
         let body: NSString = params.oex_stringByUsingFormEncoding() as NSString
         let configuration : URLSessionConfiguration  = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = configuration.defaultHTTPHeaders() as? [AnyHashable : Any]
@@ -165,7 +194,27 @@ class TDFeedbackViewController: UIViewController {
         
         return footerView
     }
+}
+
+extension TDFeedbackViewController: TDOssPutFileDelegate {
+    func putFile(toOssSucessDomain domain: String!, fid: String!, type: TDOssFileType, inturn turn: Int, total: Int) {
+        
+        self.putOssNum += 1
+        let fidStr = "https://bss.eliteu.cn" + fid
+        self.contentArray.append(fidStr)
+        print("图片上传成功", self.contentArray, fid, total)
+        
+        guard self.putOssNum == total else {
+            return
+        }
+        handinFeedbackRequest(needHud: false)
+    }
     
+    func putFile(toOssFailed reason: String!, type: TDOssFileType) {
+        print("图片上传失败", reason)
+        SVProgressHUD.dismiss()
+        self.view.makeToast("上传图片失败", duration: 0.8, position: CSToastPositionCenter)
+    }
 }
 
 extension TDFeedbackViewController: UITableViewDelegate,UITableViewDataSource {
@@ -331,6 +380,9 @@ extension TDFeedbackViewController : UIImagePickerControllerDelegate, UINavigati
     
     func clickAddImageButton() {
         self.tableView.endEditing(true)
+        if self.imageArray.count == 0 {
+            self.service.getTokenFromOssStsUrl()
+        }
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "拍照", style: .default) { [weak self](action) in
@@ -357,10 +409,7 @@ extension TDFeedbackViewController : UIImagePickerControllerDelegate, UINavigati
         imagePicker.delegate = self
         
         if sourceType == .camera {
-            imagePicker.showsCameraControls = true
             imagePicker.cameraCaptureMode = .photo
-            imagePicker.cameraDevice = .front
-            imagePicker.cameraFlashMode = .auto
         }
         self.present(imagePicker, animated: true, completion: nil)
     }

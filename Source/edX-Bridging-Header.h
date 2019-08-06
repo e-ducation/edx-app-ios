@@ -85,4 +85,6 @@
 #import <AFNetworking/AFNetworking.h>
 #import <MJRefresh/MJRefresh.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "OSSConstants.h"
+#import "OssService.h"
 
