@@ -300,7 +300,8 @@
     }];
     
     if (self.phoneStr.length > 0) {
-        self.phoneView.bindLabel.text = [NSString stringWithFormat:@"当前绑定的手机号：%@",self.phoneStr];
+        self.phoneView.bindLabel.text = [NSString stringWithFormat:@"%@%@",Strings.currentMobile,self.phoneStr];
+        self.phoneView.titleLabel.text = [Strings changeMobile];
     }
 }
 

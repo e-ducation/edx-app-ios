@@ -278,7 +278,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         case .BindPhone:
             return Strings.phoneNumber
         case .ResetPassWord:
-            return Strings.passwordResetTitle
+            return Strings.resetPasswordTitle
         case .SubmitFeedback:
             return Strings.SubmitFeedback.optionTitle
         }

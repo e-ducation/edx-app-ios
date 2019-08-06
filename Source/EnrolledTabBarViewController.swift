@@ -15,17 +15,17 @@ private enum TabBarOptions: Int {
     func title(config: OEXConfig? = nil) -> String {
         switch self {
         case .Course:
-            return Strings.courses
+            return Strings.tabStudy//Strings.courses
         case .Program:
             return Strings.programs
         case .CourseCatalog:
-            return config?.discovery.course.type == .native ? Strings.findCourses : Strings.discover
+            return Strings.tabCourse//config?.discovery.course.type == .native ? Strings.findCourses : Strings.discover
         case .Debug:
             return Strings.debug
         case .MainSite:
             return Strings.elitemba
         case .AccountCenter:
-            return "我的"
+            return Strings.tabMine
         }
     }
 }
@@ -92,13 +92,13 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
             switch option {
             case .Course:
                 let courseVc = TDStudyCourseViewController(environment: environment)
-                createChildVC(childViewController: courseVc, title: "学习", imageStr: "study")
+                createChildVC(childViewController: courseVc, title: option.title(), imageStr: "study")
             case .Program:
                 guard environment.config.programConfig.enabled, let programsURL = environment.config.programConfig.programURL else { break }
                 createChildVC(childViewController: ProgramsViewController(environment: environment, programsURL: programsURL), title: option.title(), imageStr: "mainsite")
             case .CourseCatalog:
                 let findCourseVc = TDFindCoursePageViewController(environment: environment)
-                createChildVC(childViewController: findCourseVc, title: "课程", imageStr: "course")
+                createChildVC(childViewController: findCourseVc, title: option.title(), imageStr: "course")
                 EnrolledTabBarViewController.courseCatalogIndex = 2
             case .Debug:
                 if environment.config.shouldShowDebug() {
@@ -106,10 +106,10 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
                 }
             case .MainSite:
                 let mainsiteVC = TDMainSiteViewController(environment: environment)
-                createChildVC(childViewController: mainsiteVC, title: "首页", imageStr: "mainsite")
+                createChildVC(childViewController: mainsiteVC, title: option.title(), imageStr: "mainsite")
             case .AccountCenter:
                 let accountVc = TDMeViewController(environment: environment)
-                createChildVC(childViewController: accountVc, title: "我的", imageStr: "me")
+                createChildVC(childViewController: accountVc, title: option.title(), imageStr: "me")
             }
         }
     }

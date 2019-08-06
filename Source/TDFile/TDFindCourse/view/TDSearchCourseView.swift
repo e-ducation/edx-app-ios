@@ -31,7 +31,7 @@ class TDSearchCourseView: UIView {
         searchButton.titleLabel?.font = UIFont(name: "PingFangSC-Regular", size: 12)
         searchButton.backgroundColor = UIColor.init(hexString: "#f7f7f7")
         searchButton.layer.cornerRadius = 15.0
-        searchButton.setTitle("搜索课程名称、导师名", for: .normal)
+        searchButton.setTitle(Strings.searText, for: .normal)
         searchButton.setTitleColor(UIColor(hexString: "#afafaf"), for: .normal)
         searchButton.setImage(UIImage(named: "search_course_image"), for: .normal)
         searchButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 2)

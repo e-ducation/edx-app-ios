@@ -181,7 +181,7 @@ extension TDMainSiteViewController {
         }
         
         let alertController = UIAlertController(title: Strings.systemReminder, message: Strings.realnameRequirement, preferredStyle: .alert)
-        let sureAction = UIAlertAction(title: Strings.bindPhoneText, style: .default) { [weak self](action) in
+        let sureAction = UIAlertAction(title: Strings.bindCellphoneTitle, style: .default) { [weak self](action) in
             let bindPhoneVc = TDBindPhoneViewController()
             bindPhoneVc.bindingPhoneSuccess = { [weak self] in
                 self?.reloadProfileChange()

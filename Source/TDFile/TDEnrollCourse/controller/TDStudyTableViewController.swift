@@ -270,7 +270,7 @@ class TDStrudyTableViewController: UITableViewController {
         
         if self.courses.count == 0  {
             let cell = tableView.dequeueReusableCell(withIdentifier: TDStudyNonCell.cellIdentifier, for: indexPath as IndexPath) as! TDStudyNonCell
-            cell.dataNonCell(message: "学习列表暂未有课程，快去添加课程吧~", iconStr: "course_non_image", buttonStr: "添加课程")
+            cell.dataNonCell(message: Strings.noAddCourse, iconStr: "course_non_image", buttonStr: Strings.addCourses)
             cell.findButton.oex_addAction({ [weak self] (action) in
                 self?.delegate?.gotoFindCourse()
             }, for: .touchUpInside)
@@ -326,7 +326,7 @@ class TDStrudyTableViewController: UITableViewController {
         let label = UILabel()
         label.font = UIFont(name: "PingFang-SC-Medium", size: 18)
         label.textColor = UIColor(hexString: "#434343")
-        label.text = "学习进度"
+        label.text = Strings.studyProgress
         view.addSubview(label)
         
         label.snp.makeConstraints { (make) in

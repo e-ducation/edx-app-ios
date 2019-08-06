@@ -33,7 +33,8 @@ class TDFeedbackInputCell: UITableViewCell {
         let placeholderLabel = UILabel()
         placeholderLabel.font = UIFont(name: "PingFangSC-Regular", size: 16)
         placeholderLabel.textColor = UIColor(hexString: "#aab2bd")
-        placeholderLabel.text = "请您详细描述需要反馈的问题和建议..."
+        placeholderLabel.numberOfLines = 0
+        placeholderLabel.text = Strings.describeDetail
         placeholderLabel.sizeToFit()
         return placeholderLabel
     }()

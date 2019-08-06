@@ -42,8 +42,8 @@ class TDMeDataCell: UITableViewCell {
         messageLabel.textColor = UIColor(hexString: "#bfc1c9")
         contentView.addSubview(messageLabel)
         
-        titleLabel.text = "Hi，西欧"
-        messageLabel.text = "编辑个人信息 >"
+        titleLabel.text = ""
+        messageLabel.text = Strings.editeInfo
     }
     
     func setViewConstraint() {

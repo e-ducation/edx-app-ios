@@ -16,7 +16,7 @@
     },
     {
               "name" : "year_of_birth",
-              "label" : "Birth year",
+              "label" : "Birth Year",
               "type" : "select",
               "options" : {
                 "range_min" : 1896,

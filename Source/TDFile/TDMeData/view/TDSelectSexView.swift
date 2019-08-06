@@ -90,11 +90,11 @@ class TDSelectSexView: UIView {
         sheetView.backgroundColor = UIColor(hexString: "#f5f5f5")
         self.addSubview(sheetView)
         
-        setButtonStyle(button: cancelButton, title: "取消")
+        setButtonStyle(button: cancelButton, title: Strings.cancel)
         cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
         sheetView.addSubview(cancelButton)
         
-        setButtonStyle(button: sureButton, title: "确定")
+        setButtonStyle(button: sureButton, title: Strings.ok)
         sureButton.addTarget(self, action: #selector(sureButtonAction), for: .touchUpInside)
         sheetView.addSubview(sureButton)
         
@@ -158,11 +158,11 @@ extension TDSelectSexView: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch row {
         case 0:
-            return "男"
+            return Strings.maleText
         case 1:
-            return "女"
+            return Strings.femaleText
         default:
-            return "保密"
+            return Strings.noProvide
         }
     }
     

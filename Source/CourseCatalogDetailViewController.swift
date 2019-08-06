@@ -29,7 +29,7 @@ class CourseCatalogDetailViewController: UIViewController, InterfaceOrientationO
         self.courseID = courseID
         self.environment = environment
         super.init(nibName: nil, bundle: nil)
-        self.navigationItem.title = "详情"
+        self.navigationItem.title = Strings.detailsTitle
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
     }
 

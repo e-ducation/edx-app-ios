@@ -22,7 +22,7 @@ class TDFeedbackContactCell: UITableViewCell {
         selectionStyle = .none
         contentView.backgroundColor = .white
         
-        inputTextField.placeholder = "手机号/QQ/邮箱"
+        inputTextField.placeholder = Strings.contactText
         inputTextField.font = UIFont(name: "PingFangSC-Regular", size: 16)
         inputTextField.textColor = UIColor(hexString: "#2e313c")
         inputTextField.returnKeyType = .done

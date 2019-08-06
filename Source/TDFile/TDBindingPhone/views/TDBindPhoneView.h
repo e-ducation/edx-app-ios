@@ -17,5 +17,6 @@
 @property (nonatomic,strong) UITextField *codeText;
 
 @property (nonatomic,strong) UILabel *bindLabel;
+@property (nonatomic,strong) UILabel *titleLabel;
 
 @end

@@ -28,7 +28,9 @@ class TDHavardCell: UITableViewCell {
     
     var dateStr: String? {
         didSet {
-            timeLabel.text = "有效期至：\(dateStr ?? "")"
+            if let date = dateStr {
+                timeLabel.text = Strings.dateOfExpiry + date
+            }
         }
     }
     
@@ -50,7 +52,7 @@ class TDHavardCell: UITableViewCell {
         
         timeLabel.font = UIFont(name: "PingFangSC-Regular", size: 14)
         timeLabel.textColor = UIColor(hexString: "#656d78")
-        timeLabel.text = "有效期至：2022-08-08"
+        timeLabel.text = Strings.dateOfExpiry
         
         self.addSubview(shadowView)
         shadowView.addSubview(bgView)

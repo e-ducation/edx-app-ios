@@ -34,7 +34,7 @@ class TDFeedbackViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "意见反馈"
+        title = Strings.feedbackText
         configView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keybordWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -83,7 +83,7 @@ class TDFeedbackViewController: UIViewController {
         }
         
         guard textStr.count > 0 else {
-            self.view.makeToast("请输入反馈内容", duration: 0.8, position: CSToastPositionCenter)
+            self.view.makeToast(Strings.describeDetail, duration: 0.8, position: CSToastPositionCenter)
             return
         }
         
@@ -132,7 +132,7 @@ class TDFeedbackViewController: UIViewController {
                         
                         let code : Int = responDic?["code"] as! Int
                         if code == 200 {
-                            self.showToastView(toastStr: "提交成功")
+                            self.showToastView(toastStr: Strings.feedbackSuccess)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8 , execute:{
                                 self.navigationController?.popViewController(animated: true)
                             })
@@ -144,7 +144,7 @@ class TDFeedbackViewController: UIViewController {
                 }
             }
             else {
-                self.showToastView(toastStr: "提交失败")
+                self.showToastView(toastStr: Strings.feedbackFailed)
             }
         }
         task.resume()
@@ -385,13 +385,13 @@ extension TDFeedbackViewController : UIImagePickerControllerDelegate, UINavigati
         }
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: "拍照", style: .default) { [weak self](action) in
+        let cameraAction = UIAlertAction(title: Strings.Profile.takePicture, style: .default) { [weak self](action) in
             self?.showImagePicker(sourceType: .camera)
         }
-        let albumAction = UIAlertAction(title: "本地上传", style: .default) { [weak self](action) in
+        let albumAction = UIAlertAction(title: Strings.chooseAlbum, style: .default) { [weak self](action) in
             self?.showImagePicker(sourceType: .photoLibrary)
         }
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (_) in
+        let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel) { (_) in
             
         }
         alertController.addAction(cameraAction)

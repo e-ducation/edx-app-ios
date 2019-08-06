@@ -23,7 +23,7 @@ class TDInputMsgViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "个性签名"
+        title = Strings.biographyText
         addRightNavItem()
         configView()
         setViewConstraint()
@@ -33,7 +33,7 @@ class TDInputMsgViewController: UIViewController {
         let placeholderLabel = UILabel()
         placeholderLabel.font = UIFont(name: "PingFangSC-Regular", size: 16)
         placeholderLabel.textColor = UIColor(hexString: "#aab2bd")
-        placeholderLabel.text = "请输入内容..."
+        placeholderLabel.text = Strings.pleaseEnterText
         placeholderLabel.sizeToFit()
         return placeholderLabel
     }()

@@ -61,14 +61,14 @@ class TDSearchTopView: UIView {
         bgView.backgroundColor = UIColor.white
         self.addSubview(bgView)
         
-        inputTextField.placeholder = "请输入"
+        inputTextField.placeholder = Strings.pleaseEnter
         inputTextField.font = UIFont(name: "PingFangSC-Regular", size: 16)
         inputTextField.textColor = UIColor(hexString:"#2e313c")
         bgView.addSubview(inputTextField)
         
         cancelButton.titleLabel?.font = UIFont(name: "PingFangSC-Regular", size: 14)
         cancelButton.setTitleColor(UIColor(hexString: "#2e313c"), for: .normal)
-        cancelButton.setTitle("取消", for: .normal)
+        cancelButton.setTitle(Strings.cancel, for: .normal)
         bgView.addSubview(cancelButton)
         
         deleteButton.setImage(UIImage(named: "close_circle"), for: .normal)

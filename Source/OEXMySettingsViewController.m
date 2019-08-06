@@ -99,7 +99,7 @@ typedef NS_ENUM(NSUInteger, OEXMySettingsAlertTag) {
                     cell.detailTextLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
                     cell.textLabel.textColor = [UIColor colorWithHexString:@"#2e313c"];
                     cell.detailTextLabel.textColor = [UIColor colorWithHexString:@"#ccd1d9"];
-                    cell.textLabel.text = @"版本更新";
+                    cell.textLabel.text = [Strings updateVersion];
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"V%@",self.localVersion];
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 }
@@ -179,7 +179,7 @@ typedef NS_ENUM(NSUInteger, OEXMySettingsAlertTag) {
 }
 
 - (void)lastVersion {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:Strings.systemReminder message:@"您安装的App已是英荔商学院最新的版本" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:Strings.systemReminder message:[Strings latestVersion] preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:Strings.ok style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
     }];
@@ -189,11 +189,11 @@ typedef NS_ENUM(NSUInteger, OEXMySettingsAlertTag) {
 
 - (void)updateAppVersion {
     
-    NSString *versionStr = [NSString stringWithFormat:@"发现新版本V%@",self.storeVersion];
+    NSString *versionStr = [NSString stringWithFormat:@"%@V%@",[Strings newVersion],self.storeVersion];
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:Strings.systemReminder message:versionStr preferredStyle:UIAlertControllerStyleAlert];
     
     WS(weakSelf);
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"去更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *action = [UIAlertAction actionWithTitle:[Strings toUpdate] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [weakSelf gotoAppStore];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:Strings.cancel style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
