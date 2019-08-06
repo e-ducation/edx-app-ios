@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - AliyunOSSiOS (2.10.7)
   - Analytics (3.6.10)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
@@ -191,6 +192,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - AliyunOSSiOS
   - Analytics (~> 3.6.10)
   - Branch (= 0.25.5)
   - Crashlytics (~> 3.10.1)
@@ -219,6 +221,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - AliyunOSSiOS
     - Analytics
     - Bolts
     - Branch
@@ -261,6 +264,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AliyunOSSiOS: 602b6a4e70e62a5f0a6431c20496343141d7e66f
   Analytics: 63744ad4afa65c3bcdcdb7a94b62515bde5b3900
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Branch: 848e8e908182a97678d9f5a854d10e59a40af2aa
@@ -301,6 +305,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   Weibo_SDK: 652ca78c2f7147a5de5e75e7cbea89838a81772a
 
-PODFILE CHECKSUM: d5404659099523c07b071589ce926e7e44dba1e1
+PODFILE CHECKSUM: e7abad8351f9fba42569913c7e4c3f3254cd3a55
 
 COCOAPODS: 1.5.3

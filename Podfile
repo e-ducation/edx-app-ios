@@ -29,6 +29,7 @@ pod 'SVProgressHUD'
 pod 'MJRefresh'
 pod 'SDWebImage'
 pod 'FMDB'
+pod 'AliyunOSSiOS'
 
 end
 
