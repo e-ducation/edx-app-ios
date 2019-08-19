@@ -115,8 +115,8 @@ extension OEXRouter {
     }
     
     func showStudyCourses(fromController: UIViewController, animated: Bool = true, pushingCourseWithID courseID: String? = nil) {
-        fromController.tabBarController?.selectedIndex = 1
-        fromController.navigationController?.popToRootViewController(animated: false)
+        fromController.tabBarController?.selectedIndex = EnrolledTabBarViewController.courseStudyIndex
+        fromController.navigationController?.popToRootViewController(animated: true)
         if let courseID = courseID {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: GOTO_STUDYCORUSE_DASBORD), object: courseID)
         }

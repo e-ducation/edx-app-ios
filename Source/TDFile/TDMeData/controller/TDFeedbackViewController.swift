@@ -349,20 +349,13 @@ extension TDFeedbackViewController: UITextFieldDelegate, TDFeedbackInputDelegate
             self.view.frame = CGRect(x: 0, y: statusHeight + navHeight, width: self.view.bounds.width, height: self.view.bounds.height)
         }
     }
+   
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
-    @objc func keybordWillHide(notification: Notification) {
-        
-        //        let userInfo: Dictionary = notification.userInfo!
-        //        let durationValue: NSNumber = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber
-        //        let duration = durationValue.doubleValue
-        //
-        //        if self.view.frame.origin.y < 0 {
-        //            UIView.animate(withDuration: duration) {
-        //                let navHeight = self.navigationController?.navigationBar.frame.height ?? 0
-        //                let statusHeight = UIApplication.shared.statusBarFrame.height
-        //                self.view.frame = CGRect(x: 0, y: statusHeight + navHeight, width: self.view.bounds.width, height: self.view.bounds.height)
-        //            }
-        //        }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
 }
 

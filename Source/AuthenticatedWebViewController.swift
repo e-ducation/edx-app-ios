@@ -343,11 +343,17 @@ public class AuthenticatedWebViewController: UIViewController, WKNavigationDeleg
     }
     
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-            showError(error: error as NSError?)
+        showError(error: error as NSError?)
     }
     
     public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-          showError(error: error as NSError?)
+        
+        if let error = error as NSError?, error.code == -999 {
+            if let url = error.userInfo[NSURLErrorFailingURLStringErrorKey] as? String, url.contains(find: "/hmm/entry") {
+                 return
+            }
+        }
+        showError(error: error as NSError?)
     }
     
     public func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {

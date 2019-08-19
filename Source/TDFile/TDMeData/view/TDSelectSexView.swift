@@ -57,7 +57,7 @@ class TDSelectSexView: UIView {
     }
     
     func showSheetViewAnimate(sex: String?) {
-        UIView.animate(withDuration: 1.3, animations: {
+        UIView.animate(withDuration: 0.8, animations: {
             self.backgroundColor = UIColor.black.withAlphaComponent(0.3)
             self.sheetView.frame = CGRect(x: CGFloat(0), y: self.bounds.height - CGFloat(self.sheetHeigt), width: self.bounds.width, height: CGFloat(self.sheetHeigt))
         }, completion: { (_) in

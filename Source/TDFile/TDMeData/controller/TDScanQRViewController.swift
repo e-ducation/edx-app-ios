@@ -31,16 +31,16 @@ class TDScanQRViewController: UIViewController {
         startScanQR()
         
         //禁止手势返回
-//        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-//        changeNavigationBarColor(isBlack: true)
-//        UINavigationBar.appearance().barStyle = UIBarStyle.default
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        changeNavigationBarColor(isBlack: true)
+        UINavigationBar.appearance().barStyle = UIBarStyle.default
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        changeNavigationBarColor(isBlack: false)
-//        UINavigationBar.appearance().barStyle = UIBarStyle.black
+        changeNavigationBarColor(isBlack: false)
+        UINavigationBar.appearance().barStyle = UIBarStyle.black
     }
     
     // 会话
@@ -52,14 +52,15 @@ class TDScanQRViewController: UIViewController {
     // 创建预览图层
     lazy var previewLayer: AVCaptureVideoPreviewLayer = {
         let previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
-        previewLayer.frame = self.view.bounds
+        previewLayer.videoGravity =  AVLayerVideoGravity.resizeAspectFill
+        previewLayer.frame = self.view.layer.bounds
         return previewLayer
     }()
     
     // 创建用于绘制边线的图层
     lazy var drawLayer: CALayer = {
         let drawLayer = CALayer()
-        drawLayer.frame = self.view.bounds
+        drawLayer.frame = self.view.layer.bounds
         return drawLayer
     }()
 
@@ -98,7 +99,7 @@ class TDScanQRViewController: UIViewController {
         dataOutput.rectOfInterest = CGRect(x: 208/screenHeight, y: (gap/2)/screenWidth, width: qrWidth/screenHeight, height: 0.7)
         
         // 5.添加预览图层
-        self.scanQRView.layer.insertSublayer(previewLayer, at: 0)
+        self.view.layer.insertSublayer(previewLayer, at: 0)
         // 添加绘制图层
         previewLayer.addSublayer(drawLayer)
         // 6.告诉session开始扫描
@@ -138,6 +139,46 @@ class TDScanQRViewController: UIViewController {
         }
     }
     
+    func authorScanUrl(urlStr: String) {
+        guard urlStr.count > 0, let host = OEXConfig.shared().apiHostURL()?.absoluteString else {
+            self.popView(message: Strings.scanFailed)
+            return
+        }
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+        
+        let manager = AFHTTPSessionManager()
+        manager.requestSerializer = AFJSONRequestSerializer()
+        manager.requestSerializer.setValue(OEXAuthentication.authHeaderForApiAccess(), forHTTPHeaderField: "Authorization")
+        
+        let confirmUrl = host + urlStr
+        manager.get(confirmUrl, parameters: nil, progress: nil, success: { (task, response) in
+            
+            let responseDic = response as! Dictionary<String, Any>
+            let code: Int = responseDic["code"] as! Int
+            if code == 202 {
+                SVProgressHUD.dismiss()
+                self.gotoConfirmVc(urlStr: urlStr)
+            }
+            else {
+                self.popView(message: Strings.scanFailed)
+            }
+            
+        }) { (task, error) in
+            self.popView(message: Strings.scanFailed)
+        }
+    }
+    
+    func popView(message: String) {
+        SVProgressHUD.dismiss()
+        UIApplication.shared.keyWindow?.rootViewController?.view.makeToast(message, duration: 1.03, position: CSToastPositionCenter)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8 , execute:{
+            self.navigationController?.popViewController(animated: true)
+        })
+    }
+    
     func gotoConfirmVc(urlStr: String) {
         let confirmVc = TDAuthorConfirmViewController()
         confirmVc.authorUrl = urlStr
@@ -148,7 +189,15 @@ class TDScanQRViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .lightContent 
+    }
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
 }
 
@@ -175,9 +224,9 @@ extension TDScanQRViewController : AVCaptureMetadataOutputObjectsDelegate {
             
             beepPlayer?.play()
             
-            let result: String = metadataObj.stringValue ?? "没有结果"
+            let result: String = metadataObj.stringValue ?? ""
             print("---->>>", result)
-            gotoConfirmVc(urlStr: result)
+            authorScanUrl(urlStr: result)
             return
         }
         

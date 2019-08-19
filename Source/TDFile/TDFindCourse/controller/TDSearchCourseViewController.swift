@@ -100,9 +100,10 @@ extension TDSearchCourseViewController: TDSearchTopViewDelegate {
         }
         
         let dic = NSMutableDictionary()
-        dic.setValue("\(0)", forKey: "page_index")
+        dic.setValue("\(1)", forKey: "page")
         dic.setValue("\(1000)", forKey: "page_size")
         dic.setValue(searchStr, forKey: "search_name")
+        dic.setValue(true, forKey: "mobile")
         
         let host = OEXConfig.shared().apiHostURL()?.absoluteString
         let path = host! + APP_COURSE_SEACH__URL
@@ -154,11 +155,13 @@ extension TDSearchCourseViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if self.dataArray.count == 0 && searchStr.count > 0 {
+            tableView.separatorColor = .white
             let cell = TDStudyNonCell(style: .default, reuseIdentifier: AccountViewCell.identifier)
             cell.dataNonCell(message: Strings.noResult, iconStr: "search_non_course", isHiddenButton: true)
             return cell
         }
         
+        tableView.separatorColor = UIColor(hexString: "#f5f5f5")
         var cell = tableView.dequeueReusableCell(withIdentifier: "searchCell")
         if (cell == nil) {
             cell = UITableViewCell(style: .default, reuseIdentifier: "searchCell")

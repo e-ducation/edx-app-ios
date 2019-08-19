@@ -10,7 +10,7 @@ import Foundation
 
 //var isActionTakenOnUpgradeSnackBar: Bool = false
 
-class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableViewControllerDelegate, LoadStateViewReloadSupport,InterfaceOrientationOverriding {
+class TDStudyCourseViewController : OfflineSupportViewController, TDStudyTableViewControllerDelegate, LoadStateViewReloadSupport,InterfaceOrientationOverriding {
     
     typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & ReachabilityProvider & OEXRouterProvider & OEXSessionProvider & OEXStylesProvider
     
@@ -19,12 +19,12 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
     let userProfileManager : UserProfileManager
     
     private let environment : Environment
-    private let tableController : TDStrudyTableViewController
+    private let tableController : TDStudyTableViewController
     private let loadController = LoadStateViewController()
     fileprivate let enrollmentFeed: Feed<[UserCourseEnrollment]?>
     private let userPreferencesFeed: Feed<UserPreference?>
     init(environment: Environment) {
-        self.tableController = TDStrudyTableViewController(environment: environment, context: .EnrollmentList)
+        self.tableController = TDStudyTableViewController(environment: environment, context: .EnrollmentList)
         self.enrollmentFeed = environment.dataManager.enrollmentManager.feed
         self.userPreferencesFeed = environment.dataManager.userPreferenceManager.feed
         self.environment = environment
@@ -58,8 +58,10 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
         self.loadController.setupInController(controller: self, contentView: tableController.view)
         self.view.addSubview(tableController.view)
         
+        let statusHeight = UIApplication.shared.statusBarFrame.height
         tableController.view.snp.makeConstraints { make in
-            make.edges.equalTo(safeEdges)
+            make.left.right.bottom.equalTo(self.view)
+            make.top.equalTo(statusHeight)
         }
         tableController.delegate = self
         
@@ -82,7 +84,6 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
         
         super.viewWillAppear(animated)
         hideSnackBarForFullScreenError()
-        showWhatsNewIfNeeded()
         
         //        enrollmentFeed.refresh()
         
@@ -223,7 +224,7 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
             hideSnackBar()
         }
     }
-    //MARK: TDStrudyTableViewControllerDelegate
+    //MARK: TDStudyTableViewControllerDelegate
     func coursesTableChoseCourse(course: OEXCourse) {
         if let course_id = course.course_id {
             self.environment.router?.showCourseWithID(courseID: course_id, fromController: self, animated: true)
@@ -256,12 +257,6 @@ class TDStudyCourseViewController : OfflineSupportViewController, TDStrudyTableV
     
     func gotoFindCourse() {
         self.environment.router?.showCourseCatalog(fromController: self, bottomBar: nil)
-    }
-    
-    private func showWhatsNewIfNeeded() {
-        if WhatsNewViewController.canShowWhatsNew(environment: environment as? RouterEnvironment) {
-            environment.router?.showWhatsNew(fromController: self)
-        }
     }
     
     @objc func refreshData() {

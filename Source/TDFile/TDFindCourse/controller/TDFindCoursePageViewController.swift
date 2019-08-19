@@ -13,7 +13,6 @@ class TDFindCoursePageViewController: UIViewController {//,UIGestureRecognizerDe
     typealias Environment = NetworkManagerProvider & OEXRouterProvider & OEXSessionProvider & OEXConfigProvider & OEXAnalyticsProvider
     private let environment : Environment
     
-    let searchView = TDSearchCourseView()
     let segmentVC = TDSegmentedPageViewController()
     private let loadController = LoadStateViewController()
     
@@ -21,7 +20,6 @@ class TDFindCoursePageViewController: UIViewController {//,UIGestureRecognizerDe
         self.environment = environment
         super.init(nibName: nil, bundle: nil)
         
-        setSearchNav()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,16 +34,13 @@ class TDFindCoursePageViewController: UIViewController {//,UIGestureRecognizerDe
         loadController.setupInController(controller: self, contentView: self.view)
         loadController.state = .Initial
         
+        setSearchNav()
         loadTagData()
     }
     
     func loadTagData() {
-
-//        SVProgressHUD.show()
-//        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
-
         let dic = NSMutableDictionary()
-        dic.setValue("0", forKey: "page_index")
+        dic.setValue("1", forKey: "page")
         dic.setValue("1000", forKey: "page_size")
 
         let host = OEXConfig.shared().apiHostURL()?.absoluteString
@@ -54,21 +49,17 @@ class TDFindCoursePageViewController: UIViewController {//,UIGestureRecognizerDe
         let manager = AFHTTPSessionManager()
         manager.get(path, parameters: dic, progress: nil, success: { (task, response) in
 
-//            SVProgressHUD.dismiss()
-
             self.loadController.state = .Loaded
             self.loadController.view.isHidden = true
 
             let responseDic = response as! Dictionary<String, Any>
             let tagArray: Array<Any> = responseDic["results"] as! Array<Any>
-            if tagArray.count > 0 {
-                self.setTagDate(tagArray: tagArray)
-            }
+            self.setTagDate(tagArray: tagArray)
 
         }) { (task, error) in
-//            SVProgressHUD.dismiss()
             self.showError(error: error as NSError)
-            self.view.makeToast("加载标签失败", duration: 0.8, position: CSToastPositionCenter)
+            let tagArray = Array<Any>()
+            self.setTagDate(tagArray: tagArray)
         }
     }
     
@@ -113,19 +104,37 @@ class TDFindCoursePageViewController: UIViewController {//,UIGestureRecognizerDe
     }
     
     func setSearchNav() {
-
-        searchView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width-16, height: 44)
-        searchView.searchButton.oex_addAction({[weak self] (action) in
-            self?.gotoSearchCourseView()
-        }, for: .touchUpInside)
-
+        
+        let searchButton = UIButton()
+        searchButton.titleLabel?.font = UIFont(name: "PingFangSC-Regular", size: 12)
+        searchButton.backgroundColor = UIColor.init(hexString: "#f7f7f7")
+        searchButton.layer.cornerRadius = 15.0
+        searchButton.setTitle(Strings.searText, for: .normal)
+        searchButton.setTitleColor(UIColor(hexString: "#afafaf"), for: .normal)
+        searchButton.setImage(UIImage(named: "search_course_image"), for: .normal)
+        searchButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -2, bottom: 0, right: 2)
+        searchButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: -2)
+        searchButton.frame = CGRect(x: 12, y: 12, width: self.view.bounds.width - 40 , height: 30)
+        
         let titleView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
-        titleView.addSubview(searchView)
+        titleView.addSubview(searchButton)
         self.navigationItem.titleView = titleView
+        
+        searchButton.oex_addAction({[weak self] (action) in
+            self?.gotoSearchCourseView()
+            }, for: .touchUpInside)
     }
-    
+
     func gotoSearchCourseView() {
         self.navigationController?.pushViewController(TDSearchCourseViewController(environment: self.environment), animated: true)
+    }
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
 }
 

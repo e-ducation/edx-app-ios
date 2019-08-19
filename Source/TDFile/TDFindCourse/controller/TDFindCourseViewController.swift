@@ -12,11 +12,12 @@ protocol TDFindCourseViewControllerDelegate: class {
     func coursesTableChoseCourse(course : OEXCourse)
 }
 
-class TDFindCourseViewController: UIViewController {
+class TDFindCourseViewController: UIViewController,LoadStateViewReloadSupport {
 
     let tableview = UITableView()
-    let tagID: String?
+    
     var dataArray = Array<OEXCourse>()
+    let tagID: String
     var page = 1
     
     weak var delegate: TDFindCourseViewControllerDelegate?
@@ -54,9 +55,10 @@ class TDFindCourseViewController: UIViewController {
         
         let pageSize = 10
         let dic = NSMutableDictionary()
-        dic.setValue("\(page)", forKey: "page_index")
+        dic.setValue("\(page)", forKey: "page")
         dic.setValue("\(pageSize)", forKey: "page_size")
         dic.setValue(tagID, forKey: "course_type_id")
+        dic.setValue(true, forKey: "mobile")
         
         let host = OEXConfig.shared().apiHostURL()?.absoluteString
         let path = host! + APP_COURSE_SEACH__URL
@@ -104,6 +106,14 @@ class TDFindCourseViewController: UIViewController {
                 self.tableview.mj_footer.endRefreshing()
             }
         }
+    }
+    
+    //MARK:- LoadStateViewReloadSupport method
+    func loadStateViewReload() {
+        if loadController.state.isError {
+            loadController.state = .Initial
+        }
+        gatCourseData(isRefresh: true)
     }
     
     //MARK: UI

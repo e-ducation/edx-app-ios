@@ -44,20 +44,18 @@ class AboutInfoCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 class TDAboutViewController: UIViewController {
 
     let tableView = UITableView()
     let copyRightLabel = UILabel()
-    let infoStr = "英荔商学院（www.EliteMBA.cn）是广东英荔国际教育科技有限公司旗下的商业管理类互联网课堂。\n\n英荔与国内外商业管理学术界资深的教授和专家联手，精心设计并制作高质量且极具知识价值的体系化在线课程。同时，筛选并引进国外优质教育内容，向学习者提供经英荔团队打造后的本土化版本。\n\n尽己所能地向更多学习者传递知识是教育者们的共同追求。英荔期望为教育者提供更有效的传递途径，增加知识的触及范围。在此，向各位专家、教授发出诚挚的开课邀请，期待创造、引入更多优质的课程资源，让知识在多元的世界产生更多元的价值。"
-    
+    let infoStr = Strings.abountUsMessage
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = Strings.abountUsTitle
+        title = Strings.abountUs
         configView()
     }
     
@@ -93,6 +91,13 @@ class TDAboutViewController: UIViewController {
         }
     }
     
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 extension TDAboutViewController: UITableViewDelegate,UITableViewDataSource {

@@ -33,7 +33,7 @@ class TDAuthorConfirmViewController: UIViewController {
     
     @objc func sureButtonAction() {
         
-        guard let url = authorUrl, let host = OEXConfig.shared().apiHostURL()?.absoluteString else {
+        guard let url = authorUrl, url.count > 0, let host = OEXConfig.shared().apiHostURL()?.absoluteString else {
             return
         }
         
@@ -63,6 +63,14 @@ class TDAuthorConfirmViewController: UIViewController {
         popAction?()
         UIApplication.shared.keyWindow?.rootViewController?.view.makeToast(message, duration: 1.03, position: CSToastPositionCenter)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
     
     
@@ -99,21 +107,11 @@ class TDAuthorConfirmViewController: UIViewController {
     }
     
     func setViewConstraint() {
+        let statusHeight = UIApplication.shared.statusBarFrame.height + 8
         dismissButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(12)
-            make.top.equalTo(safeTop).offset(8)
+            make.top.equalTo(self.view).offset(statusHeight)
             make.size.equalTo(CGSize(width: 33, height: 33))
-        }
-        
-        let screenHeight = UIScreen.main.bounds.height
-        messageLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(dismissButton.snp.bottom).offset(screenHeight*0.3)
-            make.centerX.equalTo(self.view)
-        }
-        
-        imageView.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self.view)
-            make.bottom.equalTo(self.messageLabel.snp.top).offset(-18)
         }
         
         cancelButton.snp.makeConstraints { (make) in
@@ -128,6 +126,17 @@ class TDAuthorConfirmViewController: UIViewController {
             make.right.equalTo(self.view).offset(-18)
             make.bottom.equalTo(cancelButton.snp.top).offset(-32)
             make.height.equalTo(46)
+        }
+        
+        let screenHeight = UIScreen.main.bounds.height - 200
+        messageLabel.snp.makeConstraints { (make) in
+            make.bottom.equalTo(sureButton.snp.bottom).offset(-screenHeight/2)
+            make.centerX.equalTo(self.view)
+        }
+        
+        imageView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.bottom.equalTo(self.messageLabel.snp.top).offset(-18)
         }
     }
 }

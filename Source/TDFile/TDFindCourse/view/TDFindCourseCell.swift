@@ -28,11 +28,15 @@ class TDFindCourseCell: UITableViewCell {
     var model : OEXCourse? {
         didSet {
             courseTitle.text = model?.name
-            courseImage.sd_setImage(with: URL(string: model?.courseImageURL ?? ""), placeholderImage: UIImage(named: "main_recomend_6"))
+            if let imageUrl = model?.courseImageURL, let hostUrl = OEXConfig.shared().apiHostURL()?.absoluteString {
+                let url = hostUrl + imageUrl
+                let urlEncoding = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+                courseImage.sd_setImage(with: URL(string: urlEncoding ?? url), placeholderImage: UIImage(named: "main_recomend_6"))
+            }
+           
             if let professor = model?.professor_name {
                 professorLabel.text = Strings.professorText + professor
             }
-            
            
             if let isStarted = model?.isStartDateOld, isStarted == true {
                 timeLabel.text = Strings.onCourse

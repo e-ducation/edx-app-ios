@@ -58,7 +58,7 @@ class ForwardingNavigationController: UINavigationController, StatusBarOverridin
     }
     
     override var shouldAutorotate: Bool {
-        if let controller = viewControllers.last as? InterfaceOrientationOverriding as? UIViewController {
+        if let controller = viewControllers.last {//as? InterfaceOrientationOverriding as? UIViewController
             return controller.shouldAutorotate
         }
         else {
@@ -67,7 +67,7 @@ class ForwardingNavigationController: UINavigationController, StatusBarOverridin
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if let controller = viewControllers.last as? InterfaceOrientationOverriding as? UIViewController {
+        if let controller = viewControllers.last {// as? InterfaceOrientationOverriding as? UIViewController
             return controller.supportedInterfaceOrientations
         }
         else {
@@ -76,7 +76,7 @@ class ForwardingNavigationController: UINavigationController, StatusBarOverridin
     }
     
     override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        if let controller = viewControllers.last as? InterfaceOrientationOverriding as? UIViewController {
+        if let controller = viewControllers.last {//as? InterfaceOrientationOverriding as? UIViewController
             return controller.preferredInterfaceOrientationForPresentation
         }
         else {
@@ -85,13 +85,14 @@ class ForwardingNavigationController: UINavigationController, StatusBarOverridin
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle(barStyle: .default)
+        let topVc = self.topViewController
+        return topVc?.preferredStatusBarStyle ?? UIStatusBarStyle.default
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if viewControllers.count > 0 {
             viewController.hidesBottomBarWhenPushed = true //隐藏tabar
-            self.topViewController?.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.topViewController?.navigationController?.setNavigationBarHidden(false, animated: true)//显示navBar
             self.topViewController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
         super.pushViewController(viewController, animated: animated)

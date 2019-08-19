@@ -609,7 +609,7 @@
 /* User has not filled in an "about me" on their profile */
 "PROFILE.NO_BIO" = "No \"About me\" info provided.";
 /* Text in the picture taker alert to delete the existing image */
-"PROFILE.REMOVE_IMAGE" = "Remove";
+"PROFILE.REMOVE_IMAGE" = "Remove photo";
 /* Profile screen text indicating that the user is currently only displaying a limited profile */
 "PROFILE.SHOWING_LIMITED" = "You are currently sharing a limited profile";
 /* Text for take picture for user profile photo alert */
@@ -848,20 +848,20 @@
 "BEGIN_MBA_LEARN"="Begin your online MBA learning right now!";
 /* 商学院 EliteMBA */
 "ELITEMBA"="EliteMBA";
-/* 英荔商学院VIP会员 EliteMBA VIP membership */
-"ELITEMBA_VIP_MEMBER"="EliteMBA VIP membership";
-/* 开通VIP会员，可免费观看英荔商学院全部课程。 Join VIP, view all EliteMBA courses for free. */
-"VIP_MEMBER_WATCH_FREE"="Join VIP, view all EliteMBA courses for free.";
-/* 会员身份将在{day}天后过期 VIP membership will expire in {day} days */
+/* 英荔商学院VIP会员 EliteMBA VIP Membership */
+"ELITEMBA_VIP_MEMBER"="EliteMBA VIP Membership";
+/* 开通VIP会员，可免费观看英荔商学院全部课程。 Join VIP,view all EliteMBA courses for free. */
+"VIP_MEMBER_WATCH_FREE"="Join VIP,view all EliteMBA courses for free.";
+/* 会员身份将在 {day} 天后过期 VIP membership will expire in {day} days */
 "OPNE_DAY_LEFT"="VIP membership will expire in {day} days";
-/* 会员身份已在{day}天前过期 VIP expired {day} day(s) */
-"VIP_EXPIRED_DAY"="VIP expired {day} day(s)";
-/* 上次开通日期: Last Opened on: */
-"LAST_OPEND"="Last Opened on:";
+/* 会员身份已在 {day} 天前过期 VIP menbership has expired for {day} days */
+"VIP_EXPIRED_DAY"="VIP menbership has expired for {day} days";
+/* 上次开通日期: Last open date: */
+"LAST_OPEND"="Last open date: ";
 /* 到期日期： Expire on: */
-"EDPIRE_ON"="Expire on:";
+"EDPIRE_ON"="Expire on: ";
 /* 开通日期： Opened on: */
-"OPEND_ON"="Opened on:";
+"OPEND_ON"="Opened on: ";
 /* 去支付 Submit Payment */
 "SUMIT_PAYMENT"="Submit Payment";
 /* 选择支付方式 Choose payment method */
@@ -898,10 +898,10 @@
 "SUBSCRIBE_VIP"="Subscribe VIP";
 /* 查看详情 Details */
 "DETAILS_TEXT"="Details";
-/* 请输入手机号 Please enter cellphone number */
-"ENTER_CELLPHONE"="Please enter cellphone number";
-/* 请输入验证码 Please enter verification code */
-"ENTER_VERIFICATE_CODE"="Please enter verification code";
+/* 请输入手机号 Enter mobile number */
+"ENTER_CELLPHONE"="Enter mobile number";
+/* 请输入验证码 Enter verification code */
+"ENTER_VERIFICATE_CODE"="Enter verification code";
 /* 获取验证码 Verification */
 "GET_VERIFICATION"="Verification";
 /* 提交 Submit */
@@ -926,8 +926,8 @@
 "BOUND_CELLPHONE"="Bound cellphone:";
 /* 应国家法规对于账号实名的要求，请您在进行下一步操作前，先完成手机绑定。 In response to national regulations on the real-name requirement of the account, please complete the phone binding before proceeding. */
 "REALNAME_REQUIREMENT"="In response to national regulations on the real-name requirement of the account, please complete the phone binding before proceeding.";
-/* 绑定手机 Bind mobile */
-"BIND_PHONE_TEXT"="Bind mobile";
+/* 绑定手机 Bind Mobile */
+"BIND_PHONE_TEXT"="Bind Mobile";
 /* 下次再说 No */
 "NEXT_TIME"="No";
 /* 跟我一起，去英荔学MBA Come with me and study MBA at Eliteu */
@@ -972,8 +972,8 @@
 
 /*请输入旧密码     Old Password*/
 "OLD_PASSWORD" = "Enter old password";
-/*请输入新密码     New Password*/
-"NEW_PASSWORD" = "Enter new Password";
+/*请输入新密码     Enter new password*/
+"NEW_PASSWORD" = "Enter new password";
 /*再次确认新密码    Confirm new password*/
 "CONFIRM_PASSWORD" = "Confirm new password";
 /*密码至少6个字符  Password must be at least 6 characters.*/
@@ -989,7 +989,7 @@
 /*手机号          Phone Number*/
 "PHONE_NUMBER" = "Phone Number";
 /*重置密码    Password Reset*/
-"PASSWORD_RESET_TEXT" = "Password reset";
+"PASSWORD_RESET_TEXT" = "Password Reset";
 /*会员资格    Membership*/
 "MEMBERSHIP" = "Membership";
 /*未购买      Not Purchased*/
@@ -1056,7 +1056,7 @@
 /*添加课程 Add course*/
 "ADD_COURSES" = "Add course";
 /*学习进度 Study progress*/
-"STUDY_PROGRESS" = "Study progress";
+"STUDY_PROGRESS" = "Study Progress";
 /*搜索课程名称、导师名 Search for course name, professor name*/
 "SEAR_TEXT" = "Search for course name, professor name";
 /*编辑个人信息 Edit personal info >*/
@@ -1070,13 +1070,11 @@
 /*给我们好评 Rate for Us*/
 "RATE_US" = "Rate for Us";
 /*关于我们 About us*/
-"ABOUNT_US" = "About us";
-/*关于我们 About Us*/
-"ABOUNT_US_TITLE" = "About Us";
+"ABOUNT_US" = "About Us";
 /*换绑手机号 Change Mobile*/
 "CHANGE_MOBILE" = "Change Mobile";
 /*当前绑定的手机号： Current mobile: */
-"CURRENT_MOBILE" = "Current mobile:";
+"CURRENT_MOBILE" = "Current mobile: ";
 /*用户名 username*/
 "USERNAME_TEXT" = "Username";
 /*请输入内容 Please enter...*/
@@ -1091,14 +1089,14 @@
 "NO_PROVIDE" = "Not provide";
 /*个人信息 Personal Info*/
 "PRESONAL_INFO" = "Personal Info";
-/*未满13岁不允许修改头像，仅显示默认头像。默认年龄为0岁，请注意修改。Children under 13 years old are not allowed to edit avatar. The default age is 0 years old, please check. */
-"YEAR_CHOOSE" = "Children under 13 years old are not allowed to edit avatar. The default age is 0 years old, please check.";
+/*未满13岁不允许修改头像，仅显示默认头像。默认年龄为0岁，请注意修改。Children under 13 are not allowed to edit avatar. The default age is 0, please check. */
+"YEAR_CHOOSE" = "Children under 13 are not allowed to edit avatar. The default age is 0, please check.";
 /*请您详细描述需要反馈的问题和建议... Please describe your questions or advice in detail.*/
 "DESCRIBE_DETAIL" = "Please describe your questions or advice in detail.";
 /*手机号/QQ/邮箱 Mobile/QQ/Email*/
 "CONTACT_TEXT" = "Mobile/QQ/Email";
-/*图片（选填，提供问题截图） Image (optional, screenshot is needed)*/
-"IMAGE_OPTIONS" = "Image (optional, screenshot is needed)";
+/*图片（选填，提供问题截图） Image (optional,screenshot is needed)*/
+"IMAGE_OPTIONS" = "Image (optional,screenshot is needed)";
 /*提交反馈成功 Feedback submit successfully*/
 "FEEDBACK_SUCCESS" = "Feedback submit successfully";
 /*提交反馈失败 Feedback submit failed*/
@@ -1143,3 +1141,7 @@
 "CHOOSE_ALBUM" = "Choose from Album";
 /* 详情 Details */
 "DETAILS_TITLE"="Details";
+/* 英荔商学院（www.EliteMBA.cn）是广东英荔国际教育科技有限公司旗下的商业管理类互联网课堂。\n\n英荔与国内外商业管理学术界资深的教授和专家联手，精心设计并制作高质量且极具知识价值的体系化在线课程。同时，筛选并引进国外优质教育内容，向学习者提供经英荔团队打造后的本土化版本。\n\n尽己所能地向更多学习者传递知识是教育者们的共同追求。英荔期望为教育者提供更有效的传递途径，增加知识的触及范围。在此，向各位专家、教授发出诚挚的开课邀请，期待创造、引入更多优质的课程资源，让知识在多元的世界产生更多元的价值。
+ EliteMBA (www.EliteMBA.cn) is a sub-brand of Guangdong Elite International Education & Technology Co., Ltd. focusing on the development of MBA online classroom.\n\nEliteMBA teams up with senior professors and experts in business management academics at home and abroad to design and produce high quality and knowledgeable systematic online courses. At the same time, we select and introduce high-quality foreign educational content to provide learners with a localized learning experience created by EliteMBA.\n\nIt is the common pursuit of educators to transfer knowledge to more learners as much as possible. EliteMBA expects to provide educators with more effective means of transmission and increase the reach of knowledge. Here, we would like to offer sincere invitations to experts and professors, and look forward to creating and introducing more high-quality curriculum resources, so that knowledge can generate more value in a diverse world.
+ */
+"ABOUNT_US_MESSAGE"="EliteMBA (www.EliteMBA.cn) is a sub-brand of Guangdong Elite International Education & Technology Co., Ltd. focusing on the development of MBA online classroom.\n\nEliteMBA teams up with senior professors and experts in business management academics at home and abroad to design and produce high quality and knowledgeable systematic online courses. At the same time, we select and introduce high-quality foreign educational content to provide learners with a localized learning experience created by EliteMBA.\n\nIt is the common pursuit of educators to transfer knowledge to more learners as much as possible. EliteMBA expects to provide educators with more effective means of transmission and increase the reach of knowledge. Here, we would like to offer sincere invitations to experts and professors, and look forward to creating and introducing more high-quality curriculum resources, so that knowledge can generate more value in a diverse world.";
