@@ -75,9 +75,9 @@ class TDHavardCell: UITableViewCell {
         }
         
         havardImage.snp.makeConstraints { (make) in
-            make.left.equalTo(bgView).offset(0)
+            make.left.equalTo(bgView).offset(3)
             make.top.equalTo(bgView).offset(16)
-            make.size.equalTo(CGSize(width: 216, height: 76))
+            make.size.equalTo(CGSize(width: 215, height: 86))
         }
         
         companyImage.snp.makeConstraints { (make) in

@@ -81,6 +81,10 @@ class JSONFormViewController<T>: UIViewController {
         tableView.tableFooterView = UIView()
         makeAndInstallHeader()
         addSubViews()
+        
+        dataSource?.selecktYear = {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     private func addSubViews() {
@@ -126,6 +130,7 @@ class ChooserDataSource<T> : NSObject, UITableViewDataSource, UITableViewDelegat
     var selectedItem: T? {
         return selectedIndex < data.count && selectedIndex >= 0 ? data[selectedIndex].value : nil
     }
+    var selecktYear: (()->())?
     
     init(data: [ChooserDatum<T>]) {
         self.data = data
@@ -162,7 +167,9 @@ class ChooserDataSource<T> : NSObject, UITableViewDataSource, UITableViewDelegat
         }
         
         tableView.reloadRows(at: rowsToRefresh, with: .automatic)
+        selecktYear?()
     }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.accessoryType = indexPath.row == selectedIndex ? .checkmark : .none
     }

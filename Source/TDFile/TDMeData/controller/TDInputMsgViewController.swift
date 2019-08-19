@@ -39,11 +39,11 @@ class TDInputMsgViewController: UIViewController {
     }()
     
     func addRightNavItem() {
-        
+        rightButton.frame = CGRect(x: 0, y: 0, width: 39, height: 48)
         rightButton.titleLabel?.font = UIFont(name: "PingFang-SC-Regular", size: 16)
         rightButton.setTitle(Strings.ok, for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
         dealWithRightButton(text: originText)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
         
         rightButton.oex_addAction({ [weak self](_) in
             self?.handinSignature()
@@ -71,11 +71,13 @@ class TDInputMsgViewController: UIViewController {
         
         numLabel.font = UIFont(name: "PingFangSC-Regular", size: 14)
         numLabel.textColor = UIColor(hexString: "#aab2bd")
-        numLabel.text = "0/\(maxCount)"
+        numLabel.text = "\(0)/\(maxCount)"
+        
         bgView.addSubview(numLabel)
         
         if originText != nil {
             inputTextView.text = originText
+            numLabel.text = "\(inputTextView.text.count)/\(maxCount)"
         }
     }
     
@@ -87,7 +89,7 @@ class TDInputMsgViewController: UIViewController {
         }
         
         numLabel.snp.makeConstraints { (make) in
-            make.right.equalTo(bgView).offset(-8)
+            make.right.equalTo(bgView).offset(-18)
             make.bottom.equalTo(bgView).offset(-8)
             make.height.equalTo(22)
         }
@@ -100,6 +102,13 @@ class TDInputMsgViewController: UIViewController {
         }
     }
 
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 extension TDInputMsgViewController: UITextViewDelegate {
@@ -129,11 +138,13 @@ extension TDInputMsgViewController: UITextViewDelegate {
     }
     
     func dealWithRightButton(text: String?) {
-        if let str = text,str.count > 0 {
+        if let str = text,str.count > 0, str != originText {
+            rightButton.tintColor = UIColor(hexString: "#0f80bf")
             rightButton.setTitleColor(UIColor(hexString: "#0f80bf"), for: .normal)
             rightButton.isUserInteractionEnabled = true
         }
         else {
+            rightButton.tintColor = UIColor(hexString: "#ccd1d9")
             rightButton.setTitleColor(UIColor(hexString: "#ccd1d9"), for: .normal)
             rightButton.isUserInteractionEnabled = false
         }

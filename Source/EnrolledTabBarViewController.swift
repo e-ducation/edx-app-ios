@@ -9,23 +9,23 @@
 import UIKit
 
 private enum TabBarOptions: Int {
-    case Course, Program, MainSite, CourseCatalog, AccountCenter, Debug
-    static let options = [MainSite, Course, Program, CourseCatalog, AccountCenter, Debug]
+    case MainSite,  CourseCatalog, Course, AccountCenter, Program, Debug
+    static let options = [MainSite, CourseCatalog, Course, AccountCenter, Program, Debug]
     
     func title(config: OEXConfig? = nil) -> String {
         switch self {
-        case .Course:
-            return Strings.tabStudy//Strings.courses
-        case .Program:
-            return Strings.programs
+        case .MainSite:
+            return Strings.tabHome
         case .CourseCatalog:
             return Strings.tabCourse//config?.discovery.course.type == .native ? Strings.findCourses : Strings.discover
-        case .Debug:
-            return Strings.debug
-        case .MainSite:
-            return Strings.elitemba
+        case .Course:
+            return Strings.tabStudy
         case .AccountCenter:
             return Strings.tabMine
+        case .Program:
+            return Strings.programs
+        case .Debug:
+            return Strings.debug
         }
     }
 }
@@ -45,6 +45,7 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
     private var profileFeed: Feed<UserProfile>?
     private let tabBarImageFontSize : CGFloat = 20
     static var courseCatalogIndex: Int = 0
+    static var courseStudyIndex: Int = 0
     
     private var screenTitle: String {
         guard let option = TabBarOptions.options.first else {return Strings.courses}
@@ -68,7 +69,6 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
 //        addProfileButton()
     
         setupProfileLoader()
-        
         prepareTabBarView()
 //        prepareTabViewData()
         
@@ -80,36 +80,48 @@ class EnrolledTabBarViewController: UITabBarController, UITabBarControllerDelega
     }
     
     override var shouldAutorotate: Bool {
-        return false
+        return allowAllOrientation()
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if allowAllOrientation() == true {
+            return .allButUpsideDown
+        }
         return .portrait
+    }
+    
+    func allowAllOrientation() -> Bool {
+        var allowAll = false
+        if let nav: ForwardingNavigationController = selectedViewController as? ForwardingNavigationController {
+            allowAll = nav.shouldAutorotate
+        }
+        return allowAll
     }
     
     private func prepareTabBarView() {
         for option in TabBarOptions.options {
             switch option {
-            case .Course:
-                let courseVc = TDStudyCourseViewController(environment: environment)
-                createChildVC(childViewController: courseVc, title: option.title(), imageStr: "study")
-            case .Program:
-                guard environment.config.programConfig.enabled, let programsURL = environment.config.programConfig.programURL else { break }
-                createChildVC(childViewController: ProgramsViewController(environment: environment, programsURL: programsURL), title: option.title(), imageStr: "mainsite")
+            case .MainSite:
+                let mainsiteVC = TDMainSiteViewController(environment: environment)
+                createChildVC(childViewController: mainsiteVC, title: option.title(), imageStr: "mainsite")
             case .CourseCatalog:
                 let findCourseVc = TDFindCoursePageViewController(environment: environment)
                 createChildVC(childViewController: findCourseVc, title: option.title(), imageStr: "course")
-                EnrolledTabBarViewController.courseCatalogIndex = 2
+                EnrolledTabBarViewController.courseCatalogIndex = 1
+            case .Course:
+                let courseVc = TDStudyCourseViewController(environment: environment)
+                createChildVC(childViewController: courseVc, title: option.title(), imageStr: "study")
+                EnrolledTabBarViewController.courseStudyIndex = 2
+            case .AccountCenter:
+                let accountVc = TDMeViewController(environment: environment)
+                createChildVC(childViewController: accountVc, title: option.title(), imageStr: "me")
+            case .Program:
+                guard environment.config.programConfig.enabled, let programsURL = environment.config.programConfig.programURL else { break }
+                createChildVC(childViewController: ProgramsViewController(environment: environment, programsURL: programsURL), title: option.title(), imageStr: "mainsite")
             case .Debug:
                 if environment.config.shouldShowDebug() {
                     createChildVC(childViewController: DebugMenuViewController(environment: environment), title: option.title(), imageStr: "mainsite")
                 }
-            case .MainSite:
-                let mainsiteVC = TDMainSiteViewController(environment: environment)
-                createChildVC(childViewController: mainsiteVC, title: option.title(), imageStr: "mainsite")
-            case .AccountCenter:
-                let accountVc = TDMeViewController(environment: environment)
-                createChildVC(childViewController: accountVc, title: option.title(), imageStr: "me")
             }
         }
     }

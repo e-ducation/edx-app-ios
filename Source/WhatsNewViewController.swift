@@ -68,11 +68,19 @@ class WhatsNewViewController: UIViewController, UIPageViewControllerDelegate, UI
         configurePageViewController()
         configureViews()
         setConstraints()
+        
+        statusBarColor(color: .clear)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         logScreenEvent()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        statusBarColor(color: .white)
     }
     
     private func configurePageViewController() {

@@ -151,14 +151,17 @@
 }
 
 - (void)timeChange {
-    self.phoneView.sendButton.userInteractionEnabled = NO;
     self.timeNum -= 1;
+    
+    self.phoneView.sendButton.userInteractionEnabled = NO;
+    [self.phoneView.sendButton setTitleColor:[UIColor colorWithHexString:@"#ccd1d9"] forState:UIControlStateNormal];
     [self.phoneView.sendButton setTitle:[NSString stringWithFormat:@"%ds",self.timeNum] forState:UIControlStateNormal];
     
     if (self.timeNum <= 0) {
         [self timerInvalidate];
         self.phoneView.sendButton.userInteractionEnabled = YES;
-        [self.phoneView.sendButton setTitle:[Strings getVerification] forState:UIControlStateNormal];
+        [self.phoneView.sendButton setTitleColor:[UIColor colorWithHexString:@"#0f80bf"] forState:UIControlStateNormal];
+        [self.phoneView.sendButton setTitle:[Strings resendText] forState:UIControlStateNormal];
     }
 }
 
@@ -244,7 +247,6 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if ([textField isEqual:self.phoneView.codeText]) {
-//        NSLog(@"%@ --->> %@",textField.text,string);
         if (range.length == 0) { //增
             if (textField.text.length + string.length == 6) {
                 BOOL enable = [self judgePhoneNunber];
@@ -302,6 +304,7 @@
     if (self.phoneStr.length > 0) {
         self.phoneView.bindLabel.text = [NSString stringWithFormat:@"%@%@",Strings.currentMobile,self.phoneStr];
         self.phoneView.titleLabel.text = [Strings changeMobile];
+        [self.phoneView.handinButton setTitle:[Strings changeMobile] forState:UIControlStateNormal];
     }
 }
 

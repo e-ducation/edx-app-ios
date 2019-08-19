@@ -1,5 +1,5 @@
 //
-//  TDStrudyTableViewController.swift
+//  TDStudyTableViewController.swift
 //  edX
 //
 //  Created by Elite Edu on 2019/7/16.
@@ -23,27 +23,11 @@ class TDStudyCourseCell : UITableViewCell {
     
     let vipExpiredView = TDVipExpiredView()
     
-//    fileprivate let courseView = CourseCardView(frame: CGRect.zero)
-//    fileprivate var course : OEXCourse?
     private let courseCardBorderStyle = BorderStyle()
     private let iPadHorizMargin:CGFloat = 18//180
     
     override init(style : UITableViewCell.CellStyle, reuseIdentifier : String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-//        let horizMargin = UIDevice.current.userInterfaceIdiom == .pad ? iPadHorizMargin : TDStudyCourseCell.margin
-        
-//        self.contentView.addSubview(courseView)
-//
-//        courseView.snp.makeConstraints { make in
-//            make.top.equalTo(contentView).offset(TDStudyCourseCell.margin)
-//            make.bottom.equalTo(contentView)
-//            make.leading.equalTo(contentView).offset(horizMargin)
-//            make.trailing.equalTo(contentView).offset(-horizMargin)
-//            make.height.equalTo(CourseCardView.cardHeight(leftMargin: TDStudyCourseCell.margin, rightMargin: TDStudyCourseCell.margin))
-//        }
-//
-//        courseView.applyBorderStyle(style: courseCardBorderStyle)
         
         contentView.backgroundColor = UIColor.white
         selectionStyle = .none
@@ -58,17 +42,22 @@ class TDStudyCourseCell : UITableViewCell {
             courseTitle.text = course?.name
             if let imageUrl = course?.courseImageURL, let hostUrl = OEXConfig.shared().apiHostURL()?.absoluteString {
                 let url = hostUrl + imageUrl
-                courseImage.sd_setImage(with: URL(string:url), placeholderImage: UIImage(named: "main_recomend_6"))
+                let urlEncoding = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+                courseImage.sd_setImage(with: URL(string:urlEncoding ?? url), placeholderImage: UIImage(named: "main_recomend_6"))
             }
             if let dic = course?.progress {
+                
+                if let isPass = dic["is_pass"] as? Bool, isPass == true {
+                    progressView.tintColor = UIColor(hexString: "#4788c7")
+                }
+                else {
+                    progressView.tintColor = UIColor(hexString: "#8cc34a")
+                }
                 
                 if let grade = dic["total_grade"] as? Double {
                     progressView.progress = Float(grade)
                     progressLabel.text = String(format: "%.0f%%", grade*100)
-                }
-            
-                if let isPass = dic["is_pass"] as? Bool {
-                    progressView.tintColor = UIColor(hexString: isPass ? "#8cc34a" : "#4788c7")
+                    print("学习i进度",grade,progressView.progress)
                 }
             }
             
@@ -112,7 +101,6 @@ class TDStudyCourseCell : UITableViewCell {
         progressLabel.font = UIFont(name: "PingFangSC-Regular", size: 12)
         
         progressView.progress = 0.0
-        progressView.tintColor = UIColor(hexString: "#4788c7")
         progressView.trackTintColor = UIColor(hexString: "#d8d8d8")
         
         courseImage.image = UIImage(named: "main_recomend_6")
@@ -152,7 +140,7 @@ class TDStudyCourseCell : UITableViewCell {
         }
         
         timeLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(courseImage.snp_right).offset(8)
+            make.left.equalTo(courseImage.snp.right).offset(8)
             make.bottom.equalTo(courseImage)
             make.size.equalTo(CGSize(width: 108, height: 18))
         }
@@ -160,11 +148,11 @@ class TDStudyCourseCell : UITableViewCell {
         progressView.snp.makeConstraints { (make) in
             make.right.equalTo(bgView).offset(-9)
             make.bottom.equalTo(courseImage).offset(-7)
-            make.size.equalTo(CGSize(width: 46, height: 4))
+            make.size.equalTo(CGSize(width: 88, height: 4))
         }
         
         progressLabel.snp.makeConstraints { (make) in
-            make.right.equalTo(progressView.snp_left).offset(-5)
+            make.right.equalTo(progressView.snp.left).offset(-5)
             make.centerY.equalTo(progressView)
             make.height.equalTo(18)
         }
@@ -185,14 +173,14 @@ class TDStudyCourseCell : UITableViewCell {
     }
 }
 
-@objc protocol TDStrudyTableViewControllerDelegate {
+@objc protocol TDStudyTableViewControllerDelegate {
     func coursesTableChoseCourse(course : OEXCourse)//选择课程
     func clickExpiredButton() //vip重置
     func havardCourseEnter() //哈商
     func gotoFindCourse() //去选课
 }
 
-class TDStrudyTableViewController: UITableViewController {
+class TDStudyTableViewController: UITableViewController {
     
     enum Context {
         case CourseCatalog
@@ -204,7 +192,7 @@ class TDStrudyTableViewController: UITableViewController {
     private let environment : Environment
     private let context: Context
     
-    weak var delegate : TDStrudyTableViewControllerDelegate?
+    weak var delegate : TDStudyTableViewControllerDelegate?
     var courses : [OEXCourse] = []
     var dateStr: String = ""
     var days: Int = 0
@@ -231,7 +219,7 @@ class TDStrudyTableViewController: UITableViewController {
         self.tableView.accessibilityIdentifier = "courses-table-view"
         
         self.tableView.snp.makeConstraints { make in
-            make.edges.equalTo(safeEdges)
+            make.left.right.top.bottom.equalTo(self.view)
         }
         
         tableView.estimatedRowHeight = 200
@@ -279,6 +267,7 @@ class TDStrudyTableViewController: UITableViewController {
         
         let course = self.courses[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: TDStudyCourseCell.cellIdentifier, for: indexPath as IndexPath) as! TDStudyCourseCell
+        
         cell.course = course
         
         return cell

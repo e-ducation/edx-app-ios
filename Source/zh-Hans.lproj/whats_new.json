@@ -1,6 +1,20 @@
 
 [
     {
+        "version":"2.18",
+        "messages":[
+            {
+                "platforms":[
+                    "ios",
+                    "android"
+                ],
+                "image":"screen_1",
+                "title":"学则变 · 变则进",
+                "message":"马上开始您的在线MBA学习吧！"
+            }
+        ]
+    },
+    {
         "version":"2.17",
         "messages":[
             {

@@ -98,6 +98,14 @@ class TDUserMsgViewController: UIViewController {
         self.imagePicker = ProfilePictureTaker(delegate: self)
         self.imagePicker?.start(alreadyHasImage: self.profile.hasProfileImage)
     }
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 extension TDUserMsgViewController : ProfilePictureTakerDelegate {
@@ -348,4 +356,5 @@ extension TDUserMsgViewController: TDSelectSexViewDelegate {
     private func equalsCaseInsensitive(lhs: String, _ rhs: String) -> Bool {
         return lhs.caseInsensitiveCompare(rhs) == .orderedSame
     }
+    
 }

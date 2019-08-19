@@ -190,7 +190,7 @@ class TDPasswordResetViewController: UIViewController, UITextFieldDelegate {
         
         titleLabel.font = UIFont(name: "PingFang-SC-Medium", size: 22)
         titleLabel.textColor = UIColor(hexString: "#2e313c")
-        titleLabel.text = Strings.resetPasswordTitle
+        titleLabel.text = Strings.passwordResetText
         view.addSubview(titleLabel)
         
         handinButton.backgroundColor = UIColor(hexString: "#d3d3d3")

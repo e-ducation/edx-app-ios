@@ -69,6 +69,14 @@ typedef NS_ENUM(NSUInteger, OEXMySettingsAlertTag) {
     self.wifiOnlyCell.accessibilityLabel = [NSString stringWithFormat:@"%@ , %@", self.titleLabel.text, self.subtitleLabel.text];
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - tableview
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -222,8 +230,5 @@ typedef NS_ENUM(NSUInteger, OEXMySettingsAlertTag) {
     }
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return [OEXStyles sharedStyles].standardStatusBarStyle;
-}
 
 @end

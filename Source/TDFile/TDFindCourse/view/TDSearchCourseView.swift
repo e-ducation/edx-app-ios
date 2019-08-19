@@ -41,7 +41,7 @@ class TDSearchCourseView: UIView {
         bgView.snp.makeConstraints { (make) in
             make.left.right.top.bottom.equalTo(self)
         }
-        
+
         searchButton.snp.makeConstraints { (make) in
             make.left.equalTo(bgView).offset(12)
             make.right.equalTo(bgView).offset(-12)

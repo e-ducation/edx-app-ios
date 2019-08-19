@@ -73,7 +73,7 @@ class TDMainSiteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = Strings.elitemba
+        self.title = Strings.tabHome
         setViewConstraint()
         getMainSiteData(isFirst: true)
         
@@ -85,6 +85,7 @@ class TDMainSiteViewController: UIViewController {
         showBindphoneAlertView()
         hideNavgationBar()
 
+        showWhatsNewIfNeeded()
     }
     
     func getMainSiteData(isFirst: Bool) {
@@ -149,6 +150,12 @@ class TDMainSiteViewController: UIViewController {
     
     @objc func refreshData() {
         getMainSiteData(isFirst: false)
+    }
+    
+    private func showWhatsNewIfNeeded() {
+        if WhatsNewViewController.canShowWhatsNew(environment: environment as? RouterEnvironment) {
+            environment.router?.showWhatsNew(fromController: self)
+        }
     }
     
     override var shouldAutorotate: Bool {

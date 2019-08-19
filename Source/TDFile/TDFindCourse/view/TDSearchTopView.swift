@@ -85,7 +85,7 @@ class TDSearchTopView: UIView {
         cancelButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(bgView)
             make.right.equalTo(bgView).offset(-12)
-            make.size.equalTo(CGSize(width: 39, height: 39))
+            make.size.equalTo(CGSize(width: 48, height: 39))
         }
         
         deleteButton.snp.makeConstraints { (make) in

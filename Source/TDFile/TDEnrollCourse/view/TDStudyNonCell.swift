@@ -41,7 +41,7 @@ class TDStudyNonCell: UITableViewCell {
     func configView() {
         self.selectionStyle = .none
         
-        bgView.backgroundColor = UIColor.white
+        bgView.backgroundColor = .white
         
         nonImageview.contentMode = .scaleAspectFit
         nonImageview.image = UIImage(named: "course_non_image")

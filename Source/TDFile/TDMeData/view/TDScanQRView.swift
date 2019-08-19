@@ -68,6 +68,8 @@ class TDScanQRView: UIView {
         messageLabel.text = Strings.scanQr
         messageLabel.textColor = UIColor(hexString: "#ccd1d9")
         messageLabel.font = UIFont(name: "PingFangSC-Regular", size: 14)
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
         self.addSubview(messageLabel)
     }
     
@@ -113,7 +115,8 @@ class TDScanQRView: UIView {
         
         messageLabel.snp.makeConstraints { (make) in
             make.top.equalTo(boxImageView.snp.bottom).offset(16)
-            make.centerX.equalTo(self)
+            make.left.equalTo(self).offset(33)
+            make.right.equalTo(self).offset(-33)
         }
     }
     

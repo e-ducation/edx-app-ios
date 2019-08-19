@@ -115,6 +115,14 @@ class TDProfessorViewController: UIViewController {
         getData(isRefresh: false)
         print("加载更多")
     }
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 extension TDProfessorViewController: UITableViewDelegate, UITableViewDataSource {

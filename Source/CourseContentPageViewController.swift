@@ -86,6 +86,7 @@ public class CourseContentPageViewController : UIPageViewController, UIPageViewC
         )
 
         loadIfNecessary()
+        statusBarColor(color: .clear)
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
@@ -350,9 +351,9 @@ public class CourseContentPageViewController : UIPageViewController, UIPageViewC
         
     }
     
-    override public var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle(barStyle : self.navigationController?.navigationBar.barStyle)
-    }
+//    override public var preferredStatusBarStyle: UIStatusBarStyle {
+//        return UIStatusBarStyle(barStyle : self.navigationController?.navigationBar.barStyle)
+//    }
     
     override public var shouldAutorotate: Bool {
         return true

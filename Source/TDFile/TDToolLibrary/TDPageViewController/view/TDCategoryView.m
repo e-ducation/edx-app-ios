@@ -86,12 +86,6 @@ static const CGFloat TDCategoryViewDefaultHeight = 41;
         _cellSpacing = 23;
         _leftAndRightMargin = _cellSpacing;
         
-        self.backgroundColor = [UIColor whiteColor];
-        self.titleNormalColor = [UIColor colorWithHexString:@"#aab2bd"];
-        self.titleSelectedColor = [UIColor colorWithHexString:@"#333333"];
-        self.titleNomalFont = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
-        self.titleSelectedFont = [UIFont fontWithName:@"PingFang-SC-Medium" size:18];
-        
         [self setupSubViews];
     }
     return self;
@@ -129,6 +123,13 @@ static const CGFloat TDCategoryViewDefaultHeight = 41;
 
 #pragma mark - Private Method
 - (void)setupSubViews {
+    
+    self.backgroundColor = [UIColor redColor];
+    self.titleNormalColor = [UIColor colorWithHexString:@"#aab2bd"];
+    self.titleSelectedColor = [UIColor colorWithHexString:@"#333333"];
+    self.titleNomalFont = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
+    self.titleSelectedFont = [UIFont fontWithName:@"PingFang-SC-Medium" size:18];
+    
     [self addSubview:self.collectionView];
     [self addSubview:self.separator];
     
@@ -188,6 +189,10 @@ static const CGFloat TDCategoryViewDefaultHeight = 41;
 }
 
 #pragma mark - UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.titles.count;
 }
@@ -195,10 +200,10 @@ static const CGFloat TDCategoryViewDefaultHeight = 41;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     TDCategoryViewCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:SegmentHeaderViewCollectionViewCellIdentifier forIndexPath:indexPath];
-    cell.titleLabel.text = self.titles[indexPath.row];
     cell.titleLabel.textColor = self.selectedIndex == indexPath.row ? self.titleSelectedColor : self.titleNormalColor;
     cell.titleLabel.font = self.selectedIndex == indexPath.row ? self.titleSelectedFont : self.titleNomalFont;
     cell.isSelect = self.selectedIndex == indexPath.row;
+    cell.titleLabel.text = self.titles[indexPath.row];
     return cell;
 }
 
