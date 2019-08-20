@@ -220,7 +220,7 @@ class TDPasswordResetViewController: UIViewController, UITextFieldDelegate {
         }
         
         originView.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view).offset(28)
+            make.left.equalTo(self.view).offset(18)
             make.right.equalTo(self.view).offset(-18)
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.height.equalTo(44)

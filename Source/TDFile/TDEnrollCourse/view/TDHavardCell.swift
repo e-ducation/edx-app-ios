@@ -66,7 +66,7 @@ class TDHavardCell: UITableViewCell {
         shadowView.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(12)
             make.right.equalTo(self).offset(-11)
-            make.top.equalTo(self).offset(16)
+            make.top.equalTo(self).offset(6)
             make.bottom.equalTo(self).offset(-6)
         }
         
@@ -76,7 +76,7 @@ class TDHavardCell: UITableViewCell {
         
         havardImage.snp.makeConstraints { (make) in
             make.left.equalTo(bgView).offset(3)
-            make.top.equalTo(bgView).offset(16)
+            make.top.equalTo(bgView).offset(13)
             make.size.equalTo(CGSize(width: 215, height: 86))
         }
         

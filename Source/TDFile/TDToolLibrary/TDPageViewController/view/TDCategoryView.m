@@ -29,6 +29,8 @@
         
         self.line.hidden = YES;
         self.line.backgroundColor = [UIColor colorWithHexString:@"#0f80bf"];
+        self.line.layer.cornerRadius = 1.0;
+        self.line.layer.masksToBounds = YES;
         [self.contentView addSubview:self.line];
         [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.contentView);
@@ -62,7 +64,7 @@
 
 @end
 
-#define HG_ONE_PIXEL (1 / [UIScreen mainScreen].scale)
+#define HG_ONE_PIXEL 1
 
 @interface TDCategoryView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -269,7 +271,7 @@ static const CGFloat TDCategoryViewDefaultHeight = 41;
 - (UIView *)separator {
     if (!_separator) {
         _separator = [[UIView alloc] init];
-        _separator.backgroundColor = [UIColor colorWithHexString:@"#b7dcff"];
+        _separator.backgroundColor = [UIColor colorWithHexString:@"#F0F8FF"];
     }
     return _separator;
 }

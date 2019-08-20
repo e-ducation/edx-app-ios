@@ -32,6 +32,7 @@ class TDSearchTopView: UIView {
     
     func buttonClickAction() {
         cancelButton.oex_addAction({ [weak self](_) in
+            self?.inputTextField.resignFirstResponder()
             self?.delegate?.clickCancelButton()
             }, for: .touchUpInside)
         

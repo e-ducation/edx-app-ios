@@ -290,7 +290,7 @@
 /* Message shown when there is no course dates */
 "COURSEDATES.COURSE_DATE_UNAVAILABLE"="课程日期当前不可用。";
 /* Label for date when course starts */
-"COURSE.STARTING" = "即将于{start_date}开始";
+"COURSE.STARTING" = "即将于{start_date}开课";
 /* Label for date when course end */
 "COURSE.ENDING" = "将于{end_date}结束";
 /* Label indicated that a course has ended */

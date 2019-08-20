@@ -8,8 +8,6 @@
 
 import Foundation
 
-//var isActionTakenOnUpgradeSnackBar: Bool = false
-
 class TDStudyCourseViewController : OfflineSupportViewController, TDStudyTableViewControllerDelegate, LoadStateViewReloadSupport,InterfaceOrientationOverriding {
     
     typealias Environment = OEXAnalyticsProvider & OEXConfigProvider & DataManagerProvider & NetworkManagerProvider & ReachabilityProvider & OEXRouterProvider & OEXSessionProvider & OEXStylesProvider
@@ -295,15 +293,6 @@ extension TDStudyCourseViewController {
             self.tableController.days = day
             self.tableController.dateStr = date
             self.tableController.tableView.reloadData()
-        }
-    }
-}
-
-// For testing use only
-extension TDStudyCourseViewController {
-    var t_loaded: OEXStream<()> {
-        return self.enrollmentFeed.output.map {_ in
-            return ()
         }
     }
 }

@@ -306,6 +306,10 @@
         self.phoneView.titleLabel.text = [Strings changeMobile];
         [self.phoneView.handinButton setTitle:[Strings changeMobile] forState:UIControlStateNormal];
     }
+    else {
+        [self.phoneView updateBindLabelConstraint];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

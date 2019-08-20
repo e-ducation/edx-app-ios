@@ -40,7 +40,7 @@ class TDAccountViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor(hexString: "#f5f5f5")
-        tableView.separatorColor = UIColor(hexString: "#f5f5f5")
+        tableView.separatorColor = UIColor(hexString: "#EEEEEE")
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         self.view.addSubview(tableView)

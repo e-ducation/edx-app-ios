@@ -30,6 +30,15 @@
     return self;
 }
 
+- (void)updateBindLabelConstraint {
+    [self.bindLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.bgView).offset(18);
+        make.right.mas_equalTo(self.bgView).offset(-18);
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(6);
+        make.height.mas_equalTo(0);
+    }];
+}
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.phoneText resignFirstResponder];
     [self.codeText resignFirstResponder];
@@ -120,12 +129,13 @@
     [self.bindLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView).offset(18);
         make.right.mas_equalTo(self.bgView).offset(-18);
-        make.top.mas_equalTo(self.titleLabel.mas_bottom);
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(6);
+        make.height.mas_equalTo(20);
     }];
     
     [self.areaButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bgView.mas_left).offset(28);
-        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(48);
+        make.top.mas_equalTo(self.bindLabel.mas_bottom).offset(40);
         make.height.mas_equalTo(33);
     }];
     

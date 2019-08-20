@@ -46,7 +46,7 @@ class TDFeedbackInputCell: UITableViewCell {
         inputTextView.font = UIFont(name: "PingFangSC-Regular", size: 16)
         inputTextView.textColor = UIColor(hexString: "#2e313c")
         inputTextView.returnKeyType = .done
-        inputTextView.becomeFirstResponder()
+//        inputTextView.becomeFirstResponder()
         inputTextView.delegate = self
         contentView.addSubview(inputTextView)
         

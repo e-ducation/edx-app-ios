@@ -51,14 +51,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="205" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wi-fi only download" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEh-gf-YWm">
-                        <rect key="frame" x="18" y="14.5" width="135.5" height="20"/>
+                        <rect key="frame" x="15" y="14.5" width="135.5" height="20"/>
                         <accessibility key="accessibilityConfiguration" label=""/>
                         <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="14"/>
                         <color key="textColor" red="0.27058823529411763" green="0.28627450980392155" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OZg-Qp-RW9">
-                        <rect key="frame" x="263" y="9" width="51" height="31"/>
+                        <rect key="frame" x="256" y="9" width="51" height="31"/>
                         <accessibility key="accessibilityConfiguration" label=""/>
                         <color key="onTintColor" red="0.16078431369999999" green="0.61960784310000006" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
@@ -67,9 +67,9 @@
                     </switch>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="OZg-Qp-RW9" secondAttribute="trailing" constant="8" id="E9E-tA-2WA"/>
+                    <constraint firstAttribute="trailing" secondItem="OZg-Qp-RW9" secondAttribute="trailing" constant="15" id="E9E-tA-2WA"/>
                     <constraint firstAttribute="centerY" secondItem="OZg-Qp-RW9" secondAttribute="centerY" id="LMa-De-TfF"/>
-                    <constraint firstItem="EEh-gf-YWm" firstAttribute="leading" secondItem="cne-Vt-XgN" secondAttribute="leading" constant="18" id="Oft-Tc-Zac"/>
+                    <constraint firstItem="EEh-gf-YWm" firstAttribute="leading" secondItem="cne-Vt-XgN" secondAttribute="leading" constant="15" id="Oft-Tc-Zac"/>
                     <constraint firstAttribute="centerY" secondItem="EEh-gf-YWm" secondAttribute="centerY" id="iaP-RC-WKX"/>
                 </constraints>
             </tableViewCellContentView>
