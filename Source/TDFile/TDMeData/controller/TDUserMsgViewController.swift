@@ -48,7 +48,7 @@ class TDUserMsgViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .white
-        tableView.separatorColor = UIColor(hexString: "#f5f5f5")
+        tableView.separatorColor = UIColor(hexString: "#EEEEEE")
         tableView.tableFooterView = UIView()
         self.view.addSubview(tableView)
         
@@ -91,7 +91,7 @@ class TDUserMsgViewController: UIViewController {
     }
     
     func changeUserHeaderImage() {
-        guard profile.sharingLimitedProfile == false else {
+        if profile.parentalConsent ?? false {
             self.view.makeToast(Strings.yearChoose, duration: 0.8, position: CSToastPositionCenter)
             return
         }

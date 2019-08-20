@@ -37,41 +37,26 @@ class TDStudyCourseCell : UITableViewCell {
 
     }
     
-    var course : OEXCourse? {
-        didSet {
-            courseTitle.text = course?.name
-            if let imageUrl = course?.courseImageURL, let hostUrl = OEXConfig.shared().apiHostURL()?.absoluteString {
-                let url = hostUrl + imageUrl
-                let urlEncoding = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-                courseImage.sd_setImage(with: URL(string:urlEncoding ?? url), placeholderImage: UIImage(named: "main_recomend_6"))
-            }
-            if let dic = course?.progress {
-                
-                if let isPass = dic["is_pass"] as? Bool, isPass == true {
-                    progressView.tintColor = UIColor(hexString: "#4788c7")
-                }
-                else {
-                    progressView.tintColor = UIColor(hexString: "#8cc34a")
-                }
-                
-                if let grade = dic["total_grade"] as? Double {
-                    progressView.progress = Float(grade)
-                    progressLabel.text = String(format: "%.0f%%", grade*100)
-                    print("学习i进度",grade,progressView.progress)
-                }
-            }
-            
-            
-            //VIP权利加入 + VIP过期 + 没取得证书
-            if course!.is_normal_enroll == false && course!.is_vip == false && course!.has_cert == false {
-                vipExpiredView.isHidden = false
-            }
-            else {
-                vipExpiredView.isHidden = true
-            }
+    func setStudyCellData(course : OEXCourse) {
+        //VIP权利加入 + VIP过期 + 没取得证书
+        if course.is_normal_enroll == false && course.is_vip == false && course.has_cert == false {
+            vipExpiredView.isHidden = false
         }
+        else {
+            vipExpiredView.isHidden = true
+        }
+        
+        courseTitle.text = course.name
+        if let imageUrl = course.courseImageURL, let hostUrl = OEXConfig.shared().apiHostURL()?.absoluteString {
+            let url = hostUrl + imageUrl
+            let urlEncoding = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+            courseImage.sd_setImage(with: URL(string:urlEncoding ?? url), placeholderImage: UIImage(named: "main_recomend_6"))
+        }
+        
+        progressLabel.text = String(format: "%.0f%%", course.studyProgres*100)
+        progressView.tintColor = UIColor(hexString: course.studyPass == true ? "#8cc34a" : "#4788c7")
+        progressView.progress = course.studyProgres
     }
-    
     
     func configeView() {
         
@@ -102,6 +87,9 @@ class TDStudyCourseCell : UITableViewCell {
         
         progressView.progress = 0.0
         progressView.trackTintColor = UIColor(hexString: "#d8d8d8")
+        progressView.tintColor = UIColor(hexString: "#4788c7")
+        progressView.layer.masksToBounds = true
+        progressView.layer.cornerRadius = 2.0
         
         courseImage.image = UIImage(named: "main_recomend_6")
         courseTitle.text = "课程名称"
@@ -148,7 +136,7 @@ class TDStudyCourseCell : UITableViewCell {
         progressView.snp.makeConstraints { (make) in
             make.right.equalTo(bgView).offset(-9)
             make.bottom.equalTo(courseImage).offset(-7)
-            make.size.equalTo(CGSize(width: 88, height: 4))
+            make.size.equalTo(CGSize(width: 58, height: 4))
         }
         
         progressLabel.snp.makeConstraints { (make) in
@@ -196,7 +184,6 @@ class TDStudyTableViewController: UITableViewController {
     var courses : [OEXCourse] = []
     var dateStr: String = ""
     var days: Int = 0
-    let insetsController = ContentInsetsController()
     
     init(environment : Environment, context: Context) {
         self.context = context
@@ -216,21 +203,14 @@ class TDStudyTableViewController: UITableViewController {
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.separatorStyle = .none
         self.tableView.backgroundColor = UIColor.white
-        self.tableView.accessibilityIdentifier = "courses-table-view"
         
         self.tableView.snp.makeConstraints { make in
             make.left.right.top.bottom.equalTo(self.view)
         }
         
-        tableView.estimatedRowHeight = 200
-//        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(TDStudyCourseCell.self, forCellReuseIdentifier: TDStudyCourseCell.cellIdentifier)
         tableView.register(TDHavardCell.self, forCellReuseIdentifier: TDHavardCell.cellIdentifier)
         tableView.register(TDStudyNonCell.self, forCellReuseIdentifier: TDStudyNonCell.cellIdentifier)
-        
-        self.insetsController.addSource(
-            source: ConstantInsetsSource(insets: UIEdgeInsets(top: 0, left: 0, bottom: StandardVerticalMargin, right: 0), affectsScrollIndicators: false)
-        )
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -268,8 +248,7 @@ class TDStudyTableViewController: UITableViewController {
         let course = self.courses[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: TDStudyCourseCell.cellIdentifier, for: indexPath as IndexPath) as! TDStudyCourseCell
         
-        cell.course = course
-        
+        cell.setStudyCellData(course: course)
         return cell
         
     }
@@ -331,11 +310,6 @@ class TDStudyTableViewController: UITableViewController {
             return 0
         }
         return 48
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.insetsController.updateInsets()
     }
 }
 

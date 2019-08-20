@@ -37,6 +37,11 @@ class TDSearchCourseViewController: UIViewController {
         setViewConstraint()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        searchTopView.inputTextField.becomeFirstResponder()
+    }
+    
     func setSearchNav() {
         searchTopView.delegate = self
         searchTopView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 18, height: 44)
@@ -53,7 +58,8 @@ class TDSearchCourseViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorColor = UIColor(hexString: "#f5f5f5")
+        tableView.separatorColor = UIColor(hexString: "#EEEEEE")
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         tableView.tableFooterView = UIView()
         
         view.addSubview(tableView)
@@ -61,11 +67,11 @@ class TDSearchCourseViewController: UIViewController {
             make.left.right.bottom.top.equalTo(view)
         }
         
-        line.backgroundColor = UIColor(hexString: "#f5f5f5")
+        line.backgroundColor = UIColor(hexString: "#EEEEEE")
         view.addSubview(line)
         line.snp.makeConstraints { (make) in
             make.top.left.right.equalTo(view)
-            make.height.equalTo(0.5)
+            make.height.equalTo(0.3)
         }
     }
 }
@@ -161,7 +167,7 @@ extension TDSearchCourseViewController: UITableViewDataSource, UITableViewDelega
             return cell
         }
         
-        tableView.separatorColor = UIColor(hexString: "#f5f5f5")
+        tableView.separatorColor = UIColor(hexString: "#EEEEEE")
         var cell = tableView.dequeueReusableCell(withIdentifier: "searchCell")
         if (cell == nil) {
             cell = UITableViewCell(style: .default, reuseIdentifier: "searchCell")

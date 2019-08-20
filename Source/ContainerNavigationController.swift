@@ -92,6 +92,7 @@ class ForwardingNavigationController: UINavigationController, StatusBarOverridin
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if viewControllers.count > 0 {
             viewController.hidesBottomBarWhenPushed = true //隐藏tabar
+            viewController.statusBarColor(color: .clear) //statusbar的颜色
             self.topViewController?.navigationController?.setNavigationBarHidden(false, animated: true)//显示navBar
             self.topViewController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }

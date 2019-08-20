@@ -19,4 +19,6 @@
 @property (nonatomic,strong) UILabel *bindLabel;
 @property (nonatomic,strong) UILabel *titleLabel;
 
+- (void)updateBindLabelConstraint;
+
 @end

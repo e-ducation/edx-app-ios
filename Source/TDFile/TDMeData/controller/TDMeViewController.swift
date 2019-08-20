@@ -31,7 +31,6 @@ class TDMeViewController: UIViewController {
         
         configureViews()
         setupProfileLoader()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,6 +148,8 @@ extension TDMeViewController: UITableViewDelegate,UITableViewDataSource {
                     cell.imageStr = "me_vip_membership"
                     cell.title = Strings.membership
                     switch self.profile?.vip_status {
+                    case 0:
+                        cell.mesage = ""
                     case 1:
                         cell.mesage = Strings.noPurchased
                     case 2:

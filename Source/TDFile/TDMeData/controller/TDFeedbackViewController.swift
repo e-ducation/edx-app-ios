@@ -22,6 +22,7 @@ class TDFeedbackViewController: UIViewController {
     
     var gapHeigt: CGFloat = 0.0
     var duration = 0.0
+    var isTextResponder = false
     
     var putOssNum = 0
     var contentArray = Array<String>()
@@ -128,7 +129,7 @@ class TDFeedbackViewController: UIViewController {
                 if httpResp.statusCode == 200 {
                     do {
                         let responDic = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as? [String : Any]
-                        print("提交反馈",responDic)
+//                        print("提交反馈",responDic)
                         
                         let code : Int = responDic?["code"] as! Int
                         if code == 200 {
@@ -287,7 +288,7 @@ extension TDFeedbackViewController: UITextFieldDelegate, TDFeedbackInputDelegate
     
     //MARK: UITextFieldDelegate
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        showKeyboardMove()
+        isTextResponder = true
         return true
     }
     
@@ -302,12 +303,17 @@ extension TDFeedbackViewController: UITextFieldDelegate, TDFeedbackInputDelegate
     func textFieldDidEndEditing(_ textField: UITextField) {
         contactStr = textField.text ?? ""
         hideKeyboardMove()
+        isTextResponder = false
         print("结束 textField：",textField.text as Any)
     }
     
     @objc func keybordWillShow(notification: Notification) { //键盘弹出
+        guard isTextResponder == true else {
+            return
+        }
         
         guard gapHeigt == 0 else {
+            showKeyboardMove()
             return
         }
         
@@ -327,6 +333,8 @@ extension TDFeedbackViewController: UITextFieldDelegate, TDFeedbackInputDelegate
             let move = rect!.maxY - keyboardTop - 110
             gapHeigt = move
         }
+        
+        showKeyboardMove()
     }
     
     func showKeyboardMove() { //键盘弹出页面
@@ -343,6 +351,7 @@ extension TDFeedbackViewController: UITextFieldDelegate, TDFeedbackInputDelegate
         guard gapHeigt > 0.0 else {
             return
         }
+        
         UIView.animate(withDuration: duration) {
             let navHeight = self.navigationController?.navigationBar.frame.height ?? 0
             let statusHeight = UIApplication.shared.statusBarFrame.height
